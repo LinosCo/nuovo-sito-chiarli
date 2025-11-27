@@ -25,3 +25,11 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Large files
+Mappa_regione_emilia_romagna.jpg
+public/Mappa_regione_emilia_romagna.jpg
+
+# Duplicate folders (already in public/)
+foto/
+foto_pagina_esempio/
