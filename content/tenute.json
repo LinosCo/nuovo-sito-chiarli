@@ -1,0 +1,56 @@
+{
+  "tenute": [
+    {
+      "id": 1,
+      "slug": "tenuta-cialdini",
+      "name": "Tenuta Cialdini",
+      "location": "Castelvetro di Modena",
+      "description": "Nel cuore delle colline modenesi, dove il Lambrusco Grasparossa trova la sua massima espressione. Terreni argillosi e calcarei regalano struttura e complessità unica ai nostri vini più prestigiosi.",
+      "image": "/foto/close-up-26-scaled.jpeg",
+      "hectares": 45,
+      "altitude": "200-350m",
+      "grape": "Grasparossa",
+      "year": "1860",
+      "mapPosition": { "x": 52, "y": 58 },
+      "gallery": [],
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": 2,
+      "slug": "tenuta-sorbara",
+      "name": "Tenuta Sorbara",
+      "location": "Bomporto",
+      "description": "La pianura del Secchia, terra d'elezione del Lambrusco di Sorbara. Suoli sabbiosi e limosi per vini di straordinaria freschezza, fragranza e florealità.",
+      "image": "/foto/close-up-78-scaled.jpeg",
+      "hectares": 60,
+      "altitude": "25-40m",
+      "grape": "Sorbara",
+      "year": "1920",
+      "mapPosition": { "x": 48, "y": 42 },
+      "gallery": [],
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": 3,
+      "slug": "tenuta-modena",
+      "name": "Tenuta Modena",
+      "location": "Modena",
+      "description": "Alle porte della città, dove tradizione e innovazione si incontrano. Vigneti storici che raccontano oltre 160 anni di passione per il Lambrusco.",
+      "image": "/foto/DSC04010.jpg",
+      "hectares": 35,
+      "altitude": "40-80m",
+      "grape": "Salamino",
+      "year": "1950",
+      "mapPosition": { "x": 50, "y": 48 },
+      "gallery": [],
+      "isActive": true,
+      "order": 3
+    }
+  ],
+  "_meta": {
+    "lastModified": "2025-12-09T00:00:00.000Z",
+    "modifiedBy": "system"
+  }
+}

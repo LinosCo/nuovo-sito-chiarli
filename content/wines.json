@@ -1,0 +1,200 @@
+{
+  "wines": [
+    {
+      "id": 1,
+      "slug": "vigneto-enrico-cialdini",
+      "name": "Vigneto Enrico Cialdini",
+      "denomination": "Lambrusco Grasparossa DOC",
+      "family": "Premium",
+      "description": "Il nostro cru più prestigioso. Eleganza e complessità uniche.",
+      "image": "/foto/001-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": ["Premium", "DOC"],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": 2,
+      "slug": "vecchia-modena",
+      "name": "Vecchia Modena",
+      "denomination": "Lambrusco di Sorbara DOC",
+      "family": "Metodo Classico",
+      "description": "Fragranza e florealità tipiche del Sorbara. Un classico intramontabile.",
+      "image": "/foto/002-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": ["Sorbara", "DOC"],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": 3,
+      "slug": "pruno-nero",
+      "name": "Pruno Nero",
+      "denomination": "Lambrusco Grasparossa DOC",
+      "family": "Metodo Classico",
+      "description": "Un Lambrusco moderno, secco e pulito. Perfetto con la gastronomia contemporanea.",
+      "image": "/foto/003-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": ["Dry", "Moderno"],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 3
+    },
+    {
+      "id": 4,
+      "slug": "nivola",
+      "name": "Nivola",
+      "denomination": "Lambrusco Grasparossa DOC",
+      "family": "Metodo Classico",
+      "description": "Intenso e fruttato. Un Lambrusco che unisce corpo e freschezza.",
+      "image": "/foto/005-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": ["Grasparossa", "DOC"],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 4
+    },
+    {
+      "id": 5,
+      "slug": "centenario",
+      "name": "Centenario",
+      "denomination": "Lambrusco Grasparossa DOC",
+      "family": "Metodo Classico",
+      "description": "Amabile. Il vino della tradizione modenese, morbido e avvolgente.",
+      "image": "/foto/006-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": ["Amabile", "Storico"],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 5
+    },
+    {
+      "id": 6,
+      "slug": "rose-de-noir",
+      "name": "Rosé de Noir",
+      "denomination": "Spumante Brut Rosé",
+      "family": "Premium",
+      "description": "Eleganza e freschezza. Ottenuto da uve Grasparossa vinificate in rosa.",
+      "image": "/foto/007-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": ["Brut", "Rosé"],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 6
+    },
+    {
+      "id": 7,
+      "slug": "lambrusco-bio",
+      "name": "Lambrusco Bio",
+      "denomination": "Grasparossa di Castelvetro DOC",
+      "family": "Premium",
+      "description": "Vino Biologico. L'espressione naturale del territorio.",
+      "image": "/foto/008-1-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": ["Bio", "Organic"],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 7
+    },
+    {
+      "id": 8,
+      "slug": "villa-cialdini",
+      "name": "Villa Cialdini",
+      "denomination": "Lambrusco Modena DOC",
+      "family": "Premium",
+      "description": "La nostra cuvée speciale. Un blend che esprime il meglio delle nostre uve.",
+      "image": "/foto/PHOTO-2025-10-22-14-49-54-senza-sfondo-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": ["Cuvée", "Premium"],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 8
+    }
+  ],
+  "_meta": {
+    "lastModified": "2025-12-09T00:00:00.000Z",
+    "modifiedBy": "system"
+  }
+}

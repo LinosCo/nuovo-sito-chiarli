@@ -1,0 +1,48 @@
+{
+  "site": {
+    "name": "Cleto Chiarli",
+    "tagline": "Modena 1860. La più antica cantina produttrice di Vini dell'Emilia-Romagna.",
+    "logo": "/foto/cletochiarli-2-01.svg",
+    "logoAlt": "/foto/cletoc-1.svg"
+  },
+  "navigation": {
+    "items": [
+      { "label": "Vini", "href": "#vini" },
+      { "label": "Tenute", "href": "#tenute" },
+      { "label": "Esperienze", "href": "#esperienze" },
+      { "label": "Storia", "href": "#storia" }
+    ]
+  },
+  "contact": {
+    "address": "Via Manin 15, Modena",
+    "phone": "+39 059 3163311",
+    "email": "info@chiarli.it",
+    "hours": null
+  },
+  "social": {
+    "facebook": null,
+    "instagram": null,
+    "linkedin": null,
+    "youtube": null
+  },
+  "footer": {
+    "links": [
+      { "label": "I Vini", "href": "#vini" },
+      { "label": "Le Tenute", "href": "#tenute" },
+      { "label": "Storia", "href": "#storia" },
+      { "label": "Visite", "href": "#esperienze" }
+    ],
+    "copyright": "© 2025 Cleto Chiarli Tenute Agricole",
+    "privacyLink": "#",
+    "creditsLink": "#"
+  },
+  "newsletter": {
+    "enabled": true,
+    "placeholder": "La tua email",
+    "buttonText": "Invia"
+  },
+  "_meta": {
+    "lastModified": "2025-12-09T00:00:00.000Z",
+    "modifiedBy": "system"
+  }
+}

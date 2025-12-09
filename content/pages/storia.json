@@ -1,0 +1,31 @@
+{
+  "storia": {
+    "label": "La Nostra Storia",
+    "titleLine1": "Non seguiamo",
+    "titleLine2": "la tradizione.",
+    "titleLine3": "La scriviamo.",
+    "description": "Cleto Chiarli non è solo una cantina. È il capitolo più importante nella storia del Lambrusco. Siamo stati i primi a credere che questo vino potesse sedere alle tavole più prestigiose del mondo.",
+    "quote": "Dalla bottiglia \"Anfora\" ai moderni Cru, ogni etichetta è un manifesto di qualità senza compromessi.",
+    "image": "/foto/chiarli.jpg",
+    "foundedYear": "1860",
+    "stats": [
+      {
+        "value": "160+",
+        "label": "Anni di storia"
+      },
+      {
+        "value": "5",
+        "label": "Generazioni"
+      },
+      {
+        "value": "100+",
+        "label": "Ettari"
+      }
+    ],
+    "ctaText": "Scopri la nostra storia"
+  },
+  "_meta": {
+    "lastModified": "2025-12-09T00:00:00.000Z",
+    "modifiedBy": "system"
+  }
+}
