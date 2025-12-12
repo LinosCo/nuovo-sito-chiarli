@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center border-t border-chiarli-text/5 pt-8">
            <p className="font-sans text-[10px] font-bold uppercase tracking-widest opacity-40">
-              © 2024 Cleto Chiarli Tenute Agricole
+              © 2025 Cleto Chiarli Tenute Agricole
            </p>
            <div className="flex gap-6 mt-4 md:mt-0">
               <a href="#" className="font-sans text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100">Privacy</a>

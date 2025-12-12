@@ -1,15 +1,96 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useWines, useHomeContent } from '../hooks/useContent';
+import { Wine as WineType } from '../types';
+
+const wines: WineType[] = [
+  {
+    id: 1,
+    name: "Vigneto Enrico Cialdini",
+    denomination: "Lambrusco Grasparossa DOC",
+    family: "Premium",
+    description: "Il nostro cru più prestigioso. Eleganza e complessità uniche.",
+    image: "/foto/001-uai-720x1080.png",
+    format: "0.75L",
+    tags: ["Premium", "DOC"]
+  },
+  {
+    id: 2,
+    name: "Vecchia Modena",
+    denomination: "Lambrusco di Sorbara DOC",
+    family: "Metodo Classico",
+    description: "Fragranza e florealità tipiche del Sorbara. Un classico intramontabile.",
+    image: "/foto/002-uai-720x1080.png",
+    format: "0.75L",
+    tags: ["Sorbara", "DOC"]
+  },
+  {
+    id: 3,
+    name: "Pruno Nero",
+    denomination: "Lambrusco Grasparossa DOC",
+    family: "Metodo Classico",
+    description: "Un Lambrusco moderno, secco e pulito. Perfetto con la gastronomia contemporanea.",
+    image: "/foto/003-uai-720x1080.png",
+    format: "0.75L",
+    tags: ["Dry", "Moderno"]
+  },
+  {
+    id: 4,
+    name: "Nivola",
+    denomination: "Lambrusco Grasparossa DOC",
+    family: "Metodo Classico",
+    description: "Intenso e fruttato. Un Lambrusco che unisce corpo e freschezza.",
+    image: "/foto/005-uai-720x1080.png",
+    format: "0.75L",
+    tags: ["Grasparossa", "DOC"]
+  },
+  {
+    id: 5,
+    name: "Centenario",
+    denomination: "Lambrusco Grasparossa DOC",
+    family: "Metodo Classico",
+    description: "Amabile. Il vino della tradizione modenese, morbido e avvolgente.",
+    image: "/foto/006-uai-720x1080.png",
+    format: "0.75L",
+    tags: ["Amabile", "Storico"]
+  },
+  {
+    id: 6,
+    name: "Rosé de Noir",
+    denomination: "Spumante Brut Rosé",
+    family: "Premium",
+    description: "Eleganza e freschezza. Ottenuto da uve Grasparossa vinificate in rosa.",
+    image: "/foto/007-uai-720x1080.png",
+    format: "0.75L",
+    tags: ["Brut", "Rosé"]
+  },
+  {
+    id: 7,
+    name: "Lambrusco Bio",
+    denomination: "Grasparossa di Castelvetro DOC",
+    family: "Premium",
+    description: "Vino Biologico. L'espressione naturale del territorio.",
+    image: "/foto/008-1-uai-720x1080.png",
+    format: "0.75L",
+    tags: ["Bio", "Organic"]
+  },
+  {
+    id: 8,
+    name: "Villa Cialdini",
+    denomination: "Lambrusco Modena DOC",
+    family: "Premium",
+    description: "La nostra cuvée speciale. Un blend che esprime il meglio delle nostre uve.",
+    image: "/foto/PHOTO-2025-10-22-14-49-54-senza-sfondo-uai-720x1080.png",
+    format: "0.75L",
+    tags: ["Cuvée", "Premium"]
+  }
+];
 
 type FilterType = 'all' | 'Metodo Classico' | 'Premium';
 
-interface BottleShowcaseProps {
+interface BottleShowcaseLightProps {
   onWineClick?: () => void;
 }
 
-export const BottleShowcase: React.FC<BottleShowcaseProps> = ({ onWineClick }) => {
-  const { wines } = useWines();
-  const homeContent = useHomeContent();
+export const BottleShowcaseLight: React.FC<BottleShowcaseLightProps> = ({ onWineClick }) => {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredBottle, setHoveredBottle] = useState<number | null>(null);
@@ -76,7 +157,7 @@ export const BottleShowcase: React.FC<BottleShowcaseProps> = ({ onWineClick }) =
                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                }`}
              >
-                {homeContent.winesSection.label}
+                La Collezione
              </span>
              <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text leading-tight overflow-hidden">
                 <span
@@ -84,14 +165,14 @@ export const BottleShowcase: React.FC<BottleShowcaseProps> = ({ onWineClick }) =
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
-                  {homeContent.winesSection.titleLine1}
+                  I nostri
                 </span>
                 <span
                   className={`italic text-chiarli-wine block transition-all duration-700 delay-300 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
-                  {homeContent.winesSection.titleLine2}
+                  Lambruschi
                 </span>
              </h2>
           </div>
@@ -172,7 +253,7 @@ export const BottleShowcase: React.FC<BottleShowcaseProps> = ({ onWineClick }) =
           style={{ transitionDelay: '1000ms' }}
         >
           <button className="border border-chiarli-wine text-chiarli-wine px-8 py-3 font-sans text-xs font-bold uppercase tracking-widest hover:bg-chiarli-wine hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-chiarli-wine/20">
-             {homeContent.winesSection.ctaText}
+             Scopri tutti i vini
           </button>
         </div>
 

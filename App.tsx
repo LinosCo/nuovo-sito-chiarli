@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { HeroLight } from './components/HeroLight';
 import { HistorySection } from './components/HistorySection';
+import { HistorySectionLight } from './components/HistorySectionLight';
 import { TenuteSection } from './components/TenuteSection';
+import { TenuteSectionLight } from './components/TenuteSectionLight';
 import { BottleShowcase } from './components/BottleShowcase';
+import { BottleShowcaseLight } from './components/BottleShowcaseLight';
 import { FeaturedSection } from './components/FeaturedSection';
+import { FeaturedSectionLight } from './components/FeaturedSectionLight';
 import { Footer } from './components/Footer';
 import { WineDetailPage } from './components/WineDetailPage';
+import { WineDetailPageLight } from './components/WineDetailPageLight';
+import { MouseGradient } from './components/MouseGradient';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 
-function App() {
+function AppContent() {
   const [currentPage, setCurrentPage] = useState<'home' | 'wine-detail'>('home');
   const [isLoading, setIsLoading] = useState(true);
+  const { isDark } = useTheme();
 
   // Initial loading animation
   useEffect(() => {
@@ -101,10 +110,17 @@ function App() {
 
   if (currentPage === 'wine-detail') {
     return (
-      <div className="min-h-screen bg-chiarli-stone font-sans text-chiarli-text selection:bg-chiarli-wine selection:text-white">
+      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+      }`}>
+        <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
-          <WineDetailPage onBack={navigateToHome} />
+          {isDark ? (
+            <WineDetailPage onBack={navigateToHome} />
+          ) : (
+            <WineDetailPageLight onBack={navigateToHome} />
+          )}
           <Footer />
         </div>
       </div>
@@ -112,20 +128,31 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-chiarli-stone font-sans text-chiarli-text selection:bg-chiarli-wine selection:text-white">
+    <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+      isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+    }`}>
+      <MouseGradient />
       <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
       <div className="relative z-10">
         <Navbar />
         <main>
-          <Hero />
-          <BottleShowcase onWineClick={navigateToWine} />
-          <TenuteSection />
-          <HistorySection />
-          <FeaturedSection />
+          {isDark ? <Hero /> : <HeroLight />}
+          {isDark ? <BottleShowcase onWineClick={navigateToWine} /> : <BottleShowcaseLight onWineClick={navigateToWine} />}
+          {isDark ? <TenuteSection /> : <TenuteSectionLight />}
+          {isDark ? <HistorySection /> : <HistorySectionLight />}
+          {isDark ? <FeaturedSection /> : <FeaturedSectionLight />}
         </main>
         <Footer />
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

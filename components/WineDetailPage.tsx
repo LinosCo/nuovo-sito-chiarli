@@ -20,15 +20,19 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      setMousePosition({ x, y });
+    };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
-    setMousePosition({ x, y });
-  };
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   const awards = [
     { name: "Gambero Rosso", score: "Tre Bicchieri", years: "2019-2021" },
@@ -44,15 +48,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-white" onMouseMove={handleMouseMove}>
-
-      {/* Global animated gradient that follows mouse */}
-      <div
-        className="fixed inset-0 pointer-events-none z-50 transition-all duration-500"
-        style={{
-          background: `radial-gradient(ellipse 40% 40% at ${mousePosition.x}% ${mousePosition.y}%, rgba(120,40,60,0.12) 0%, transparent 50%)`,
-        }}
-      />
+    <div className="min-h-screen bg-white">
 
       {/* Hero Section - Dark background with split layout */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-chiarli-text">
@@ -432,13 +428,13 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
           <div className="w-full lg:w-1/2 flex items-center relative bg-white">
 
             <div className="relative z-10 px-6 md:px-16 lg:px-20 py-12 md:py-16 lg:py-24">
-              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-4 block">
                 La Storia
               </span>
 
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-chiarli-text mb-6 md:mb-8 leading-tight">
                 Il metodo che ha fatto
-                <span className="italic text-chiarli-wine block">la storia</span>
+                <span className="italic text-chiarli-text block">la storia</span>
               </h2>
 
               <p className="font-serif text-base md:text-lg text-chiarli-text/70 leading-relaxed mb-4 md:mb-6">
@@ -452,8 +448,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
                 della rifermentazione tradizionale.
               </p>
 
-              <div className="border-l-2 border-chiarli-wine pl-4 md:pl-6">
-                <p className="font-serif italic text-lg md:text-xl text-chiarli-wine">
+              <div className="border-l-2 border-chiarli-text/30 pl-4 md:pl-6">
+                <p className="font-serif italic text-lg md:text-xl text-chiarli-text/70">
                   "Un vino che racconta 160 anni di storia in ogni bollicina."
                 </p>
               </div>

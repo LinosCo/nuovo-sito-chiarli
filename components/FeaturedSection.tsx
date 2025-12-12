@@ -67,7 +67,7 @@ export const FeaturedSection: React.FC = () => {
             {/* Left: Main Content */}
             <div className="lg:col-span-7 flex flex-col justify-center">
               <span
-                className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-6 block transition-all duration-700 ${
+                className={`font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block transition-all duration-700 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -90,7 +90,7 @@ export const FeaturedSection: React.FC = () => {
                   si ferma
                 </span>
                 <span
-                  className={`italic text-chiarli-wine-light block transition-all duration-700 delay-300 ${
+                  className={`italic text-white/80 block transition-all duration-700 delay-300 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
@@ -108,7 +108,7 @@ export const FeaturedSection: React.FC = () => {
               </p>
 
               <p
-                className={`font-serif italic text-xl text-chiarli-wine-light/90 border-l-2 border-chiarli-wine-light pl-6 mb-12 max-w-lg transition-all duration-700 delay-500 ${
+                className={`font-serif italic text-xl text-white/80 border-l-2 border-white/40 pl-6 mb-12 max-w-lg transition-all duration-700 delay-500 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >

@@ -1,121 +1,135 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapPin, ArrowRight, ArrowLeft, Grape, Mountain } from 'lucide-react';
+import { useTenute, useHomeContent } from '../hooks/useContent';
 
-interface Tenuta {
-  id: number;
-  name: string;
-  location: string;
-  description: string;
-  image: string;
-  hectares: number;
-  altitude: string;
-  grape: string;
-  year: string;
-  mapPosition: { x: number; y: number }; // Position on the stylized map (percentage)
-}
+// Emilia-Romagna map component with interactive pins - Dark version
+const EmiliaRomagnaMapDark: React.FC<{
+  tenute: any[];
+  activeIndex: number;
+  hoveredIndex: number | null;
+  onPinHover: (index: number | null) => void;
+  onPinClick: (index: number) => void;
+}> = ({ tenute, activeIndex, hoveredIndex, onPinHover, onPinClick }) => {
+  // Posizioni delle tenute sulla mappa Emilia-Romagna (in percentuale)
+  // Con posizione label personalizzata per evitare sovrapposizioni
+  const mapPositions = [
+    { x: 40, y: 72, labelPosition: 'bottom' as const },   // Castelvetro - etichetta sotto
+    { x: 48, y: 38, labelPosition: 'top' as const },      // Bomporto - etichetta sopra
+    { x: 32, y: 52, labelPosition: 'left' as const },     // Modena città - etichetta a sinistra
+  ];
 
-const tenute: Tenuta[] = [
-  {
-    id: 1,
-    name: "Tenuta Cialdini",
-    location: "Castelvetro di Modena",
-    description: "Nel cuore delle colline modenesi, dove il Lambrusco Grasparossa trova la sua massima espressione. Terreni argillosi e calcarei regalano struttura e complessità unica ai nostri vini più prestigiosi.",
-    image: "/foto/close-up-26-scaled.jpeg",
-    hectares: 45,
-    altitude: "200-350m",
-    grape: "Grasparossa",
-    year: "1860",
-    mapPosition: { x: 52, y: 58 } // Castelvetro - sud di Modena, colline
-  },
-  {
-    id: 2,
-    name: "Tenuta Sorbara",
-    location: "Bomporto",
-    description: "La pianura del Secchia, terra d'elezione del Lambrusco di Sorbara. Suoli sabbiosi e limosi per vini di straordinaria freschezza, fragranza e florealità.",
-    image: "/foto/close-up-78-scaled.jpeg",
-    hectares: 60,
-    altitude: "25-40m",
-    grape: "Sorbara",
-    year: "1920",
-    mapPosition: { x: 48, y: 42 } // Bomporto - nord di Modena, pianura
-  },
-  {
-    id: 3,
-    name: "Tenuta Modena",
-    location: "Modena",
-    description: "Alle porte della città, dove tradizione e innovazione si incontrano. Vigneti storici che raccontano oltre 160 anni di passione per il Lambrusco.",
-    image: "/foto/DSC04010.jpg",
-    hectares: 35,
-    altitude: "40-80m",
-    grape: "Salamino",
-    year: "1950",
-    mapPosition: { x: 50, y: 48 } // Modena città
-  }
-];
-
-// Stylized Emilia-Romagna map component - using real map image
-const EmiliaRomagnaMap: React.FC<{ activePosition: { x: number; y: number } }> = ({ activePosition }) => {
-  // Posizioni delle tenute sulla mappa (in percentuale)
-  // Modena è circa al 38-40% da sinistra nella mappa
-  const mapPositions: { [key: string]: { x: number; y: number } } = {
-    '52-58': { x: 40, y: 70 },   // Castelvetro - colline sud di Modena
-    '48-42': { x: 38, y: 40 },   // Bomporto - pianura nord di Modena
-    '50-48': { x: 39, y: 55 },   // Modena città
+  const getLabelClasses = (position: 'top' | 'bottom' | 'left' | 'right') => {
+    switch (position) {
+      case 'top':
+        return 'left-1/2 -translate-x-1/2 bottom-full mb-3';
+      case 'bottom':
+        return 'left-1/2 -translate-x-1/2 top-full mt-3';
+      case 'left':
+        return 'right-full mr-3 top-1/2 -translate-y-1/2';
+      case 'right':
+        return 'left-full ml-3 top-1/2 -translate-y-1/2';
+    }
   };
-
-  const posKey = `${activePosition.x}-${activePosition.y}`;
-  const markerPos = mapPositions[posKey] || { x: 39, y: 55 };
 
   return (
     <div className="relative w-full h-full">
-      {/* Map image - PNG with transparent background and white lines */}
+      {/* Map image */}
       <img
         src="/Mappa_regione_emilia_romagna.png"
         alt="Emilia-Romagna"
-        className="w-full h-full object-contain opacity-50"
+        className="w-full h-full object-contain opacity-60"
       />
 
-      {/* Marker overlay */}
-      <div
-        className="absolute transition-all duration-700 ease-out"
-        style={{
-          left: `${markerPos.x}%`,
-          top: `${markerPos.y}%`,
-          transform: 'translate(-50%, -50%)',
-        }}
-      >
-        {/* Pulse ring */}
-        <div className="absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-chiarli-wine-light/50 animate-ping" />
-        {/* Outer glow */}
-        <div className="absolute w-6 h-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-chiarli-wine-light/40" />
-        {/* Inner circle */}
-        <div className="absolute w-4 h-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-chiarli-wine-light" />
-        {/* Center dot */}
-        <div className="absolute w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
-      </div>
+      {/* Pin markers with labels */}
+      {mapPositions.map((pos, index) => {
+        const isActive = index === activeIndex;
+        const isHovered = index === hoveredIndex;
+
+        return (
+          <div
+            key={index}
+            className="absolute cursor-pointer transition-all duration-500"
+            style={{
+              left: `${pos.x}%`,
+              top: `${pos.y}%`,
+              transform: 'translate(-50%, -50%)',
+              zIndex: isActive || isHovered ? 20 : 10,
+            }}
+            onMouseEnter={() => onPinHover(index)}
+            onMouseLeave={() => onPinHover(null)}
+            onClick={() => onPinClick(index)}
+          >
+            {/* Pulse ring - only on active/hovered */}
+            {(isActive || isHovered) && (
+              <div className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-chiarli-wine-light/50 animate-ping" />
+            )}
+
+            {/* Outer glow */}
+            <div
+              className={`absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full transition-all duration-300 ${
+                isActive || isHovered ? 'bg-chiarli-wine-light/40 scale-100' : 'bg-chiarli-wine-light/20 scale-75'
+              }`}
+            />
+
+            {/* Inner circle */}
+            <div
+              className={`absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full transition-all duration-300 ${
+                isActive || isHovered ? 'bg-chiarli-wine-light scale-100' : 'bg-chiarli-wine-light/60 scale-75'
+              }`}
+            />
+
+            {/* Center dot */}
+            <div className="absolute w-2 h-2 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
+
+            {/* Location label */}
+            <div
+              className={`absolute whitespace-nowrap transition-all duration-300 ${getLabelClasses(pos.labelPosition)} ${
+                isActive || isHovered ? 'opacity-100' : 'opacity-70'
+              }`}
+            >
+              <span className={`font-sans text-xs uppercase tracking-wider ${
+                isActive ? 'text-chiarli-wine-light font-bold' : 'text-white/70'
+              }`}>
+                {tenute[index]?.location}
+              </span>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
 export const TenuteSection: React.FC = () => {
+  const { tenute } = useTenute();
+  const homeContent = useHomeContent();
+
   // Per il loop infinito, usiamo un indice interno che include le slide duplicate
   const [slideIndex, setSlideIndex] = useState(1); // Iniziamo da 1 perché 0 è la slide duplicata
   const [isAnimating, setIsAnimating] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   // Creiamo array con slide duplicate: [ultima, ...originali, prima]
-  const extendedTenute = [tenute[tenute.length - 1], ...tenute, tenute[0]];
+  const extendedTenute = tenute.length > 0 ? [tenute[tenute.length - 1], ...tenute, tenute[0]] : [];
 
   // L'indice reale per i dati (0, 1, 2)
-  const realIndex = slideIndex === 0
-    ? tenute.length - 1
-    : slideIndex === extendedTenute.length - 1
-      ? 0
-      : slideIndex - 1;
+  const realIndex = tenute.length > 0
+    ? (slideIndex === 0
+        ? tenute.length - 1
+        : slideIndex === extendedTenute.length - 1
+          ? 0
+          : slideIndex - 1)
+    : 0;
 
   const activeTenuta = tenute[realIndex];
+
+  // Guard per tenute vuote
+  if (tenute.length === 0) {
+    return null;
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -220,7 +234,7 @@ export const TenuteSection: React.FC = () => {
           <div className="order-2 lg:order-1">
             {/* Section Label */}
             <span
-              className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-6 block transition-all duration-700 ${
+              className={`font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block transition-all duration-700 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
@@ -247,7 +261,7 @@ export const TenuteSection: React.FC = () => {
             {/* Location */}
             <p
               key={`loc-${realIndex}`}
-              className="flex items-center gap-2 text-chiarli-wine-light mb-8 animate-fade-in-up"
+              className="flex items-center gap-2 text-white/70 mb-8 animate-fade-in-up"
               style={{ animationDelay: '100ms' }}
             >
               <MapPin size={16} />
@@ -269,21 +283,21 @@ export const TenuteSection: React.FC = () => {
               className="grid grid-cols-3 gap-8 mb-12 animate-fade-in-up"
               style={{ animationDelay: '300ms' }}
             >
-              <div className="border-l-2 border-chiarli-wine-light/50 pl-4">
+              <div className="border-l-2 border-white/30 pl-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <Grape size={16} className="text-chiarli-wine-light" />
+                  <Grape size={16} className="text-white/50" />
                   <span className="font-sans text-[10px] uppercase tracking-widest text-white/40">Vitigno</span>
                 </div>
                 <span className="font-serif text-xl text-white">{activeTenuta.grape}</span>
               </div>
-              <div className="border-l-2 border-chiarli-wine-light/50 pl-4">
+              <div className="border-l-2 border-white/30 pl-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <Mountain size={16} className="text-chiarli-wine-light" />
+                  <Mountain size={16} className="text-white/50" />
                   <span className="font-sans text-[10px] uppercase tracking-widest text-white/40">Altitudine</span>
                 </div>
                 <span className="font-serif text-xl text-white">{activeTenuta.altitude}</span>
               </div>
-              <div className="border-l-2 border-chiarli-wine-light/50 pl-4">
+              <div className="border-l-2 border-white/30 pl-4">
                 <span className="font-sans text-[10px] uppercase tracking-widest text-white/40 block mb-2">Ettari</span>
                 <span className="font-serif text-xl text-white">{activeTenuta.hectares}</span>
               </div>
@@ -353,12 +367,18 @@ export const TenuteSection: React.FC = () => {
 
         </div>
 
-        {/* Mini Map - Centered horizontally and vertically */}
+        {/* Interactive Map - Centered */}
         <div
           key={`map-${realIndex}`}
-          className="absolute bottom-1/2 translate-y-1/2 left-1/2 -translate-x-1/2 w-80 h-40 md:w-[450px] md:h-56 animate-fade-in pointer-events-none"
+          className="absolute bottom-1/2 translate-y-1/2 left-1/2 -translate-x-1/2 w-80 h-48 md:w-[500px] md:h-64 animate-fade-in"
         >
-          <EmiliaRomagnaMap activePosition={activeTenuta.mapPosition} />
+          <EmiliaRomagnaMapDark
+            tenute={tenute}
+            activeIndex={realIndex}
+            hoveredIndex={hoveredIndex}
+            onPinHover={setHoveredIndex}
+            onPinClick={goToSlide}
+          />
         </div>
 
       </div>

@@ -52,7 +52,7 @@ export const HistorySection: React.FC = () => {
           <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
 
             <span
-              className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-6 block transition-all duration-700 ${
+              className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-6 block transition-all duration-700 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
@@ -93,7 +93,7 @@ export const HistorySection: React.FC = () => {
             </p>
 
             <p
-              className={`font-serif italic text-xl text-chiarli-text/60 border-l-2 border-chiarli-wine pl-6 mb-10 transition-all duration-700 delay-500 ${
+              className={`font-serif italic text-xl text-chiarli-text/70 border-l-2 border-chiarli-text/30 pl-6 mb-10 transition-all duration-700 delay-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
@@ -106,15 +106,15 @@ export const HistorySection: React.FC = () => {
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
-              <div className="border-l-2 border-chiarli-wine/30 pl-4">
+              <div className="border-l-2 border-chiarli-text/20 pl-4">
                 <span className="font-serif text-4xl text-chiarli-text block">160+</span>
                 <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/50">Anni di storia</span>
               </div>
-              <div className="border-l-2 border-chiarli-wine/30 pl-4">
+              <div className="border-l-2 border-chiarli-text/20 pl-4">
                 <span className="font-serif text-4xl text-chiarli-text block">5</span>
                 <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/50">Generazioni</span>
               </div>
-              <div className="border-l-2 border-chiarli-wine/30 pl-4">
+              <div className="border-l-2 border-chiarli-text/20 pl-4">
                 <span className="font-serif text-4xl text-chiarli-text block">100+</span>
                 <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/50">Ettari</span>
               </div>
