@@ -243,10 +243,38 @@
       "isActive": true,
       "order": 9,
       "id": 9
+    },
+    {
+      "slug": "tenuta-villa-cialdini-pignoletto-doc-2",
+      "name": "Tenuta Villa Cialdini Pignoletto",
+      "denomination": "Pignoletto DOC Modena Frizzante",
+      "family": "Premium",
+      "description": "Un Pignoletto frizzante di grande eleganza dalla storica Tenuta Villa Cialdini. Fresco, vivace e perfetto per ogni occasione.",
+      "image": "/uploads/gallery/Screenshot 2025-12-17 alle 10.30.18-3d84419f.webp",
+      "format": "0.75L",
+      "tags": [
+        "Pignoletto",
+        "DOC",
+        "Frizzante"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 10,
+      "id": 10
     }
   ],
   "_meta": {
-    "lastModified": "2025-12-17T09:26:56.856Z",
+    "lastModified": "2025-12-17T09:31:09.335Z",
     "modifiedBy": "cliente"
   }
 }
