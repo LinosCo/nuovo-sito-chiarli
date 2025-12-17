@@ -9,7 +9,10 @@
       "description": "Il nostro cru più prestigioso. Eleganza e complessità uniche.",
       "image": "/foto/001-uai-720x1080.png",
       "format": "0.75L",
-      "tags": ["Premium", "DOC"],
+      "tags": [
+        "Premium",
+        "DOC"
+      ],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -33,7 +36,10 @@
       "description": "Fragranza e florealità tipiche del Sorbara. Un classico intramontabile.",
       "image": "/foto/002-uai-720x1080.png",
       "format": "0.75L",
-      "tags": ["Sorbara", "DOC"],
+      "tags": [
+        "Sorbara",
+        "DOC"
+      ],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -57,7 +63,10 @@
       "description": "Un Lambrusco moderno, secco e pulito. Perfetto con la gastronomia contemporanea.",
       "image": "/foto/003-uai-720x1080.png",
       "format": "0.75L",
-      "tags": ["Dry", "Moderno"],
+      "tags": [
+        "Dry",
+        "Moderno"
+      ],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -81,7 +90,10 @@
       "description": "Intenso e fruttato. Un Lambrusco che unisce corpo e freschezza.",
       "image": "/foto/005-uai-720x1080.png",
       "format": "0.75L",
-      "tags": ["Grasparossa", "DOC"],
+      "tags": [
+        "Grasparossa",
+        "DOC"
+      ],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -105,7 +117,10 @@
       "description": "Amabile. Il vino della tradizione modenese, morbido e avvolgente.",
       "image": "/foto/006-uai-720x1080.png",
       "format": "0.75L",
-      "tags": ["Amabile", "Storico"],
+      "tags": [
+        "Amabile",
+        "Storico"
+      ],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -129,7 +144,10 @@
       "description": "Eleganza e freschezza. Ottenuto da uve Grasparossa vinificate in rosa.",
       "image": "/foto/007-uai-720x1080.png",
       "format": "0.75L",
-      "tags": ["Brut", "Rosé"],
+      "tags": [
+        "Brut",
+        "Rosé"
+      ],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -153,7 +171,10 @@
       "description": "Vino Biologico. L'espressione naturale del territorio.",
       "image": "/foto/008-1-uai-720x1080.png",
       "format": "0.75L",
-      "tags": ["Bio", "Organic"],
+      "tags": [
+        "Bio",
+        "Organic"
+      ],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -177,7 +198,10 @@
       "description": "La nostra cuvée speciale. Un blend che esprime il meglio delle nostre uve.",
       "image": "/foto/PHOTO-2025-10-22-14-49-54-senza-sfondo-uai-720x1080.png",
       "format": "0.75L",
-      "tags": ["Cuvée", "Premium"],
+      "tags": [
+        "Cuvée",
+        "Premium"
+      ],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -191,10 +215,38 @@
       },
       "isActive": true,
       "order": 8
+    },
+    {
+      "slug": "tenuta-villa-cialdini-pignoletto-doc",
+      "name": "Tenuta Villa Cialdini Pignoletto",
+      "denomination": "Pignoletto DOC Modena Frizzante",
+      "family": "Premium",
+      "description": "Un Pignoletto frizzante di grande eleganza dalla storica Tenuta Villa Cialdini. Fresco, vivace e perfetto per ogni occasione.",
+      "image": null,
+      "format": "0.75L",
+      "tags": [
+        "Pignoletto",
+        "DOC",
+        "Frizzante"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 9,
+      "id": 9
     }
   ],
   "_meta": {
-    "lastModified": "2025-12-09T00:00:00.000Z",
-    "modifiedBy": "system"
+    "lastModified": "2025-12-17T09:26:56.856Z",
+    "modifiedBy": "cliente"
   }
 }
