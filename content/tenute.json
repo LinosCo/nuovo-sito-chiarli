@@ -12,7 +12,11 @@
       "grape": "Grasparossa",
       "year": "1860",
       "mapPosition": { "x": 52, "y": 58 },
-      "gallery": [],
+      "gallery": [
+        "/foto/1.jpg",
+        "/foto/vasche-3.jpg",
+        "/foto/close-up-87-scaled.jpeg"
+      ],
       "isActive": true,
       "order": 1
     },
@@ -28,7 +32,11 @@
       "grape": "Sorbara",
       "year": "1920",
       "mapPosition": { "x": 48, "y": 42 },
-      "gallery": [],
+      "gallery": [
+        "/foto/2.jpg",
+        "/foto/vasche-4.jpg",
+        "/foto/sozzigalli-29.jpg"
+      ],
       "isActive": true,
       "order": 2
     },
@@ -44,7 +52,11 @@
       "grape": "Salamino",
       "year": "1950",
       "mapPosition": { "x": 50, "y": 48 },
-      "gallery": [],
+      "gallery": [
+        "/foto/1.jpg",
+        "/foto/2.jpg",
+        "/foto/vasche-3.jpg"
+      ],
       "isActive": true,
       "order": 3
     }
