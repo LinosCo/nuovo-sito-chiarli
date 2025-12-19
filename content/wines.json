@@ -271,10 +271,46 @@
       "isActive": true,
       "order": 10,
       "id": 10
+    },
+    {
+      "id": 11,
+      "slug": "quintopasso-rose-brut-millesimato",
+      "name": "Quintopasso Rosé Brut Millesimato",
+      "denomination": "Modena Rosè Spumante Brut DOC Metodo Classico",
+      "family": "Metodo Classico",
+      "description": "Spumante rosé metodo classico da uve Sorbara in purezza con 36 mesi di rifermentazione in bottiglia. Caratterizzato da acidità minerale e aromi speziati tipici del terroir della sponda sinistra del Secchia.",
+      "image": null,
+      "format": "0.75L",
+      "tags": [
+        "Rosé",
+        "Brut",
+        "Metodo Classico",
+        "Millesimato",
+        "Sorbara",
+        "DOC",
+        "Modena"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": 12,
+      "servingTemp": null,
+      "pairings": [
+        "Acciughe del Cantabrico - acidità e salinità in equilibrio",
+        "Cacio e pepe con gambero crudo - ma anche Carbonara, Gricia etc., nel solco della tradizione",
+        "Cucina vegetariana, per far collimare leggerezza e sapore"
+      ],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Colore rosa tenue con riflessi violacei",
+        "profumo": "Aromi nitidi e cristallini come l'aria di alta montagna, tra frutta rossa, ozono e note di liquirizia",
+        "gusto": "Gusto dominato dall'acidità ricca di note minerali, scintillante e affilata, ma equilibrata dalla morbidezza del frutto e dalla ricchezza aromatica, come solo il particolare terroir della sponda sinistra del Secchia sa dare. Il finale, dagli aromi quasi speziati, si distende senza perdere mai tensione."
+      },
+      "isActive": true,
+      "order": 11
     }
   ],
   "_meta": {
-    "lastModified": "2025-12-17T09:31:09.335Z",
+    "lastModified": "2025-12-19T13:27:59.761Z",
     "modifiedBy": "cliente"
   }
 }
