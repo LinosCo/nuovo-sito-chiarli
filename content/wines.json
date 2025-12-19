@@ -274,11 +274,11 @@
     },
     {
       "id": 11,
-      "slug": "quintopasso-rose-brut-millesimato",
+      "slug": "preview-quintopasso-rose-brut-millesimato",
       "name": "Quintopasso Rosé Brut Millesimato",
       "denomination": "Modena Rosè Spumante Brut DOC Metodo Classico",
       "family": "Metodo Classico",
-      "description": "Spumante rosé metodo classico da uve Sorbara in purezza con 36 mesi di rifermentazione in bottiglia. Caratterizzato da acidità minerale e aromi speziati tipici del terroir della sponda sinistra del Secchia.",
+      "description": "Spumante Metodo Classico 100% Sorbara dai cloni storici della famiglia, con 36 mesi di rifermentazione in bottiglia. Caratterizzato da acidità minerale e ricchezza aromatica del terroir della sponda sinistra del Secchia.",
       "image": null,
       "format": "0.75L",
       "tags": [
@@ -288,7 +288,8 @@
         "Millesimato",
         "Sorbara",
         "DOC",
-        "Modena"
+        "36 mesi",
+        "Basso contenuto solforosa"
       ],
       "price": null,
       "year": null,
@@ -303,14 +304,14 @@
       "tastingNotes": {
         "aspetto": "Colore rosa tenue con riflessi violacei",
         "profumo": "Aromi nitidi e cristallini come l'aria di alta montagna, tra frutta rossa, ozono e note di liquirizia",
-        "gusto": "Gusto dominato dall'acidità ricca di note minerali, scintillante e affilata, ma equilibrata dalla morbidezza del frutto e dalla ricchezza aromatica, come solo il particolare terroir della sponda sinistra del Secchia sa dare. Il finale, dagli aromi quasi speziati, si distende senza perdere mai tensione."
+        "gusto": "Gusto dominato dall'acidità ricca di note minerali, scintillante e affilata, ma equilibrata dalla morbidezza del frutto e dalla ricchezza aromatica. Il finale, dagli aromi quasi speziati, si distende senza perdere mai tensione."
       },
       "isActive": true,
-      "order": 11
+      "order": 999
     }
   ],
   "_meta": {
-    "lastModified": "2025-12-19T13:27:59.761Z",
-    "modifiedBy": "cliente"
+    "lastModified": "2025-12-19T14:36:22.032Z",
+    "modifiedBy": "api"
   }
 }
