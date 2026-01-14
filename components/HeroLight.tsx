@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { useHomeContent } from '../hooks/useContent';
 
 export const HeroLight: React.FC = () => {
+  const homeContent = useHomeContent();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export const HeroLight: React.FC = () => {
             }`}
           >
             <span className="font-sans text-[10px] font-medium uppercase tracking-[0.4em] text-chiarli-text/40">
-              Cantina fondata nel 1860
+              Cantina Storica
             </span>
           </div>
 
@@ -35,10 +37,10 @@ export const HeroLight: React.FC = () => {
             }`}
           >
             <span className="font-serif text-[12vw] lg:text-[7vw] xl:text-[6vw] text-chiarli-text block leading-[0.85] tracking-tight">
-              Cleto
+              {homeContent.hero.titleLine1}
             </span>
             <span className="font-serif italic text-[12vw] lg:text-[7vw] xl:text-[6vw] text-chiarli-wine block leading-[0.85] tracking-tight">
-              Chiarli
+              {homeContent.hero.titleLine2}
             </span>
           </h1>
 
@@ -85,17 +87,6 @@ export const HeroLight: React.FC = () => {
               isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
             }`}
           />
-
-          {/* Editorial overlay text on image */}
-          <div
-            className={`absolute bottom-12 right-12 text-right hidden lg:block transition-all duration-1000 delay-500 ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <span className="font-serif text-[100px] xl:text-[120px] text-white/20 leading-none block">
-              1860
-            </span>
-          </div>
         </div>
 
       </div>

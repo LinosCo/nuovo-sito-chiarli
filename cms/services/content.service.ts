@@ -88,18 +88,18 @@ export class ContentService {
   /**
    * Aggiunge un nuovo item
    */
-  async addItem<T extends { id: number }>(
+  async addItem<T extends { id?: number }>(
     contentType: ContentType,
-    item: Omit<T, 'id'>,
+    item: T,
     modifiedBy: string = 'cms'
   ): Promise<T> {
     const data = await this.read<{ [key: string]: T[]; _meta: ContentMeta }>(contentType);
     const key = contentType.replace('pages/', '');
     const items = data[key] as T[];
 
-    // Genera nuovo ID
-    const maxId = items.reduce((max, i) => Math.max(max, i.id), 0);
-    const newItem = { ...item, id: maxId + 1 } as T;
+    // Se l'item ha già un id (es: -1 per preview), lo rispetta. Altrimenti genera nuovo ID
+    const newId = item.id !== undefined ? item.id : items.reduce((max, i) => Math.max(max, (i as any).id || 0), 0) + 1;
+    const newItem = { ...item, id: newId } as T;
 
     items.push(newItem);
     data[key] = items as any;

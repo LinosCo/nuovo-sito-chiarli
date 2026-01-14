@@ -7,7 +7,7 @@ const experiences = [
     title: "Degustazione Guidata",
     subtitle: "Un viaggio sensoriale",
     description: "Scopri i segreti del Lambrusco attraverso una degustazione esclusiva guidata dai nostri sommelier.",
-    image: "/foto/close-up-78-scaled.jpeg",
+    image: "/foto/vasche-3.jpg",
     duration: "2 ore",
     people: "2-10",
     includes: "5 vini"
@@ -17,7 +17,7 @@ const experiences = [
     title: "Tour dei Vigneti",
     subtitle: "Nel cuore delle colline",
     description: "Passeggia tra i filari delle nostre tenute e scopri il legame unico tra territorio e vino.",
-    image: "/foto/DSC04010.jpg",
+    image: "/foto/vasche-4.jpg",
     duration: "3 ore",
     people: "4-15",
     includes: "Tour + degustazione"
@@ -27,7 +27,7 @@ const experiences = [
     title: "Cena in Cantina",
     subtitle: "Gastronomia e tradizione",
     description: "Un'esperienza gastronomica esclusiva nella suggestiva atmosfera della cantina storica.",
-    image: "/foto/WhatsApp-Image-2025-06-05-at-09.13.47.jpeg",
+    image: "/foto/close-up-87-scaled.jpeg",
     duration: "4 ore",
     people: "8-20",
     includes: "Menu + vini"
@@ -239,13 +239,13 @@ export const FeaturedSectionLight: React.FC = () => {
             <div className="flex gap-3">
               <button
                 onClick={goPrev}
-                className="w-12 h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-chiarli-text transition-all duration-300 group"
+                className="w-12 h-12 flex items-center justify-center text-white hover:text-chiarli-wine-light transition-all duration-300 group"
               >
                 <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={goNext}
-                className="w-12 h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-chiarli-text transition-all duration-300 group"
+                className="w-12 h-12 flex items-center justify-center text-white hover:text-chiarli-wine-light transition-all duration-300 group"
               >
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>

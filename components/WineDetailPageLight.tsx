@@ -69,32 +69,50 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
         <div className="grid grid-cols-12 min-h-screen">
 
           {/* Left: Bottle display */}
-          <div className="col-span-12 lg:col-span-5 relative h-[50vh] lg:h-auto order-1 lg:order-1 bg-chiarli-stone flex items-center justify-center">
+          <div className="col-span-12 lg:col-span-5 relative h-[50vh] lg:h-auto order-1 lg:order-1 flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(165deg, #8B2332 0%, #6B1A26 50%, #4A0D15 100%)' }}>
+
+            {/* Subtle radial glow effect */}
+            <div className="absolute inset-0 pointer-events-none" style={{
+              background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 60%)'
+            }} />
+
+            {/* Sparkling wine bubbles - brighter and more visible */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {[...Array(18)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full"
+                  style={{
+                    width: `${4 + (i % 3) * 2}px`,
+                    height: `${4 + (i % 3) * 2}px`,
+                    left: `${5 + (i * 5) % 90}%`,
+                    bottom: `-${8 + (i % 4) * 5}%`,
+                    background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,${0.5 + (i % 3) * 0.15}), rgba(255,220,230,${0.3 + (i % 3) * 0.1}))`,
+                    boxShadow: `0 0 ${8 + i % 4}px rgba(255,255,255,0.4), inset 0 0 ${4 + i % 3}px rgba(255,255,255,0.3)`,
+                    animation: `bubble-rise ${10 + (i % 5) * 2}s ease-in-out infinite`,
+                    animationDelay: `${(i * 0.4) % 10}s`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Decorative circles - bright and visible on dark background */}
+            <div className="absolute w-[280px] h-[280px] lg:w-[500px] lg:h-[500px] rounded-full border-2 border-white/20" style={{ boxShadow: '0 0 30px rgba(255,255,255,0.1)' }} />
+            <div className="absolute w-[220px] h-[220px] lg:w-[400px] lg:h-[400px] rounded-full border-2 border-chiarli-wine-light/40" style={{ boxShadow: '0 0 20px rgba(214,69,80,0.2)' }} />
 
             {/* Bottle */}
             <img
               src="/foto/003-uai-720x720.png"
               alt="Metodo del Fondatore"
-              className={`h-[40vh] lg:h-[70vh] w-auto object-contain transition-all duration-1000 ${
+              className={`relative z-10 h-[40vh] lg:h-[70vh] w-auto object-contain transition-all duration-1000 ${
                 isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
             />
 
-            {/* Year overlay */}
-            <div
-              className={`absolute bottom-8 left-8 lg:bottom-16 lg:left-16 transition-all duration-1000 delay-500 ${
-                isLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              <span className="font-serif text-[100px] lg:text-[180px] text-chiarli-wine/10 leading-none">
-                1860
-              </span>
-            </div>
-
             {/* Back button */}
             <button
               onClick={onBack}
-              className={`absolute top-8 left-8 z-50 flex items-center gap-3 text-chiarli-text/60 hover:text-chiarli-wine transition-all duration-300 group ${
+              className={`absolute top-8 left-8 z-50 flex items-center gap-3 text-white/80 hover:text-white transition-all duration-300 group ${
                 isLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             >
@@ -250,13 +268,35 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
       </section>
 
       {/* Tasting Notes - Editorial tabs */}
-      <section ref={contentRef} className="py-24 md:py-32 bg-chiarli-stone">
-        <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20">
+      <section ref={contentRef} className="relative py-24 md:py-32 bg-chiarli-stone overflow-hidden">
+
+        {/* Floating bubbles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: `${3 + (i % 4) * 1.5}px`,
+                height: `${3 + (i % 4) * 1.5}px`,
+                left: `${5 + (i * 4.5) % 90}%`,
+                bottom: `-${5 + (i % 4) * 3}%`,
+                background: `radial-gradient(circle at 30% 30%, rgba(180,60,80,${0.4 + (i % 3) * 0.1}), rgba(120,30,50,${0.25 + (i % 3) * 0.1}))`,
+                boxShadow: `0 0 ${4 + i % 3}px rgba(180,60,80,0.2)`,
+                animation: `bubble-rise ${10 + (i % 4) * 2}s ease-in-out infinite`,
+                animationDelay: `${(i * 0.4) % 10}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20 relative z-10">
 
           <div className="grid grid-cols-12 gap-8 lg:gap-16">
 
             {/* Left: Section header */}
-            <div className="col-span-12 lg:col-span-4">
+            <div className="col-span-12 lg:col-span-4 relative">
+
               <span
                 className={`font-sans text-[10px] font-medium uppercase tracking-[0.4em] text-chiarli-text/40 block mb-6 transition-all duration-1000 ${
                   contentVisible ? 'opacity-100' : 'opacity-0'
@@ -279,15 +319,21 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
                   <button
                     key={index}
                     onClick={() => setActiveTab(index)}
-                    className={`w-full text-left py-4 border-l-2 pl-6 transition-all duration-300 ${
+                    className={`w-full text-left py-5 border-l-3 pl-6 transition-all duration-500 group relative ${
                       activeTab === index
-                        ? 'border-chiarli-wine text-chiarli-text'
-                        : 'border-chiarli-text/10 text-chiarli-text/40 hover:text-chiarli-text hover:border-chiarli-text/30'
+                        ? 'border-chiarli-wine text-chiarli-text bg-white/30 shadow-[inset_0_0_30px_rgba(180,60,80,0.1)] scale-[1.02]'
+                        : 'border-chiarli-text/10 text-chiarli-text/40 hover:text-chiarli-text hover:border-chiarli-wine/50 hover:bg-white/20 hover:pl-8 hover:scale-[1.01]'
                     }`}
                   >
-                    <span className="font-sans text-xs font-medium uppercase tracking-[0.2em]">
+                    <span className={`font-sans text-xs font-medium uppercase tracking-[0.2em] transition-all duration-500 ${
+                      activeTab === index ? 'text-chiarli-wine' : 'group-hover:text-chiarli-wine/80'
+                    }`}>
                       {note.title}
                     </span>
+                    {/* Indicator line on hover */}
+                    <div className={`absolute left-0 top-0 bottom-0 w-1 bg-chiarli-wine transition-all duration-500 ${
+                      activeTab === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-70'
+                    }`} />
                   </button>
                 ))}
               </div>
@@ -359,8 +405,28 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
       </section>
 
       {/* Technical Specs - Clean editorial grid */}
-      <section className="py-24 md:py-32 bg-white border-t border-chiarli-text/10">
-        <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20">
+      <section className="relative py-24 md:py-32 bg-white border-t border-chiarli-text/10 overflow-hidden">
+
+        {/* Floating bubbles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(15)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: `${3 + (i % 3) * 1.5}px`,
+                height: `${3 + (i % 3) * 1.5}px`,
+                left: `${5 + (i * 6) % 90}%`,
+                bottom: `-${5 + (i % 3) * 3}%`,
+                background: `radial-gradient(circle at 30% 30%, rgba(180,60,80,${0.25 + (i % 3) * 0.1}), rgba(120,30,50,${0.15}))`,
+                animation: `bubble-rise ${12 + (i % 4) * 3}s ease-in-out infinite`,
+                animationDelay: `${(i * 0.5) % 12}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20 relative z-10">
 
           <div className="grid grid-cols-12 gap-8 lg:gap-16">
 
@@ -459,6 +525,30 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
 
         </div>
       </section>
+
+      {/* CSS for bubble animations */}
+      <style>{`
+        @keyframes bubble-rise {
+          0% {
+            transform: translateY(0) translateX(0) scale(1);
+            opacity: 0;
+          }
+          10% {
+            opacity: 0.4;
+          }
+          50% {
+            transform: translateY(-50vh) translateX(10px) scale(1.05);
+            opacity: 0.3;
+          }
+          90% {
+            opacity: 0.1;
+          }
+          100% {
+            transform: translateY(-110vh) translateX(-5px) scale(0.9);
+            opacity: 0;
+          }
+        }
+      `}</style>
 
     </div>
   );

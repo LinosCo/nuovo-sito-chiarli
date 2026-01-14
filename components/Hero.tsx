@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import { useHomeContent } from '../hooks/useContent';
 
 const heroImages = [
   '/foto/close-up-26-scaled.jpeg',
@@ -9,6 +10,8 @@ const heroImages = [
 ];
 
 export const Hero: React.FC = () => {
+  const homeContent = useHomeContent();
+
   // Per il loop infinito: array esteso con prima immagine duplicata alla fine
   const [slideIndex, setSlideIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -99,14 +102,14 @@ export const Hero: React.FC = () => {
                     isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                   }`}
                 >
-                  ALTA
+                  {homeContent.hero.titleLine1}
                 </span>
                 <span
                   className={`font-serif italic text-7xl md:text-9xl ml-12 md:ml-24 transition-all duration-1000 delay-300 ${
                     isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                   }`}
                 >
-                  Cultura.
+                  {homeContent.hero.titleLine2}
                 </span>
              </h1>
 
@@ -118,16 +121,6 @@ export const Hero: React.FC = () => {
                 >
                    Dal 1860, ridefiniamo l'identità del Lambrusco. Un dialogo costante tra l'eleganza del passato e la visione del futuro.
                 </p>
-
-                <button
-                  className={`group flex items-center gap-4 text-white border border-white/30 px-8 py-4 hover:bg-chiarli-wine hover:border-chiarli-wine transition-all duration-500 w-fit ${
-                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: '700ms' }}
-                >
-                   <span className="font-sans text-xs font-bold uppercase tracking-widest">Esplora la collezione</span>
-                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </button>
              </div>
           </div>
        </div>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Wine as WineType } from '../types';
 
-const wines: WineType[] = [
+const wines = [
   {
     id: 1,
+    slug: "vigneto-enrico-cialdini",
     name: "Vigneto Enrico Cialdini",
     denomination: "Lambrusco Grasparossa DOC",
     family: "Premium",
@@ -14,6 +15,7 @@ const wines: WineType[] = [
   },
   {
     id: 2,
+    slug: "vecchia-modena",
     name: "Vecchia Modena",
     denomination: "Lambrusco di Sorbara DOC",
     family: "Metodo Classico",
@@ -24,6 +26,7 @@ const wines: WineType[] = [
   },
   {
     id: 3,
+    slug: "pruno-nero",
     name: "Pruno Nero",
     denomination: "Lambrusco Grasparossa DOC",
     family: "Metodo Classico",
@@ -34,6 +37,7 @@ const wines: WineType[] = [
   },
   {
     id: 4,
+    slug: "nivola",
     name: "Nivola",
     denomination: "Lambrusco Grasparossa DOC",
     family: "Metodo Classico",
@@ -44,6 +48,7 @@ const wines: WineType[] = [
   },
   {
     id: 5,
+    slug: "centenario",
     name: "Centenario",
     denomination: "Lambrusco Grasparossa DOC",
     family: "Metodo Classico",
@@ -54,6 +59,7 @@ const wines: WineType[] = [
   },
   {
     id: 6,
+    slug: "rose-de-noir",
     name: "Rosé de Noir",
     denomination: "Spumante Brut Rosé",
     family: "Premium",
@@ -64,6 +70,7 @@ const wines: WineType[] = [
   },
   {
     id: 7,
+    slug: "lambrusco-bio",
     name: "Lambrusco Bio",
     denomination: "Grasparossa di Castelvetro DOC",
     family: "Premium",
@@ -74,6 +81,7 @@ const wines: WineType[] = [
   },
   {
     id: 8,
+    slug: "villa-cialdini",
     name: "Villa Cialdini",
     denomination: "Lambrusco Modena DOC",
     family: "Premium",
@@ -87,7 +95,7 @@ const wines: WineType[] = [
 type FilterType = 'all' | 'Metodo Classico' | 'Premium';
 
 interface BottleShowcaseLightProps {
-  onWineClick?: () => void;
+  onWineClick?: (slug: string) => void;
 }
 
 export const BottleShowcaseLight: React.FC<BottleShowcaseLightProps> = ({ onWineClick }) => {
@@ -216,7 +224,7 @@ export const BottleShowcaseLight: React.FC<BottleShowcaseLightProps> = ({ onWine
               style={{ transitionDelay: `${500 + index * 150}ms` }}
               onMouseEnter={() => setHoveredBottle(index)}
               onMouseLeave={() => setHoveredBottle(null)}
-              onClick={onWineClick}
+              onClick={() => onWineClick?.(wine.slug)}
             >
                {/* Image Container */}
                <div className="aspect-[3/4] mb-8 relative overflow-hidden">

@@ -25,12 +25,62 @@ app.use(cors({
   ],
   credentials: true,
 }));
+
+// IMPORTANTE: Route PDF DEVE venire PRIMA di express.json() per evitare conflitti
+/**
+ * POST /api/upload/pdf
+ * Carica e analizza un PDF (scheda tecnica vino)
+ * Usa un handler personalizzato per evitare conflitti con Multer
+ */
+app.post('/api/upload/pdf', express.raw({ type: 'application/pdf', limit: '10mb' }), async (req, res) => {
+  try {
+    console.log('[Upload/PDF] Richiesta ricevuta');
+    console.log('[Upload/PDF] Content-Type:', req.headers['content-type']);
+    console.log('[Upload/PDF] Body length:', req.body?.length);
+
+    if (!req.body || req.body.length === 0) {
+      return res.status(400).json({ error: 'Nessun file PDF caricato' });
+    }
+
+    console.log('[Upload/PDF] Invio a Claude per analisi...');
+
+    // Usa Claude per analizzare il PDF
+    const result = await claudeService.parsePdfWineSheet(req.body);
+
+    if (!result.success) {
+      console.error('[Upload/PDF] Errore parsing:', result.error);
+      return res.status(400).json({ error: result.error });
+    }
+
+    console.log('[Upload/PDF] Analisi completata con successo');
+
+    // L'immagine verrà caricata separatamente dall'utente tramite "Carica Immagine"
+    // e poi assegnata tramite chat con "usa questa immagine per il vino X"
+    result.data.image = null;
+
+    res.json({
+      success: true,
+      extracted: result.data,
+      message: 'PDF analizzato con successo',
+    });
+  } catch (error: any) {
+    console.error('[Upload/PDF] Errore:', error.message, error.stack);
+    res.status(500).json({ error: `Errore analisi PDF: ${error.message}` });
+  }
+});
+
 app.use(express.json());
 
 // Multer per upload
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB per immagini
+});
+
+// Multer per PDF
+const pdfUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB per PDF
 });
 
 // ============================================

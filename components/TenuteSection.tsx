@@ -10,12 +10,13 @@ const EmiliaRomagnaMapDark: React.FC<{
   onPinHover: (index: number | null) => void;
   onPinClick: (index: number) => void;
 }> = ({ tenute, activeIndex, hoveredIndex, onPinHover, onPinClick }) => {
-  // Posizioni delle tenute sulla mappa Emilia-Romagna (in percentuale)
-  // Con posizione label personalizzata per evitare sovrapposizioni
+  // Posizioni delle tenute sulla mappa aggiornata
+  // La regione grande occupa la maggior parte dello spazio a destra
+  // Modena è nel centro-ovest della regione mostrata
   const mapPositions = [
-    { x: 40, y: 72, labelPosition: 'bottom' as const },   // Castelvetro - etichetta sotto
-    { x: 48, y: 38, labelPosition: 'top' as const },      // Bomporto - etichetta sopra
-    { x: 32, y: 52, labelPosition: 'left' as const },     // Modena città - etichetta a sinistra
+    { x: 58, y: 56, labelPosition: 'bottom' as const },   // Castelvetro - SUD di Modena (colline)
+    { x: 63, y: 33, labelPosition: 'top' as const },      // Bomporto - NORD-EST di Modena (pianura)
+    { x: 58, y: 42, labelPosition: 'left' as const },     // Modena città - pianura padana
   ];
 
   const getLabelClasses = (position: 'top' | 'bottom' | 'left' | 'right') => {
@@ -33,15 +34,16 @@ const EmiliaRomagnaMapDark: React.FC<{
 
   return (
     <div className="relative w-full h-full">
-      {/* Map image */}
-      <img
-        src="/Mappa_regione_emilia_romagna.png"
-        alt="Emilia-Romagna"
-        className="w-full h-full object-contain opacity-60"
-      />
+      <div className="relative w-full h-full translate-x-[8%]">
+        {/* Map image */}
+        <img
+          src="/mappa.png"
+          alt="Emilia-Romagna"
+          className="w-full h-full object-contain opacity-60 scale-125"
+        />
 
-      {/* Pin markers with labels */}
-      {mapPositions.map((pos, index) => {
+        {/* Pin markers with labels */}
+        {mapPositions.map((pos, index) => {
         const isActive = index === activeIndex;
         const isHovered = index === hoveredIndex;
 
@@ -96,6 +98,7 @@ const EmiliaRomagnaMapDark: React.FC<{
           </div>
         );
       })}
+      </div>
     </div>
   );
 };
@@ -241,15 +244,6 @@ export const TenuteSection: React.FC = () => {
               Le Nostre Tenute
             </span>
 
-            {/* Counter */}
-            <div className="flex items-baseline gap-4 mb-8">
-              <span className="font-serif text-8xl md:text-9xl text-white/10 leading-none">
-                {String(realIndex + 1).padStart(2, '0')}
-              </span>
-              <span className="text-white/30 text-2xl">/</span>
-              <span className="text-white/30">{String(tenute.length).padStart(2, '0')}</span>
-            </div>
-
             {/* Tenuta Name */}
             <h2
               key={`name-${realIndex}`}
@@ -305,72 +299,38 @@ export const TenuteSection: React.FC = () => {
 
             {/* CTA */}
             <button
-              className="group flex items-center gap-4 bg-chiarli-wine text-white px-8 py-4 hover:bg-white hover:text-chiarli-text transition-all duration-500"
+              className="group flex items-center gap-4 bg-chiarli-wine text-white px-8 py-4 hover:bg-white hover:text-chiarli-text transition-all duration-500 mb-6"
             >
               <span className="font-sans text-xs font-bold uppercase tracking-widest">Scopri la tenuta</span>
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
-          </div>
-
-          {/* Right: Navigation and Visual */}
-          <div className="order-1 lg:order-2 flex flex-col items-end">
-
-            {/* Year Badge */}
-            <div
-              key={`year-${realIndex}`}
-              className="bg-white/10 backdrop-blur-sm px-6 py-4 mb-8 animate-fade-in"
-            >
-              <span className="font-sans text-[10px] uppercase tracking-widest text-white/60 block">Fondata</span>
-              <span className="font-serif text-4xl text-white">{activeTenuta.year}</span>
-            </div>
-
-            {/* Thumbnail Navigation */}
-            <div className="flex gap-4 mb-8">
-              {tenute.map((tenuta, index) => (
-                <button
-                  key={tenuta.id}
-                  onClick={() => goToSlide(index)}
-                  className={`relative w-20 h-20 md:w-24 md:h-24 overflow-hidden transition-all duration-500 ${
-                    index === realIndex
-                      ? 'ring-2 ring-chiarli-wine-light ring-offset-2 ring-offset-transparent scale-110'
-                      : 'opacity-50 hover:opacity-100 grayscale hover:grayscale-0'
-                  }`}
-                >
-                  <img
-                    src={tenuta.image}
-                    alt={tenuta.name}
-                    className="w-full h-full object-cover"
-                  />
-                  {index === realIndex && (
-                    <div className="absolute inset-0 border-2 border-chiarli-wine-light" />
-                  )}
-                </button>
-              ))}
-            </div>
 
             {/* Arrow Controls */}
             <div className="flex gap-4">
               <button
                 onClick={goPrev}
-                className="w-14 h-14 border border-white/30 flex items-center justify-center text-white hover:bg-chiarli-wine-light hover:border-chiarli-wine-light transition-all duration-300 group"
+                className="w-14 h-14 flex items-center justify-center text-white hover:text-chiarli-wine-light transition-all duration-300 group"
               >
                 <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={goNext}
-                className="w-14 h-14 border border-white/30 flex items-center justify-center text-white hover:bg-chiarli-wine-light hover:border-chiarli-wine-light transition-all duration-300 group"
+                className="w-14 h-14 flex items-center justify-center text-white hover:text-chiarli-wine-light transition-all duration-300 group"
               >
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
 
+          {/* Right: Empty column for balance */}
+          <div className="order-1 lg:order-2"></div>
+
         </div>
 
         {/* Interactive Map - Centered */}
         <div
           key={`map-${realIndex}`}
-          className="absolute bottom-1/2 translate-y-1/2 left-1/2 -translate-x-1/2 w-80 h-48 md:w-[500px] md:h-64 animate-fade-in"
+          className="absolute bottom-1/2 translate-y-1/2 left-1/2 -translate-x-[15%] w-96 h-64 md:w-[700px] md:h-[400px] animate-fade-in"
         >
           <EmiliaRomagnaMapDark
             tenute={tenute}

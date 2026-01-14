@@ -10,14 +10,18 @@ import { BottleShowcase } from './components/BottleShowcase';
 import { BottleShowcaseLight } from './components/BottleShowcaseLight';
 import { FeaturedSection } from './components/FeaturedSection';
 import { FeaturedSectionLight } from './components/FeaturedSectionLight';
+import { BlogSection } from './components/BlogSection';
+import { BlogSectionLight } from './components/BlogSectionLight';
 import { Footer } from './components/Footer';
 import { WineDetailPage } from './components/WineDetailPage';
-import { WineDetailPageLight } from './components/WineDetailPageLight';
+// import { WineDetailPageLight } from './components/WineDetailPageLight';
 import { MouseGradient } from './components/MouseGradient';
 import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 
 function AppContent() {
+  // Blog section enabled
   const [currentPage, setCurrentPage] = useState<'home' | 'wine-detail'>('home');
+  const [wineSlug, setWineSlug] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const { isDark } = useTheme();
 
@@ -29,12 +33,19 @@ function AppContent() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Simple hash-based routing
+  // Simple hash-based routing con supporto per slug dinamici
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === '#/vino/metodo-del-fondatore') {
+      const hash = window.location.hash;
+
+      // Controlla se è una pagina vino: #/vino/[slug]
+      const wineMatch = hash.match(/^#\/vino\/([^/]+)$/);
+
+      if (wineMatch) {
+        setWineSlug(wineMatch[1]);
         setCurrentPage('wine-detail');
       } else {
+        setWineSlug(null);
         setCurrentPage('home');
       }
     };
@@ -44,8 +55,8 @@ function AppContent() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const navigateToWine = () => {
-    window.location.hash = '#/vino/metodo-del-fondatore';
+  const navigateToWine = (slug: string = 'metodo-del-fondatore') => {
+    window.location.hash = `#/vino/${slug}`;
     window.scrollTo(0, 0);
   };
 
@@ -108,7 +119,7 @@ function AppContent() {
     );
   }
 
-  if (currentPage === 'wine-detail') {
+  if (currentPage === 'wine-detail' && wineSlug) {
     return (
       <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
         isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
@@ -116,11 +127,7 @@ function AppContent() {
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
-          {isDark ? (
-            <WineDetailPage onBack={navigateToHome} />
-          ) : (
-            <WineDetailPageLight onBack={navigateToHome} />
-          )}
+          <WineDetailPage slug={wineSlug} onBack={navigateToHome} />
           <Footer />
         </div>
       </div>
@@ -139,8 +146,19 @@ function AppContent() {
           {isDark ? <Hero /> : <HeroLight />}
           {isDark ? <BottleShowcase onWineClick={navigateToWine} /> : <BottleShowcaseLight onWineClick={navigateToWine} />}
           {isDark ? <TenuteSection /> : <TenuteSectionLight />}
-          {isDark ? <HistorySection /> : <HistorySectionLight />}
-          {isDark ? <FeaturedSection /> : <FeaturedSectionLight />}
+          {isDark ? (
+            <>
+              <HistorySection />
+              <FeaturedSection />
+              <BlogSection />
+            </>
+          ) : (
+            <>
+              <FeaturedSectionLight />
+              <HistorySectionLight />
+              <BlogSectionLight />
+            </>
+          )}
         </main>
         <Footer />
       </div>

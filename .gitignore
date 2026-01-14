@@ -33,3 +33,4 @@ public/Mappa_regione_emilia_romagna.jpg
 # Duplicate folders (already in public/)
 foto/
 foto_pagina_esempio/
+.vercel

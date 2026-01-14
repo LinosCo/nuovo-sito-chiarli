@@ -138,27 +138,102 @@
     {
       "id": 6,
       "slug": "rose-de-noir",
-      "name": "Rosé de Noir",
-      "denomination": "Spumante Brut Rosé",
+      "name": "Villa Cialdini Rosé de Noir",
+      "denomination": "Lambrusco di Sorbara DOC - Fermentato in bottiglia",
+      "subtitle": "Metodo Ancestrale",
       "family": "Premium",
-      "description": "Eleganza e freschezza. Ottenuto da uve Grasparossa vinificate in rosa.",
-      "image": "/foto/007-uai-720x1080.png",
+      "description": "Un patrimonio enologico che riflette il metodo ancestrale utilizzato da Cleto Chiarli dal 1860. La rifermentazione in bottiglia dona eleganza, freschezza e finezza uniche.",
+      "image": "/foto/rose-de-noir-main.png",
       "format": "0.75L",
       "tags": [
-        "Brut",
+        "Metodo Ancestrale",
+        "DOC",
         "Rosé"
       ],
       "price": null,
       "year": null,
-      "alcohol": null,
-      "servingTemp": null,
-      "pairings": [],
-      "awards": [],
+      "alcohol": "12% vol.",
+      "servingTemp": "8-10°C",
+      "grape": "Grasparossa",
+      "vinification": "Pressatura soffice con uva integra o diraspata a temperatura controllata e aggiunta di lieviti selezionati. Presa di spuma in 'cuve close' a bassa temperatura.",
+      "pairings": [
+        "Antipasti di mare",
+        "Carpacci di pesce",
+        "Sushi e sashimi",
+        "Insalate di mare",
+        "Formaggi freschi",
+        "Primi piatti leggeri",
+        "Aperitivi eleganti"
+      ],
+      "awards": [
+        {
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri",
+          "year": "2021"
+        },
+        {
+          "name": "Falstaff",
+          "score": "93/100",
+          "year": "2021"
+        },
+        {
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri",
+          "year": "2020"
+        },
+        {
+          "name": "Touring Club",
+          "score": "Corona",
+          "year": "2020"
+        },
+        {
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri",
+          "year": "2019"
+        },
+        {
+          "name": "Vinitaly",
+          "score": "91/100",
+          "year": "2019"
+        },
+        {
+          "name": "Falstaff",
+          "score": "91/100",
+          "year": "2019"
+        }
+      ],
       "tastingNotes": {
-        "aspetto": null,
-        "profumo": null,
-        "gusto": null
+        "aspetto": "Spuma vivace, colore rosa ribes con bollicine fini e abbondanti. Elegante e raffinato alla vista.",
+        "profumo": "Profumo intenso e fruttato, con tipici sentori di frutti di sottobosco. Note di fragola, lampone e ribes.",
+        "gusto": "Sapore ben composto con sentori di frutti di sottobosco. Fresco, sapido e di grande eleganza. Finale persistente e raffinato."
       },
+      "heritage": "Il Rosé de Noir rappresenta un patrimonio enologico che riflette il metodo ancestrale della rifermentazione in bottiglia, utilizzato da Cleto Chiarli fin dal 1860. Questo metodo, sostituito negli anni '50 dal Metodo Charmat, viene oggi riscoperto per offrire un vino di straordinaria eleganza e complessità, che conserva le caratteristiche uniche conferite dai lieviti e dalla tradizione.",
+      "technicalSpecs": [
+        {
+          "label": "Vitigno",
+          "value": "Grasparossa 100%"
+        },
+        {
+          "label": "Metodo",
+          "value": "Fermentato in bottiglia - Presa di spuma in cuve close"
+        },
+        {
+          "label": "Gradazione",
+          "value": "12% vol."
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "8-10°C (servire fresco)"
+        },
+        {
+          "label": "Formato",
+          "value": "0,75L"
+        },
+        {
+          "label": "Vinificazione",
+          "value": "Pressatura soffice a temperatura controllata"
+        }
+      ],
       "isActive": true,
       "order": 6
     },
@@ -271,42 +346,6 @@
       "isActive": true,
       "order": 10,
       "id": 10
-    },
-    {
-      "id": -1,
-      "slug": "preview-quintopasso-rose-brut-millesimato",
-      "name": "QUINTOPASSO ROSE BRUT • MILLESIMATO",
-      "denomination": "Modena Rosè Spumante Brut DOC Metodo Classico",
-      "family": "Metodo Classico",
-      "description": "Spumante rosè metodo classico da uve Sorbara in purezza con 36 mesi di rifermentazione in bottiglia. Caratterizzato da acidità minerale e aromi cristallini di frutta rossa e liquirizia.",
-      "image": null,
-      "format": "0.75L",
-      "tags": [
-        "Rosé",
-        "Brut",
-        "Metodo Classico",
-        "Millesimato",
-        "Sorbara",
-        "DOC",
-        "Modena"
-      ],
-      "price": null,
-      "year": null,
-      "alcohol": 12,
-      "servingTemp": null,
-      "pairings": [
-        "Acciughe del Cantabrico - acidità e salinità in equilibrio",
-        "Cacio e pepe con gambero crudo - ma anche Carbonara, Gricia etc., nel solco della tradizione",
-        "Cucina vegetariana, per far collimare leggerezza e sapore"
-      ],
-      "awards": [],
-      "tastingNotes": {
-        "aspetto": "Colore rosa tenue con riflessi violacei",
-        "profumo": "Aromi nitidi e cristallini come l'aria di alta montagna, tra frutta rossa, ozono e note di liquirizia",
-        "gusto": "Gusto dominato dall'acidità ricca di note minerali, scintillante e affilata, ma equilibrata dalla morbidezza del frutto e dalla ricchezza aromatica, come solo il particolare terroir della sponda sinistra del Secchia sa dare. Il finale, dagli aromi quasi speziati, si distende senza perdere mai tensione."
-      },
-      "isActive": true,
-      "order": 999
     }
   ],
   "_meta": {

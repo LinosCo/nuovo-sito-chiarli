@@ -2,20 +2,72 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Wine, Thermometer, Award, ChevronDown, ArrowRight } from 'lucide-react';
 
 interface WineDetailPageProps {
+  slug?: string;
   onBack?: () => void;
 }
 
-export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
+interface WineData {
+  id: number;
+  slug: string;
+  name: string;
+  denomination: string;
+  family: string;
+  description: string;
+  image: string | null;
+  format: string;
+  tags: string[];
+  price: number | null;
+  year: number | null;
+  alcohol: number | null;
+  servingTemp: string | null;
+  pairings: string[];
+  awards: Array<{ name: string; score: string; years: string }>;
+  tastingNotes: {
+    aspetto: string | null;
+    profumo: string | null;
+    gusto: string | null;
+  };
+  isActive: boolean;
+  order: number;
+}
+
+export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-del-fondatore', onBack }) => {
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [hoveredAward, setHoveredAward] = useState<number | null>(null);
   const [isHoveringBottle, setIsHoveringBottle] = useState(false);
+  const [wineData, setWineData] = useState<WineData | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoaded(true);
+    const loadWineData = async () => {
+      try {
+        setLoading(true);
+        // Add cache busting to ensure fresh data
+        const timestamp = new URL(window.location.href).searchParams.get('t') || Date.now();
+        const response = await fetch(`/content/wines.json?t=${timestamp}`);
+        const data = await response.json();
+        const wine = data.wines.find((w: WineData) => w.slug === slug);
 
+        if (wine) {
+          setWineData(wine);
+        } else {
+          console.error(`Wine with slug "${slug}" not found`);
+        }
+      } catch (error) {
+        console.error('Error loading wine data:', error);
+      } finally {
+        setLoading(false);
+        setIsLoaded(true);
+      }
+    };
+
+    loadWineData();
+  }, [slug]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
@@ -34,18 +86,59 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
     };
   }, []);
 
-  const awards = [
-    { name: "Gambero Rosso", score: "Tre Bicchieri", years: "2019-2021" },
-    { name: "Falstaff", score: "91-93/100", years: "2022" },
-    { name: "Vitae AIS", score: "4 Viti", years: "2021" },
-    { name: "Bibenda", score: "5 Grappoli", years: "2020" },
-  ];
+  // Default fallback data for Metodo del Fondatore
+  const defaultWine: WineData = {
+    id: 0,
+    slug: 'metodo-del-fondatore',
+    name: 'Metodo del Fondatore',
+    denomination: 'Lambrusco di Sorbara DOC',
+    family: 'Metodo Ancestrale',
+    description: 'Un omaggio alle origini. La tecnica ancestrale della rifermentazione in bottiglia che Cleto Chiarli utilizzava nel 1860, riscoperta per catturare l\'essenza più pura del Sorbara.',
+    image: '/foto/003-uai-720x720.png',
+    format: '0.75L',
+    tags: ['Sorbara', 'DOC'],
+    price: null,
+    year: null,
+    alcohol: 11.5,
+    servingTemp: '12-14°C',
+    pairings: [
+      'Tortellini in brodo',
+      'Prosciutto di Parma',
+      'Parmigiano Reggiano',
+      'Gnocco fritto',
+      'Tigelle e crescentine',
+      'Cotechino'
+    ],
+    awards: [
+      { name: "Gambero Rosso", score: "Tre Bicchieri", years: "2019-2021" },
+      { name: "Falstaff", score: "91-93/100", years: "2022" },
+      { name: "Vitae AIS", score: "4 Viti", years: "2021" },
+      { name: "Bibenda", score: "5 Grappoli", years: "2020" },
+    ],
+    tastingNotes: {
+      aspetto: 'Colore chiaro e vivace, con riflessi rosati. Spuma fine ed evanescente.',
+      profumo: 'Bouquet floreale con note di viola e rosa canina. Sentori di lievito e crosta di pane.',
+      gusto: 'Secco e sapido, freschezza vibrante. Finale lungo e persistente, di grande eleganza.',
+    },
+    isActive: true,
+    order: 0,
+  };
+
+  const wine = wineData || defaultWine;
 
   const tastingNotes = [
-    { title: "Aspetto", description: "Colore chiaro e vivace, con riflessi rosati. Spuma fine ed evanescente." },
-    { title: "Profumo", description: "Bouquet floreale con note di viola e rosa canina. Sentori di lievito e crosta di pane." },
-    { title: "Gusto", description: "Secco e sapido, freschezza vibrante. Finale lungo e persistente, di grande eleganza." },
+    { title: "Aspetto", description: wine.tastingNotes.aspetto || "Non disponibile" },
+    { title: "Profumo", description: wine.tastingNotes.profumo || "Non disponibile" },
+    { title: "Gusto", description: wine.tastingNotes.gusto || "Non disponibile" },
   ];
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-chiarli-text flex items-center justify-center">
+        <div className="text-white text-xl">Caricamento...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -88,21 +181,23 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
         <div className="w-full min-h-screen flex flex-col lg:flex-row relative z-10">
 
           {/* Mobile bottle - shown only on mobile at top */}
-          <div className="lg:hidden w-full flex justify-center pt-24 pb-8">
-            <div className="relative">
-              {/* Decorative circles for mobile */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-white/5" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] rounded-full border border-chiarli-wine-light/10" />
-              <img
-                src="/foto/003-uai-720x720.png"
-                alt="Metodo del Fondatore"
-                className="relative z-10 h-[35vh] w-auto object-contain"
-                style={{
-                  filter: `drop-shadow(0 0 60px rgba(60,20,35,0.8)) drop-shadow(0 0 30px rgba(80,30,45,0.6))`,
-                }}
-              />
+          {wine.image && (
+            <div className="lg:hidden w-full flex justify-center pt-24 pb-8">
+              <div className="relative">
+                {/* Decorative circles for mobile */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-white/5" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] rounded-full border border-chiarli-wine-light/10" />
+                <img
+                  src={wine.image}
+                  alt={wine.name}
+                  className="relative z-10 h-[35vh] w-auto object-contain"
+                  style={{
+                    filter: `drop-shadow(0 0 60px rgba(60,20,35,0.8)) drop-shadow(0 0 30px rgba(80,30,45,0.6))`,
+                  }}
+                />
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Left side - Content */}
           <div className="w-full lg:w-1/2 flex items-center px-6 md:px-16 lg:px-20 py-8 lg:py-32">
@@ -112,24 +207,36 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                Metodo Ancestrale
+                {wine.family}
               </span>
 
               <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white mb-4 leading-tight">
-                <span
-                  className={`block transition-all duration-700 delay-400 ${
-                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  }`}
-                >
-                  Metodo del
-                </span>
-                <span
-                  className={`block italic text-chiarli-wine-light transition-all duration-700 delay-500 ${
-                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  }`}
-                >
-                  Fondatore
-                </span>
+                {wine.name.split(' ').length > 2 ? (
+                  <>
+                    <span
+                      className={`block transition-all duration-700 delay-400 ${
+                        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                      }`}
+                    >
+                      {wine.name.split(' ').slice(0, -1).join(' ')}
+                    </span>
+                    <span
+                      className={`block italic text-chiarli-wine-light transition-all duration-700 delay-500 ${
+                        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                      }`}
+                    >
+                      {wine.name.split(' ').slice(-1)[0]}
+                    </span>
+                  </>
+                ) : (
+                  <span
+                    className={`block transition-all duration-700 delay-400 ${
+                      isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    }`}
+                  >
+                    {wine.name}
+                  </span>
+                )}
               </h1>
 
               <p
@@ -137,7 +244,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                Lambrusco di Sorbara DOC
+                {wine.denomination}
               </p>
 
               <p
@@ -145,8 +252,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
               >
-                Un omaggio alle origini. La tecnica ancestrale della rifermentazione in bottiglia
-                che Cleto Chiarli utilizzava nel 1860, riscoperta per catturare l'essenza più pura del Sorbara.
+                {wine.description}
               </p>
 
               {/* Quick specs in line */}
@@ -155,17 +261,23 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 md:px-4 py-2 rounded-full hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default">
-                  <Wine size={14} className="text-chiarli-wine-light" />
-                  <span className="font-sans text-[10px] md:text-xs font-medium text-white/70">11,5% vol.</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 md:px-4 py-2 rounded-full hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default">
-                  <Thermometer size={14} className="text-chiarli-wine-light" />
-                  <span className="font-sans text-[10px] md:text-xs font-medium text-white/70">12-14°C</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 md:px-4 py-2 rounded-full hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default">
-                  <span className="font-sans text-[10px] md:text-xs font-medium text-white/70">Sorbara 100%</span>
-                </div>
+                {wine.alcohol && (
+                  <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 md:px-4 py-2 rounded-full hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default">
+                    <Wine size={14} className="text-chiarli-wine-light" />
+                    <span className="font-sans text-[10px] md:text-xs font-medium text-white/70">{wine.alcohol}% vol.</span>
+                  </div>
+                )}
+                {wine.servingTemp && (
+                  <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 md:px-4 py-2 rounded-full hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default">
+                    <Thermometer size={14} className="text-chiarli-wine-light" />
+                    <span className="font-sans text-[10px] md:text-xs font-medium text-white/70">{wine.servingTemp}</span>
+                  </div>
+                )}
+                {wine.tags.map((tag, i) => (
+                  <div key={i} className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 md:px-4 py-2 rounded-full hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default">
+                    <span className="font-sans text-[10px] md:text-xs font-medium text-white/70">{tag}</span>
+                  </div>
+                ))}
               </div>
 
               {/* CTA */}
@@ -182,102 +294,98 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
           </div>
 
           {/* Right side - Bottle more to the left */}
-          <div className="hidden lg:flex w-1/2 items-center justify-start relative">
+          {wine.image && (
+            <div className="hidden lg:flex w-1/2 items-center justify-start relative">
 
-            {/* Floating award badge - top right */}
-            <div
-              className={`absolute top-20 right-8 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 transition-all duration-300 cursor-default hover:border-chiarli-wine-light/50 hover:bg-white/15 hover:shadow-[0_0_25px_rgba(180,100,120,0.4)] ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
-              }`}
-              style={{
-                transform: `translateY(${Math.sin(scrollY * 0.01) * 10}px)`,
-              }}
-            >
-              <div className="flex items-center gap-3">
-                <Award size={20} className="text-chiarli-wine-light" />
-                <div>
-                  <p className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/60">Gambero Rosso</p>
-                  <p className="font-serif text-sm text-white">Tre Bicchieri</p>
+              {/* Floating award badges - only show if wine has awards */}
+              {wine.awards && wine.awards.length > 0 && wine.awards[0] && (
+                <div
+                  className={`absolute top-20 right-8 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 transition-all duration-300 cursor-default hover:border-chiarli-wine-light/50 hover:bg-white/15 hover:shadow-[0_0_25px_rgba(180,100,120,0.4)] ${
+                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
+                  }`}
+                  style={{
+                    transform: `translateY(${Math.sin(scrollY * 0.01) * 10}px)`,
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <Award size={20} className="text-chiarli-wine-light" />
+                    <div>
+                      <p className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/60">{wine.awards[0].name}</p>
+                      <p className="font-serif text-sm text-white">{wine.awards[0].score}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {wine.awards && wine.awards.length > 1 && wine.awards[1] && (
+                <div
+                  className={`absolute bottom-28 right-8 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 transition-all duration-300 cursor-default hover:border-chiarli-wine-light/50 hover:bg-white/15 hover:shadow-[0_0_25px_rgba(180,100,120,0.4)] ${
+                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{
+                    transform: `translateY(${Math.cos(scrollY * 0.01) * 8}px)`,
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <Award size={20} className="text-chiarli-wine-light" />
+                    <div>
+                      <p className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/60">{wine.awards[1].name}</p>
+                      <p className="font-serif text-sm text-white">{wine.awards[1].score}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Bottle and circles wrapper - keeps them together */}
+              <div className="relative flex items-center justify-center">
+                {/* Decorative circles - centered on bottle */}
+                <div
+                  className="absolute w-[500px] h-[500px] rounded-full border border-white/5"
+                  style={{
+                    transform: `rotate(${scrollY * 0.02}deg)`,
+                  }}
+                />
+                <div
+                  className="absolute w-[400px] h-[400px] rounded-full border border-chiarli-wine-light/10"
+                  style={{
+                    transform: `rotate(${-scrollY * 0.03}deg)`,
+                  }}
+                />
+
+                {/* Bottle container */}
+                <div
+                  className={`relative cursor-pointer transition-all duration-700 z-10 ${
+                    isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
+                  onMouseEnter={() => setIsHoveringBottle(true)}
+                  onMouseLeave={() => setIsHoveringBottle(false)}
+                  style={{
+                    transform: `
+                      perspective(1000px)
+                      rotateY(${(mousePosition.x - 50) * 0.08}deg)
+                      rotateX(${(mousePosition.y - 50) * -0.04}deg)
+                      translateY(${scrollY * 0.02}px)
+                      scale(${isHoveringBottle ? 1.03 : 1})
+                    `,
+                    transition: 'transform 0.4s ease-out',
+                  }}
+                >
+                  <img
+                    src={wine.image}
+                    alt={wine.name}
+                    className="relative z-10 h-[70vh] w-auto object-contain"
+                    style={{
+                      filter: `
+                        drop-shadow(0 0 80px rgba(60,20,35,0.8))
+                        drop-shadow(0 0 40px rgba(80,30,45,0.6))
+                      `,
+                    }}
+                  />
                 </div>
               </div>
+
             </div>
-
-            {/* Floating award badge - bottom right */}
-            <div
-              className={`absolute bottom-28 right-8 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 transition-all duration-300 cursor-default hover:border-chiarli-wine-light/50 hover:bg-white/15 hover:shadow-[0_0_25px_rgba(180,100,120,0.4)] ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-              style={{
-                transform: `translateY(${Math.cos(scrollY * 0.01) * 8}px)`,
-              }}
-            >
-              <div className="flex items-center gap-3">
-                <Award size={20} className="text-chiarli-wine-light" />
-                <div>
-                  <p className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/60">Falstaff</p>
-                  <p className="font-serif text-sm text-white">93/100</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottle and circles wrapper - keeps them together */}
-            <div className="relative flex items-center justify-center">
-              {/* Decorative circles - centered on bottle */}
-              <div
-                className="absolute w-[500px] h-[500px] rounded-full border border-white/5"
-                style={{
-                  transform: `rotate(${scrollY * 0.02}deg)`,
-                }}
-              />
-              <div
-                className="absolute w-[400px] h-[400px] rounded-full border border-chiarli-wine-light/10"
-                style={{
-                  transform: `rotate(${-scrollY * 0.03}deg)`,
-                }}
-              />
-
-              {/* Bottle container */}
-              <div
-                className={`relative cursor-pointer transition-all duration-700 z-10 ${
-                  isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                }`}
-              onMouseEnter={() => setIsHoveringBottle(true)}
-              onMouseLeave={() => setIsHoveringBottle(false)}
-              style={{
-                transform: `
-                  perspective(1000px)
-                  rotateY(${(mousePosition.x - 50) * 0.08}deg)
-                  rotateX(${(mousePosition.y - 50) * -0.04}deg)
-                  translateY(${scrollY * 0.02}px)
-                  scale(${isHoveringBottle ? 1.03 : 1})
-                `,
-                transition: 'transform 0.4s ease-out',
-              }}
-            >
-              <img
-                src="/foto/003-uai-720x720.png"
-                alt="Metodo del Fondatore"
-                className="relative z-10 h-[70vh] w-auto object-contain"
-                style={{
-                  filter: `
-                    drop-shadow(0 0 80px rgba(60,20,35,0.8))
-                    drop-shadow(0 0 40px rgba(80,30,45,0.6))
-                  `,
-                }}
-              />
-              </div>
-            </div>
-
-          </div>
-
-          {/* Vintage year - bottom left of entire hero */}
-          <div
-            className={`absolute bottom-24 left-12 transition-all duration-1000 delay-600 hidden lg:block ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <p className="font-serif text-[120px] font-light text-white/[0.03] leading-none">1860</p>
-          </div>
+          )}
 
         </div>
 
@@ -487,15 +595,6 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
 
             {/* Left: Title with decorative elements */}
             <div className="relative">
-              {/* Decorative circle - hidden on mobile */}
-              <div
-                className="absolute -left-10 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full border border-chiarli-wine-light/10 hidden lg:block"
-                style={{ transform: `translateY(-50%) rotate(${scrollY * 0.02}deg)` }}
-              />
-              <div
-                className="absolute -left-6 top-1/2 -translate-y-1/2 w-28 h-28 rounded-full border border-white/5 hidden lg:block"
-                style={{ transform: `translateY(-50%) rotate(${-scrollY * 0.03}deg)` }}
-              />
 
               <div className="relative z-10">
                 <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
@@ -518,18 +617,17 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
             {/* Right: Specs list */}
             <div className="space-y-4 md:space-y-6">
               {[
-                { label: "Vitigno", value: "Lambrusco di Sorbara 100%" },
-                { label: "Metodo", value: "Rifermentazione naturale in bottiglia" },
-                { label: "Affinamento", value: "6 mesi sui lieviti" },
-                { label: "Gradazione", value: "11,5% vol." },
-                { label: "Temperatura di servizio", value: "12-14°C" },
-                { label: "Formato", value: "0,75L" },
+                ...(wine.denomination ? [{ label: "Denominazione", value: wine.denomination }] : []),
+                ...(wine.alcohol ? [{ label: "Gradazione", value: `${wine.alcohol}% vol.` }] : []),
+                ...(wine.servingTemp ? [{ label: "Temperatura di servizio", value: wine.servingTemp }] : []),
+                ...(wine.format ? [{ label: "Formato", value: wine.format }] : []),
+                ...(wine.year ? [{ label: "Annata", value: wine.year.toString() }] : []),
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline border-b border-white/10 pb-3 md:pb-4 group hover:border-chiarli-wine-light/50 hover:shadow-[0_4px_15px_-5px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default"
+                  className="flex flex-col border-b border-white/10 pb-3 md:pb-4 group hover:border-chiarli-wine-light/50 hover:shadow-[0_4px_15px_-5px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default"
                 >
-                  <span className="font-sans text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/40 group-hover:text-chiarli-wine-light transition-colors mb-1 sm:mb-0">
+                  <span className="font-sans text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/40 group-hover:text-chiarli-wine-light transition-colors mb-2">
                     {item.label}
                   </span>
                   <span className="font-serif text-base md:text-lg text-white group-hover:text-chiarli-wine-light transition-colors">
@@ -545,48 +643,50 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
       </section>
 
       {/* Awards - Dark dynamic section */}
-      <section className="py-12 md:py-16 lg:py-20 bg-chiarli-text relative overflow-hidden">
+      {wine.awards && wine.awards.length > 0 && (
+        <section className="py-12 md:py-16 lg:py-20 bg-chiarli-text relative overflow-hidden">
 
-        <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
+          <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
 
-          <div className="text-center mb-8 md:mb-12 lg:mb-16">
-            <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
-              Riconoscimenti
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white">
-              Premiato dalla <span className="italic text-chiarli-wine-light">critica</span>
-            </h2>
+            <div className="text-center mb-8 md:mb-12 lg:mb-16">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
+                Riconoscimenti
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white">
+                Premiato dalla <span className="italic text-chiarli-wine-light">critica</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-8">
+              {wine.awards.map((award: { name: string; score: string; years: string }, index: number) => (
+                <div
+                  key={index}
+                  className="text-center p-4 md:p-6 lg:p-8 bg-white/5 border border-white/10 hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(180,100,120,0.35)] transition-all duration-500 group cursor-default"
+                  onMouseEnter={() => setHoveredAward(index)}
+                  onMouseLeave={() => setHoveredAward(null)}
+                >
+                  <Award
+                    size={24}
+                    className={`mx-auto mb-3 md:mb-4 transition-all duration-300 ${
+                      hoveredAward === index ? 'text-chiarli-wine-light scale-110 drop-shadow-[0_0_15px_rgba(180,100,120,0.8)]' : 'text-white/30'
+                    }`}
+                  />
+                  <h3 className="font-serif text-sm md:text-lg lg:text-xl text-white mb-1 group-hover:text-chiarli-wine-light transition-colors">
+                    {award.name}
+                  </h3>
+                  <p className="font-sans text-[10px] md:text-xs font-bold text-chiarli-wine-light">
+                    {award.score}
+                  </p>
+                  <p className="font-sans text-[9px] md:text-[10px] text-white/40 mt-1">
+                    {award.years}
+                  </p>
+                </div>
+              ))}
+            </div>
+
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-8">
-            {awards.map((award, index) => (
-              <div
-                key={index}
-                className="text-center p-4 md:p-6 lg:p-8 bg-white/5 border border-white/10 hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(180,100,120,0.35)] transition-all duration-500 group cursor-default"
-                onMouseEnter={() => setHoveredAward(index)}
-                onMouseLeave={() => setHoveredAward(null)}
-              >
-                <Award
-                  size={24}
-                  className={`mx-auto mb-3 md:mb-4 transition-all duration-300 ${
-                    hoveredAward === index ? 'text-chiarli-wine-light scale-110 drop-shadow-[0_0_15px_rgba(180,100,120,0.8)]' : 'text-white/30'
-                  }`}
-                />
-                <h3 className="font-serif text-sm md:text-lg lg:text-xl text-white mb-1 group-hover:text-chiarli-wine-light transition-colors">
-                  {award.name}
-                </h3>
-                <p className="font-sans text-[10px] md:text-xs font-bold text-chiarli-wine-light">
-                  {award.score}
-                </p>
-                <p className="font-sans text-[9px] md:text-[10px] text-white/40 mt-1">
-                  {award.years}
-                </p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Food Pairing - Full width split like Heritage */}
       <section className="relative bg-white overflow-hidden">
@@ -615,27 +715,23 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ onBack }) => {
               </h2>
 
               <p className="font-serif text-base md:text-lg text-chiarli-text/70 leading-relaxed mb-6 md:mb-8">
-                La freschezza e la sapidità di questo Lambrusco lo rendono perfetto
-                per accompagnare i piatti della tradizione.
+                {wine.pairings && wine.pairings.length > 0
+                  ? "Abbinamenti consigliati per questo vino:"
+                  : "La freschezza e la sapidità di questo vino lo rendono perfetto per accompagnare diversi piatti."}
               </p>
 
-              <div className="grid grid-cols-2 gap-3 md:gap-4">
-                {[
-                  "Tortellini in brodo",
-                  "Prosciutto di Parma",
-                  "Parmigiano Reggiano",
-                  "Gnocco fritto",
-                  "Tigelle e crescentine",
-                  "Cotechino"
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-2 md:gap-3 group cursor-default p-2 -m-2 rounded hover:bg-chiarli-wine/5 transition-all duration-300">
-                    <div className="w-2 h-2 rounded-full bg-chiarli-wine/40 group-hover:bg-chiarli-wine group-hover:shadow-[0_0_10px_rgba(180,100,120,0.6)] transition-all duration-300 flex-shrink-0" />
-                    <span className="font-sans text-xs md:text-sm text-chiarli-text/70 group-hover:text-chiarli-text transition-colors">
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
+              {wine.pairings && wine.pairings.length > 0 && (
+                <div className="grid grid-cols-1 gap-3 md:gap-4">
+                  {wine.pairings.map((item: string, index: number) => (
+                    <div key={index} className="flex items-start gap-2 md:gap-3 group cursor-default p-2 -m-2 rounded hover:bg-chiarli-wine/5 transition-all duration-300">
+                      <div className="w-2 h-2 mt-1.5 rounded-full bg-chiarli-wine/40 group-hover:bg-chiarli-wine group-hover:shadow-[0_0_10px_rgba(180,100,120,0.6)] transition-all duration-300 flex-shrink-0" />
+                      <span className="font-sans text-xs md:text-sm text-chiarli-text/70 group-hover:text-chiarli-text transition-colors">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 

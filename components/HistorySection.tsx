@@ -39,12 +39,6 @@ export const HistorySection: React.FC = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 lg:bg-gradient-to-l lg:from-chiarli-stone/20 lg:to-transparent" />
-
-          {/* Year overlay on image */}
-          <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12">
-            <span className="font-serif text-7xl md:text-9xl text-white/90 block leading-none drop-shadow-lg">1860</span>
-            <span className="font-sans text-[10px] uppercase tracking-widest text-white/70">Anno di fondazione</span>
-          </div>
         </div>
 
         {/* Right: Content */}

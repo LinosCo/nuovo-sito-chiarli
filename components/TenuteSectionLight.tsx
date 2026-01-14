@@ -60,28 +60,26 @@ const EmiliaRomagnaMapLight: React.FC<{
   onPinHover: (index: number | null) => void;
   onPinClick: (index: number) => void;
 }> = ({ activeIndex, hoveredIndex, onPinHover, onPinClick }) => {
-  // Posizioni delle tenute sulla mappa Emilia-Romagna (in percentuale)
-  // Basato su coordinate reali:
-  // - Bomporto: 12km nord-est di Modena (pianura)
-  // - Castelvetro: 15km sud di Modena (colline)
-  // - Modena: centro
+  // Posizioni delle tenute sulla mappa aggiornata
+  // La regione grande occupa la maggior parte dello spazio a destra
   const mapPositions = [
-    { x: 40, y: 72 },   // Castelvetro - 15km sud di Modena (colline)
-    { x: 45, y: 42 },   // Bomporto - 12km nord-est di Modena (pianura)
-    { x: 38, y: 55 },   // Modena città - centro
+    { x: 58, y: 56 },   // Castelvetro - SUD di Modena (colline)
+    { x: 63, y: 33 },   // Bomporto - NORD-EST di Modena (pianura)
+    { x: 58, y: 42 },   // Modena città - pianura padana
   ];
 
   return (
     <div className="relative w-full h-full">
-      {/* Map image */}
-      <img
-        src="/Mappa_regione_emilia_romagna.png"
-        alt="Emilia-Romagna"
-        className="w-full h-full object-contain opacity-80"
-      />
+      <div className="relative w-full h-full -translate-x-[5%]">
+        {/* Map image */}
+        <img
+          src="/mappa.png"
+          alt="Emilia-Romagna"
+          className="w-full h-full object-contain opacity-70 scale-125"
+        />
 
-      {/* Pin markers with labels */}
-      {mapPositions.map((pos, index) => {
+        {/* Pin markers with labels */}
+        {mapPositions.map((pos, index) => {
         const isActive = index === activeIndex;
         const isHovered = index === hoveredIndex;
 
@@ -136,6 +134,7 @@ const EmiliaRomagnaMapLight: React.FC<{
           </div>
         );
       })}
+      </div>
     </div>
   );
 };
@@ -233,7 +232,7 @@ export const TenuteSectionLight: React.FC = () => {
 
           {/* Left: Map */}
           <div
-            className={`relative h-[400px] md:h-[500px] transition-all duration-700 delay-500 ${
+            className={`relative h-[500px] md:h-[650px] transition-all duration-700 delay-500 ml-8 md:ml-12 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
             }`}
           >
@@ -304,27 +303,19 @@ export const TenuteSectionLight: React.FC = () => {
               </div>
             </div>
 
-            {/* Year Badge & Navigation */}
-            <div className="flex items-center justify-between">
-              <div
-                key={`year-${activeIndex}`}
-                className="bg-chiarli-text/5 px-5 py-3 animate-fade-in"
-              >
-                <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/40 block">Fondata</span>
-                <span className="font-serif text-3xl text-chiarli-text">{activeTenuta.year}</span>
-              </div>
-
+            {/* Navigation */}
+            <div className="flex items-center justify-center">
               {/* Arrow Controls */}
               <div className="flex gap-3">
                 <button
                   onClick={goPrev}
-                  className="w-12 h-12 border border-chiarli-text/20 flex items-center justify-center text-chiarli-text hover:bg-chiarli-wine hover:border-chiarli-wine hover:text-white transition-all duration-300 group"
+                  className="w-12 h-12 flex items-center justify-center text-chiarli-text hover:text-chiarli-wine transition-all duration-300 group"
                 >
                   <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
                 </button>
                 <button
                   onClick={goNext}
-                  className="w-12 h-12 border border-chiarli-text/20 flex items-center justify-center text-chiarli-text hover:bg-chiarli-wine hover:border-chiarli-wine hover:text-white transition-all duration-300 group"
+                  className="w-12 h-12 flex items-center justify-center text-chiarli-text hover:text-chiarli-wine transition-all duration-300 group"
                 >
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </button>

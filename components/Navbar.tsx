@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
-const navItems = ['Vini', 'Tenute', 'Esperienze', 'Storia'];
-
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { toggleTheme, isDark } = useTheme();
+
+  const navItems = isDark
+    ? ['Vini', 'Tenute', 'Storia', 'Esperienze', 'Blog']
+    : ['Vini', 'Tenute', 'Esperienze', 'Storia', 'Blog'];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,7 +89,7 @@ export const Navbar: React.FC = () => {
             {isMenuOpen ? <X /> : <Menu />}
           </button>
 
-          <a href="#contatti" className={`hidden md:block px-6 py-2 ${isDark ? (isScrolled ? 'border border-chiarli-text hover:bg-chiarli-text hover:text-white' : 'border border-white hover:bg-white hover:text-chiarli-text') : 'hover:text-chiarli-wine'} font-sans text-xs font-bold uppercase tracking-widest transition-all`}>
+          <a href="#contatti" className={`hidden md:block px-6 py-2 ${isDark ? 'hover:text-chiarli-wine-light' : 'hover:text-chiarli-wine'} font-sans text-xs font-bold uppercase tracking-widest transition-all`}>
             Contatti
           </a>
         </div>

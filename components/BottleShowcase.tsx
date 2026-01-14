@@ -4,7 +4,7 @@ import { useWines, useHomeContent } from '../hooks/useContent';
 type FilterType = 'all' | 'Metodo Classico' | 'Premium';
 
 interface BottleShowcaseProps {
-  onWineClick?: () => void;
+  onWineClick?: (slug: string) => void;
 }
 
 export const BottleShowcase: React.FC<BottleShowcaseProps> = ({ onWineClick }) => {
@@ -135,7 +135,7 @@ export const BottleShowcase: React.FC<BottleShowcaseProps> = ({ onWineClick }) =
               style={{ transitionDelay: `${500 + index * 150}ms` }}
               onMouseEnter={() => setHoveredBottle(index)}
               onMouseLeave={() => setHoveredBottle(null)}
-              onClick={onWineClick}
+              onClick={() => onWineClick?.(wine.slug)}
             >
                {/* Image Container */}
                <div className="aspect-[3/4] mb-8 relative overflow-hidden">
