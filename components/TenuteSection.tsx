@@ -298,12 +298,13 @@ export const TenuteSection: React.FC = () => {
             </div>
 
             {/* CTA */}
-            <button
-              className="group flex items-center gap-4 bg-chiarli-wine text-white px-8 py-4 hover:bg-white hover:text-chiarli-text transition-all duration-500 mb-6"
+            <a
+              href={`#/tenute/${activeTenuta.slug}`}
+              className="group inline-flex items-center gap-4 bg-chiarli-wine text-white px-8 py-4 hover:bg-white hover:text-chiarli-text transition-all duration-500 mb-6"
             >
               <span className="font-sans text-xs font-bold uppercase tracking-widest">Scopri la tenuta</span>
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
 
             {/* Arrow Controls */}
             <div className="flex gap-4">

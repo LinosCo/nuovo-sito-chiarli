@@ -5,11 +5,25 @@ import { useTheme } from '../contexts/ThemeContext';
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isTenuteOpen, setIsTenuteOpen] = useState(false);
   const { toggleTheme, isDark } = useTheme();
 
-  const navItems = isDark
-    ? ['Vini', 'Tenute', 'Storia', 'Esperienze', 'Blog']
-    : ['Vini', 'Tenute', 'Esperienze', 'Storia', 'Blog'];
+  // TEMPORANEO: Semplificato durante sviluppo dark-only
+  const navItems = [
+    { label: 'Vini', href: '#vini' },
+    {
+      label: 'Tenute',
+      href: '#/tenute',
+      submenu: [
+        { label: 'Tenuta Cialdini', href: '#/tenute/cialdini' },
+        { label: 'Tenuta Sozzigalli', href: '#/tenute/sozzigalli' },
+        { label: 'Tenuta Belvedere', href: '#/tenute/belvedere' }
+      ]
+    },
+    { label: 'Esperienze', href: '#/esperienze' },
+    { label: 'Storia', href: '#/storia' },
+    { label: 'Blog', href: '#blog' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +46,7 @@ export const Navbar: React.FC = () => {
       <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex items-center justify-between">
 
         {/* Logo Area */}
-        <a href="#" className="group">
+        <a href="" className="group">
           <img
             src="/foto/cletochiarli-2-01.svg"
             alt="Cleto Chiarli"
@@ -43,25 +57,45 @@ export const Navbar: React.FC = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-12">
           {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="font-sans text-xs font-bold uppercase tracking-widest hover:text-chiarli-wine transition-colors"
+            <div
+              key={item.label}
+              className="relative"
+              onMouseEnter={() => item.submenu && setIsTenuteOpen(true)}
+              onMouseLeave={() => item.submenu && setIsTenuteOpen(false)}
             >
-              {item}
-            </a>
+              <a
+                href={item.href}
+                className="font-sans text-xs font-bold uppercase tracking-widest hover:text-chiarli-wine transition-colors"
+              >
+                {item.label}
+              </a>
+
+              {/* Dropdown Menu */}
+              {item.submenu && isTenuteOpen && (
+                <div className="absolute top-full left-0 mt-2 w-56 bg-chiarli-stone shadow-xl border border-chiarli-text/10 overflow-hidden">
+                  {item.submenu.map((subitem) => (
+                    <a
+                      key={subitem.label}
+                      href={subitem.href}
+                      className="block px-6 py-3 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-text hover:bg-chiarli-wine hover:text-white transition-colors"
+                    >
+                      {subitem.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </nav>
 
         {/* Right Side */}
         <div className="flex items-center gap-4">
-          {/* Theme Switch - Elegant minimal */}
-          <button
+          {/* TEMPORANEO: Theme Switch nascosto durante sviluppo */}
+          {/* <button
             onClick={toggleTheme}
             className="relative w-8 h-8 flex items-center justify-center outline-none focus:outline-none"
             title={isDark ? 'Passa al tema chiaro' : 'Passa al tema scuro'}
           >
-            {/* Moon icon - show in light mode (to switch to dark) */}
             <Moon
               size={18}
               className={`absolute transition-all duration-500 ${
@@ -71,7 +105,6 @@ export const Navbar: React.FC = () => {
               } ${isScrolled ? 'text-chiarli-text hover:text-chiarli-wine' : isDark ? 'text-white hover:text-white/70' : 'text-chiarli-text hover:text-chiarli-wine'}`}
             />
 
-            {/* Sun icon - show in dark mode (to switch to light) */}
             <Sun
               size={18}
               className={`absolute transition-all duration-500 ${
@@ -80,7 +113,7 @@ export const Navbar: React.FC = () => {
                   : 'opacity-0 rotate-90 scale-0'
               } ${isScrolled ? 'text-chiarli-text hover:text-chiarli-wine' : isDark ? 'text-white hover:text-white/70' : 'text-chiarli-text hover:text-chiarli-wine'}`}
             />
-          </button>
+          </button> */}
 
           <button
             className="md:hidden"
@@ -105,17 +138,32 @@ export const Navbar: React.FC = () => {
             <X size={24} />
           </button>
           {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              onClick={() => setIsMenuOpen(false)}
-              className="font-serif text-4xl italic"
-            >
-              {item}
-            </a>
+            <div key={item.label} className="flex flex-col items-center space-y-4">
+              <a
+                href={item.href}
+                onClick={() => !item.submenu && setIsMenuOpen(false)}
+                className="font-serif text-4xl italic"
+              >
+                {item.label}
+              </a>
+              {item.submenu && (
+                <div className="flex flex-col items-center space-y-3">
+                  {item.submenu.map((subitem) => (
+                    <a
+                      key={subitem.label}
+                      href={subitem.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="font-sans text-sm uppercase tracking-widest text-chiarli-text/70 hover:text-chiarli-wine"
+                    >
+                      {subitem.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
-          {/* Theme toggle in mobile menu */}
-          <button
+          {/* TEMPORANEO: Theme toggle nascosto durante sviluppo */}
+          {/* <button
             onClick={toggleTheme}
             className="flex items-center gap-3 mt-8 text-chiarli-text/70 outline-none focus:outline-none"
           >
@@ -123,7 +171,7 @@ export const Navbar: React.FC = () => {
             <span className="font-sans text-sm uppercase tracking-widest">
               {isDark ? 'Tema Chiaro' : 'Tema Scuro'}
             </span>
-          </button>
+          </button> */}
         </div>
       )}
     </header>

@@ -114,15 +114,16 @@ export const HistorySection: React.FC = () => {
               </div>
             </div>
 
-            <button
-              className={`group flex items-center gap-4 bg-chiarli-wine text-white px-8 py-4 hover:bg-chiarli-text transition-all duration-500 ${
+            <a
+              href="#/storia"
+              className={`group inline-flex items-center gap-4 bg-chiarli-wine text-white px-8 py-4 hover:bg-chiarli-text transition-all duration-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{ transitionDelay: '600ms' }}
             >
               <span className="font-sans text-xs font-bold uppercase tracking-widest">Scopri la nostra storia</span>
               <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
+            </a>
 
           </div>
         </div>

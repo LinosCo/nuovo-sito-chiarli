@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 type Theme = 'dark' | 'light';
 
@@ -11,13 +11,15 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('dark');
+  // TEMPORANEO: Forza sempre tema dark per sviluppo
+  const [theme] = useState<Theme>('dark');
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    // TEMPORANEO: Disabilitato durante lo sviluppo
+    // setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   };
 
-  const isDark = theme === 'dark';
+  const isDark = true; // TEMPORANEO: Sempre dark
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, isDark }}>

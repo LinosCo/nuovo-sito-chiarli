@@ -4,24 +4,30 @@ import { Hero } from './components/Hero';
 import { HeroLight } from './components/HeroLight';
 import { HistorySection } from './components/HistorySection';
 import { HistorySectionLight } from './components/HistorySectionLight';
-import { TenuteSection } from './components/TenuteSection';
-import { TenuteSectionLight } from './components/TenuteSectionLight';
 import { BottleShowcase } from './components/BottleShowcase';
 import { BottleShowcaseLight } from './components/BottleShowcaseLight';
 import { FeaturedSection } from './components/FeaturedSection';
 import { FeaturedSectionLight } from './components/FeaturedSectionLight';
 import { BlogSection } from './components/BlogSection';
 import { BlogSectionLight } from './components/BlogSectionLight';
+import { TenuteSection } from './components/TenuteSection';
 import { Footer } from './components/Footer';
 import { WineDetailPage } from './components/WineDetailPage';
+import { ExperiencesPage } from './components/ExperiencesPage';
+import { StoriaPage } from './components/StoriaPage';
+import { TenutePage } from './components/TenutePage';
+import { TentuaCialdiniPage } from './components/TentuaCialdiniPage';
+import { TenutaSozzigalliPage } from './components/TenutaSozzigalliPage';
+import { TenutaBelvederePage } from './components/TenutaBelvederePage';
 // import { WineDetailPageLight } from './components/WineDetailPageLight';
 import { MouseGradient } from './components/MouseGradient';
 import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 
 function AppContent() {
   // Blog section enabled
-  const [currentPage, setCurrentPage] = useState<'home' | 'wine-detail'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'wine-detail' | 'experiences' | 'storia' | 'tenute' | 'tenuta-detail'>('home');
   const [wineSlug, setWineSlug] = useState<string | null>(null);
+  const [tenutaSlug, setTenutaSlug] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const { isDark } = useTheme();
 
@@ -40,12 +46,32 @@ function AppContent() {
 
       // Controlla se è una pagina vino: #/vino/[slug]
       const wineMatch = hash.match(/^#\/vino\/([^/]+)$/);
+      // Controlla se è una pagina tenuta: #/tenute/[slug]
+      const tenutaMatch = hash.match(/^#\/tenute\/([^/]+)$/);
 
       if (wineMatch) {
         setWineSlug(wineMatch[1]);
         setCurrentPage('wine-detail');
+        setTenutaSlug(null);
+      } else if (tenutaMatch) {
+        setTenutaSlug(tenutaMatch[1]);
+        setCurrentPage('tenuta-detail');
+        setWineSlug(null);
+      } else if (hash === '#/esperienze') {
+        setCurrentPage('experiences');
+        setWineSlug(null);
+        setTenutaSlug(null);
+      } else if (hash === '#/storia') {
+        setCurrentPage('storia');
+        setWineSlug(null);
+        setTenutaSlug(null);
+      } else if (hash === '#/tenute') {
+        setCurrentPage('tenute');
+        setWineSlug(null);
+        setTenutaSlug(null);
       } else {
         setWineSlug(null);
+        setTenutaSlug(null);
         setCurrentPage('home');
       }
     };
@@ -62,6 +88,11 @@ function AppContent() {
 
   const navigateToHome = () => {
     window.location.hash = '';
+    window.scrollTo(0, 0);
+  };
+
+  const navigateToExperiences = () => {
+    window.location.hash = '#/esperienze';
     window.scrollTo(0, 0);
   };
 
@@ -134,6 +165,90 @@ function AppContent() {
     );
   }
 
+  if (currentPage === 'experiences') {
+    return (
+      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+      }`}>
+        <MouseGradient />
+        <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <ExperiencesPage onBack={navigateToHome} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'storia') {
+    return (
+      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+      }`}>
+        <MouseGradient />
+        <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <StoriaPage onBack={navigateToHome} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'tenute') {
+    return (
+      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+      }`}>
+        <MouseGradient />
+        <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <TenutePage onBack={navigateToHome} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'tenuta-detail' && tenutaSlug) {
+    let TenetaComponent;
+    switch(tenutaSlug) {
+      case 'cialdini':
+        TenetaComponent = TentuaCialdiniPage;
+        break;
+      case 'sozzigalli':
+        TenetaComponent = TenutaSozzigalliPage;
+        break;
+      case 'belvedere':
+        TenetaComponent = TenutaBelvederePage;
+        break;
+      default:
+        TenetaComponent = null;
+    }
+
+    if (!TenetaComponent) {
+      setCurrentPage('tenute');
+      return null;
+    }
+
+    return (
+      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+      }`}>
+        <MouseGradient />
+        <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <TenetaComponent onBack={navigateToHome} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
       isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
@@ -145,7 +260,7 @@ function AppContent() {
         <main>
           {isDark ? <Hero /> : <HeroLight />}
           {isDark ? <BottleShowcase onWineClick={navigateToWine} /> : <BottleShowcaseLight onWineClick={navigateToWine} />}
-          {isDark ? <TenuteSection /> : <TenuteSectionLight />}
+          <TenuteSection />
           {isDark ? (
             <>
               <HistorySection />
