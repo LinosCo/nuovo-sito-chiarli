@@ -55,31 +55,16 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         if (wine) {
           setWineData(wine);
 
-          console.log('Current wine:', {
-            slug: wine.slug,
-            family: wine.family,
-            denomination: wine.denomination
-          });
-          console.log('Total wines in data:', data.wines.length);
-          console.log('All wines:', data.wines.map((w: WineData) => ({
-            slug: w.slug,
-            family: w.family,
-            isActive: w.isActive
-          })));
-
           // Get related wines (same family or denomination, excluding current wine)
           const related = data.wines
-            .filter((w: WineData) => {
-              const matches = w.isActive &&
-                w.slug !== slug &&
-                (w.family === wine.family || w.denomination === wine.denomination);
-              console.log(`Wine ${w.slug}: isActive=${w.isActive}, slug match=${w.slug !== slug}, family match=${w.family === wine.family}, result=${matches}`);
-              return matches;
-            })
+            .filter((w: WineData) =>
+              w.isActive &&
+              w.slug !== slug &&
+              (w.family === wine.family || w.denomination === wine.denomination)
+            )
             .slice(0, 3);
 
           setRelatedWines(related);
-          console.log('Related wines found:', related.length, related);
         } else {
           console.error(`Wine with slug "${slug}" not found`);
         }
@@ -832,14 +817,6 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           </div>
         </div>
       </section>
-
-      {/* DEBUG INFO */}
-      <div className="bg-yellow-100 p-4 text-center">
-        <p className="text-black font-bold">DEBUG: {relatedWines.length} vini correlati trovati</p>
-        <p className="text-sm text-gray-600">
-          {relatedWines.map(w => w.name).join(', ')}
-        </p>
-      </div>
 
       {/* Related Wines Section */}
       {relatedWines.length > 0 && (
