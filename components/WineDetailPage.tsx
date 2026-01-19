@@ -65,6 +65,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
             .slice(0, 3);
 
           setRelatedWines(related);
+          console.log('Related wines found:', related.length, related);
         } else {
           console.error(`Wine with slug "${slug}" not found`);
         }
@@ -817,6 +818,14 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           </div>
         </div>
       </section>
+
+      {/* DEBUG INFO */}
+      <div className="bg-yellow-100 p-4 text-center">
+        <p className="text-black font-bold">DEBUG: {relatedWines.length} vini correlati trovati</p>
+        <p className="text-sm text-gray-600">
+          {relatedWines.map(w => w.name).join(', ')}
+        </p>
+      </div>
 
       {/* Related Wines Section */}
       {relatedWines.length > 0 && (
