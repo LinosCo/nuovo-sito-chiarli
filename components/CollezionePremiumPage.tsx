@@ -124,7 +124,7 @@ export const CollezionePremiumPage: React.FC<CollezionePremiumPageProps> = ({ on
                 onMouseLeave={() => setHoveredWine(null)}
               >
                 {/* Wine Image */}
-                <div className="relative mb-6 overflow-hidden bg-chiarli-stone/20 rounded-lg">
+                <div className="relative mb-6 overflow-hidden">
                   {wine.image ? (
                     <img
                       src={wine.image}
