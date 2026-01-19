@@ -55,13 +55,27 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         if (wine) {
           setWineData(wine);
 
+          console.log('Current wine:', {
+            slug: wine.slug,
+            family: wine.family,
+            denomination: wine.denomination
+          });
+          console.log('Total wines in data:', data.wines.length);
+          console.log('All wines:', data.wines.map((w: WineData) => ({
+            slug: w.slug,
+            family: w.family,
+            isActive: w.isActive
+          })));
+
           // Get related wines (same family or denomination, excluding current wine)
           const related = data.wines
-            .filter((w: WineData) =>
-              w.isActive &&
-              w.slug !== slug &&
-              (w.family === wine.family || w.denomination === wine.denomination)
-            )
+            .filter((w: WineData) => {
+              const matches = w.isActive &&
+                w.slug !== slug &&
+                (w.family === wine.family || w.denomination === wine.denomination);
+              console.log(`Wine ${w.slug}: isActive=${w.isActive}, slug match=${w.slug !== slug}, family match=${w.family === wine.family}, result=${matches}`);
+              return matches;
+            })
             .slice(0, 3);
 
           setRelatedWines(related);
