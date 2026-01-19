@@ -22,13 +22,15 @@ import { TenutaBelvederePage } from './components/TenutaBelvederePage';
 import { SostenibilitaPage } from './components/SostenibilitaPage';
 import { MetodoPage } from './components/MetodoPage';
 import { BlogPage } from './components/BlogPage';
+import { CollezioneClassicaPage } from './components/CollezioneClassicaPage';
+import { CollezionePremiumPage } from './components/CollezionePremiumPage';
 // import { WineDetailPageLight } from './components/WineDetailPageLight';
 import { MouseGradient } from './components/MouseGradient';
 import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 
 function AppContent() {
   // Blog section enabled
-  const [currentPage, setCurrentPage] = useState<'home' | 'wine-detail' | 'experiences' | 'storia' | 'tenute' | 'tenuta-detail' | 'sostenibilita' | 'metodo' | 'blog'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'wine-detail' | 'experiences' | 'storia' | 'tenute' | 'tenuta-detail' | 'sostenibilita' | 'metodo' | 'blog' | 'collezione-classica' | 'collezione-premium'>('home');
   const [wineSlug, setWineSlug] = useState<string | null>(null);
   const [tenutaSlug, setTenutaSlug] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -82,6 +84,14 @@ function AppContent() {
         setTenutaSlug(null);
       } else if (hash === '#/blog') {
         setCurrentPage('blog');
+        setWineSlug(null);
+        setTenutaSlug(null);
+      } else if (hash === '#/collezione-classica') {
+        setCurrentPage('collezione-classica');
+        setWineSlug(null);
+        setTenutaSlug(null);
+      } else if (hash === '#/collezione-premium') {
+        setCurrentPage('collezione-premium');
         setWineSlug(null);
         setTenutaSlug(null);
       } else {
@@ -273,6 +283,38 @@ function AppContent() {
         <div className="relative z-10">
           <Navbar />
           <BlogPage onBack={navigateToHome} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'collezione-classica') {
+    return (
+      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+      }`}>
+        <MouseGradient />
+        <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <CollezioneClassicaPage onBack={navigateToHome} onWineClick={navigateToWine} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'collezione-premium') {
+    return (
+      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+      }`}>
+        <MouseGradient />
+        <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <CollezionePremiumPage onBack={navigateToHome} onWineClick={navigateToWine} />
           <Footer />
         </div>
       </div>

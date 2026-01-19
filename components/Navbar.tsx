@@ -6,11 +6,19 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTenuteOpen, setIsTenuteOpen] = useState(false);
+  const [isViniOpen, setIsViniOpen] = useState(false);
   const { toggleTheme, isDark } = useTheme();
 
   // TEMPORANEO: Semplificato durante sviluppo dark-only
   const navItems = [
-    { label: 'Vini', href: '#vini' },
+    {
+      label: 'Vini',
+      href: '#vini',
+      submenu: [
+        { label: 'Collezione Classica', href: '#/collezione-classica' },
+        { label: 'Collezione Premium', href: '#/collezione-premium' }
+      ]
+    },
     {
       label: 'Tenute',
       href: '#/tenute',
@@ -58,38 +66,43 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-12">
-          {navItems.map((item) => (
-            <div
-              key={item.label}
-              className="relative"
-              onMouseEnter={() => item.submenu && setIsTenuteOpen(true)}
-              onMouseLeave={() => item.submenu && setIsTenuteOpen(false)}
-            >
-              <a
-                href={item.href}
-                className="font-sans text-xs font-bold uppercase tracking-widest hover:text-chiarli-wine transition-colors"
-              >
-                {item.label}
-              </a>
+          {navItems.map((item) => {
+            const isOpen = item.label === 'Vini' ? isViniOpen : item.label === 'Tenute' ? isTenuteOpen : false;
+            const setIsOpen = item.label === 'Vini' ? setIsViniOpen : item.label === 'Tenute' ? setIsTenuteOpen : () => {};
 
-              {/* Dropdown Menu */}
-              {item.submenu && isTenuteOpen && (
-                <div className="absolute top-full left-0 pt-2 w-56">
-                  <div className="bg-chiarli-stone shadow-xl border border-chiarli-text/10 overflow-hidden">
-                    {item.submenu.map((subitem) => (
-                      <a
-                        key={subitem.label}
-                        href={subitem.href}
-                        className="block px-6 py-3 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-text hover:bg-chiarli-wine hover:text-white transition-colors"
-                      >
-                        {subitem.label}
-                      </a>
-                    ))}
+            return (
+              <div
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => item.submenu && setIsOpen(true)}
+                onMouseLeave={() => item.submenu && setIsOpen(false)}
+              >
+                <a
+                  href={item.href}
+                  className="font-sans text-xs font-bold uppercase tracking-widest hover:text-chiarli-wine transition-colors"
+                >
+                  {item.label}
+                </a>
+
+                {/* Dropdown Menu */}
+                {item.submenu && isOpen && (
+                  <div className="absolute top-full left-0 pt-2 w-56">
+                    <div className="bg-chiarli-stone shadow-xl border border-chiarli-text/10 overflow-hidden">
+                      {item.submenu.map((subitem) => (
+                        <a
+                          key={subitem.label}
+                          href={subitem.href}
+                          className="block px-6 py-3 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-text hover:bg-chiarli-wine hover:text-white transition-colors"
+                        >
+                          {subitem.label}
+                        </a>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
+                )}
+              </div>
+            );
+          })}
         </nav>
 
         {/* Right Side */}
