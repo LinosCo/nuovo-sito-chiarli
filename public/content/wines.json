@@ -410,6 +410,53 @@
       "isActive": true,
       "order": 10,
       "id": 10
+    },
+    {
+      "id": 11,
+      "slug": "metodo-del-fondatore",
+      "name": "Metodo del Fondatore",
+      "denomination": "Lambrusco di Sorbara DOC - Fermentato in bottiglia",
+      "family": "Metodo Classico",
+      "grape": "Lambrusco Sorbara",
+      "description": "Un omaggio alle origini. La tecnica ancestrale della rifermentazione in bottiglia che Cleto Chiarli utilizzava nel 1860, riscoperta per catturare l'essenza più pura del Sorbara.",
+      "image": "/foto/lambrusco-sorbara-doc.png",
+      "format": "0.75L",
+      "tags": [
+        "Sorbara",
+        "DOC",
+        "Metodo Ancestrale"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": 11.5,
+      "servingTemp": "12-14°C",
+      "pairings": [
+        "Tortellini in brodo",
+        "Prosciutto di Parma",
+        "Parmigiano Reggiano",
+        "Gnocco fritto",
+        "Tigelle e crescentine",
+        "Cotechino"
+      ],
+      "awards": [
+        {
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri",
+          "years": "2020-2021"
+        },
+        {
+          "name": "Critici Internazionali",
+          "score": "91-93/100",
+          "years": "2022"
+        }
+      ],
+      "tastingNotes": {
+        "aspetto": "Colore chiaro e vivace con riflessi rosati. Spuma fine ed evanescente.",
+        "profumo": "Bouquet floreale con note di viola e rosa canina. Sentori di lievito e crosta di pane.",
+        "gusto": "Secco e sapido, freschezza vibrante caratteristica del territorio Sorbara. Finale lungo e persistente, di grande eleganza."
+      },
+      "isActive": true,
+      "order": 11
     }
   ],
   "_meta": {
