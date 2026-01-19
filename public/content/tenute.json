@@ -1,0 +1,65 @@
+{
+  "tenute": [
+    {
+      "id": 1,
+      "slug": "cialdini",
+      "name": "Tenuta Cialdini",
+      "location": "Castelvetro di Modena",
+      "description": "Oltre 140 anni di storia familiare e 50 ettari di vigneti nel cuore della zona di produzione del Lambrusco Grasparossa.",
+      "image": "/foto/DSC04010.jpg",
+      "hectares": 50,
+      "altitude": "200-350m",
+      "grape": "Grasparossa",
+      "year": "1860",
+      "mapPosition": { "x": 58, "y": 56 },
+      "gallery": [
+        "/foto/DSC04010.jpg",
+        "/foto/close-up-26-scaled.jpeg"
+      ],
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": 2,
+      "slug": "sozzigalli",
+      "name": "Tenuta Sozzigalli",
+      "location": "Bomporto",
+      "description": "30 ettari di vigneto senza irrigazione, dove i fiumi Panaro e Secchia hanno creato terreni unici ideali per il Lambrusco di Sorbara.",
+      "image": "/foto/sozzigalli-29.jpg",
+      "hectares": 30,
+      "altitude": "25-40m",
+      "grape": "Sorbara",
+      "year": "1920",
+      "mapPosition": { "x": 63, "y": 33 },
+      "gallery": [
+        "/foto/sozzigalli-29.jpg",
+        "/foto/close-up-41.jpg"
+      ],
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": 3,
+      "slug": "belvedere",
+      "name": "Tenuta Belvedere",
+      "location": "Spilamberto",
+      "description": "25 ettari di vigneti su suoli alluvionali profondi alle pendici dell'Appennino modenese.",
+      "image": "/foto/a001-scaled.jpg",
+      "hectares": 25,
+      "altitude": "100-200m",
+      "grape": "Grasparossa",
+      "year": "1950",
+      "mapPosition": { "x": 58, "y": 42 },
+      "gallery": [
+        "/foto/a001-scaled.jpg",
+        "/foto/close-up-78-scaled.jpeg"
+      ],
+      "isActive": true,
+      "order": 3
+    }
+  ],
+  "_meta": {
+    "lastModified": "2025-12-09T00:00:00.000Z",
+    "modifiedBy": "system"
+  }
+}

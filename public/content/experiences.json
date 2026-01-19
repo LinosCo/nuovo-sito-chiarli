@@ -1,0 +1,47 @@
+{
+  "experiences": [
+    {
+      "id": 1,
+      "slug": "degustazione-guidata",
+      "title": "Degustazione Guidata",
+      "description": "Un viaggio sensoriale attraverso i nostri migliori Lambrusco, guidati dai nostri sommelier.",
+      "image": "/foto/vasche-3.jpg",
+      "duration": null,
+      "price": null,
+      "maxParticipants": null,
+      "includes": [],
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": 2,
+      "slug": "tour-dei-vigneti",
+      "title": "Tour dei Vigneti",
+      "description": "Scopri i segreti delle nostre tenute e il legame tra territorio e vino.",
+      "image": "/foto/vasche-4.jpg",
+      "duration": null,
+      "price": null,
+      "maxParticipants": null,
+      "includes": [],
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": 3,
+      "slug": "cena-in-cantina",
+      "title": "Cena in Cantina",
+      "description": "Un'esperienza gastronomica esclusiva abbinata ai nostri vini più pregiati.",
+      "image": "/foto/close-up-87-scaled.jpeg",
+      "duration": null,
+      "price": null,
+      "maxParticipants": null,
+      "includes": [],
+      "isActive": true,
+      "order": 3
+    }
+  ],
+  "_meta": {
+    "lastModified": "2025-12-09T00:00:00.000Z",
+    "modifiedBy": "system"
+  }
+}

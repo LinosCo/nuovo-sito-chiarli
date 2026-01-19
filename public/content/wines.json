@@ -1,0 +1,419 @@
+{
+  "wines": [
+    {
+      "id": 1,
+      "slug": "vigneto-enrico-cialdini",
+      "name": "Vigneto Enrico Cialdini",
+      "denomination": "Lambrusco Grasparossa DOC",
+      "family": "Premium",
+      "description": "Il nostro cru più prestigioso. Eleganza e complessità uniche.",
+      "image": "/foto/001-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": [
+        "Premium",
+        "DOC"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": 2,
+      "slug": "vecchia-modena",
+      "name": "Vecchia Modena",
+      "denomination": "Lambrusco di Sorbara DOC",
+      "family": "Metodo Classico",
+      "description": "Fragranza e florealità tipiche del Sorbara. Un classico intramontabile.",
+      "image": "/foto/002-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": [
+        "Sorbara",
+        "DOC"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": 3,
+      "slug": "pruno-nero",
+      "name": "Pruno Nero",
+      "denomination": "Lambrusco Grasparossa DOC",
+      "family": "Metodo Classico",
+      "description": "Un Lambrusco moderno, secco e pulito. Perfetto con la gastronomia contemporanea.",
+      "image": "/foto/003-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": [
+        "Dry",
+        "Moderno"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 3
+    },
+    {
+      "id": 4,
+      "slug": "villa-cialdini-rose-de-noir",
+      "name": "Villa Cialdini Rosé de Noir",
+      "denomination": "Lambrusco di Sorbara DOC - Fermentato in bottiglia",
+      "subtitle": "Metodo Ancestrale",
+      "family": "Premium",
+      "description": "Un patrimonio enologico che riflette il metodo ancestrale utilizzato da Cleto Chiarli dal 1860. La rifermentazione in bottiglia dona eleganza, freschezza e finezza uniche.",
+      "image": "/foto/005-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": [
+        "Metodo Ancestrale",
+        "DOC",
+        "Rosé"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": 12,
+      "servingTemp": "8-10°C",
+      "grape": "Grasparossa",
+      "vinification": "Pressatura soffice con uva integra o diraspata a temperatura controllata e aggiunta di lieviti selezionati. Presa di spuma in 'cuve close' a bassa temperatura.",
+      "pairings": [
+        "Antipasti di mare",
+        "Carpacci di pesce",
+        "Sushi e sashimi",
+        "Insalate di mare",
+        "Formaggi freschi",
+        "Primi piatti leggeri",
+        "Aperitivi eleganti"
+      ],
+      "awards": [
+        {
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri",
+          "years": "2019-2021"
+        },
+        {
+          "name": "Falstaff",
+          "score": "91-93/100",
+          "years": "2019-2022"
+        },
+        {
+          "name": "Touring Club",
+          "score": "Corona",
+          "years": "2020"
+        },
+        {
+          "name": "Vinitaly",
+          "score": "91/100",
+          "years": "2019"
+        }
+      ],
+      "tastingNotes": {
+        "aspetto": "Spuma vivace, colore rosa ribes con bollicine fini e abbondanti. Elegante e raffinato alla vista.",
+        "profumo": "Profumo intenso e fruttato, con tipici sentori di frutti di sottobosco. Note di fragola, lampone e ribes.",
+        "gusto": "Sapore ben composto con sentori di frutti di sottobosco. Fresco, sapido e di grande eleganza. Finale persistente e raffinato."
+      },
+      "heritage": "Il Rosé de Noir rappresenta un patrimonio enologico che riflette il metodo ancestrale della rifermentazione in bottiglia, utilizzato da Cleto Chiarli fin dal 1860. Questo metodo, sostituito negli anni '50 dal Metodo Charmat, viene oggi riscoperto per offrire un vino di straordinaria eleganza e complessità, che conserva le caratteristiche uniche conferite dai lieviti e dalla tradizione.",
+      "technicalSpecs": [
+        {
+          "label": "Vitigno",
+          "value": "Grasparossa 100%"
+        },
+        {
+          "label": "Metodo",
+          "value": "Fermentato in bottiglia - Presa di spuma in cuve close"
+        },
+        {
+          "label": "Gradazione",
+          "value": "12% vol."
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "8-10°C (servire fresco)"
+        },
+        {
+          "label": "Formato",
+          "value": "0,75L"
+        },
+        {
+          "label": "Vinificazione",
+          "value": "Pressatura soffice a temperatura controllata"
+        },
+        {
+          "label": "Zona di produzione",
+          "value": "Castelvetro di Modena"
+        }
+      ],
+      "isActive": true,
+      "order": 4
+    },
+    {
+      "id": 5,
+      "slug": "centenario",
+      "name": "Centenario",
+      "denomination": "Lambrusco Grasparossa DOC",
+      "family": "Metodo Classico",
+      "description": "Amabile. Il vino della tradizione modenese, morbido e avvolgente.",
+      "image": "/foto/006-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": [
+        "Amabile",
+        "Storico"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 5
+    },
+    {
+      "id": 6,
+      "slug": "rose-de-noir",
+      "name": "Villa Cialdini Rosé de Noir",
+      "denomination": "Lambrusco di Sorbara DOC - Fermentato in bottiglia",
+      "subtitle": "Metodo Ancestrale",
+      "family": "Premium",
+      "description": "Un patrimonio enologico che riflette il metodo ancestrale utilizzato da Cleto Chiarli dal 1860. La rifermentazione in bottiglia dona eleganza, freschezza e finezza uniche.",
+      "image": "/foto/rose-de-noir-main.png",
+      "format": "0.75L",
+      "tags": [
+        "Metodo Ancestrale",
+        "DOC",
+        "Rosé"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": "12% vol.",
+      "servingTemp": "8-10°C",
+      "grape": "Grasparossa",
+      "vinification": "Pressatura soffice con uva integra o diraspata a temperatura controllata e aggiunta di lieviti selezionati. Presa di spuma in 'cuve close' a bassa temperatura.",
+      "pairings": [
+        "Antipasti di mare",
+        "Carpacci di pesce",
+        "Sushi e sashimi",
+        "Insalate di mare",
+        "Formaggi freschi",
+        "Primi piatti leggeri",
+        "Aperitivi eleganti"
+      ],
+      "awards": [
+        {
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri",
+          "year": "2021"
+        },
+        {
+          "name": "Falstaff",
+          "score": "93/100",
+          "year": "2021"
+        },
+        {
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri",
+          "year": "2020"
+        },
+        {
+          "name": "Touring Club",
+          "score": "Corona",
+          "year": "2020"
+        },
+        {
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri",
+          "year": "2019"
+        },
+        {
+          "name": "Vinitaly",
+          "score": "91/100",
+          "year": "2019"
+        },
+        {
+          "name": "Falstaff",
+          "score": "91/100",
+          "year": "2019"
+        }
+      ],
+      "tastingNotes": {
+        "aspetto": "Spuma vivace, colore rosa ribes con bollicine fini e abbondanti. Elegante e raffinato alla vista.",
+        "profumo": "Profumo intenso e fruttato, con tipici sentori di frutti di sottobosco. Note di fragola, lampone e ribes.",
+        "gusto": "Sapore ben composto con sentori di frutti di sottobosco. Fresco, sapido e di grande eleganza. Finale persistente e raffinato."
+      },
+      "heritage": "Il Rosé de Noir rappresenta un patrimonio enologico che riflette il metodo ancestrale della rifermentazione in bottiglia, utilizzato da Cleto Chiarli fin dal 1860. Questo metodo, sostituito negli anni '50 dal Metodo Charmat, viene oggi riscoperto per offrire un vino di straordinaria eleganza e complessità, che conserva le caratteristiche uniche conferite dai lieviti e dalla tradizione.",
+      "technicalSpecs": [
+        {
+          "label": "Vitigno",
+          "value": "Grasparossa 100%"
+        },
+        {
+          "label": "Metodo",
+          "value": "Fermentato in bottiglia - Presa di spuma in cuve close"
+        },
+        {
+          "label": "Gradazione",
+          "value": "12% vol."
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "8-10°C (servire fresco)"
+        },
+        {
+          "label": "Formato",
+          "value": "0,75L"
+        },
+        {
+          "label": "Vinificazione",
+          "value": "Pressatura soffice a temperatura controllata"
+        }
+      ],
+      "isActive": true,
+      "order": 6
+    },
+    {
+      "id": 7,
+      "slug": "lambrusco-bio",
+      "name": "Lambrusco Bio",
+      "denomination": "Grasparossa di Castelvetro DOC",
+      "family": "Premium",
+      "description": "Vino Biologico. L'espressione naturale del territorio.",
+      "image": "/foto/008-1-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": [
+        "Bio",
+        "Organic"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 7
+    },
+    {
+      "id": 8,
+      "slug": "villa-cialdini",
+      "name": "Villa Cialdini",
+      "denomination": "Lambrusco Modena DOC",
+      "family": "Premium",
+      "description": "La nostra cuvée speciale. Un blend che esprime il meglio delle nostre uve.",
+      "image": "/foto/PHOTO-2025-10-22-14-49-54-senza-sfondo-uai-720x1080.png",
+      "format": "0.75L",
+      "tags": [
+        "Cuvée",
+        "Premium"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 8
+    },
+    {
+      "slug": "tenuta-villa-cialdini-pignoletto-doc",
+      "name": "Tenuta Villa Cialdini Pignoletto",
+      "denomination": "Pignoletto DOC Modena Frizzante",
+      "family": "Premium",
+      "description": "Un Pignoletto frizzante di grande eleganza dalla storica Tenuta Villa Cialdini. Fresco, vivace e perfetto per ogni occasione.",
+      "image": null,
+      "format": "0.75L",
+      "tags": [
+        "Pignoletto",
+        "DOC",
+        "Frizzante"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 9,
+      "id": 9
+    },
+    {
+      "slug": "tenuta-villa-cialdini-pignoletto-doc-2",
+      "name": "Tenuta Villa Cialdini Pignoletto",
+      "denomination": "Pignoletto DOC Modena Frizzante",
+      "family": "Premium",
+      "description": "Un Pignoletto frizzante di grande eleganza dalla storica Tenuta Villa Cialdini. Fresco, vivace e perfetto per ogni occasione.",
+      "image": "/uploads/gallery/Screenshot 2025-12-17 alle 10.30.18-3d84419f.webp",
+      "format": "0.75L",
+      "tags": [
+        "Pignoletto",
+        "DOC",
+        "Frizzante"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": null,
+      "servingTemp": null,
+      "pairings": [],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": null,
+        "profumo": null,
+        "gusto": null
+      },
+      "isActive": true,
+      "order": 10,
+      "id": 10
+    }
+  ],
+  "_meta": {
+    "lastModified": "2025-12-19T14:44:16.766Z",
+    "modifiedBy": "api"
+  }
+}
