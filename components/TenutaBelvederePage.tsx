@@ -32,12 +32,12 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = ({ onBack
     return () => observer.disconnect();
   }, []);
 
-  const wines = [
+  const vitigni = [
     {
-      name: "Prunonero Grasparossa",
-      description: "Lambrusco strutturato e caratteriale con intensità, freschezza e profondità.",
-      details: "Fonte esclusiva di Tenuta Belvedere. Prodotto sia in versione spumante che frizzante.",
-      image: "/foto/003-uai-720x1080.png"
+      name: "Lambrusco Grasparossa",
+      description: "Vitigno autoctono a bacca nera coltivato esclusivamente a Tenuta Belvedere.",
+      details: "Grappoli con buccia spessa e ricca di antociani. Uve di grande struttura e intensità per la produzione di Lambrusco di alta qualità.",
+      image: "/foto/close-up-26-scaled.jpeg"
     }
   ];
 
@@ -153,98 +153,96 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = ({ onBack
             </div>
           </div>
 
-          {/* Wines Section */}
-          <div className="mb-32">
-            <h2
-              className={`font-serif text-5xl md:text-6xl text-chiarli-text mb-20 transition-all duration-700 ${
-                isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              I Nostri <span className="italic text-chiarli-wine">Vini</span>
-            </h2>
+        </div>
+      </section>
 
-            {wines.map((wine, index) => (
-              <div
-                key={index}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24 transition-all duration-700 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: `${300 + index * 150}ms` }}
-              >
-                {/* Bottiglia */}
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-chiarli-wine/5 to-transparent rounded-full blur-3xl"></div>
-                  <div className="relative p-12 flex items-center justify-center">
-                    <img
-                      src={wine.image}
-                      alt={wine.name}
-                      className="h-[500px] w-auto object-contain transition-all duration-700 hover:scale-105"
-                    />
-                  </div>
-                </div>
-
-                {/* Contenuto */}
-                <div>
-                  <div className="border-l-4 border-chiarli-wine pl-8">
-                    <h3 className="font-serif text-4xl md:text-5xl text-chiarli-wine mb-6">
-                      {wine.name}
-                    </h3>
-                    <p className="font-serif italic text-2xl text-chiarli-text/70 mb-8 leading-relaxed">
-                      {wine.description}
-                    </p>
-                    <p className="font-sans text-chiarli-text/60 text-lg leading-relaxed">
-                      {wine.details}
-                    </p>
-                  </div>
-                </div>
+      {/* Vitigni Full Split Sections */}
+      {vitigni.map((vitigno, index) => {
+        const isEven = index % 2 === 0;
+        return (
+          <section key={index} className={`relative min-h-screen ${isEven ? 'bg-white' : 'bg-chiarli-stone'} overflow-hidden`}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+              {/* Image */}
+              <div className={`relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+                <img
+                  src={vitigno.image}
+                  alt={vitigno.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className={`absolute inset-0 ${isEven ? 'bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent' : 'bg-gradient-to-l from-transparent to-chiarli-stone/20 lg:bg-gradient-to-r lg:from-chiarli-stone/20 lg:to-transparent'}`} />
               </div>
-            ))}
-          </div>
 
-          {/* Galleria Immagini */}
-          <div>
-            <h2
-              className={`font-serif text-5xl md:text-6xl text-chiarli-text mb-20 transition-all duration-700 ${
-                isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              La <span className="italic text-chiarli-wine">Tenuta</span>
-            </h2>
+              {/* Content */}
+              <div className={`flex items-center py-16 md:py-24 lg:py-0 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+                <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+                  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-wine mb-8 leading-tight">
+                    {vitigno.name}
+                  </h2>
 
-            <div className="grid grid-cols-12 gap-6">
-              <div
-                className={`col-span-12 md:col-span-7 overflow-hidden transition-all duration-700 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: '400ms' }}
-              >
-                <div className="relative group">
-                  <img
-                    src="/foto/a001-scaled.jpg"
-                    alt="Vigneto Belvedere"
-                    className="w-full h-[600px] object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-              </div>
-              <div
-                className={`col-span-12 md:col-span-5 overflow-hidden transition-all duration-700 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: '500ms' }}
-              >
-                <div className="relative group">
-                  <img
-                    src="/foto/close-up-78-scaled.jpeg"
-                    alt="Dettaglio Vigneto"
-                    className="w-full h-[600px] object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <p className="font-serif italic text-2xl text-chiarli-text/70 mb-8 leading-relaxed border-l-4 border-chiarli-wine pl-8">
+                    {vitigno.description}
+                  </p>
+
+                  <p className="font-sans text-chiarli-text/60 text-lg leading-relaxed max-w-lg">
+                    {vitigno.details}
+                  </p>
                 </div>
               </div>
             </div>
+          </section>
+        );
+      })}
+
+      {/* Galleria Immagini - Full Split */}
+      <section className="relative min-h-screen bg-white overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Image */}
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-1">
+            <img
+              src="/foto/a001-scaled.jpg"
+              alt="Vigneto Belvedere"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
           </div>
 
+          {/* Content */}
+          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-2">
+            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
+                La <span className="italic text-chiarli-wine">Tenuta</span>
+              </h2>
+              <p className="font-serif italic text-xl text-chiarli-text/70 leading-relaxed max-w-lg">
+                La storica tenuta dove nasce il Lambrusco Grasparossa di eccellenza.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative min-h-screen bg-chiarli-stone overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Image */}
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
+            <img
+              src="/foto/close-up-78-scaled.jpeg"
+              alt="Dettaglio Vigneto"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-stone/20 lg:bg-gradient-to-r lg:from-chiarli-stone/20 lg:to-transparent" />
+          </div>
+
+          {/* Content */}
+          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-1">
+            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
+                Il <span className="italic text-chiarli-wine">Territorio</span>
+              </h2>
+              <p className="font-serif italic text-xl text-chiarli-text/70 leading-relaxed max-w-lg">
+                Alta densità di impianto con potatura rigorosa per uve Grasparossa di marcata struttura tannica ed elevata concentrazione di antociani.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

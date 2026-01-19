@@ -18,7 +18,7 @@ const experiences = [
     id: 3,
     title: "Cena in Cantina",
     description: "Un'esperienza gastronomica esclusiva abbinata ai nostri vini più pregiati.",
-    image: "/foto/close-up-87-scaled.jpeg"
+    image: "/foto/galleria-chiarli-136.jpeg"
   }
 ];
 
@@ -26,10 +26,9 @@ export const FeaturedSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
-  const [selectedCard, setSelectedCard] = useState<number | null>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const activeCard = hoveredCard !== null ? hoveredCard : selectedCard;
+  const activeCard = hoveredCard;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -159,9 +158,9 @@ export const FeaturedSection: React.FC = () => {
             {/* Grid of Experience Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               {experiences.map((exp, index) => (
-                <div
+                <a
                   key={exp.id}
-                  onClick={() => setSelectedCard(selectedCard === exp.id ? null : exp.id)}
+                  href="#/esperienze"
                   onMouseEnter={() => setHoveredCard(exp.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                   className={`group bg-white/5 backdrop-blur-sm p-6 transition-all duration-500 cursor-pointer flex flex-col ${
@@ -178,7 +177,7 @@ export const FeaturedSection: React.FC = () => {
                   </div>
                   <h3 className={`font-serif text-xl mb-3 transition-colors ${activeCard === exp.id ? 'text-chiarli-wine-light' : 'text-white group-hover:text-chiarli-wine-light'}`}>{exp.title}</h3>
                   <p className={`font-sans text-sm leading-relaxed transition-colors ${activeCard === exp.id ? 'text-white/70' : 'text-white/50'}`}>{exp.description}</p>
-                </div>
+                </a>
               ))}
             </div>
 

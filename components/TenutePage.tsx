@@ -15,9 +15,9 @@ const EmiliaRomagnaMapDark: React.FC<{
   onPinClick: (index: number) => void;
 }> = ({ tenute, activeIndex, hoveredIndex, onPinHover, onPinClick }) => {
   const mapPositions = [
-    { x: 58, y: 56, labelPosition: 'bottom' as const },
-    { x: 63, y: 33, labelPosition: 'top' as const },
-    { x: 58, y: 42, labelPosition: 'left' as const },
+    { x: 66, y: 52, labelPosition: 'bottom' as const },
+    { x: 73, y: 30, labelPosition: 'top' as const },
+    { x: 70, y: 46, labelPosition: 'left' as const },
   ];
 
   const getLabelClasses = (position: 'top' | 'bottom' | 'left' | 'right') => {
@@ -37,11 +37,40 @@ const EmiliaRomagnaMapDark: React.FC<{
     <div className="relative w-full h-full">
       <div className="relative w-full h-full translate-x-[8%]">
         <img
-          src="/mappa.png"
+          src="/maps.png"
           alt="Emilia-Romagna"
           className="w-full h-full object-contain opacity-60 scale-125"
         />
 
+        {/* Pin on regional map showing Modena city location */}
+        <div
+          className="absolute cursor-default transition-all duration-500"
+          style={{
+            left: '67%',
+            top: '39%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 5,
+          }}
+        >
+          {/* Pulse effect */}
+          <div className="absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-black/50 animate-ping" />
+
+          {/* Outer glow */}
+          <div className="absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-black/40" />
+
+          {/* Pin dot */}
+          <div className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-black" />
+          <div className="absolute w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
+
+          {/* Label */}
+          <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 whitespace-nowrap">
+            <span className="font-sans text-xs uppercase tracking-wider text-black font-bold">
+              Modena
+            </span>
+          </div>
+        </div>
+
+        {/* Pin markers with labels */}
         {mapPositions.map((pos, index) => {
         const isActive = index === activeIndex;
         const isHovered = index === hoveredIndex;
@@ -107,7 +136,7 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Detailed content for each tenuta
+  // Detailed content for each tenuta - focus on vitigni
   const tenuteDetails = [
     {
       name: "Tenuta Cialdini",
@@ -115,17 +144,17 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
       location: "Castelvetro di Modena",
       description: "Oltre 140 anni di storia familiare e 50 ettari di vigneti nel cuore della zona di produzione del Lambrusco Grasparossa.",
       landscape: "Il microclima unico è caratterizzato da ventilazione costante e variazioni di temperatura significative, ideali per una produzione premium.",
-      wines: [
+      vitigni: [
         {
           name: "Lambrusco Grasparossa",
-          description: "Il più classico dei Lambrusco modenesi. Vino strutturato e ricco con intenso colore rosso ed elevati tannini."
+          description: "Il più classico dei Lambrusco modenesi. Vitigno autoctono a bacca nera con grappoli di medio-grandi dimensioni e buccia pruinosa."
         },
         {
           name: "Pignoletto",
-          description: "Vitigno versatile coltivato dal 1600. Carattere aromatico con note fresche e fruttate."
+          description: "Vitigno autoctono a bacca bianca coltivato dal 1600. Grappoli compatti con acini piccoli e carattere aromatico."
         }
       ],
-      image: "/foto/DSC04010.jpg"
+      image: "/foto/close-up-87-scaled.jpeg"
     },
     {
       name: "Tenuta Sozzigalli",
@@ -133,13 +162,13 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
       location: "Bomporto",
       description: "30 ettari di vigneto senza irrigazione, dove i fiumi Panaro e Secchia hanno creato terreni unici ideali per il Lambrusco di Sorbara.",
       landscape: "Selezione massale proprietaria di cloni pre-fillossera. Terreni freschi e ben drenanti grazie alle brezze notturne fluviali.",
-      wines: [
+      vitigni: [
         {
           name: "Lambrusco di Sorbara",
-          description: "Colore unico tra rosso e rosa, frutto scintillante e acidità elevata. Prodotto con Metodo Ancestrale, Charmat e Classico."
+          description: "Vitigno autoctono dal colore unico tra rosso e rosa. Grappolo lungo e spargolo con acini di media grandezza e buccia sottile."
         }
       ],
-      image: "/foto/sozzigalli-29.jpg"
+      image: "/foto/close-up-78-scaled.jpeg"
     },
     {
       name: "Tenuta Belvedere",
@@ -147,13 +176,13 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
       location: "Spilamberto",
       description: "25 ettari di vigneti su suoli alluvionali profondi alle pendici dell'Appennino modenese.",
       landscape: "Alta densità di impianto e gestione rigorosa per uve con rese naturalmente basse e alta concentrazione di antociani.",
-      wines: [
+      vitigni: [
         {
-          name: "Prunonero Grasparossa",
-          description: "Fonte esclusiva di Tenuta Belvedere. Lambrusco strutturato e caratteriale con intensità, freschezza e profondità."
+          name: "Lambrusco Grasparossa",
+          description: "Selezione esclusiva di Tenuta Belvedere. Grappoli con buccia spessa e ricca di antociani per uve di grande struttura e intensità."
         }
       ],
-      image: "/foto/a001-scaled.jpg"
+      image: "/foto/close-up-26-scaled.jpeg"
     }
   ];
 
@@ -410,51 +439,152 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
         `}</style>
       </section>
 
-      {/* Tenute List Section */}
-      <section className="relative bg-chiarli-stone py-32">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+      {/* Tenuta Cialdini - Image Right - DARK */}
+      <div className="relative min-h-screen bg-chiarli-text overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Left: Content */}
+          <div className="flex items-center py-16 md:py-24 lg:py-0">
+            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block">
+                Castelvetro di Modena
+              </span>
 
-          <div className="text-center mb-20">
-            <h2 className="font-serif text-5xl md:text-6xl text-chiarli-text mb-6">
-              Le Nostre <span className="italic text-chiarli-wine">Tenute</span>
-            </h2>
-            <p className="font-sans text-chiarli-text/70 text-lg">
-              Scopri le tre tenute storiche della famiglia Chiarli
-            </p>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
+                <span className="block">Tenuta</span>
+                <span className="italic text-chiarli-wine-light block">Cialdini</span>
+              </h2>
+
+              <p className="font-serif italic text-xl text-chiarli-wine-light mb-8">
+                Nel cuore del Lambrusco Grasparossa
+              </p>
+
+              <p className="font-sans text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
+                Oltre 140 anni di storia familiare e 50 ettari di vigneti nel cuore della zona di produzione del Lambrusco Grasparossa.
+              </p>
+
+              <p className="font-serif italic text-xl text-white/70 border-l-2 border-white/30 pl-6 mb-10">
+                Il microclima unico è caratterizzato da ventilazione costante e variazioni di temperatura significative, ideali per una produzione premium.
+              </p>
+
+              <a
+                href="#/tenute/cialdini"
+                className="inline-flex items-center gap-3 bg-chiarli-wine hover:bg-chiarli-wine-light text-white font-sans text-sm font-bold uppercase tracking-widest px-8 py-4 transition-all duration-300 group"
+              >
+                <span>Scopri la tenuta</span>
+                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
+              </a>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {tenuteDetails.map((tenuta, index) => {
-              const slugs = ['cialdini', 'sozzigalli', 'belvedere'];
-              return (
-                <button
-                  key={index}
-                  onClick={() => navigateToTenuta(slugs[index])}
-                  className="group bg-white p-8 border-2 border-chiarli-text/10 hover:border-chiarli-wine transition-all duration-300 text-left hover:shadow-xl hover:-translate-y-1"
-                >
-                  <h3 className="font-serif text-3xl text-chiarli-text group-hover:text-chiarli-wine transition-colors duration-300 mb-2">
-                    {tenuta.name}
-                  </h3>
-                  <p className="font-sans text-sm uppercase tracking-widest text-chiarli-text/50 mb-4">
-                    {tenuta.location}
-                  </p>
-                  <p className="font-serif italic text-lg text-chiarli-wine mb-4">
-                    {tenuta.subtitle}
-                  </p>
-                  <p className="font-sans text-chiarli-text/70 leading-relaxed mb-6">
-                    {tenuta.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-chiarli-wine font-sans text-sm font-bold uppercase tracking-widest">
-                    <span>Scopri di più</span>
-                    <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
-                  </div>
-                </button>
-              );
-            })}
+          {/* Right: Full height image */}
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
+            <img
+              src="/foto/close-up-9-scaled.jpeg"
+              alt="Uve Lambrusco Grasparossa"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-chiarli-text/20 to-transparent lg:bg-gradient-to-l lg:from-transparent lg:to-chiarli-text/20" />
           </div>
-
         </div>
-      </section>
+      </div>
+
+      {/* Tenuta Sozzigalli - Image Left - LIGHT */}
+      <div className="relative min-h-screen bg-white overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Left: Full height image */}
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
+            <img
+              src="/foto/sozzigalli-10.jpg"
+              alt="Uve Lambrusco di Sorbara"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-white/20 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-white/20" />
+          </div>
+
+          {/* Right: Content */}
+          <div className="flex items-center py-16 md:py-24 lg:py-0">
+            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-6 block">
+                Bomporto
+              </span>
+
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
+                <span className="block">Tenuta</span>
+                <span className="italic text-chiarli-wine block">Sozzigalli</span>
+              </h2>
+
+              <p className="font-serif italic text-xl text-chiarli-wine mb-8">
+                Suoli alluvionali di Sorbara
+              </p>
+
+              <p className="font-sans text-chiarli-text/70 text-lg leading-relaxed mb-8 max-w-lg">
+                30 ettari di vigneto senza irrigazione, dove i fiumi Panaro e Secchia hanno creato terreni unici ideali per il Lambrusco di Sorbara.
+              </p>
+
+              <p className="font-serif italic text-xl text-chiarli-text/70 border-l-2 border-chiarli-wine/30 pl-6 mb-10">
+                Selezione massale proprietaria di cloni pre-fillossera. Terreni freschi e ben drenanti grazie alle brezze notturne fluviali.
+              </p>
+
+              <a
+                href="#/tenute/sozzigalli"
+                className="inline-flex items-center gap-3 bg-chiarli-wine hover:bg-chiarli-text text-white font-sans text-sm font-bold uppercase tracking-widest px-8 py-4 transition-all duration-300 group"
+              >
+                <span>Scopri la tenuta</span>
+                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tenuta Belvedere - Image Right - DARK */}
+      <div className="relative min-h-screen bg-chiarli-text overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Left: Content */}
+          <div className="flex items-center py-16 md:py-24 lg:py-0">
+            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block">
+                Spilamberto
+              </span>
+
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
+                <span className="block">Tenuta</span>
+                <span className="italic text-chiarli-wine-light block">Belvedere</span>
+              </h2>
+
+              <p className="font-serif italic text-xl text-chiarli-wine-light mb-8">
+                Intensità e profondità
+              </p>
+
+              <p className="font-sans text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
+                25 ettari di vigneti su suoli alluvionali profondi alle pendici dell'Appennino modenese.
+              </p>
+
+              <p className="font-serif italic text-xl text-white/70 border-l-2 border-white/30 pl-6 mb-10">
+                Alta densità di impianto e gestione rigorosa per uve con rese naturalmente basse e alta concentrazione di antociani.
+              </p>
+
+              <a
+                href="#/tenute/belvedere"
+                className="inline-flex items-center gap-3 bg-chiarli-wine hover:bg-chiarli-wine-light text-white font-sans text-sm font-bold uppercase tracking-widest px-8 py-4 transition-all duration-300 group"
+              >
+                <span>Scopri la tenuta</span>
+                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
+              </a>
+            </div>
+          </div>
+
+          {/* Right: Full height image */}
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
+            <img
+              src="/foto/close-up-26-scaled.jpeg"
+              alt="Uve Lambrusco"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-chiarli-text/20 to-transparent lg:bg-gradient-to-l lg:from-transparent lg:to-chiarli-text/20" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

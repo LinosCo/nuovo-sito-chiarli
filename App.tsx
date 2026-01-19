@@ -19,13 +19,16 @@ import { TenutePage } from './components/TenutePage';
 import { TentuaCialdiniPage } from './components/TentuaCialdiniPage';
 import { TenutaSozzigalliPage } from './components/TenutaSozzigalliPage';
 import { TenutaBelvederePage } from './components/TenutaBelvederePage';
+import { SostenibilitaPage } from './components/SostenibilitaPage';
+import { MetodoPage } from './components/MetodoPage';
+import { BlogPage } from './components/BlogPage';
 // import { WineDetailPageLight } from './components/WineDetailPageLight';
 import { MouseGradient } from './components/MouseGradient';
 import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 
 function AppContent() {
   // Blog section enabled
-  const [currentPage, setCurrentPage] = useState<'home' | 'wine-detail' | 'experiences' | 'storia' | 'tenute' | 'tenuta-detail'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'wine-detail' | 'experiences' | 'storia' | 'tenute' | 'tenuta-detail' | 'sostenibilita' | 'metodo' | 'blog'>('home');
   const [wineSlug, setWineSlug] = useState<string | null>(null);
   const [tenutaSlug, setTenutaSlug] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -69,11 +72,26 @@ function AppContent() {
         setCurrentPage('tenute');
         setWineSlug(null);
         setTenutaSlug(null);
+      } else if (hash === '#/sostenibilita') {
+        setCurrentPage('sostenibilita');
+        setWineSlug(null);
+        setTenutaSlug(null);
+      } else if (hash === '#/metodo') {
+        setCurrentPage('metodo');
+        setWineSlug(null);
+        setTenutaSlug(null);
+      } else if (hash === '#/blog') {
+        setCurrentPage('blog');
+        setWineSlug(null);
+        setTenutaSlug(null);
       } else {
         setWineSlug(null);
         setTenutaSlug(null);
         setCurrentPage('home');
       }
+
+      // Scroll to top ogni volta che cambia pagina
+      window.scrollTo(0, 0);
     };
 
     handleHashChange();
@@ -207,6 +225,54 @@ function AppContent() {
         <div className="relative z-10">
           <Navbar />
           <TenutePage onBack={navigateToHome} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'sostenibilita') {
+    return (
+      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+      }`}>
+        <MouseGradient />
+        <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <SostenibilitaPage onBack={navigateToHome} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'metodo') {
+    return (
+      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+      }`}>
+        <MouseGradient />
+        <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <MetodoPage onBack={navigateToHome} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'blog') {
+    return (
+      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
+        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
+      }`}>
+        <MouseGradient />
+        <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <BlogPage onBack={navigateToHome} />
           <Footer />
         </div>
       </div>

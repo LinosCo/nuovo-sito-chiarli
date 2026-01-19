@@ -40,6 +40,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
   const [isHoveringBottle, setIsHoveringBottle] = useState(false);
   const [wineData, setWineData] = useState<WineData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [relatedWines, setRelatedWines] = useState<WineData[]>([]);
 
   useEffect(() => {
     const loadWineData = async () => {
@@ -53,6 +54,17 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
         if (wine) {
           setWineData(wine);
+
+          // Get related wines (same family or denomination, excluding current wine)
+          const related = data.wines
+            .filter((w: WineData) =>
+              w.isActive &&
+              w.slug !== slug &&
+              (w.family === wine.family || w.denomination === wine.denomination)
+            )
+            .slice(0, 3);
+
+          setRelatedWines(related);
         } else {
           console.error(`Wine with slug "${slug}" not found`);
         }
@@ -144,7 +156,27 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
     <div className="min-h-screen bg-white">
 
       {/* Hero Section - Dark background with split layout */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-chiarli-text">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-chiarli-text via-[#2a1f23] to-chiarli-text">
+
+        {/* Background image con effetto "vedo non vedo" */}
+        <div
+          className="absolute inset-0"
+          style={{
+            transform: `translateY(${scrollY * 0.1}px)`,
+          }}
+        >
+          <img
+            src="/foto/close-up-17-scaled.jpeg"
+            alt="Uve"
+            className="w-full h-full object-cover opacity-8"
+            style={{
+              filter: 'blur(10px) grayscale(40%)',
+            }}
+          />
+        </div>
+
+        {/* Dark overlay per mantenere leggibilità */}
+        <div className="absolute inset-0 bg-gradient-to-br from-chiarli-text/80 via-chiarli-text/75 to-chiarli-text/80" />
 
         {/* Red wine bubbles floating up */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -157,8 +189,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                 height: `${6 + (i % 5) * 4}px`,
                 left: `${3 + (i * 2.8) % 94}%`,
                 bottom: `-${8 + (i % 4) * 4}%`,
-                background: `radial-gradient(circle at 30% 30%, rgba(180,60,80,${0.5 + (i % 4) * 0.1}), rgba(120,30,50,${0.3 + (i % 3) * 0.1}))`,
-                boxShadow: `inset 0 0 ${3 + i % 4}px rgba(255,150,150,0.3), 0 0 ${6 + i % 5}px rgba(180,60,80,0.2)`,
+                background: `radial-gradient(circle at 30% 30%, rgba(200,80,100,${0.6 + (i % 4) * 0.15}), rgba(150,50,70,${0.4 + (i % 3) * 0.15}))`,
+                boxShadow: `inset 0 0 ${4 + i % 5}px rgba(255,180,180,0.5), 0 0 ${8 + i % 6}px rgba(200,80,100,0.4)`,
                 animation: `bubble-rise ${9 + (i % 6) * 2}s ease-in-out infinite`,
                 animationDelay: `${(i * 0.35) % 9}s`,
               }}
@@ -184,15 +216,23 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           {wine.image && (
             <div className="lg:hidden w-full flex justify-center pt-24 pb-8">
               <div className="relative">
-                {/* Decorative circles for mobile */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-white/5" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] rounded-full border border-chiarli-wine-light/10" />
+                {/* Spotlight effect for mobile - ridotto */}
+                <div
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full opacity-30"
+                  style={{
+                    background: `radial-gradient(circle, rgba(200,100,120,0.3) 0%, rgba(180,80,100,0.18) 30%, rgba(150,60,80,0.08) 50%, transparent 70%)`,
+                    filter: 'blur(50px)',
+                  }}
+                />
+                {/* Decorative circles for mobile - glow ridotto */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full border border-chiarli-wine-light/15" style={{ boxShadow: '0 0 15px rgba(200,100,120,0.15)' }} />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] rounded-full border border-white/10" style={{ boxShadow: '0 0 12px rgba(255,255,255,0.08)' }} />
                 <img
                   src={wine.image}
                   alt={wine.name}
                   className="relative z-10 h-[35vh] w-auto object-contain"
                   style={{
-                    filter: `drop-shadow(0 0 60px rgba(60,20,35,0.8)) drop-shadow(0 0 30px rgba(80,30,45,0.6))`,
+                    filter: `drop-shadow(0 0 25px rgba(200,100,120,0.25)) drop-shadow(0 0 12px rgba(180,80,100,0.2)) drop-shadow(0 0 6px rgba(255,180,180,0.15)) brightness(0.92)`,
                   }}
                 />
               </div>
@@ -255,34 +295,58 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                 {wine.description}
               </p>
 
-              {/* Quick specs in line */}
+              {/* Elegant info lines */}
               <div
-                className={`flex flex-wrap gap-2 md:gap-4 mb-6 md:mb-8 transition-all duration-700 delay-800 ${
+                className={`space-y-4 mb-8 transition-all duration-700 delay-800 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                {wine.alcohol && (
-                  <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 md:px-4 py-2 rounded-full hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default">
-                    <Wine size={14} className="text-chiarli-wine-light" />
-                    <span className="font-sans text-[10px] md:text-xs font-medium text-white/70">{wine.alcohol}% vol.</span>
+                {/* Vitigno */}
+                {(wine as any).grape && (
+                  <div className="flex items-baseline gap-3 group">
+                    <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light/60 min-w-[100px]">
+                      Vitigno
+                    </span>
+                    <div className="flex-1 h-[1px] bg-gradient-to-r from-white/20 to-transparent" />
+                    <span className="font-serif text-sm text-white/80 group-hover:text-chiarli-wine-light transition-colors">
+                      {(wine as any).grape}
+                    </span>
                   </div>
                 )}
-                {wine.servingTemp && (
-                  <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 md:px-4 py-2 rounded-full hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default">
-                    <Thermometer size={14} className="text-chiarli-wine-light" />
-                    <span className="font-sans text-[10px] md:text-xs font-medium text-white/70">{wine.servingTemp}</span>
+
+                {/* Caratteristiche */}
+                {wine.tastingNotes.aspetto && (
+                  <div className="flex items-baseline gap-3 group">
+                    <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light/60 min-w-[100px]">
+                      Aspetto
+                    </span>
+                    <div className="flex-1 h-[1px] bg-gradient-to-r from-white/20 to-transparent" />
+                    <span className="font-serif text-sm text-white/80 group-hover:text-chiarli-wine-light transition-colors italic">
+                      {wine.tastingNotes.aspetto.split('.')[0]}
+                    </span>
                   </div>
                 )}
-                {wine.tags.map((tag, i) => (
-                  <div key={i} className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 md:px-4 py-2 rounded-full hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default">
-                    <span className="font-sans text-[10px] md:text-xs font-medium text-white/70">{tag}</span>
-                  </div>
-                ))}
+
+                {/* Gradazione e Temperatura */}
+                <div className="flex items-center gap-4 pt-2">
+                  {wine.alcohol && (
+                    <div className="flex items-center gap-2 group">
+                      <Wine size={14} className="text-chiarli-wine-light/60 group-hover:text-chiarli-wine-light transition-colors" />
+                      <span className="font-sans text-xs text-white/70 group-hover:text-white transition-colors">{wine.alcohol}% vol.</span>
+                    </div>
+                  )}
+                  {wine.servingTemp && (
+                    <div className="flex items-center gap-2 group">
+                      <Thermometer size={14} className="text-chiarli-wine-light/60 group-hover:text-chiarli-wine-light transition-colors" />
+                      <span className="font-sans text-xs text-white/70 group-hover:text-white transition-colors">{wine.servingTemp}</span>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* CTA */}
               <div
-                className={`flex flex-wrap gap-4 transition-all duration-700 delay-900 ${
+                className={`flex flex-wrap gap-4 transition-all duration-700 delay-1000 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -338,20 +402,6 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
               {/* Bottle and circles wrapper - keeps them together */}
               <div className="relative flex items-center justify-center">
-                {/* Decorative circles - centered on bottle */}
-                <div
-                  className="absolute w-[500px] h-[500px] rounded-full border border-white/5"
-                  style={{
-                    transform: `rotate(${scrollY * 0.02}deg)`,
-                  }}
-                />
-                <div
-                  className="absolute w-[400px] h-[400px] rounded-full border border-chiarli-wine-light/10"
-                  style={{
-                    transform: `rotate(${-scrollY * 0.03}deg)`,
-                  }}
-                />
-
                 {/* Bottle container */}
                 <div
                   className={`relative cursor-pointer transition-all duration-700 z-10 ${
@@ -365,7 +415,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                       rotateY(${(mousePosition.x - 50) * 0.08}deg)
                       rotateX(${(mousePosition.y - 50) * -0.04}deg)
                       translateY(${scrollY * 0.02}px)
-                      scale(${isHoveringBottle ? 1.03 : 1})
+                      scale(${isHoveringBottle ? 1.05 : 1})
                     `,
                     transition: 'transform 0.4s ease-out',
                   }}
@@ -373,11 +423,13 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                   <img
                     src={wine.image}
                     alt={wine.name}
-                    className="relative z-10 h-[70vh] w-auto object-contain"
+                    className="relative z-10 h-[75vh] w-auto object-contain"
                     style={{
                       filter: `
-                        drop-shadow(0 0 80px rgba(60,20,35,0.8))
-                        drop-shadow(0 0 40px rgba(80,30,45,0.6))
+                        drop-shadow(0 0 30px rgba(200,100,120,0.25))
+                        drop-shadow(0 0 15px rgba(180,80,100,0.2))
+                        drop-shadow(0 0 8px rgba(255,180,180,0.15))
+                        brightness(0.92)
                       `,
                     }}
                   />
@@ -411,7 +463,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           }}
         >
           <img
-            src="/foto/sozzigalli-24-uai-720x1080.jpg"
+            src="/foto/close-up-64-scaled.jpeg"
             alt="Vigneto Sorbara"
             className="w-full h-[120%] object-cover opacity-30"
           />
@@ -765,6 +817,80 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           </div>
         </div>
       </section>
+
+      {/* Related Wines Section */}
+      {relatedWines.length > 0 && (
+        <section className="py-16 md:py-20 lg:py-24 bg-white relative overflow-hidden">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+
+            {/* Section Header */}
+            <div className="mb-12 md:mb-16">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
+                Scopri Anche
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-chiarli-text">
+                Vini <span className="italic text-chiarli-wine">correlati</span>
+              </h2>
+            </div>
+
+            {/* Wines Grid - Clean minimal layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 lg:gap-20">
+              {relatedWines.map((relatedWine, index) => (
+                <div
+                  key={relatedWine.slug}
+                  className="group cursor-pointer"
+                  onClick={() => {
+                    window.location.hash = `#/vino/${relatedWine.slug}`;
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  {/* Wine Image */}
+                  <div className="relative mb-6 overflow-hidden">
+                    {relatedWine.image ? (
+                      <img
+                        src={relatedWine.image}
+                        alt={relatedWine.name}
+                        className="w-full h-80 md:h-96 object-contain transform group-hover:scale-105 transition-transform duration-700"
+                      />
+                    ) : (
+                      <div className="w-full h-80 md:h-96 flex items-center justify-center">
+                        <Wine size={80} className="text-chiarli-text/20" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Wine Info */}
+                  <div>
+                    <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine/60 mb-2 block">
+                      {relatedWine.family}
+                    </span>
+
+                    <h3 className="font-serif text-2xl md:text-3xl text-chiarli-text mb-2 group-hover:text-chiarli-wine transition-colors">
+                      {relatedWine.name}
+                    </h3>
+
+                    <p className="font-sans text-xs uppercase tracking-wider text-chiarli-text/50 mb-4">
+                      {relatedWine.denomination}
+                    </p>
+
+                    {/* Separator line */}
+                    <div className="w-12 h-[1px] bg-chiarli-wine/30 group-hover:w-20 group-hover:bg-chiarli-wine transition-all duration-500 mb-4" />
+
+                    {/* CTA */}
+                    <div className="flex items-center gap-2 text-chiarli-wine group-hover:gap-3 transition-all">
+                      <span className="font-sans text-xs font-bold uppercase tracking-widest">
+                        Scopri
+                      </span>
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+      )}
 
       {/* CSS for animations */}
       <style>{`

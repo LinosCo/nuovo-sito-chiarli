@@ -57,8 +57,8 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
       <section ref={heroRef} className="relative min-h-screen bg-chiarli-text overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/foto/charli-bottiglie-9-scaled.jpg"
-            alt="Cleto Chiarli Storia"
+            src="/foto/a001-scaled.jpg"
+            alt="Famiglia Chiarli"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/50" />
@@ -113,7 +113,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
             }`}
           >
             <img
-              src="/foto/close-up-26-scaled.jpeg"
+              src="/foto/galleria-chiarli-136.jpeg"
               alt="Vigneti Chiarli"
               className="w-full h-full object-cover"
             />
@@ -156,7 +156,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
       <section ref={section2Ref} className="relative min-h-screen bg-chiarli-text overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/foto/1.jpg"
+            src="/foto/bg-base-uai-1333x1333-2.jpg"
             alt="Storia Background"
             className="w-full h-full object-cover opacity-15"
           />

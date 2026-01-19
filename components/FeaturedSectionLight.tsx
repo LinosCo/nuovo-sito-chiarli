@@ -27,7 +27,7 @@ const experiences = [
     title: "Cena in Cantina",
     subtitle: "Gastronomia e tradizione",
     description: "Un'esperienza gastronomica esclusiva nella suggestiva atmosfera della cantina storica.",
-    image: "/foto/close-up-87-scaled.jpeg",
+    image: "/foto/CHIARLI-1860_WEBSITE-IMAGES_03_09_257467_16x9-scaled.jpeg",
     duration: "4 ore",
     people: "8-20",
     includes: "Menu + vini"
@@ -193,10 +193,10 @@ export const FeaturedSectionLight: React.FC = () => {
 
             {/* CTA */}
             <a
-              href="#"
+              href="#/esperienze"
               className="group inline-flex items-center gap-3 bg-white text-chiarli-text px-8 py-4 hover:bg-chiarli-wine hover:text-white transition-all duration-300"
             >
-              <span className="font-sans text-xs font-bold uppercase tracking-[0.2em]">Prenota ora</span>
+              <span className="font-sans text-xs font-bold uppercase tracking-[0.2em]">Scopri le esperienze</span>
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </a>
 

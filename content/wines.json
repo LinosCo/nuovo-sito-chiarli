@@ -83,28 +83,92 @@
     },
     {
       "id": 4,
-      "slug": "nivola",
-      "name": "Nivola",
-      "denomination": "Lambrusco Grasparossa DOC",
-      "family": "Metodo Classico",
-      "description": "Intenso e fruttato. Un Lambrusco che unisce corpo e freschezza.",
+      "slug": "villa-cialdini-rose-de-noir",
+      "name": "Villa Cialdini Rosé de Noir",
+      "denomination": "Lambrusco di Sorbara DOC - Fermentato in bottiglia",
+      "subtitle": "Metodo Ancestrale",
+      "family": "Premium",
+      "description": "Un patrimonio enologico che riflette il metodo ancestrale utilizzato da Cleto Chiarli dal 1860. La rifermentazione in bottiglia dona eleganza, freschezza e finezza uniche.",
       "image": "/foto/005-uai-720x1080.png",
       "format": "0.75L",
       "tags": [
-        "Grasparossa",
-        "DOC"
+        "Metodo Ancestrale",
+        "DOC",
+        "Rosé"
       ],
       "price": null,
       "year": null,
-      "alcohol": null,
-      "servingTemp": null,
-      "pairings": [],
-      "awards": [],
+      "alcohol": 12,
+      "servingTemp": "8-10°C",
+      "grape": "Grasparossa",
+      "vinification": "Pressatura soffice con uva integra o diraspata a temperatura controllata e aggiunta di lieviti selezionati. Presa di spuma in 'cuve close' a bassa temperatura.",
+      "pairings": [
+        "Antipasti di mare",
+        "Carpacci di pesce",
+        "Sushi e sashimi",
+        "Insalate di mare",
+        "Formaggi freschi",
+        "Primi piatti leggeri",
+        "Aperitivi eleganti"
+      ],
+      "awards": [
+        {
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri",
+          "years": "2019-2021"
+        },
+        {
+          "name": "Falstaff",
+          "score": "91-93/100",
+          "years": "2019-2022"
+        },
+        {
+          "name": "Touring Club",
+          "score": "Corona",
+          "years": "2020"
+        },
+        {
+          "name": "Vinitaly",
+          "score": "91/100",
+          "years": "2019"
+        }
+      ],
       "tastingNotes": {
-        "aspetto": null,
-        "profumo": null,
-        "gusto": null
+        "aspetto": "Spuma vivace, colore rosa ribes con bollicine fini e abbondanti. Elegante e raffinato alla vista.",
+        "profumo": "Profumo intenso e fruttato, con tipici sentori di frutti di sottobosco. Note di fragola, lampone e ribes.",
+        "gusto": "Sapore ben composto con sentori di frutti di sottobosco. Fresco, sapido e di grande eleganza. Finale persistente e raffinato."
       },
+      "heritage": "Il Rosé de Noir rappresenta un patrimonio enologico che riflette il metodo ancestrale della rifermentazione in bottiglia, utilizzato da Cleto Chiarli fin dal 1860. Questo metodo, sostituito negli anni '50 dal Metodo Charmat, viene oggi riscoperto per offrire un vino di straordinaria eleganza e complessità, che conserva le caratteristiche uniche conferite dai lieviti e dalla tradizione.",
+      "technicalSpecs": [
+        {
+          "label": "Vitigno",
+          "value": "Grasparossa 100%"
+        },
+        {
+          "label": "Metodo",
+          "value": "Fermentato in bottiglia - Presa di spuma in cuve close"
+        },
+        {
+          "label": "Gradazione",
+          "value": "12% vol."
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "8-10°C (servire fresco)"
+        },
+        {
+          "label": "Formato",
+          "value": "0,75L"
+        },
+        {
+          "label": "Vinificazione",
+          "value": "Pressatura soffice a temperatura controllata"
+        },
+        {
+          "label": "Zona di produzione",
+          "value": "Castelvetro di Modena"
+        }
+      ],
       "isActive": true,
       "order": 4
     },

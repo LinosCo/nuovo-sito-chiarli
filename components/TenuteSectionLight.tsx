@@ -63,9 +63,9 @@ const EmiliaRomagnaMapLight: React.FC<{
   // Posizioni delle tenute sulla mappa aggiornata
   // La regione grande occupa la maggior parte dello spazio a destra
   const mapPositions = [
-    { x: 58, y: 56 },   // Castelvetro - SUD di Modena (colline)
-    { x: 63, y: 33 },   // Bomporto - NORD-EST di Modena (pianura)
-    { x: 58, y: 42 },   // Modena città - pianura padana
+    { x: 66, y: 52 },   // Castelvetro - poco più a sinistra di Spilamberto
+    { x: 73, y: 30 },   // Bomporto - più a destra di Modena e più alto
+    { x: 70, y: 46 },   // Spilamberto - leggermente a destra di Modena
   ];
 
   return (
@@ -73,10 +73,38 @@ const EmiliaRomagnaMapLight: React.FC<{
       <div className="relative w-full h-full -translate-x-[5%]">
         {/* Map image */}
         <img
-          src="/mappa.png"
+          src="/maps.png"
           alt="Emilia-Romagna"
           className="w-full h-full object-contain opacity-70 scale-125"
         />
+
+        {/* Pin on regional map showing Modena city location */}
+        <div
+          className="absolute cursor-default transition-all duration-500"
+          style={{
+            left: '67%',
+            top: '39%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 5,
+          }}
+        >
+          {/* Pulse effect */}
+          <div className="absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-black/50 animate-ping" />
+
+          {/* Outer glow */}
+          <div className="absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-black/40" />
+
+          {/* Pin dot */}
+          <div className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-black" />
+          <div className="absolute w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
+
+          {/* Label */}
+          <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 whitespace-nowrap">
+            <span className="font-sans text-xs uppercase tracking-wider text-black font-bold">
+              Modena
+            </span>
+          </div>
+        </div>
 
         {/* Pin markers with labels */}
         {mapPositions.map((pos, index) => {

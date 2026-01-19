@@ -20,7 +20,7 @@ const experienceCategories = [
     title: "Eventi",
     subtitle: "Eventi aziendali e prenotazioni private",
     description: "Attività di team building, eventi riservati, lanci prodotto, cene di lavoro.",
-    image: "/foto/close-up-87-scaled.jpeg"
+    image: "/foto/close-up-9-scaled.jpeg"
   },
   {
     id: 3,
@@ -156,15 +156,18 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
             </h1>
 
 
-            <button
-              className={`group bg-chiarli-wine hover:bg-chiarli-wine-light text-white font-sans text-sm font-bold uppercase tracking-widest px-8 py-4 transition-all duration-300 flex items-center gap-3 ${
+            <a
+              href="https://shop.chiarli.it/esperienze/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group inline-flex items-center gap-3 bg-chiarli-wine hover:bg-chiarli-wine-light text-white font-sans text-sm font-bold uppercase tracking-widest px-8 py-4 transition-all duration-300 ${
                 isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
               style={{ transitionDelay: '400ms' }}
             >
               Prenota esperienze
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -322,11 +325,14 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
             {experienceCategories.map((category, index) => {
               const Icon = category.icon;
               return (
-                <div
+                <a
                   key={category.id}
+                  href="https://shop.chiarli.it/esperienze/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onMouseEnter={() => setHoveredCard(category.id)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  className={`group bg-white border-2 transition-all duration-500 cursor-pointer ${
+                  className={`group bg-white border-2 transition-all duration-500 cursor-pointer block ${
                     hoveredCard === category.id
                       ? 'border-chiarli-wine shadow-xl -translate-y-2'
                       : 'border-chiarli-text/10 hover:border-chiarli-wine/30'
@@ -386,7 +392,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
                       />
                     </div>
                   </div>
-                </div>
+                </a>
               );
             })}
           </div>

@@ -32,18 +32,18 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = ({ onBack }
     return () => observer.disconnect();
   }, []);
 
-  const wines = [
+  const vitigni = [
     {
       name: "Lambrusco Grasparossa",
-      description: "Il più classico dei Lambrusco modenesi. Vino strutturato e ricco con intenso colore rosso ed elevati tannini.",
-      details: "Il clone del vigneto Grasparossa produce uve dall'intenso colore rosso. Il metodo Charmat rivela la sua freschezza e le sue qualità aromatiche.",
-      image: "/foto/002-uai-720x1080.png"
+      description: "Il più classico dei Lambrusco modenesi. Vitigno autoctono a bacca nera con grappoli di medio-grandi dimensioni.",
+      details: "Il clone del vigneto Grasparossa produce uve dall'intenso colore rosso e buccia pruinosa. Grappoli compatti con alta concentrazione di polifenoli e tannini.",
+      image: "/foto/close-up-87-scaled.jpeg"
     },
     {
       name: "Pignoletto",
-      description: "Vitigno versatile coltivato dal 1600. Carattere aromatico con note fresche e fruttate.",
-      details: "Radici antiche nel Grechetto Gentile. Il vino combina carattere aromatico con struttura polifenolica.",
-      image: "/foto/005-uai-720x1080.png"
+      description: "Vitigno autoctono a bacca bianca coltivato dal 1600. Carattere aromatico con profilo fresco e fruttato.",
+      details: "Radici antiche nel Grechetto Gentile. Grappoli compatti con acini piccoli e buccia sottile. Elevata struttura polifenolica e carattere aromatico distintivo.",
+      image: "/foto/close-up-26-scaled.jpeg"
     }
   ];
 
@@ -159,98 +159,96 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = ({ onBack }
             </div>
           </div>
 
-          {/* Wines Section */}
-          <div className="mb-32">
-            <h2
-              className={`font-serif text-5xl md:text-6xl text-chiarli-text mb-20 transition-all duration-700 ${
-                isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              I Nostri <span className="italic text-chiarli-wine">Vini</span>
-            </h2>
+        </div>
+      </section>
 
-            {wines.map((wine, index) => (
-              <div
-                key={index}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24 transition-all duration-700 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                } ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}
-                style={{ transitionDelay: `${300 + index * 150}ms` }}
-              >
-                {/* Bottiglia */}
-                <div className={`relative ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-chiarli-wine/5 to-transparent rounded-full blur-3xl"></div>
-                  <div className="relative p-12 flex items-center justify-center">
-                    <img
-                      src={wine.image}
-                      alt={wine.name}
-                      className="h-[500px] w-auto object-contain transition-all duration-700 hover:scale-105"
-                    />
-                  </div>
-                </div>
-
-                {/* Contenuto */}
-                <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                  <div className="border-l-4 border-chiarli-wine pl-8">
-                    <h3 className="font-serif text-4xl md:text-5xl text-chiarli-wine mb-6">
-                      {wine.name}
-                    </h3>
-                    <p className="font-serif italic text-2xl text-chiarli-text/70 mb-8 leading-relaxed">
-                      {wine.description}
-                    </p>
-                    <p className="font-sans text-chiarli-text/60 text-lg leading-relaxed">
-                      {wine.details}
-                    </p>
-                  </div>
-                </div>
+      {/* Vitigni Full Split Sections */}
+      {vitigni.map((vitigno, index) => {
+        const isEven = index % 2 === 0;
+        return (
+          <section key={index} className={`relative min-h-screen ${isEven ? 'bg-white' : 'bg-chiarli-stone'} overflow-hidden`}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+              {/* Image */}
+              <div className={`relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+                <img
+                  src={vitigno.image}
+                  alt={vitigno.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className={`absolute inset-0 ${isEven ? 'bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent' : 'bg-gradient-to-l from-transparent to-chiarli-stone/20 lg:bg-gradient-to-r lg:from-chiarli-stone/20 lg:to-transparent'}`} />
               </div>
-            ))}
-          </div>
 
-          {/* Galleria Immagini */}
-          <div>
-            <h2
-              className={`font-serif text-5xl md:text-6xl text-chiarli-text mb-20 transition-all duration-700 ${
-                isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              La <span className="italic text-chiarli-wine">Tenuta</span>
-            </h2>
+              {/* Content */}
+              <div className={`flex items-center py-16 md:py-24 lg:py-0 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+                <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+                  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-wine mb-8 leading-tight">
+                    {vitigno.name}
+                  </h2>
 
-            <div className="grid grid-cols-12 gap-6">
-              <div
-                className={`col-span-12 md:col-span-7 overflow-hidden transition-all duration-700 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: '400ms' }}
-              >
-                <div className="relative group">
-                  <img
-                    src="/foto/DSC04010.jpg"
-                    alt="Vigneto Cialdini"
-                    className="w-full h-[600px] object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-              </div>
-              <div
-                className={`col-span-12 md:col-span-5 overflow-hidden transition-all duration-700 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: '500ms' }}
-              >
-                <div className="relative group">
-                  <img
-                    src="/foto/close-up-26-scaled.jpeg"
-                    alt="Dettaglio Vigneto"
-                    className="w-full h-[600px] object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <p className="font-serif italic text-2xl text-chiarli-text/70 mb-8 leading-relaxed border-l-4 border-chiarli-wine pl-8">
+                    {vitigno.description}
+                  </p>
+
+                  <p className="font-sans text-chiarli-text/60 text-lg leading-relaxed max-w-lg">
+                    {vitigno.details}
+                  </p>
                 </div>
               </div>
             </div>
+          </section>
+        );
+      })}
+
+      {/* Galleria Immagini - Full Split */}
+      <section className="relative min-h-screen bg-white overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Image */}
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-1">
+            <img
+              src="/foto/DSC04010.jpg"
+              alt="Vigneto Cialdini"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
           </div>
 
+          {/* Content */}
+          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-2">
+            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
+                La <span className="italic text-chiarli-wine">Tenuta</span>
+              </h2>
+              <p className="font-serif italic text-xl text-chiarli-text/70 leading-relaxed max-w-lg">
+                Oltre 140 anni di storia familiare nel cuore della zona di produzione del Lambrusco Grasparossa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative min-h-screen bg-chiarli-stone overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Image */}
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
+            <img
+              src="/foto/close-up-26-scaled.jpeg"
+              alt="Dettaglio Vigneto"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-stone/20 lg:bg-gradient-to-r lg:from-chiarli-stone/20 lg:to-transparent" />
+          </div>
+
+          {/* Content */}
+          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-1">
+            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
+                Il <span className="italic text-chiarli-wine">Territorio</span>
+              </h2>
+              <p className="font-serif italic text-xl text-chiarli-text/70 leading-relaxed max-w-lg">
+                50 ettari di vigneti alle pendici dell'Appennino, dove il microclima unico crea le condizioni ideali per una produzione premium.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

@@ -22,7 +22,9 @@ export const Navbar: React.FC = () => {
     },
     { label: 'Esperienze', href: '#/esperienze' },
     { label: 'Storia', href: '#/storia' },
-    { label: 'Blog', href: '#blog' }
+    { label: 'Metodo', href: '#/metodo' },
+    { label: 'Sostenibilità', href: '#/sostenibilita' },
+    { label: 'Blog', href: '#/blog' }
   ];
 
   useEffect(() => {
@@ -72,16 +74,18 @@ export const Navbar: React.FC = () => {
 
               {/* Dropdown Menu */}
               {item.submenu && isTenuteOpen && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-chiarli-stone shadow-xl border border-chiarli-text/10 overflow-hidden">
-                  {item.submenu.map((subitem) => (
-                    <a
-                      key={subitem.label}
-                      href={subitem.href}
-                      className="block px-6 py-3 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-text hover:bg-chiarli-wine hover:text-white transition-colors"
-                    >
-                      {subitem.label}
-                    </a>
-                  ))}
+                <div className="absolute top-full left-0 pt-2 w-56">
+                  <div className="bg-chiarli-stone shadow-xl border border-chiarli-text/10 overflow-hidden">
+                    {item.submenu.map((subitem) => (
+                      <a
+                        key={subitem.label}
+                        href={subitem.href}
+                        className="block px-6 py-3 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-text hover:bg-chiarli-wine hover:text-white transition-colors"
+                      >
+                        {subitem.label}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

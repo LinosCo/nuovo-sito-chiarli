@@ -2,11 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { useNews } from '../hooks/useContent';
 
-interface BlogSectionLightProps {
-  onArticleClick?: (id: number) => void;
-}
-
-export const BlogSectionLight: React.FC<BlogSectionLightProps> = ({ onArticleClick }) => {
+export const BlogSectionLight: React.FC = () => {
   const { news } = useNews();
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredArticle, setHoveredArticle] = useState<number | null>(null);
@@ -82,12 +78,12 @@ export const BlogSectionLight: React.FC<BlogSectionLightProps> = ({ onArticleCli
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {news.slice(0, 6).map((article, index) => (
-            <article
+            <a
               key={article.id}
+              href="#/blog"
               className={`group cursor-pointer transition-all duration-700 delay-${index * 100} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
               onMouseEnter={() => setHoveredArticle(index)}
               onMouseLeave={() => setHoveredArticle(null)}
-              onClick={() => onArticleClick?.(article.id)}
             >
               <div className="relative aspect-[4/3] mb-6 overflow-hidden rounded-lg bg-stone-100">
                 {article.image ? (
@@ -137,7 +133,7 @@ export const BlogSectionLight: React.FC<BlogSectionLightProps> = ({ onArticleCli
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </div>
