@@ -835,7 +835,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
             {/* Wines Grid - Clean minimal layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 lg:gap-20">
-              {relatedWines.map((relatedWine, index) => (
+              {relatedWines.map((relatedWine) => (
                 <div
                   key={relatedWine.slug}
                   className="group cursor-pointer"
