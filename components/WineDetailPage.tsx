@@ -156,7 +156,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
     <div className="min-h-screen bg-white">
 
       {/* Hero Section - Dark background with split layout */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-chiarli-text via-[#2a1f23] to-chiarli-text">
+      <section className="relative min-h-screen flex items-center overflow-x-hidden bg-gradient-to-br from-chiarli-text via-[#2a1f23] to-chiarli-text">
 
         {/* Background image con effetto "vedo non vedo" */}
         <div
@@ -359,7 +359,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
           {/* Right side - Bottle more to the left */}
           {wine.image && (
-            <div className="hidden lg:flex w-1/2 items-center justify-start relative">
+            <div className="hidden lg:flex w-1/2 items-center justify-start relative overflow-visible">
 
               {/* Floating award badges - only show if wine has awards */}
               {wine.awards && wine.awards.length > 0 && wine.awards[0] && (
@@ -401,7 +401,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
               )}
 
               {/* Bottle and circles wrapper - keeps them together */}
-              <div className="relative flex items-center justify-center">
+              <div className="relative flex items-center justify-center p-12 overflow-visible">
                 {/* Bottle container */}
                 <div
                   className={`relative cursor-pointer transition-all duration-700 z-10 ${
