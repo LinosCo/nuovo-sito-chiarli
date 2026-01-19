@@ -457,6 +457,62 @@
       },
       "isActive": true,
       "order": 11
+    },
+    {
+      "id": 12,
+      "slug": "villa-cialdini-rose-brut",
+      "name": "Villa Cialdini Rosè de Noir",
+      "denomination": "Lambrusco di Sorbara DOC - Fermentato in bottiglia",
+      "family": "Metodo Classico",
+      "grape": "Grasparossa",
+      "description": "Un patrimonio enologico che riflette il metodo ancestrale. La rifermentazione in bottiglia dona eleganza, freschezza e finezza uniche. Rosé vibrante dal bouquet intenso e fruttato.",
+      "image": "/foto/villa-cialdini-rose-de-noir.png",
+      "format": "0.75L",
+      "tags": [
+        "Rosé",
+        "DOC",
+        "Metodo Ancestrale"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": 12,
+      "servingTemp": "8-10°C",
+      "pairings": [
+        "Ingredienti di stagione",
+        "Piatti contemporanei",
+        "Aperitivi gourmet",
+        "Cucina fusion",
+        "Frutti di mare"
+      ],
+      "awards": [
+        {
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri",
+          "years": "2019-2021"
+        },
+        {
+          "name": "Falstaff",
+          "score": "93/100",
+          "years": "2021"
+        },
+        {
+          "name": "Vinitaly",
+          "score": "91/100",
+          "years": "2019"
+        },
+        {
+          "name": "Touring Club",
+          "score": "Corona",
+          "years": "2019-2020"
+        }
+      ],
+      "tastingNotes": {
+        "aspetto": "Colore rosa vibrante con bollicine fini e abbondanti.",
+        "profumo": "Bouquet intenso e fruttato con note di frutti di bosco.",
+        "gusto": "Sapore ben equilibrato con caratteristici sentori di frutti di bosco. Fresco e persistente."
+      },
+      "isActive": true,
+      "order": 12
     }
   ],
   "_meta": {
