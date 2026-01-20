@@ -158,17 +158,17 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
       <section ref={section2Ref} className="relative bg-chiarli-text overflow-hidden py-32">
         {/* Animated Sparkling Bubbles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(18)].map((_, i) => (
             <div
               key={i}
               className="absolute rounded-full"
               style={{
-                width: `${4 + (i % 3) * 2}px`,
-                height: `${4 + (i % 3) * 2}px`,
-                left: `${5 + (i * 4.5) % 90}%`,
+                width: `${12 + (i % 4) * 8}px`,
+                height: `${12 + (i % 4) * 8}px`,
+                left: `${5 + (i * 5) % 90}%`,
                 bottom: `-${8 + (i % 4) * 5}%`,
-                background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,${0.4 + (i % 3) * 0.1}), rgba(214,69,80,${0.2 + (i % 3) * 0.05}))`,
-                boxShadow: `0 0 ${6 + i % 4}px rgba(255,255,255,0.3), inset 0 0 ${3 + i % 3}px rgba(255,255,255,0.2)`,
+                background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,${0.5 + (i % 3) * 0.15}), rgba(255,220,230,${0.3 + (i % 3) * 0.1}))`,
+                boxShadow: `0 0 ${8 + i % 4}px rgba(255,255,255,0.4), inset 0 0 ${4 + i % 3}px rgba(255,255,255,0.3)`,
                 animation: `bubble-rise ${10 + (i % 5) * 2}s ease-in-out infinite`,
                 animationDelay: `${(i * 0.4) % 10}s`,
               }}
