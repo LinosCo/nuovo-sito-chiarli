@@ -448,7 +448,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
       </section>
 
       {/* Tasting Notes - Dynamic immersive section */}
-      <section className="relative min-h-screen bg-white overflow-hidden">
+      <section className="relative min-h-screen bg-chiarli-stone overflow-hidden">
 
         {/* Floating bubbles rosse */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
