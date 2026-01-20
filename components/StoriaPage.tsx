@@ -299,12 +299,9 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                 return (
                   <div
                     key={index}
-                    className={`relative transition-all duration-700 ${
-                      isSection2Visible ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    className={`relative transition-all duration-700 opacity-100`}
                     style={{
-                      transitionDelay: `${index * 150}ms`,
-                      transform: isSection2Visible ? 'none' : isLeft ? 'translateX(-50px)' : 'translateX(50px)'
+                      transitionDelay: `${index * 150}ms`
                     }}
                   >
                     <div className={`grid md:grid-cols-2 gap-8 items-start ${isLeft ? '' : 'md:grid-flow-dense'}`}>
