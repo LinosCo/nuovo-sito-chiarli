@@ -182,68 +182,116 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
             <div className="space-y-24">
               {[
                 {
-                  year: "1860",
-                  title: "La Fondazione",
-                  description: "Cleto Chiarli fonda la prima cantina dell'Emilia-Romagna, dando inizio alla tradizione del Lambrusco di qualità.",
-                  details: "Acquisizione di Tenuta Cialdini a Castelvetro di Modena. Con 50 ettari di vigneti nel cuore della zona di produzione del Lambrusco Grasparossa, inizia un'avventura che dura da oltre 160 anni.",
-                  curiosity: "Cleto Chiarli fu il primo a credere nella qualità del Lambrusco, quando era considerato solo un vino da tavola.",
-                  image: "/foto/vasche-4.jpg"
-                },
-                {
-                  year: "1900",
-                  title: "L'Espansione",
-                  description: "La seconda generazione espande la produzione e inizia l'esportazione del Lambrusco oltre i confini regionali.",
-                  details: "Nascono le prime etichette storiche che porteranno il nome Chiarli nel mondo. La cantina si modernizza e aumenta la capacità produttiva.",
-                  curiosity: "Le prime bottiglie venivano trasportate con carri trainati da cavalli fino alla stazione ferroviaria di Modena.",
-                  image: "/foto/galleria-chiarli-136.jpeg"
-                },
-                {
-                  year: "1920",
-                  title: "Tenuta Sozzigalli",
-                  description: "Acquisizione della storica Tenuta Sozzigalli a Bomporto, 30 ettari di terreni ideali per il Lambrusco di Sorbara.",
-                  details: "I terreni alluvionali dove i fiumi Panaro e Secchia si incontrano creano condizioni uniche per la coltivazione del Sorbara, vitigno più delicato e elegante.",
-                  curiosity: "La tenuta viene coltivata ancora oggi senza irrigazione artificiale, solo con l'acqua piovana.",
-                  image: "/foto/sozzigalli-29.jpg"
-                },
-                {
-                  year: "1950",
-                  title: "L'Innovazione",
-                  description: "Introduzione di nuove tecniche di vinificazione e acquisizione di Tenuta Belvedere a Spilamberto.",
-                  details: "25 ettari su suoli alluvionali profondi alle pendici dell'Appennino modenese. Inizio della modernizzazione della cantina con nuove tecnologie di fermentazione.",
-                  curiosity: "In questo periodo vengono installate le prime vasche in acciaio inox, rivoluzionando il processo produttivo.",
-                  image: "/foto/a001-scaled.jpg"
-                },
-                {
-                  year: "1980",
-                  title: "Il Metodo Classico",
-                  description: "Viene sviluppato il Metodo del Fondatore, un approccio unico alla produzione del Lambrusco.",
-                  details: "Questo metodo combina la tradizione della rifermentazione naturale con tecnologie moderne, creando vini di alta qualità con perlage fine e persistente.",
-                  curiosity: "Il Metodo del Fondatore prevede una seconda fermentazione in autoclave che dura almeno 30 giorni.",
+                  year: "1850",
+                  title: "La Trattoria dell'Artigliere",
+                  description: "Prima di diventare produttore di vino, Cleto Chiarli gestisce una popolare trattoria nel centro storico di Modena.",
+                  details: "Il suo Lambrusco fatto in casa conquista rapidamente il favore locale, diventando uno dei punti di riferimento della città per gli amanti del buon vino.",
+                  curiosity: "La trattoria era frequentata da intellettuali, artigiani e commercianti modenesi che apprezzavano il Lambrusco genuino di Cleto.",
                   image: "/foto/1.jpg"
                 },
                 {
-                  year: "2000",
-                  title: "Nuova Generazione",
-                  description: "La quinta generazione assume la guida dell'azienda con Anselmo, Mauro e Tommaso Chiarli.",
-                  details: "Espansione internazionale con apertura di nuovi mercati in Europa, America e Asia. Focus sulla sostenibilità e sulla qualità premium.",
-                  curiosity: "Tommaso Chiarli, della quinta generazione, ha studiato enologia a Bordeaux prima di tornare in azienda.",
+                  year: "1860",
+                  title: "La Fondazione",
+                  description: "Cleto ottiene il permesso ufficiale per espandersi e costruisce la cantina accanto alla trattoria.",
+                  details: "Questo segna l'inizio di Chiarli come produttore di vino e la storia moderna del Lambrusco. Nello stesso anno viene introdotto il tappo a fungo per preservare le bollicine del Lambrusco.",
+                  curiosity: "Chiarli è stata la prima cantina dell'Emilia-Romagna, pioniera nell'uso del tappo a fungo per i vini spumanti.",
+                  image: "/foto/vasche-4.jpg"
+                },
+                {
+                  year: "1885",
+                  title: "Prime Esportazioni",
+                  description: "Il Lambrusco Chiarli inizia a raggiungere i mercati internazionali, seguendo le rotte degli emigranti italiani.",
+                  details: "Anselmo Chiarli, seconda generazione, guida l'azienda verso una nuova fase rafforzando i legami con le cooperative viticole locali e aprendo nuovi mercati.",
+                  curiosity: "Il Lambrusco Chiarli diventa ambasciatore del vino modenese nel mondo, portando un pezzo di casa agli emigrati italiani.",
+                  image: "/foto/galleria-chiarli-136.jpeg"
+                },
+                {
+                  year: "1888",
+                  title: "Cantina Via Poletti",
+                  description: "Per soddisfare la crescente domanda, Chiarli costruisce una nuova e più grande cantina in Via Poletti.",
+                  details: "Questo segnala l'espansione e la modernizzazione dell'azienda. La nuova struttura permette di triplicare la produzione.",
+                  curiosity: "Via Poletti diventa il nuovo cuore produttivo di Chiarli, simbolo di crescita e innovazione.",
+                  image: "/foto/a001-scaled.jpg"
+                },
+                {
+                  year: "1900",
+                  title: "Parigi e i 100.000",
+                  description: "Chiarli viene premiata con Menzione d'Onore all'Esposizione Universale di Parigi.",
+                  details: "La produzione annuale supera le 100.000 bottiglie – un record straordinario per l'epoca. Il riconoscimento internazionale consacra Chiarli tra i grandi produttori italiani.",
+                  curiosity: "L'Expo di Parigi del 1900 attirò oltre 50 milioni di visitatori. Il premio fu un trionfo per il Lambrusco modenese.",
                   image: "/foto/2.jpg"
                 },
                 {
-                  year: "2015",
-                  title: "Agricoltura 4.0",
-                  description: "Implementazione di tecnologie avanzate nei vigneti: stazioni meteo, sensori e agricoltura di precisione.",
-                  details: "Raccolta dati in tempo reale su temperatura, umidità e composizione del suolo per intervenire solo quando necessario, riducendo l'impatto ambientale.",
-                  curiosity: "Ogni vigna è monitorata 24/7 da sensori che inviano dati a una centrale operativa in tempo reale.",
+                  year: "1924",
+                  title: "Cantina Via Manin",
+                  description: "Viene inaugurata una nuova struttura all'avanguardia in Via Manin a Modena.",
+                  details: "Questa sede rimarrà il quartier generale dell'azienda per generazioni, attraversando momenti di gloria e di difficoltà.",
+                  curiosity: "La cantina di Via Manin fu progettata con criteri innovativi per l'epoca, includendo sistemi di refrigerazione avanzati.",
+                  image: "/foto/close-up-87-scaled.jpeg"
+                },
+                {
+                  year: "1944",
+                  title: "Il Bombardamento",
+                  description: "Durante la Seconda Guerra Mondiale, la cantina di Via Manin subisce gravi danni dai bombardamenti.",
+                  details: "Un momento buio nella storia dell'azienda. La famiglia Chiarli salvaguarda i documenti storici e le ricette segrete, proteggendo l'eredità familiare.",
+                  curiosity: "Nonostante i danni, la famiglia non perse mai la speranza e iniziò subito a pianificare la ricostruzione.",
+                  image: "/foto/DSC04010.jpg"
+                },
+                {
+                  year: "1947",
+                  title: "La Ricostruzione",
+                  description: "Giovanni e Giorgio Chiarli, terza generazione, guidano la ricostruzione della cantina di Via Manin.",
+                  details: "Il sito storico viene ricostruito e modernizzato dopo la guerra, segnando una potente rinascita per Chiarli. L'azienda rinasce più forte di prima.",
+                  curiosity: "La ricostruzione fu completata in tempo record grazie all'impegno di tutta la famiglia e dei dipendenti fedeli.",
+                  image: "/foto/a001-scaled.jpg"
+                },
+                {
+                  year: "1952",
+                  title: "Le Prime Autoclavi",
+                  description: "Chiarli è pioniera nell'uso delle autoclavi in Emilia-Romagna per la produzione di vini spumanti.",
+                  details: "Questa innovazione rivoluziona la fermentazione del Lambrusco, permettendo di controllare meglio il processo e migliorare la qualità del prodotto finale.",
+                  curiosity: "Le autoclavi permettevano di produrre Lambrusco di qualità superiore in modo più efficiente e controllato.",
+                  image: "/foto/vasche-4.jpg"
+                },
+                {
+                  year: "1970",
+                  title: "Selezione Massale",
+                  description: "Chiarli investe nel patrimonio genetico, iniziando studi su cloni antichi.",
+                  details: "La ricerca sulla selezione massale mira a salvaguardare l'autenticità del Lambrusco, preservando i vitigni storici pre-fillossera.",
+                  curiosity: "Alcuni dei cloni studiati risalgono a prima della fillossera, rappresentando un tesoro genetico inestimabile.",
                   image: "/foto/close-up-41.jpg"
                 },
                 {
+                  year: "1980",
+                  title: "Vecchia Modena",
+                  description: "Lancio del Vecchia Modena Lambrusco Sorbara Brut al Congresso Nazionale Assoenologi.",
+                  details: "Il vino diventa istantaneamente un punto di riferimento per i moderni vini rossi spumanti, elevando il Lambrusco a nuovi standard di eccellenza.",
+                  curiosity: "Vecchia Modena fu il primo Lambrusco Brut di alta qualità, cambiando per sempre la percezione del vitigno.",
+                  image: "/foto/galleria-chiarli-136.jpeg"
+                },
+                {
+                  year: "2002",
+                  title: "Tenuta Cialdini",
+                  description: "Inaugurazione di Tenuta Cialdini a Castelvetro, una storica proprietà nel territorio del Grasparossa.",
+                  details: "Con 50 ettari di vigneti, Tenuta Cialdini diventa uno dei vigneti di punta di Cleto Chiarli, simbolo di eccellenza e territorio.",
+                  curiosity: "Villa Cialdini è anche sede di eventi e visite guidate, accogliendo migliaia di appassionati ogni anno.",
+                  image: "/foto/vasche-4.jpg"
+                },
+                {
+                  year: "2014",
+                  title: "Quintopasso Metodo Classico",
+                  description: "Viene rilasciato il primo Quintopasso Rosé – un Metodo Classico da 100% Sorbara.",
+                  details: "Questo vino ridefinisce il prestigio del Lambrusco, dimostrando che può competere con i grandi spumanti metodo classico italiani e internazionali.",
+                  curiosity: "Quintopasso richiede almeno 36 mesi di affinamento sui lieviti, come i migliori Champagne.",
+                  image: "/foto/sozzigalli-29.jpg"
+                },
+                {
                   year: "2025",
-                  title: "Il Futuro",
-                  description: "Certificazione Equalitas per l'intero Gruppo Chiarli 1860.",
-                  details: "Impegno formale verso la sostenibilità economica, sociale e ambientale. Buone pratiche in tutte le dimensioni, dalla vigna alla bottiglia.",
-                  curiosity: "Chiarli è tra le prime cantine storiche italiane ad ottenere la certificazione Equalitas completa.",
-                  image: "/foto/DSC04010.jpg"
+                  title: "Archivio e Galleria Chiarli",
+                  description: "Apertura dell'Archivio e Galleria Chiarli, nuovo spazio culturale a Modena.",
+                  details: "Il museo ospita documenti storici, etichette e opere d'arte di oltre 165 anni di eredità Chiarli – aperto agli amanti del vino, agli storici e alle future generazioni.",
+                  curiosity: "L'archivio custodisce etichette originali del 1860, fotografie d'epoca e ricette segrete tramandate di generazione in generazione.",
+                  image: "/foto/2.jpg"
                 }
               ].map((item, index) => {
                 const isLeft = index % 2 === 0;
