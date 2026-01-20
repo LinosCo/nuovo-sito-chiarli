@@ -46,8 +46,8 @@ const EmiliaRomagnaMapDark: React.FC<{
         <div
           className="absolute cursor-default transition-all duration-500"
           style={{
-            left: '12%',
-            top: '38%',
+            left: '10%',
+            top: '36%',
             transform: 'translate(-50%, -50%)',
             zIndex: 5,
           }}
