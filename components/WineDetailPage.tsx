@@ -161,11 +161,11 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         {/* Background image con effetto "vedo non vedo" */}
         <div className="absolute inset-0">
           <img
-            src="/foto/close-up-17-scaled.jpeg"
-            alt="Uve"
-            className="w-full h-full object-cover opacity-8"
+            src="/foto/close-up-78-scaled.jpeg"
+            alt="Vigneto"
+            className="w-full h-full object-cover opacity-10"
             style={{
-              filter: 'blur(10px) grayscale(40%)',
+              filter: 'blur(8px)',
             }}
           />
         </div>
