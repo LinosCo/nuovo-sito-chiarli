@@ -76,7 +76,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
       </section>
 
       {/* Section 1: Portainnesti - Image Left */}
-      <div ref={sectionRef} className="relative min-h-screen bg-white overflow-hidden">
+      <div ref={sectionRef} className="relative min-h-screen bg-chiarli-text overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
