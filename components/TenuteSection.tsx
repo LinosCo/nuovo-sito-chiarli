@@ -42,7 +42,7 @@ const EmiliaRomagnaMapDark: React.FC<{
           className="w-full h-full object-contain opacity-60 scale-125"
         />
 
-        {/* Pin on regional map showing Modena city location */}
+        {/* Pin for Provincia di Modena */}
         <div
           className="absolute cursor-default transition-all duration-500"
           style={{
@@ -53,19 +53,19 @@ const EmiliaRomagnaMapDark: React.FC<{
           }}
         >
           {/* Pulse effect */}
-          <div className="absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-black/50 animate-ping" />
+          <div className="absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-chiarli-wine-light/50 animate-ping" />
 
           {/* Outer glow */}
-          <div className="absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-black/40" />
+          <div className="absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-chiarli-wine-light/40" />
 
           {/* Pin dot */}
-          <div className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-black" />
+          <div className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-chiarli-wine-light border-2 border-white" />
           <div className="absolute w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
 
           {/* Label */}
           <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 whitespace-nowrap">
-            <span className="font-sans text-xs uppercase tracking-wider text-black font-bold">
-              Modena
+            <span className="font-sans text-xs uppercase tracking-wider text-white/80 font-bold drop-shadow-lg">
+              Provincia di Modena
             </span>
           </div>
         </div>
@@ -379,33 +379,6 @@ export const TenuteSection: React.FC = () => {
           />
         </div>
 
-      </div>
-
-      {/* Italy Map Reference - Bottom Left */}
-      <div className="absolute bottom-8 left-6 md:left-12 hidden lg:block">
-        <div className="relative w-32 h-40">
-          {/* Italy outline/shape */}
-          <svg viewBox="0 0 100 150" className="w-full h-full fill-white/20 stroke-white/40" strokeWidth="1">
-            <path d="M45,10 L50,8 L55,10 L58,15 L60,20 L62,25 L63,30 L64,35 L65,40 L66,45 L65,50 L64,55 L63,60 L64,65 L65,70 L63,75 L60,80 L58,85 L60,90 L62,95 L60,100 L58,105 L55,110 L50,112 L45,110 L40,105 L35,100 L38,95 L40,90 L38,85 L35,80 L33,75 L35,70 L37,65 L35,60 L33,55 L32,50 L35,45 L37,40 L38,35 L39,30 L40,25 L42,20 L44,15 Z" />
-          </svg>
-
-          {/* Pin for Modena province */}
-          <div className="absolute" style={{ left: '62%', top: '28%', transform: 'translate(-50%, -50%)' }}>
-            {/* Pulse effect */}
-            <div className="absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border border-chiarli-wine-light/60 animate-ping" />
-
-            {/* Pin dot */}
-            <div className="absolute w-2.5 h-2.5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-chiarli-wine-light" />
-            <div className="absolute w-1 h-1 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
-          </div>
-
-          {/* Label */}
-          <div className="absolute -bottom-6 left-0 right-0 text-center">
-            <span className="font-sans text-[9px] uppercase tracking-wider text-white/60">
-              Modena
-            </span>
-          </div>
-        </div>
       </div>
 
       {/* Side Dots */}
