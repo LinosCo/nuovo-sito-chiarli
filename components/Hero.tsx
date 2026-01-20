@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import { useHomeContent } from '../hooks/useContent';
 
 const heroImages = [
-  '/foto/1.jpg',
+  '/foto/close-up-78-scaled.jpeg',
   '/foto/vasche-3.jpg',
   '/foto/a001-scaled.jpg',
   '/foto/galleria-chiarli-136.jpeg',
