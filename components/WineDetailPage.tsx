@@ -453,9 +453,9 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/close-up-64-scaled.jpeg"
+            src="/foto/a001-scaled.jpg"
             alt="Vigneto Sorbara"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-20"
           />
         </div>
 
