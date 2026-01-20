@@ -459,6 +459,9 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           />
         </div>
 
+        {/* Dark overlay per leggibilità */}
+        <div className="absolute inset-0 bg-black/50" />
+
         {/* Floating bubbles rosse */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(20)].map((_, i) => (
