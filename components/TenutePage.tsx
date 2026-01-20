@@ -70,6 +70,34 @@ const EmiliaRomagnaMapDark: React.FC<{
           </div>
         </div>
 
+        {/* Pin on small Italy map (left side) showing Modena province */}
+        <div
+          className="absolute cursor-default transition-all duration-500"
+          style={{
+            left: '8%',
+            top: '36%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 5,
+          }}
+        >
+          {/* Pulse effect */}
+          <div className="absolute w-6 h-6 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-chiarli-wine-light/60 animate-ping" />
+
+          {/* Outer glow */}
+          <div className="absolute w-4 h-4 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-chiarli-wine-light/40" />
+
+          {/* Pin dot */}
+          <div className="absolute w-2.5 h-2.5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-chiarli-wine-light border border-white" />
+          <div className="absolute w-1 h-1 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
+
+          {/* Label */}
+          <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
+            <span className="font-sans text-[10px] uppercase tracking-wider text-white/70 font-bold drop-shadow-lg">
+              Modena
+            </span>
+          </div>
+        </div>
+
         {/* Pin markers with labels */}
         {mapPositions.map((pos, index) => {
         const isActive = index === activeIndex;
@@ -218,6 +246,15 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Auto-advance slides every 6 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goNext();
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [slideIndex, isAnimating]);
 
   useEffect(() => {
     if (!transitionEnabled) {
