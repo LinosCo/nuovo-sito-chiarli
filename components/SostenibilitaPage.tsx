@@ -33,8 +33,8 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/DSC04010.jpg"
-            alt="Vigneti sostenibili"
+            src="/foto/CHIARLI-1860_WEBSITE-IMAGES_03_09_257467_16x9-scaled.jpeg"
+            alt="Sostenibilità Chiarli"
             className="w-full h-full object-cover"
           />
           {/* Dark overlay - More intense */}
