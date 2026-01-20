@@ -450,6 +450,18 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
       {/* Tasting Notes - Dynamic immersive section */}
       <section className="relative min-h-screen bg-chiarli-text overflow-hidden">
 
+        {/* Background image chiara */}
+        <div className="absolute inset-0">
+          <img
+            src="/foto/close-up-78-scaled.jpeg"
+            alt="Vigneto"
+            className="w-full h-full object-cover opacity-15"
+          />
+        </div>
+
+        {/* Subtle dark overlay solo per leggibilità */}
+        <div className="absolute inset-0 bg-chiarli-text/40" />
+
         {/* Floating bubbles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(20)].map((_, i) => (
