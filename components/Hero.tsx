@@ -76,8 +76,8 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Overlays */}
-          <div className="absolute inset-0 bg-black/50 z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 z-10"></div>
+          <div className="absolute inset-0 bg-black/25 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10 z-10"></div>
        </div>
 
        {/* Content */}
