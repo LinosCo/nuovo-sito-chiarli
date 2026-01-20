@@ -163,9 +163,9 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           <img
             src="/foto/close-up-78-scaled.jpeg"
             alt="Vigneto"
-            className="w-full h-full object-cover opacity-10"
+            className="w-full h-full object-cover opacity-30"
             style={{
-              filter: 'blur(8px)',
+              filter: 'blur(5px)',
             }}
           />
         </div>
