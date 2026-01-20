@@ -155,13 +155,13 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
       </section>
 
       {/* Section 2: 165 anni di storia - DARK */}
-      <section ref={section2Ref} className="relative bg-chiarli-text overflow-hidden py-32">
-        <div className="absolute inset-0">
-          <img
-            src="/foto/bg-base-uai-1333x1333-2.jpg"
-            alt="Storia Background"
-            className="w-full h-full object-cover opacity-10"
-          />
+      <section ref={section2Ref} className="relative bg-black overflow-hidden py-32">
+        {/* Bubble Pattern Background */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle, white 2px, transparent 2px)',
+            backgroundSize: '50px 50px'
+          }} />
         </div>
 
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-12">
