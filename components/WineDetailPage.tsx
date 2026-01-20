@@ -459,9 +459,6 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           />
         </div>
 
-        {/* White overlay per leggibilità */}
-        <div className="absolute inset-0 bg-white/80" />
-
         {/* Floating bubbles rosse */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(20)].map((_, i) => (
@@ -488,12 +485,12 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
               {/* Left - Title and tabs */}
               <div>
-                <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
+                <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
                   Note di Degustazione
                 </span>
-                <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-chiarli-text mb-6 md:mb-8 leading-tight">
+                <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white mb-6 md:mb-8 leading-tight">
                   Un viaggio
-                  <span className="italic text-chiarli-wine block">sensoriale</span>
+                  <span className="italic text-chiarli-wine-light block">sensoriale</span>
                 </h2>
 
                 {/* Vertical tabs */}
@@ -504,20 +501,20 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                       onClick={() => setActiveTab(index)}
                       className={`w-full text-left p-4 md:p-6 border transition-all duration-500 group ${
                         activeTab === index
-                          ? 'bg-chiarli-wine/10 border-chiarli-wine shadow-[0_0_25px_rgba(214,69,80,0.3)]'
-                          : 'bg-white border-chiarli-text/10 hover:bg-chiarli-wine/5 hover:border-chiarli-wine/30 hover:shadow-[0_0_20px_rgba(214,69,80,0.15)]'
+                          ? 'bg-chiarli-wine-light/20 border-chiarli-wine-light shadow-[0_0_25px_rgba(214,69,80,0.4)]'
+                          : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_20px_rgba(180,100,120,0.25)]'
                       }`}
                     >
                       <div className="flex items-center gap-3 md:gap-4">
                         <span className={`font-serif text-2xl md:text-4xl transition-all duration-300 ${
                           activeTab === index
-                            ? 'text-chiarli-wine drop-shadow-[0_0_15px_rgba(214,69,80,0.4)]'
-                            : 'text-chiarli-text/20 group-hover:text-chiarli-text/40'
+                            ? 'text-chiarli-wine-light drop-shadow-[0_0_20px_rgba(180,100,120,0.8)]'
+                            : 'text-white/20 group-hover:text-white/40'
                         }`}>
                           {String(index + 1).padStart(2, '0')}
                         </span>
                         <span className={`font-sans text-xs md:text-sm font-bold uppercase tracking-widest transition-colors ${
-                          activeTab === index ? 'text-chiarli-wine' : 'text-chiarli-text/60 group-hover:text-chiarli-text'
+                          activeTab === index ? 'text-chiarli-wine-light' : 'text-white/60 group-hover:text-white'
                         }`}>
                           {note.title}
                         </span>
@@ -529,24 +526,24 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
               {/* Right - Content with animation - aligned to tabs */}
               <div className="relative mt-8 lg:mt-[175px]">
-                <div className="absolute top-1/2 left-1/2 w-48 md:w-64 h-48 md:h-64 rounded-full border border-chiarli-wine/10 hidden md:block"
+                <div className="absolute top-1/2 left-1/2 w-48 md:w-64 h-48 md:h-64 rounded-full border border-chiarli-wine-light/10 hidden md:block"
                   style={{ transform: `translate(-50%, -50%) rotate(${scrollY * 0.02}deg)` }}
                 />
-                <div className="absolute top-1/2 left-1/2 w-32 md:w-40 h-32 md:h-40 rounded-full border border-chiarli-text/5 hidden md:block"
+                <div className="absolute top-1/2 left-1/2 w-32 md:w-40 h-32 md:h-40 rounded-full border border-white/5 hidden md:block"
                   style={{ transform: `translate(-50%, -50%) rotate(${-scrollY * 0.03}deg)` }}
                 />
 
-                <div className="relative bg-white backdrop-blur-sm border border-chiarli-text/10 p-6 md:p-10 lg:p-12 hover:border-chiarli-wine/30 hover:shadow-[0_0_30px_rgba(214,69,80,0.15)] transition-all duration-500">
-                  <div className="absolute top-0 left-0 w-12 md:w-20 h-1 bg-chiarli-wine" />
-                  <div className="absolute top-0 left-0 w-1 h-12 md:h-20 bg-chiarli-wine" />
+                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-6 md:p-10 lg:p-12 hover:border-chiarli-wine-light/30 hover:shadow-[0_0_30px_rgba(180,100,120,0.2)] transition-all duration-500">
+                  <div className="absolute top-0 left-0 w-12 md:w-20 h-1 bg-chiarli-wine-light" />
+                  <div className="absolute top-0 left-0 w-1 h-12 md:h-20 bg-chiarli-wine-light" />
 
-                  <p className="font-serif text-xl md:text-2xl lg:text-3xl text-chiarli-text/90 leading-relaxed mb-6 md:mb-8">
+                  <p className="font-serif text-xl md:text-2xl lg:text-3xl text-white/90 leading-relaxed mb-6 md:mb-8">
                     {tastingNotes[activeTab].description}
                   </p>
 
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-[1px] bg-chiarli-wine" />
-                    <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/40">
+                    <div className="w-12 h-[1px] bg-chiarli-wine-light" />
+                    <span className="font-sans text-[10px] uppercase tracking-widest text-white/40">
                       {tastingNotes[activeTab].title}
                     </span>
                   </div>
