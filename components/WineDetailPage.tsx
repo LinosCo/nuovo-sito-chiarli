@@ -684,6 +684,52 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         </div>
       </section>
 
+      {/* Awards - Dark dynamic section */}
+      {wine.awards && wine.awards.length > 0 && (
+        <section className="py-12 md:py-16 lg:py-20 bg-chiarli-text relative overflow-hidden">
+
+          <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
+
+            <div className="text-center mb-8 md:mb-12 lg:mb-16">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
+                Riconoscimenti
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white">
+                Premiato dalla <span className="italic text-chiarli-wine-light">critica</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-8">
+              {wine.awards.map((award: { name: string; score: string; years: string }, index: number) => (
+                <div
+                  key={index}
+                  className="text-center p-4 md:p-6 lg:p-8 bg-white/5 border border-white/10 hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(180,100,120,0.35)] transition-all duration-500 group cursor-default"
+                  onMouseEnter={() => setHoveredAward(index)}
+                  onMouseLeave={() => setHoveredAward(null)}
+                >
+                  <Award
+                    size={24}
+                    className={`mx-auto mb-3 md:mb-4 transition-all duration-300 ${
+                      hoveredAward === index ? 'text-chiarli-wine-light scale-110 drop-shadow-[0_0_15px_rgba(180,100,120,0.8)]' : 'text-white/30'
+                    }`}
+                  />
+                  <h3 className="font-serif text-sm md:text-lg lg:text-xl text-white mb-1 group-hover:text-chiarli-wine-light transition-colors">
+                    {award.name}
+                  </h3>
+                  <p className="font-sans text-[10px] md:text-xs font-bold text-chiarli-wine-light">
+                    {award.score}
+                  </p>
+                  <p className="font-sans text-[9px] md:text-[10px] text-white/40 mt-1">
+                    {award.years}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+      )}
+
       {/* Food Pairing - Full width split */}
       <section className="relative bg-white overflow-hidden">
         <div className="flex flex-col lg:flex-row">
@@ -733,52 +779,6 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
         </div>
       </section>
-
-      {/* Awards - Dark dynamic section */}
-      {wine.awards && wine.awards.length > 0 && (
-        <section className="py-12 md:py-16 lg:py-20 bg-chiarli-text relative overflow-hidden">
-
-          <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
-
-            <div className="text-center mb-8 md:mb-12 lg:mb-16">
-              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
-                Riconoscimenti
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white">
-                Premiato dalla <span className="italic text-chiarli-wine-light">critica</span>
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-8">
-              {wine.awards.map((award: { name: string; score: string; years: string }, index: number) => (
-                <div
-                  key={index}
-                  className="text-center p-4 md:p-6 lg:p-8 bg-white/5 border border-white/10 hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(180,100,120,0.35)] transition-all duration-500 group cursor-default"
-                  onMouseEnter={() => setHoveredAward(index)}
-                  onMouseLeave={() => setHoveredAward(null)}
-                >
-                  <Award
-                    size={24}
-                    className={`mx-auto mb-3 md:mb-4 transition-all duration-300 ${
-                      hoveredAward === index ? 'text-chiarli-wine-light scale-110 drop-shadow-[0_0_15px_rgba(180,100,120,0.8)]' : 'text-white/30'
-                    }`}
-                  />
-                  <h3 className="font-serif text-sm md:text-lg lg:text-xl text-white mb-1 group-hover:text-chiarli-wine-light transition-colors">
-                    {award.name}
-                  </h3>
-                  <p className="font-sans text-[10px] md:text-xs font-bold text-chiarli-wine-light">
-                    {award.score}
-                  </p>
-                  <p className="font-sans text-[9px] md:text-[10px] text-white/40 mt-1">
-                    {award.years}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-      )}
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 lg:py-32 bg-chiarli-text relative overflow-hidden">
