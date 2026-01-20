@@ -91,8 +91,8 @@ export const FeaturedSection: React.FC = () => {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/40 to-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
       </div>
 
       {/* Subtle wine gradient following mouse */}

@@ -59,7 +59,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
             className="w-full h-full object-cover"
           />
           {/* Dark overlay - More intense */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/55" />
           {/* Additional center vignette */}
           <div className="absolute inset-0 bg-radial-gradient-center" />
         </div>

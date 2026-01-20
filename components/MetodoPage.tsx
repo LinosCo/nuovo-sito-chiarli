@@ -38,7 +38,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
             className="w-full h-full object-cover"
           />
           {/* Dark overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/55" />
           {/* Additional center vignette */}
           <div className="absolute inset-0 bg-radial-gradient-center" />
         </div>
@@ -241,7 +241,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
             alt="Le Fasi del Metodo"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/80 to-black/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/50 to-black/55" />
         </div>
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-24 w-full">

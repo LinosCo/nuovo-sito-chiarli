@@ -368,7 +368,7 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
             alt="Villa Chiarli"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-transparent" />
         </div>
 
         <div className="relative z-10 min-h-[80vh] flex items-center">

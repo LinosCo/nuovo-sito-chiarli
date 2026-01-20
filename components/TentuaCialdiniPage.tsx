@@ -57,8 +57,8 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = ({ onBack }
             alt="Tenuta Cialdini"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/25" />
         </div>
 
         <div className="relative z-20 min-h-screen flex items-center max-w-[1800px] mx-auto px-6 md:px-12 py-24">

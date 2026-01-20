@@ -61,8 +61,8 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
             alt="Famiglia Chiarli"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/45 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/30" />
         </div>
 
         <div className="relative z-20 min-h-screen flex items-center max-w-[1800px] mx-auto px-6 md:px-12 py-24">

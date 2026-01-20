@@ -38,7 +38,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
             className="w-full h-full object-cover"
           />
           {/* Dark overlay - More intense */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/55" />
           {/* Additional center vignette */}
           <div className="absolute inset-0 bg-radial-gradient-center" />
         </div>
@@ -76,7 +76,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
       </section>
 
       {/* Section 1: Portainnesti - Image Left */}
-      <div ref={sectionRef} className="relative min-h-screen bg-chiarli-text overflow-hidden">
+      <div ref={sectionRef} className="relative min-h-screen bg-white overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
@@ -150,7 +150,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
       </div>
 
       {/* Section 3: Biologico - Image Left */}
-      <div className="relative min-h-screen bg-chiarli-text overflow-hidden">
+      <div className="relative min-h-screen bg-chiarli-stone overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
