@@ -158,19 +158,19 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
       <section ref={section2Ref} className="relative bg-chiarli-text overflow-hidden py-32">
         {/* Animated Sparkling Bubbles - Red Rising */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(25)].map((_, i) => (
+          {[...Array(30)].map((_, i) => (
             <div
               key={i}
               className="absolute rounded-full"
               style={{
                 width: `${12 + (i % 4) * 8}px`,
                 height: `${12 + (i % 4) * 8}px`,
-                left: `${5 + (i * 3.8) % 90}%`,
-                bottom: `-10%`,
+                left: `${5 + (i * 3.2) % 90}%`,
+                bottom: `${-20 + (i * 13) % 120}%`,
                 background: `radial-gradient(circle at 30% 30%, rgba(214,69,80,${0.4 + (i % 3) * 0.15}), rgba(150,30,40,${0.2 + (i % 3) * 0.1}))`,
                 boxShadow: `0 0 ${10 + i % 5}px rgba(214,69,80,0.5), inset 0 0 ${5 + i % 3}px rgba(255,150,160,0.3)`,
                 animation: `bubble-rise-continuous ${12 + (i % 5) * 3}s linear infinite`,
-                animationDelay: `${(i * 0.8) % 12}s`,
+                animationDelay: `${-((i * 2) % 24)}s`,
               }}
             />
           ))}
