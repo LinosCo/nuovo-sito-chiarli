@@ -162,7 +162,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.1}px)`,
+            transform: `translateY(${scrollY * 0.05}px)`,
           }}
         >
           <img
@@ -452,21 +452,6 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         </div>
       </section>
 
-      {/* CAPITOLO 1: ESPERIENZA SENSORIALE */}
-      <section className="relative py-16 md:py-20 bg-white border-t-4 border-chiarli-wine">
-        <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20">
-          <div className="text-center mb-12">
-            <span className="font-sans text-[10px] font-bold uppercase tracking-[0.5em] text-chiarli-wine block mb-4">
-              Capitolo 1
-            </span>
-            <h2 className="font-serif text-[8vw] lg:text-[3.5vw] text-chiarli-text leading-[0.9]">
-              Esperienza
-              <span className="italic text-chiarli-wine block">Sensoriale</span>
-            </h2>
-          </div>
-        </div>
-      </section>
-
       {/* Tasting Notes - Dynamic immersive section */}
       <section className="relative min-h-screen bg-chiarli-text overflow-hidden">
 
@@ -474,7 +459,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${(scrollY - 800) * 0.15}px)`,
+            transform: `translateY(${(scrollY - 800) * 0.08}px)`,
           }}
         >
           <img
@@ -681,21 +666,6 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
             </div>
           </div>
 
-        </div>
-      </section>
-
-      {/* CAPITOLO 2: DETTAGLI DI PRODUZIONE */}
-      <section className="relative py-16 md:py-20 bg-white border-t-4 border-chiarli-wine">
-        <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20">
-          <div className="text-center mb-12">
-            <span className="font-sans text-[10px] font-bold uppercase tracking-[0.5em] text-chiarli-wine block mb-4">
-              Capitolo 2
-            </span>
-            <h2 className="font-serif text-[8vw] lg:text-[3.5vw] text-chiarli-text leading-[0.9]">
-              Dettagli di
-              <span className="italic text-chiarli-wine block">Produzione</span>
-            </h2>
-          </div>
         </div>
       </section>
 
