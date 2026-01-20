@@ -154,26 +154,31 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
       </section>
 
       {/* Section 2: 165 anni di storia - DARK */}
-      <section ref={section2Ref} className="relative min-h-screen bg-chiarli-text overflow-hidden">
+      <section ref={section2Ref} className="relative bg-chiarli-text overflow-hidden py-32">
         <div className="absolute inset-0">
           <img
             src="/foto/bg-base-uai-1333x1333-2.jpg"
             alt="Storia Background"
-            className="w-full h-full object-cover opacity-15"
+            className="w-full h-full object-cover opacity-10"
           />
         </div>
 
-        <div className="relative z-10 min-h-screen flex items-center max-w-[1800px] mx-auto px-6 md:px-12 py-32">
-          <div className="w-full">
-            <h2
-              className={`font-serif text-5xl md:text-7xl text-white mb-20 transition-all duration-700 ${
-                isSection2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              165 anni di <span className="italic text-chiarli-wine-light">Storia</span>
-            </h2>
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-12">
+          <h2
+            className={`font-serif text-5xl md:text-7xl text-center text-white mb-24 transition-all duration-700 ${
+              isSection2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            165 anni di <span className="italic text-chiarli-wine-light">Storia</span>
+          </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Vertical Timeline */}
+          <div className="relative">
+            {/* Central Line */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-chiarli-wine-light/30 hidden md:block" />
+
+            {/* Timeline Items */}
+            <div className="space-y-24">
               {[
                 {
                   year: "1860",
@@ -223,49 +228,55 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                   description: "Certificazione Equalitas per l'intero Gruppo Chiarli 1860. Impegno verso la sostenibilità economica, sociale e ambientale.",
                   image: "/foto/DSC04010.jpg"
                 }
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className={`group cursor-pointer transition-all duration-700 ${
-                    isSection2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                  } ${expandedCard === index ? 'md:col-span-2 lg:col-span-2' : ''}`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
-                  onClick={() => setExpandedCard(expandedCard === index ? null : index)}
-                >
-                  <div className={`border-l-4 border-chiarli-wine-light pl-6 py-4 hover:border-white transition-all duration-500 ${
-                    expandedCard === index ? 'bg-chiarli-wine/10 pr-6' : ''
-                  }`}>
-                    <span className="font-serif text-5xl md:text-6xl text-chiarli-wine-light block mb-4 group-hover:text-white transition-colors">
-                      {item.year}
-                    </span>
-                    <h3 className="font-serif text-xl md:text-2xl text-white mb-2">{item.title}</h3>
-
-                    {/* Expanded Content */}
-                    <div className={`overflow-hidden transition-all duration-500 ${
-                      expandedCard === index ? 'max-h-[500px] opacity-100 mt-6' : 'max-h-0 opacity-0'
-                    }`}>
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-48 object-cover mb-4 shadow-lg"
-                      />
-                      <p className="font-sans text-white/80 text-base leading-relaxed">
-                        {item.description}
-                      </p>
-                      <button className="mt-4 font-sans text-xs uppercase tracking-widest text-chiarli-wine-light hover:text-white transition-colors">
-                        Chiudi ×
-                      </button>
+              ].map((item, index) => {
+                const isLeft = index % 2 === 0;
+                return (
+                  <div
+                    key={index}
+                    className={`relative grid md:grid-cols-2 gap-8 items-center transition-all duration-700 ${
+                      isSection2Visible ? 'opacity-100' : 'opacity-0'
+                    } ${isLeft ? '' : 'md:grid-flow-dense'}`}
+                    style={{
+                      transitionDelay: `${index * 150}ms`,
+                      transform: isSection2Visible ? 'none' : isLeft ? 'translateX(-50px)' : 'translateX(50px)'
+                    }}
+                  >
+                    {/* Year Circle on center line */}
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center justify-center w-20 h-20 rounded-full bg-chiarli-text border-4 border-chiarli-wine-light z-10">
+                      <span className="font-serif text-lg text-chiarli-wine-light font-bold">{item.year}</span>
                     </div>
 
-                    {/* Collapsed hint */}
-                    {expandedCard !== index && (
-                      <p className="font-sans text-xs uppercase tracking-wider text-white/40 mt-3 group-hover:text-white/60 transition-colors">
-                        Clicca per scoprire →
-                      </p>
-                    )}
+                    {/* Content Card */}
+                    <div className={`${isLeft ? 'md:text-right md:pr-16' : 'md:col-start-2 md:pl-16'}`}>
+                      <div className="group">
+                        {/* Mobile Year */}
+                        <span className="font-serif text-5xl text-chiarli-wine-light block mb-4 md:hidden">
+                          {item.year}
+                        </span>
+
+                        <h3 className="font-serif text-3xl text-white mb-4 group-hover:text-chiarli-wine-light transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="font-sans text-white/70 text-lg leading-relaxed mb-4">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Image */}
+                    <div className={`${isLeft ? 'md:col-start-2 md:pl-16' : 'md:pr-16'}`}>
+                      <div className="group relative overflow-hidden shadow-2xl">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
