@@ -159,12 +159,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
       <section className="relative min-h-screen flex items-center overflow-x-hidden bg-gradient-to-br from-chiarli-text via-[#2a1f23] to-chiarli-text">
 
         {/* Background image con effetto "vedo non vedo" */}
-        <div
-          className="absolute inset-0"
-          style={{
-            transform: `translateY(${scrollY * 0.05}px)`,
-          }}
-        >
+        <div className="absolute inset-0">
           <img
             src="/foto/close-up-17-scaled.jpeg"
             alt="Uve"
@@ -455,17 +450,12 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
       {/* Tasting Notes - Dynamic immersive section */}
       <section className="relative min-h-screen bg-chiarli-text overflow-hidden">
 
-        {/* Background image with parallax */}
-        <div
-          className="absolute inset-0"
-          style={{
-            transform: `translateY(${(scrollY - 800) * 0.08}px)`,
-          }}
-        >
+        {/* Background image */}
+        <div className="absolute inset-0">
           <img
             src="/foto/close-up-64-scaled.jpeg"
             alt="Vigneto Sorbara"
-            className="w-full h-[120%] object-cover opacity-30"
+            className="w-full h-full object-cover opacity-30"
           />
         </div>
 
