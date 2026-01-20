@@ -6,15 +6,15 @@
       "name": "Tenuta Cialdini",
       "location": "Castelvetro di Modena",
       "description": "Oltre 140 anni di storia familiare e 50 ettari di vigneti nel cuore della zona di produzione del Lambrusco Grasparossa.",
-      "image": "/foto/DSC04010.jpg",
+      "image": "/foto/vasche-4.jpg",
       "hectares": 50,
       "altitude": "200-350m",
       "grape": "Grasparossa",
       "year": "1860",
       "mapPosition": { "x": 58, "y": 56 },
       "gallery": [
-        "/foto/DSC04010.jpg",
-        "/foto/close-up-26-scaled.jpeg"
+        "/foto/vasche-4.jpg",
+        "/foto/galleria-chiarli-136.jpeg"
       ],
       "isActive": true,
       "order": 1

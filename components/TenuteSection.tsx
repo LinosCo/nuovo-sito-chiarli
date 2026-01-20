@@ -179,6 +179,15 @@ export const TenuteSection: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Auto-advance slides every 6 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goNext();
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [slideIndex, isAnimating]);
+
   // Gestisce il "salto" quando si arriva alle slide duplicate
   useEffect(() => {
     if (!transitionEnabled) {
