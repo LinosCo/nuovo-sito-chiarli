@@ -452,6 +452,21 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         </div>
       </section>
 
+      {/* CAPITOLO 1: ESPERIENZA SENSORIALE */}
+      <section className="relative py-16 md:py-20 bg-white border-t-4 border-chiarli-wine">
+        <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20">
+          <div className="text-center mb-12">
+            <span className="font-sans text-[10px] font-bold uppercase tracking-[0.5em] text-chiarli-wine block mb-4">
+              Capitolo 1
+            </span>
+            <h2 className="font-serif text-[8vw] lg:text-[3.5vw] text-chiarli-text leading-[0.9]">
+              Esperienza
+              <span className="italic text-chiarli-wine block">Sensoriale</span>
+            </h2>
+          </div>
+        </div>
+      </section>
+
       {/* Tasting Notes - Dynamic immersive section */}
       <section className="relative min-h-screen bg-chiarli-text overflow-hidden">
 
@@ -569,6 +584,56 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         </div>
       </section>
 
+      {/* Food Pairing - Full width split */}
+      <section className="relative bg-white overflow-hidden">
+        <div className="flex flex-col lg:flex-row">
+
+          {/* Left - Full height image */}
+          <div className="w-full lg:w-1/2 h-[40vh] md:h-[50vh] lg:h-[80vh] relative">
+            <img
+              src="/foto/ravioli-2063535_1280-uai-540x810.jpg"
+              alt="Abbinamento gastronomico"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Right - Content */}
+          <div className="w-full lg:w-1/2 flex items-center relative bg-white">
+
+            <div className="relative z-10 px-6 md:px-16 lg:px-20 py-10 md:py-16 lg:py-24">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
+                Abbinamenti
+              </span>
+
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-chiarli-text mb-6 md:mb-8 leading-tight">
+                Il compagno ideale della
+                <span className="italic text-chiarli-wine block">cucina emiliana</span>
+              </h2>
+
+              <p className="font-serif text-base md:text-lg text-chiarli-text/70 leading-relaxed mb-6 md:mb-8">
+                {wine.pairings && wine.pairings.length > 0
+                  ? "Abbinamenti consigliati per questo vino:"
+                  : "La freschezza e la sapidità di questo vino lo rendono perfetto per accompagnare diversi piatti."}
+              </p>
+
+              {wine.pairings && wine.pairings.length > 0 && (
+                <div className="grid grid-cols-1 gap-3 md:gap-4">
+                  {wine.pairings.map((item: string, index: number) => (
+                    <div key={index} className="flex items-start gap-2 md:gap-3 group cursor-default p-2 -m-2 rounded hover:bg-chiarli-wine/5 transition-all duration-300">
+                      <div className="w-2 h-2 mt-1.5 rounded-full bg-chiarli-wine/40 group-hover:bg-chiarli-wine group-hover:shadow-[0_0_10px_rgba(180,100,120,0.6)] transition-all duration-300 flex-shrink-0" />
+                      <span className="font-sans text-xs md:text-sm text-chiarli-text/70 group-hover:text-chiarli-text transition-colors">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* Heritage Section - Full width split */}
       <section className="relative bg-chiarli-text overflow-hidden">
         <div className="flex flex-col lg:flex-row">
@@ -616,6 +681,21 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* CAPITOLO 2: DETTAGLI DI PRODUZIONE */}
+      <section className="relative py-16 md:py-20 bg-white border-t-4 border-chiarli-wine">
+        <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20">
+          <div className="text-center mb-12">
+            <span className="font-sans text-[10px] font-bold uppercase tracking-[0.5em] text-chiarli-wine block mb-4">
+              Capitolo 2
+            </span>
+            <h2 className="font-serif text-[8vw] lg:text-[3.5vw] text-chiarli-text leading-[0.9]">
+              Dettagli di
+              <span className="italic text-chiarli-wine block">Produzione</span>
+            </h2>
+          </div>
         </div>
       </section>
 
@@ -739,56 +819,6 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           </div>
         </section>
       )}
-
-      {/* Food Pairing - Full width split like Heritage */}
-      <section className="relative bg-white overflow-hidden">
-        <div className="flex flex-col lg:flex-row">
-
-          {/* Left - Full height image */}
-          <div className="w-full lg:w-1/2 h-[40vh] md:h-[50vh] lg:h-[80vh] relative">
-            <img
-              src="/foto/ravioli-2063535_1280-uai-540x810.jpg"
-              alt="Abbinamento gastronomico"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </div>
-
-          {/* Right - Content */}
-          <div className="w-full lg:w-1/2 flex items-center relative bg-white">
-
-            <div className="relative z-10 px-6 md:px-16 lg:px-20 py-10 md:py-16 lg:py-24">
-              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
-                Abbinamenti
-              </span>
-
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-chiarli-text mb-6 md:mb-8 leading-tight">
-                Il compagno ideale della
-                <span className="italic text-chiarli-wine block">cucina emiliana</span>
-              </h2>
-
-              <p className="font-serif text-base md:text-lg text-chiarli-text/70 leading-relaxed mb-6 md:mb-8">
-                {wine.pairings && wine.pairings.length > 0
-                  ? "Abbinamenti consigliati per questo vino:"
-                  : "La freschezza e la sapidità di questo vino lo rendono perfetto per accompagnare diversi piatti."}
-              </p>
-
-              {wine.pairings && wine.pairings.length > 0 && (
-                <div className="grid grid-cols-1 gap-3 md:gap-4">
-                  {wine.pairings.map((item: string, index: number) => (
-                    <div key={index} className="flex items-start gap-2 md:gap-3 group cursor-default p-2 -m-2 rounded hover:bg-chiarli-wine/5 transition-all duration-300">
-                      <div className="w-2 h-2 mt-1.5 rounded-full bg-chiarli-wine/40 group-hover:bg-chiarli-wine group-hover:shadow-[0_0_10px_rgba(180,100,120,0.6)] transition-all duration-300 flex-shrink-0" />
-                      <span className="font-sans text-xs md:text-sm text-chiarli-text/70 group-hover:text-chiarli-text transition-colors">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 lg:py-32 bg-chiarli-text relative overflow-hidden">
