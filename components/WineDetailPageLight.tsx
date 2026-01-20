@@ -38,10 +38,17 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
 
   const specs = [
     { label: "Vitigno", value: "Lambrusco di Sorbara 100%" },
-    { label: "Metodo", value: "Rifermentazione naturale" },
+    { label: "Zona di Produzione", value: "Tenuta Sozzigalli, Bomporto" },
+    { label: "Tipologia", value: "Vino Spumante di Qualità" },
+    { label: "Metodo", value: "Rifermentazione naturale in bottiglia" },
+    { label: "Fermentazione", value: "Temperatura controllata 16-18°C" },
     { label: "Affinamento", value: "6 mesi sui lieviti" },
-    { label: "Gradazione", value: "11,5% vol." },
-    { label: "Temperatura", value: "12-14°C" },
+    { label: "Gradazione Alcolica", value: "11,5% vol." },
+    { label: "Residuo Zuccherino", value: "8 g/l" },
+    { label: "Acidità Totale", value: "6,5 g/l" },
+    { label: "Temperatura di Servizio", value: "12-14°C" },
+    { label: "Formato Bottiglia", value: "750 ml" },
+    { label: "Tappo", value: "Tappo corona" },
   ];
 
   const awards = [
@@ -167,28 +174,6 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
                 che Cleto Chiarli utilizzava nel 1860, riscoperta per catturare l'essenza più pura del Sorbara.
               </p>
 
-              {/* Specs inline */}
-              <div
-                className={`flex flex-wrap gap-x-8 gap-y-4 mb-12 transition-all duration-1000 delay-400 ${
-                  isLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                <div>
-                  <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-chiarli-text/40 block mb-1">Vitigno</span>
-                  <span className="font-serif text-lg text-chiarli-text">Sorbara 100%</span>
-                </div>
-                <div className="w-px bg-chiarli-text/10" />
-                <div>
-                  <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-chiarli-text/40 block mb-1">Gradazione</span>
-                  <span className="font-serif text-lg text-chiarli-text">11,5%</span>
-                </div>
-                <div className="w-px bg-chiarli-text/10" />
-                <div>
-                  <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-chiarli-text/40 block mb-1">Servire a</span>
-                  <span className="font-serif text-lg text-chiarli-text">12-14°C</span>
-                </div>
-              </div>
-
               {/* CTA */}
               <div
                 className={`flex items-center gap-8 transition-all duration-1000 delay-500 ${
@@ -265,6 +250,21 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
           />
         </div>
 
+      </section>
+
+      {/* CAPITOLO 1: ESPERIENZA SENSORIALE */}
+      <section className="relative py-16 md:py-20 bg-white border-t-4 border-chiarli-wine">
+        <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20">
+          <div className="text-center mb-12">
+            <span className="font-sans text-[10px] font-bold uppercase tracking-[0.5em] text-chiarli-wine block mb-4">
+              Capitolo 1
+            </span>
+            <h2 className="font-serif text-[8vw] lg:text-[3.5vw] text-chiarli-text leading-[0.9]">
+              Esperienza
+              <span className="italic text-chiarli-wine block">Sensoriale</span>
+            </h2>
+          </div>
+        </div>
       </section>
 
       {/* Tasting Notes - Editorial tabs */}
@@ -360,6 +360,49 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
         </div>
       </section>
 
+      {/* Food Pairing - Split layout */}
+      <section className="grid grid-cols-1 lg:grid-cols-2">
+
+        {/* Image */}
+        <div className="h-[45vh] lg:h-[70vh] relative">
+          <img
+            src="/foto/ravioli-2063535_1280-uai-540x810.jpg"
+            alt="Abbinamento gastronomico"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Content */}
+        <div className="flex items-center bg-chiarli-stone">
+          <div className="px-8 md:px-16 lg:px-20 py-16 lg:py-24">
+
+            <span className="font-sans text-[10px] font-medium uppercase tracking-[0.4em] text-chiarli-text/40 block mb-6">
+              Abbinamenti
+            </span>
+
+            <h2 className="font-serif text-[8vw] lg:text-[3vw] text-chiarli-text leading-[0.9] mb-8">
+              Perfetto con la
+              <span className="italic text-chiarli-wine block">cucina emiliana</span>
+            </h2>
+
+            <p className="font-sans text-base text-chiarli-text/60 leading-relaxed mb-10 max-w-lg">
+              La freschezza e la sapidità di questo Lambrusco lo rendono il compagno ideale per i piatti della tradizione.
+            </p>
+
+            <div className="grid grid-cols-2 gap-4">
+              {pairings.map((item, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-chiarli-wine" />
+                  <span className="font-sans text-sm text-chiarli-text/70">{item}</span>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
       {/* Heritage - Full width image with overlay */}
       <section className="relative min-h-[80vh]">
         <div className="absolute inset-0">
@@ -404,8 +447,23 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
         </div>
       </section>
 
+      {/* CAPITOLO 2: DETTAGLI DI PRODUZIONE */}
+      <section className="relative py-16 md:py-20 bg-white border-t-4 border-chiarli-wine">
+        <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20">
+          <div className="text-center mb-12">
+            <span className="font-sans text-[10px] font-bold uppercase tracking-[0.5em] text-chiarli-wine block mb-4">
+              Capitolo 2
+            </span>
+            <h2 className="font-serif text-[8vw] lg:text-[3.5vw] text-chiarli-text leading-[0.9]">
+              Dettagli di
+              <span className="italic text-chiarli-wine block">Produzione</span>
+            </h2>
+          </div>
+        </div>
+      </section>
+
       {/* Technical Specs - Clean editorial grid */}
-      <section className="relative py-24 md:py-32 bg-white border-t border-chiarli-text/10 overflow-hidden">
+      <section className="relative py-24 md:py-32 bg-white overflow-hidden">
 
         {/* Floating bubbles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -435,9 +493,12 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
                 Scheda Tecnica
               </span>
               <h2 className="font-serif text-[8vw] lg:text-[3.5vw] text-chiarli-text leading-[0.9]">
-                I dettagli
-                <span className="italic text-chiarli-wine block">che contano</span>
+                Informazioni
+                <span className="italic text-chiarli-wine block">tecniche</span>
               </h2>
+              <p className="font-sans text-sm text-chiarli-text/60 leading-relaxed mt-6">
+                Tutti i dettagli di produzione e le caratteristiche enologiche del vino.
+              </p>
             </div>
 
             <div className="col-span-12 lg:col-span-8">
@@ -461,49 +522,6 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
           </div>
 
         </div>
-      </section>
-
-      {/* Food Pairing - Split layout */}
-      <section className="grid grid-cols-1 lg:grid-cols-2">
-
-        {/* Image */}
-        <div className="h-[45vh] lg:h-[70vh] relative">
-          <img
-            src="/foto/ravioli-2063535_1280-uai-540x810.jpg"
-            alt="Abbinamento gastronomico"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        {/* Content */}
-        <div className="flex items-center bg-chiarli-stone">
-          <div className="px-8 md:px-16 lg:px-20 py-16 lg:py-24">
-
-            <span className="font-sans text-[10px] font-medium uppercase tracking-[0.4em] text-chiarli-text/40 block mb-6">
-              Abbinamenti
-            </span>
-
-            <h2 className="font-serif text-[8vw] lg:text-[3vw] text-chiarli-text leading-[0.9] mb-8">
-              Perfetto con la
-              <span className="italic text-chiarli-wine block">cucina emiliana</span>
-            </h2>
-
-            <p className="font-sans text-base text-chiarli-text/60 leading-relaxed mb-10 max-w-lg">
-              La freschezza e la sapidità di questo Lambrusco lo rendono il compagno ideale per i piatti della tradizione.
-            </p>
-
-            <div className="grid grid-cols-2 gap-4">
-              {pairings.map((item, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-chiarli-wine" />
-                  <span className="font-sans text-sm text-chiarli-text/70">{item}</span>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </div>
-
       </section>
 
       {/* CTA - Minimal */}
