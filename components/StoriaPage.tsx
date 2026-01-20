@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Calendar } from 'lucide-react';
+import { Calendar, ChevronDown, ChevronUp, X } from 'lucide-react';
 
 interface StoriaPageProps {
   onBack?: () => void;
@@ -18,6 +18,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
   const [isSection3Visible, setIsSection3Visible] = useState(false);
   const [isSection4Visible, setIsSection4Visible] = useState(false);
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [activeTimelineItem, setActiveTimelineItem] = useState<number>(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -183,95 +184,174 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                 {
                   year: "1860",
                   title: "La Fondazione",
-                  description: "Cleto Chiarli fonda la prima cantina dell'Emilia-Romagna, dando inizio alla tradizione del Lambrusco di qualità. Acquisizione di Tenuta Cialdini a Castelvetro di Modena.",
+                  description: "Cleto Chiarli fonda la prima cantina dell'Emilia-Romagna, dando inizio alla tradizione del Lambrusco di qualità.",
+                  details: "Acquisizione di Tenuta Cialdini a Castelvetro di Modena. Con 50 ettari di vigneti nel cuore della zona di produzione del Lambrusco Grasparossa, inizia un'avventura che dura da oltre 160 anni.",
+                  curiosity: "Cleto Chiarli fu il primo a credere nella qualità del Lambrusco, quando era considerato solo un vino da tavola.",
                   image: "/foto/vasche-4.jpg"
                 },
                 {
                   year: "1900",
                   title: "L'Espansione",
-                  description: "La seconda generazione espande la produzione e inizia l'esportazione del Lambrusco oltre i confini regionali. Nascono le prime etichette storiche.",
+                  description: "La seconda generazione espande la produzione e inizia l'esportazione del Lambrusco oltre i confini regionali.",
+                  details: "Nascono le prime etichette storiche che porteranno il nome Chiarli nel mondo. La cantina si modernizza e aumenta la capacità produttiva.",
+                  curiosity: "Le prime bottiglie venivano trasportate con carri trainati da cavalli fino alla stazione ferroviaria di Modena.",
                   image: "/foto/galleria-chiarli-136.jpeg"
                 },
                 {
                   year: "1920",
                   title: "Tenuta Sozzigalli",
                   description: "Acquisizione della storica Tenuta Sozzigalli a Bomporto, 30 ettari di terreni ideali per il Lambrusco di Sorbara.",
+                  details: "I terreni alluvionali dove i fiumi Panaro e Secchia si incontrano creano condizioni uniche per la coltivazione del Sorbara, vitigno più delicato e elegante.",
+                  curiosity: "La tenuta viene coltivata ancora oggi senza irrigazione artificiale, solo con l'acqua piovana.",
                   image: "/foto/sozzigalli-29.jpg"
                 },
                 {
                   year: "1950",
                   title: "L'Innovazione",
-                  description: "Introduzione di nuove tecniche di vinificazione e acquisizione di Tenuta Belvedere a Spilamberto. Inizio della modernizzazione della cantina.",
+                  description: "Introduzione di nuove tecniche di vinificazione e acquisizione di Tenuta Belvedere a Spilamberto.",
+                  details: "25 ettari su suoli alluvionali profondi alle pendici dell'Appennino modenese. Inizio della modernizzazione della cantina con nuove tecnologie di fermentazione.",
+                  curiosity: "In questo periodo vengono installate le prime vasche in acciaio inox, rivoluzionando il processo produttivo.",
                   image: "/foto/a001-scaled.jpg"
                 },
                 {
                   year: "1980",
                   title: "Il Metodo Classico",
-                  description: "Viene sviluppato il Metodo del Fondatore, un approccio unico alla produzione del Lambrusco che combina tradizione e innovazione.",
+                  description: "Viene sviluppato il Metodo del Fondatore, un approccio unico alla produzione del Lambrusco.",
+                  details: "Questo metodo combina la tradizione della rifermentazione naturale con tecnologie moderne, creando vini di alta qualità con perlage fine e persistente.",
+                  curiosity: "Il Metodo del Fondatore prevede una seconda fermentazione in autoclave che dura almeno 30 giorni.",
                   image: "/foto/1.jpg"
                 },
                 {
                   year: "2000",
                   title: "Nuova Generazione",
-                  description: "La quinta generazione assume la guida dell'azienda con Anselmo, Mauro e Tommaso Chiarli. Espansione internazionale e focus sulla sostenibilità.",
+                  description: "La quinta generazione assume la guida dell'azienda con Anselmo, Mauro e Tommaso Chiarli.",
+                  details: "Espansione internazionale con apertura di nuovi mercati in Europa, America e Asia. Focus sulla sostenibilità e sulla qualità premium.",
+                  curiosity: "Tommaso Chiarli, della quinta generazione, ha studiato enologia a Bordeaux prima di tornare in azienda.",
                   image: "/foto/2.jpg"
                 },
                 {
                   year: "2015",
                   title: "Agricoltura 4.0",
-                  description: "Implementazione di tecnologie avanzate nei vigneti: stazioni meteo, sensori e agricoltura di precisione per un approccio sostenibile.",
+                  description: "Implementazione di tecnologie avanzate nei vigneti: stazioni meteo, sensori e agricoltura di precisione.",
+                  details: "Raccolta dati in tempo reale su temperatura, umidità e composizione del suolo per intervenire solo quando necessario, riducendo l'impatto ambientale.",
+                  curiosity: "Ogni vigna è monitorata 24/7 da sensori che inviano dati a una centrale operativa in tempo reale.",
                   image: "/foto/close-up-41.jpg"
                 },
                 {
                   year: "2025",
                   title: "Il Futuro",
-                  description: "Certificazione Equalitas per l'intero Gruppo Chiarli 1860. Impegno verso la sostenibilità economica, sociale e ambientale.",
+                  description: "Certificazione Equalitas per l'intero Gruppo Chiarli 1860.",
+                  details: "Impegno formale verso la sostenibilità economica, sociale e ambientale. Buone pratiche in tutte le dimensioni, dalla vigna alla bottiglia.",
+                  curiosity: "Chiarli è tra le prime cantine storiche italiane ad ottenere la certificazione Equalitas completa.",
                   image: "/foto/DSC04010.jpg"
                 }
               ].map((item, index) => {
                 const isLeft = index % 2 === 0;
+                const isExpanded = expandedCard === index;
                 return (
                   <div
                     key={index}
-                    className={`relative grid md:grid-cols-2 gap-8 items-center transition-all duration-700 ${
+                    className={`relative transition-all duration-700 ${
                       isSection2Visible ? 'opacity-100' : 'opacity-0'
-                    } ${isLeft ? '' : 'md:grid-flow-dense'}`}
+                    }`}
                     style={{
                       transitionDelay: `${index * 150}ms`,
                       transform: isSection2Visible ? 'none' : isLeft ? 'translateX(-50px)' : 'translateX(50px)'
                     }}
                   >
-                    {/* Year Circle on center line */}
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center justify-center w-20 h-20 rounded-full bg-chiarli-text border-4 border-chiarli-wine-light z-10">
-                      <span className="font-serif text-lg text-chiarli-wine-light font-bold">{item.year}</span>
-                    </div>
-
-                    {/* Content Card */}
-                    <div className={`${isLeft ? 'md:text-right md:pr-16' : 'md:col-start-2 md:pl-16'}`}>
-                      <div className="group">
-                        {/* Mobile Year */}
-                        <span className="font-serif text-5xl text-chiarli-wine-light block mb-4 md:hidden">
+                    <div className={`grid md:grid-cols-2 gap-8 items-start ${isLeft ? '' : 'md:grid-flow-dense'}`}>
+                      {/* Year Circle on center line */}
+                      <div
+                        className={`absolute left-1/2 top-8 -translate-x-1/2 hidden md:flex items-center justify-center w-20 h-20 rounded-full bg-chiarli-text border-4 transition-all duration-300 z-10 cursor-pointer ${
+                          isExpanded ? 'border-white scale-110' : 'border-chiarli-wine-light hover:border-white hover:scale-105'
+                        }`}
+                        onClick={() => setExpandedCard(isExpanded ? null : index)}
+                      >
+                        <span className={`font-serif text-lg font-bold transition-colors ${
+                          isExpanded ? 'text-white' : 'text-chiarli-wine-light'
+                        }`}>
                           {item.year}
                         </span>
-
-                        <h3 className="font-serif text-3xl text-white mb-4 group-hover:text-chiarli-wine-light transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="font-sans text-white/70 text-lg leading-relaxed mb-4">
-                          {item.description}
-                        </p>
                       </div>
-                    </div>
 
-                    {/* Image */}
-                    <div className={`${isLeft ? 'md:col-start-2 md:pl-16' : 'md:pr-16'}`}>
-                      <div className="group relative overflow-hidden shadow-2xl">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      {/* Content Card */}
+                      <div className={`${isLeft ? 'md:text-right md:pr-16' : 'md:col-start-2 md:pl-16'}`}>
+                        <div
+                          className="group cursor-pointer"
+                          onClick={() => setExpandedCard(isExpanded ? null : index)}
+                        >
+                          {/* Mobile Year */}
+                          <span className="font-serif text-5xl text-chiarli-wine-light block mb-4 md:hidden">
+                            {item.year}
+                          </span>
+
+                          <h3 className={`font-serif text-3xl mb-4 transition-all duration-300 ${
+                            isExpanded ? 'text-white' : 'text-white group-hover:text-chiarli-wine-light'
+                          }`}>
+                            {item.title}
+                          </h3>
+
+                          <p className="font-sans text-white/70 text-lg leading-relaxed mb-4">
+                            {item.description}
+                          </p>
+
+                          {/* Expanded Content */}
+                          <div className={`overflow-hidden transition-all duration-500 ${
+                            isExpanded ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+                          }`}>
+                            <div className={`pt-4 border-t-2 border-chiarli-wine-light/30 mt-4 space-y-4 ${
+                              isLeft ? 'md:text-right' : ''
+                            }`}>
+                              <p className="font-sans text-white/90 text-base leading-relaxed">
+                                {item.details}
+                              </p>
+                              <div className="bg-chiarli-wine/20 p-4 rounded">
+                                <span className="font-sans text-xs uppercase tracking-widest text-chiarli-wine-light block mb-2">
+                                  Curiosità
+                                </span>
+                                <p className="font-serif italic text-white/80 text-base">
+                                  {item.curiosity}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Expand/Collapse Indicator */}
+                          <div className={`mt-4 flex items-center gap-2 text-sm font-sans uppercase tracking-wider transition-colors ${
+                            isExpanded ? 'text-white' : 'text-chiarli-wine-light group-hover:text-white'
+                          } ${isLeft ? 'md:justify-end' : ''}`}>
+                            <span>{isExpanded ? 'Chiudi' : 'Scopri di più'}</span>
+                            {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image */}
+                      <div className={`${isLeft ? 'md:col-start-2 md:pl-16' : 'md:pr-16'}`}>
+                        <div
+                          className="group relative overflow-hidden shadow-2xl cursor-pointer"
+                          onClick={() => setExpandedCard(isExpanded ? null : index)}
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className={`w-full h-64 object-cover transform transition-all duration-700 ${
+                              isExpanded ? 'scale-105' : 'group-hover:scale-110'
+                            }`}
+                          />
+                          <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-500 ${
+                            isExpanded ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                          }`} />
+                          {!isExpanded && (
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
+                                <span className="font-sans text-white text-sm uppercase tracking-wider">
+                                  Clicca per espandere
+                                </span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
