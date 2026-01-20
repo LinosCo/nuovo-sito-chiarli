@@ -150,7 +150,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
       </div>
 
       {/* Section 3: Biologico - Image Left */}
-      <div className="relative min-h-screen bg-chiarli-stone overflow-hidden">
+      <div className="relative min-h-screen bg-chiarli-text overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
