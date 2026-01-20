@@ -156,7 +156,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
 
       {/* Section 2: 165 anni di storia - DARK */}
       <section ref={section2Ref} className="relative bg-chiarli-text overflow-hidden py-32">
-        {/* Animated Sparkling Bubbles - Red */}
+        {/* Animated Sparkling Bubbles - Red Rising */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(25)].map((_, i) => (
             <div
@@ -166,11 +166,11 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                 width: `${12 + (i % 4) * 8}px`,
                 height: `${12 + (i % 4) * 8}px`,
                 left: `${5 + (i * 3.8) % 90}%`,
-                top: `${(i * 7) % 100}%`,
+                bottom: `-10%`,
                 background: `radial-gradient(circle at 30% 30%, rgba(214,69,80,${0.4 + (i % 3) * 0.15}), rgba(150,30,40,${0.2 + (i % 3) * 0.1}))`,
                 boxShadow: `0 0 ${10 + i % 5}px rgba(214,69,80,0.5), inset 0 0 ${5 + i % 3}px rgba(255,150,160,0.3)`,
-                animation: `bubble-float ${15 + (i % 6) * 3}s ease-in-out infinite`,
-                animationDelay: `${(i * 0.5) % 15}s`,
+                animation: `bubble-rise-continuous ${12 + (i % 5) * 3}s linear infinite`,
+                animationDelay: `${(i * 0.8) % 12}s`,
               }}
             />
           ))}
@@ -520,26 +520,24 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
 
       {/* CSS Animations */}
       <style>{`
-        @keyframes bubble-float {
+        @keyframes bubble-rise-continuous {
           0% {
             transform: translateY(0) translateX(0) scale(1);
-            opacity: 0.3;
+            opacity: 0;
           }
-          25% {
-            transform: translateY(-15px) translateX(10px) scale(1.1);
+          5% {
             opacity: 0.5;
           }
           50% {
-            transform: translateY(-30px) translateX(-5px) scale(1.05);
+            transform: translateY(-50vh) translateX(15px) scale(1.08);
+            opacity: 0.6;
+          }
+          95% {
             opacity: 0.4;
           }
-          75% {
-            transform: translateY(-15px) translateX(8px) scale(1.08);
-            opacity: 0.5;
-          }
           100% {
-            transform: translateY(0) translateX(0) scale(1);
-            opacity: 0.3;
+            transform: translateY(-110vh) translateX(-10px) scale(0.95);
+            opacity: 0;
           }
         }
       `}</style>
