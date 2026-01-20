@@ -42,6 +42,34 @@ const EmiliaRomagnaMapDark: React.FC<{
           className="w-full h-full object-contain opacity-60 scale-125"
         />
 
+        {/* Pin on regional map showing Modena city location */}
+        <div
+          className="absolute cursor-default transition-all duration-500"
+          style={{
+            left: '67%',
+            top: '39%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 5,
+          }}
+        >
+          {/* Pulse effect */}
+          <div className="absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-black/50 animate-ping" />
+
+          {/* Outer glow */}
+          <div className="absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-black/40" />
+
+          {/* Pin dot */}
+          <div className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-black" />
+          <div className="absolute w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
+
+          {/* Label */}
+          <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 whitespace-nowrap">
+            <span className="font-sans text-xs uppercase tracking-wider text-black font-bold">
+              Modena
+            </span>
+          </div>
+        </div>
+
         {/* Pin on small Italy map (left side) showing Modena province */}
         <div
           className="absolute cursor-default transition-all duration-500"
