@@ -17,6 +17,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
   const [isSection2Visible, setIsSection2Visible] = useState(false);
   const [isSection3Visible, setIsSection3Visible] = useState(false);
   const [isSection4Visible, setIsSection4Visible] = useState(false);
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -163,7 +164,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
         </div>
 
         <div className="relative z-10 min-h-screen flex items-center max-w-[1800px] mx-auto px-6 md:px-12 py-32">
-          <div>
+          <div className="w-full">
             <h2
               className={`font-serif text-5xl md:text-7xl text-white mb-20 transition-all duration-700 ${
                 isSection2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -172,25 +173,96 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
               165 anni di <span className="italic text-chiarli-wine-light">Storia</span>
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { year: "1860", title: "La Fondazione" },
-                { year: "1900", title: "L'Espansione" },
-                { year: "1950", title: "L'Innovazione" },
-                { year: "2025", title: "Il Futuro" }
+                {
+                  year: "1860",
+                  title: "La Fondazione",
+                  description: "Cleto Chiarli fonda la prima cantina dell'Emilia-Romagna, dando inizio alla tradizione del Lambrusco di qualità. Acquisizione di Tenuta Cialdini a Castelvetro di Modena.",
+                  image: "/foto/vasche-4.jpg"
+                },
+                {
+                  year: "1900",
+                  title: "L'Espansione",
+                  description: "La seconda generazione espande la produzione e inizia l'esportazione del Lambrusco oltre i confini regionali. Nascono le prime etichette storiche.",
+                  image: "/foto/galleria-chiarli-136.jpeg"
+                },
+                {
+                  year: "1920",
+                  title: "Tenuta Sozzigalli",
+                  description: "Acquisizione della storica Tenuta Sozzigalli a Bomporto, 30 ettari di terreni ideali per il Lambrusco di Sorbara.",
+                  image: "/foto/sozzigalli-29.jpg"
+                },
+                {
+                  year: "1950",
+                  title: "L'Innovazione",
+                  description: "Introduzione di nuove tecniche di vinificazione e acquisizione di Tenuta Belvedere a Spilamberto. Inizio della modernizzazione della cantina.",
+                  image: "/foto/a001-scaled.jpg"
+                },
+                {
+                  year: "1980",
+                  title: "Il Metodo Classico",
+                  description: "Viene sviluppato il Metodo del Fondatore, un approccio unico alla produzione del Lambrusco che combina tradizione e innovazione.",
+                  image: "/foto/1.jpg"
+                },
+                {
+                  year: "2000",
+                  title: "Nuova Generazione",
+                  description: "La quinta generazione assume la guida dell'azienda con Anselmo, Mauro e Tommaso Chiarli. Espansione internazionale e focus sulla sostenibilità.",
+                  image: "/foto/2.jpg"
+                },
+                {
+                  year: "2015",
+                  title: "Agricoltura 4.0",
+                  description: "Implementazione di tecnologie avanzate nei vigneti: stazioni meteo, sensori e agricoltura di precisione per un approccio sostenibile.",
+                  image: "/foto/close-up-41.jpg"
+                },
+                {
+                  year: "2025",
+                  title: "Il Futuro",
+                  description: "Certificazione Equalitas per l'intero Gruppo Chiarli 1860. Impegno verso la sostenibilità economica, sociale e ambientale.",
+                  image: "/foto/DSC04010.jpg"
+                }
               ].map((item, index) => (
                 <div
                   key={index}
-                  className={`group transition-all duration-700 ${
+                  className={`group cursor-pointer transition-all duration-700 ${
                     isSection2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                  }`}
+                  } ${expandedCard === index ? 'md:col-span-2 lg:col-span-2' : ''}`}
                   style={{ transitionDelay: `${index * 100}ms` }}
+                  onClick={() => setExpandedCard(expandedCard === index ? null : index)}
                 >
-                  <div className="border-l-4 border-chiarli-wine-light pl-6 py-4 hover:border-white transition-colors">
-                    <span className="font-serif text-6xl text-chiarli-wine-light block mb-4 group-hover:text-white transition-colors">
+                  <div className={`border-l-4 border-chiarli-wine-light pl-6 py-4 hover:border-white transition-all duration-500 ${
+                    expandedCard === index ? 'bg-chiarli-wine/10 pr-6' : ''
+                  }`}>
+                    <span className="font-serif text-5xl md:text-6xl text-chiarli-wine-light block mb-4 group-hover:text-white transition-colors">
                       {item.year}
                     </span>
-                    <h3 className="font-serif text-2xl text-white">{item.title}</h3>
+                    <h3 className="font-serif text-xl md:text-2xl text-white mb-2">{item.title}</h3>
+
+                    {/* Expanded Content */}
+                    <div className={`overflow-hidden transition-all duration-500 ${
+                      expandedCard === index ? 'max-h-[500px] opacity-100 mt-6' : 'max-h-0 opacity-0'
+                    }`}>
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-48 object-cover mb-4 shadow-lg"
+                      />
+                      <p className="font-sans text-white/80 text-base leading-relaxed">
+                        {item.description}
+                      </p>
+                      <button className="mt-4 font-sans text-xs uppercase tracking-widest text-chiarli-wine-light hover:text-white transition-colors">
+                        Chiudi ×
+                      </button>
+                    </div>
+
+                    {/* Collapsed hint */}
+                    {expandedCard !== index && (
+                      <p className="font-sans text-xs uppercase tracking-wider text-white/40 mt-3 group-hover:text-white/60 transition-colors">
+                        Clicca per scoprire →
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
