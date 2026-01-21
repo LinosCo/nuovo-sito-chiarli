@@ -194,20 +194,20 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = ({ onBack
       })}
 
       {/* Galleria Immagini - Full Split */}
-      <section className="relative min-h-screen bg-white overflow-hidden">
+      <section className="relative min-h-screen bg-chiarli-stone overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Image */}
-          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-1">
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
             <img
               src="/foto/a001-scaled.jpg"
               alt="Vigneto Belvedere"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-stone/20 lg:bg-gradient-to-r lg:from-chiarli-stone/20 lg:to-transparent" />
           </div>
 
           {/* Content */}
-          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-2">
+          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-1">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
                 La <span className="italic text-chiarli-wine">Tenuta</span>
@@ -220,20 +220,20 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = ({ onBack
         </div>
       </section>
 
-      <section className="relative min-h-screen bg-chiarli-stone overflow-hidden">
+      <section className="relative min-h-screen bg-white overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Image */}
-          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-1">
             <img
               src="/foto/close-up-78-scaled.jpeg"
               alt="Dettaglio Vigneto"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-stone/20 lg:bg-gradient-to-r lg:from-chiarli-stone/20 lg:to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
           </div>
 
           {/* Content */}
-          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-1">
+          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-2">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
                 Il <span className="italic text-chiarli-wine">Territorio</span>

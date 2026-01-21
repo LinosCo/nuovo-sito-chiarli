@@ -171,7 +171,10 @@ export const BottleShowcase: React.FC<BottleShowcaseProps> = ({ onWineClick }) =
           }`}
           style={{ transitionDelay: '1000ms' }}
         >
-          <button className="border border-chiarli-wine text-chiarli-wine px-8 py-3 font-sans text-xs font-bold uppercase tracking-widest hover:bg-chiarli-wine hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-chiarli-wine/20">
+          <button
+            onClick={() => window.location.hash = '#/tutti-i-vini'}
+            className="border border-chiarli-wine text-chiarli-wine px-8 py-3 font-sans text-xs font-bold uppercase tracking-widest hover:bg-chiarli-wine hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-chiarli-wine/20"
+          >
              {homeContent.winesSection.ctaText}
           </button>
         </div>

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
+import { Menu, X } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTenuteOpen, setIsTenuteOpen] = useState(false);
   const [isViniOpen, setIsViniOpen] = useState(false);
-  const { toggleTheme, isDark } = useTheme();
 
   // TEMPORANEO: Semplificato durante sviluppo dark-only
   const navItems = [
@@ -48,9 +46,7 @@ export const Navbar: React.FC = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? 'bg-chiarli-stone/95 backdrop-blur-md py-4 shadow-sm text-chiarli-text'
-          : isDark
-            ? 'bg-transparent py-6 text-white'
-            : 'bg-chiarli-stone/90 backdrop-blur-sm py-6 text-chiarli-text'
+          : 'bg-transparent py-6 text-white'
       }`}
     >
       <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -60,7 +56,7 @@ export const Navbar: React.FC = () => {
           <img
             src="/foto/cletochiarli-2-01.svg"
             alt="Cleto Chiarli"
-            className={`h-10 md:h-12 w-auto transition-all ${isScrolled ? 'brightness-0' : isDark ? 'brightness-0 invert' : 'brightness-0'}`}
+            className={`h-10 md:h-12 w-auto transition-all ${isScrolled ? 'brightness-0' : 'brightness-0 invert'}`}
           />
         </a>
 
@@ -139,7 +135,7 @@ export const Navbar: React.FC = () => {
             {isMenuOpen ? <X /> : <Menu />}
           </button>
 
-          <a href="#contatti" className={`hidden md:block px-6 py-2 ${isDark ? 'hover:text-chiarli-wine-light' : 'hover:text-chiarli-wine'} font-sans text-xs font-bold uppercase tracking-widest transition-all`}>
+          <a href="#contatti" className="hidden md:block px-6 py-2 hover:text-chiarli-wine-light font-sans text-xs font-bold uppercase tracking-widest transition-all">
             Contatti
           </a>
         </div>

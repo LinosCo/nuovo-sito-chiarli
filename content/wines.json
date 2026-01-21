@@ -169,7 +169,7 @@
           "value": "Castelvetro di Modena"
         }
       ],
-      "isActive": true,
+      "isActive": false,
       "order": 4
     },
     {
@@ -298,7 +298,7 @@
           "value": "Pressatura soffice a temperatura controllata"
         }
       ],
-      "isActive": true,
+      "isActive": false,
       "order": 6
     },
     {
@@ -379,7 +379,7 @@
         "profumo": null,
         "gusto": null
       },
-      "isActive": true,
+      "isActive": false,
       "order": 9,
       "id": 9
     },
@@ -407,7 +407,7 @@
         "profumo": null,
         "gusto": null
       },
-      "isActive": true,
+      "isActive": false,
       "order": 10,
       "id": 10
     },

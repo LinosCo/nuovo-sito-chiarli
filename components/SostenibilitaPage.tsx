@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Sprout, Droplet, Leaf, Award, Sun } from 'lucide-react';
+import { ArrowRight, Droplet } from 'lucide-react';
 
 interface SostenibilitaPageProps {
   onBack?: () => void;
@@ -8,6 +8,9 @@ interface SostenibilitaPageProps {
 export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const [statsVisible, setStatsVisible] = useState(false);
+  const statsRef = useRef<HTMLElement>(null);
+  const [counters, setCounters] = useState({ years: 0, tenute: 0, ettari: 0, cert: 2000 });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,6 +28,47 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
 
     return () => observer.disconnect();
   }, []);
+
+  // Stats counter animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !statsVisible) {
+          setStatsVisible(true);
+
+          // Animate counters
+          const duration = 2000; // 2 seconds
+          const steps = 60;
+          const stepDuration = duration / steps;
+
+          let currentStep = 0;
+          const interval = setInterval(() => {
+            currentStep++;
+            const progress = currentStep / steps;
+
+            setCounters({
+              years: Math.floor(160 * progress),
+              tenute: Math.floor(3 * progress),
+              ettari: Math.floor(195 * progress),
+              cert: Math.floor(2000 + 25 * progress)
+            });
+
+            if (currentStep >= steps) {
+              clearInterval(interval);
+              setCounters({ years: 160, tenute: 3, ettari: 195, cert: 2025 });
+            }
+          }, stepDuration);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [statsVisible]);
 
   return (
     <div className="min-h-screen">
@@ -276,29 +320,110 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="relative bg-chiarli-wine py-20">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
+      {/* Stats Section - INTERACTIVE */}
+      <section ref={statsRef} className="relative bg-chiarli-wine py-24 overflow-hidden">
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+            backgroundSize: '40px 40px'
+          }} />
+        </div>
 
-            <div>
-              <div className="font-serif text-5xl md:text-6xl text-white mb-3">160+</div>
-              <div className="font-sans text-sm uppercase tracking-widest text-white/70">Anni di Storia</div>
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+
+            {/* Stat 1 - Anni di Storia */}
+            <div
+              className={`group relative transition-all duration-700 ${
+                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: '0ms' }}
+            >
+              <div className="relative p-8 text-center transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+                {/* Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Counter */}
+                <div className="relative font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-4 font-bold">
+                  {counters.years}
+                  <span className="text-chiarli-wine-light">+</span>
+                </div>
+
+                {/* Label */}
+                <div className="relative font-sans text-xs md:text-sm uppercase tracking-[0.3em] text-white/80 group-hover:text-white transition-colors duration-300">
+                  Anni di Storia
+                </div>
+
+                {/* Decorative line */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-white/50 group-hover:w-20 transition-all duration-500" />
+              </div>
             </div>
 
-            <div>
-              <div className="font-serif text-5xl md:text-6xl text-white mb-3">3</div>
-              <div className="font-sans text-sm uppercase tracking-widest text-white/70">Tenute Storiche</div>
+            {/* Stat 2 - Tenute Storiche */}
+            <div
+              className={`group relative transition-all duration-700 ${
+                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: '150ms' }}
+            >
+              <div className="relative p-8 text-center transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-4 font-bold">
+                  {counters.tenute}
+                </div>
+
+                <div className="relative font-sans text-xs md:text-sm uppercase tracking-[0.3em] text-white/80 group-hover:text-white transition-colors duration-300">
+                  Tenute Storiche
+                </div>
+
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-white/50 group-hover:w-20 transition-all duration-500" />
+              </div>
             </div>
 
-            <div>
-              <div className="font-serif text-5xl md:text-6xl text-white mb-3">195</div>
-              <div className="font-sans text-sm uppercase tracking-widest text-white/70">Ettari di Vigneti</div>
+            {/* Stat 3 - Ettari di Vigneti */}
+            <div
+              className={`group relative transition-all duration-700 ${
+                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: '300ms' }}
+            >
+              <div className="relative p-8 text-center transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-4 font-bold">
+                  {counters.ettari}
+                </div>
+
+                <div className="relative font-sans text-xs md:text-sm uppercase tracking-[0.3em] text-white/80 group-hover:text-white transition-colors duration-300">
+                  Ettari di Vigneti
+                </div>
+
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-white/50 group-hover:w-20 transition-all duration-500" />
+              </div>
             </div>
 
-            <div>
-              <div className="font-serif text-5xl md:text-6xl text-white mb-3">2025</div>
-              <div className="font-sans text-sm uppercase tracking-widest text-white/70">Certificazione Equalitas</div>
+            {/* Stat 4 - Certificazione */}
+            <div
+              className={`group relative transition-all duration-700 ${
+                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: '450ms' }}
+            >
+              <div className="relative p-8 text-center transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-4 font-bold">
+                  {counters.cert}
+                </div>
+
+                <div className="relative font-sans text-xs md:text-sm uppercase tracking-[0.3em] text-white/80 group-hover:text-white transition-colors duration-300">
+                  Certificazione Equalitas
+                </div>
+
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-white/50 group-hover:w-20 transition-all duration-500" />
+              </div>
             </div>
 
           </div>

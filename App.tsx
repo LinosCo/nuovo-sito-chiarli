@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { HeroLight } from './components/HeroLight';
 import { HistorySection } from './components/HistorySection';
-import { HistorySectionLight } from './components/HistorySectionLight';
 import { BottleShowcase } from './components/BottleShowcase';
-import { BottleShowcaseLight } from './components/BottleShowcaseLight';
 import { FeaturedSection } from './components/FeaturedSection';
-import { FeaturedSectionLight } from './components/FeaturedSectionLight';
 import { BlogSection } from './components/BlogSection';
-import { BlogSectionLight } from './components/BlogSectionLight';
 import { TenuteSection } from './components/TenuteSection';
 import { Footer } from './components/Footer';
 import { WineDetailPage } from './components/WineDetailPage';
@@ -24,17 +19,15 @@ import { MetodoPage } from './components/MetodoPage';
 import { BlogPage } from './components/BlogPage';
 import { CollezioneClassicaPage } from './components/CollezioneClassicaPage';
 import { CollezionePremiumPage } from './components/CollezionePremiumPage';
-// import { WineDetailPageLight } from './components/WineDetailPageLight';
+import { TuttiIViniPage } from './components/TuttiIViniPage';
 import { MouseGradient } from './components/MouseGradient';
-import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 
 function AppContent() {
   // Blog section enabled
-  const [currentPage, setCurrentPage] = useState<'home' | 'wine-detail' | 'experiences' | 'storia' | 'tenute' | 'tenuta-detail' | 'sostenibilita' | 'metodo' | 'blog' | 'collezione-classica' | 'collezione-premium'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'wine-detail' | 'experiences' | 'storia' | 'tenute' | 'tenuta-detail' | 'sostenibilita' | 'metodo' | 'blog' | 'collezione-classica' | 'collezione-premium' | 'tutti-i-vini'>('home');
   const [wineSlug, setWineSlug] = useState<string | null>(null);
   const [tenutaSlug, setTenutaSlug] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const { isDark } = useTheme();
 
   // Initial loading animation
   useEffect(() => {
@@ -92,6 +85,10 @@ function AppContent() {
         setTenutaSlug(null);
       } else if (hash === '#/collezione-premium') {
         setCurrentPage('collezione-premium');
+        setWineSlug(null);
+        setTenutaSlug(null);
+      } else if (hash === '#/tutti-i-vini') {
+        setCurrentPage('tutti-i-vini');
         setWineSlug(null);
         setTenutaSlug(null);
       } else {
@@ -180,9 +177,7 @@ function AppContent() {
 
   if (currentPage === 'wine-detail' && wineSlug) {
     return (
-      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-      }`}>
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -195,9 +190,7 @@ function AppContent() {
 
   if (currentPage === 'experiences') {
     return (
-      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-      }`}>
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -211,9 +204,7 @@ function AppContent() {
 
   if (currentPage === 'storia') {
     return (
-      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-      }`}>
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -227,9 +218,7 @@ function AppContent() {
 
   if (currentPage === 'tenute') {
     return (
-      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-      }`}>
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -243,9 +232,7 @@ function AppContent() {
 
   if (currentPage === 'sostenibilita') {
     return (
-      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-      }`}>
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -259,9 +246,7 @@ function AppContent() {
 
   if (currentPage === 'metodo') {
     return (
-      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-      }`}>
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -275,9 +260,7 @@ function AppContent() {
 
   if (currentPage === 'blog') {
     return (
-      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-      }`}>
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -291,9 +274,7 @@ function AppContent() {
 
   if (currentPage === 'collezione-classica') {
     return (
-      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-      }`}>
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -307,9 +288,7 @@ function AppContent() {
 
   if (currentPage === 'collezione-premium') {
     return (
-      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-      }`}>
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -321,8 +300,22 @@ function AppContent() {
     );
   }
 
+  if (currentPage === 'tutti-i-vini') {
+    return (
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <MouseGradient />
+        <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <TuttiIViniPage onBack={navigateToHome} onWineClick={navigateToWine} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
   if (currentPage === 'tenuta-detail' && tenutaSlug) {
-    let TenetaComponent;
+    let TenetaComponent: React.FC<{ onBack?: () => void }> | null;
     switch(tenutaSlug) {
       case 'cialdini':
         TenetaComponent = TentuaCialdiniPage;
@@ -343,9 +336,7 @@ function AppContent() {
     }
 
     return (
-      <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-        isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-      }`}>
+      <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -358,30 +349,18 @@ function AppContent() {
   }
 
   return (
-    <div className={`min-h-screen font-sans selection:bg-chiarli-wine selection:text-white transition-colors duration-500 ${
-      isDark ? 'bg-chiarli-stone text-chiarli-text' : 'bg-white text-chiarli-text'
-    }`}>
+    <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
       <MouseGradient />
       <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
       <div className="relative z-10">
         <Navbar />
         <main>
-          {isDark ? <Hero /> : <HeroLight />}
-          {isDark ? <BottleShowcase onWineClick={navigateToWine} /> : <BottleShowcaseLight onWineClick={navigateToWine} />}
+          <Hero />
+          <BottleShowcase onWineClick={navigateToWine} />
           <TenuteSection />
-          {isDark ? (
-            <>
-              <HistorySection />
-              <FeaturedSection />
-              <BlogSection />
-            </>
-          ) : (
-            <>
-              <FeaturedSectionLight />
-              <HistorySectionLight />
-              <BlogSectionLight />
-            </>
-          )}
+          <HistorySection />
+          <FeaturedSection />
+          <BlogSection />
         </main>
         <Footer />
       </div>
@@ -390,11 +369,7 @@ function AppContent() {
 }
 
 function App() {
-  return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
-  );
+  return <AppContent />;
 }
 
 export default App;

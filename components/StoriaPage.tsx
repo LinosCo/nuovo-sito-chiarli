@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Calendar, ChevronDown, ChevronUp, X } from 'lucide-react';
+import { Calendar, ChevronDown, ChevronUp, X, ArrowRight } from 'lucide-react';
 
 interface StoriaPageProps {
   onBack?: () => void;
@@ -18,6 +18,32 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
   const [isSection3Visible, setIsSection3Visible] = useState(false);
   const [isSection4Visible, setIsSection4Visible] = useState(false);
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+
+  // Image carousel states
+  const [heroImageIndex, setHeroImageIndex] = useState(0);
+  const [section4ImageIndex, setSection4ImageIndex] = useState(0);
+  const [ctaImageIndex, setCtaImageIndex] = useState(0);
+
+  const heroImages = [
+    '/foto/galleria-chiarli-136.jpeg',
+    '/foto/close-up-78-scaled.jpeg',
+    '/foto/a001-scaled.jpg',
+    '/foto/sozzigalli-29.jpg'
+  ];
+
+  const section4Images = [
+    '/foto/close-up-78-scaled.jpeg',
+    '/foto/close-up-41.jpg',
+    '/foto/close-up-26-scaled.jpeg',
+    '/foto/sozzigalli-10.jpg'
+  ];
+
+  const ctaImages = [
+    '/foto/a001-scaled.jpg',
+    '/foto/galleria-chiarli-136.jpeg',
+    '/foto/close-up-87-scaled.jpeg',
+    '/foto/vasche-3.jpg'
+  ];
   const [activeTimelineItem, setActiveTimelineItem] = useState<number>(0);
 
   useEffect(() => {
@@ -53,15 +79,40 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
     return () => observer.disconnect();
   }, []);
 
+  // Auto-rotate images for Hero section
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
+  // Auto-rotate images for Section 4
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSection4ImageIndex((prev) => (prev + 1) % section4Images.length);
+    }, 5500);
+    return () => clearInterval(interval);
+  }, [section4Images.length]);
+
+  // Auto-rotate images for CTA section
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCtaImageIndex((prev) => (prev + 1) % ctaImages.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [ctaImages.length]);
+
   return (
     <div>
       {/* Hero Section - DARK */}
       <section ref={heroRef} className="relative min-h-screen bg-chiarli-text overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/foto/a001-scaled.jpg"
+            key={heroImageIndex}
+            src={heroImages[heroImageIndex]}
             alt="Famiglia Chiarli"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-opacity duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/45 to-black/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/30" />
@@ -469,11 +520,22 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
         </div>
       </section>
 
-      {/* Section 4: Le persone che fanno la differenza - DARK */}
-      <section ref={section4Ref} className="relative bg-chiarli-text py-32">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12 text-center">
+      {/* Section 4: Header - Le persone che fanno la differenza */}
+      <section ref={section4Ref} className="relative min-h-screen bg-chiarli-text overflow-hidden flex items-center justify-center">
+        <div className="absolute inset-0">
+          <img
+            key={section4ImageIndex}
+            src={section4Images[section4ImageIndex]}
+            alt="Vigneto"
+            className="w-full h-full object-cover transition-all duration-1000"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/45 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/25" />
+        </div>
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-32 text-center">
           <h2
-            className={`font-serif text-5xl md:text-6xl text-white mb-12 transition-all duration-700 ${
+            className={`font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight transition-all duration-700 ${
               isSection4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
@@ -481,39 +543,178 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
           </h2>
 
           <p
-            className={`font-sans text-white/80 text-xl leading-relaxed max-w-3xl mx-auto mb-16 transition-all duration-700 delay-100 ${
+            className={`font-sans text-white/70 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto transition-all duration-700 delay-100 ${
               isSection4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            Siamo una grande famiglia che cresce insieme, unita dalla passione per il Lambrusco e dalla dedizione al nostro territorio. Vieni a conoscerci.
+            Siamo una grande famiglia che cresce insieme, unita dalla passione per il Lambrusco e dalla dedizione al nostro territorio.
           </p>
 
-          {/* Images Gallery */}
-          <div
-            className={`grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 transition-all duration-700 delay-200 ${
-              isSection4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-            }`}
-          >
-            <img src="/foto/1.jpg" alt="Team" className="w-full h-64 object-cover" />
-            <img src="/foto/close-up-78-scaled.jpeg" alt="Vigneto" className="w-full h-64 object-cover" />
-            <img src="/foto/close-up-41.jpg" alt="Dettaglio" className="w-full h-64 object-cover" />
+          {/* Slider indicators - minimal style */}
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-3">
+            {section4Images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setSection4ImageIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === section4ImageIndex
+                    ? 'bg-chiarli-wine-light scale-125'
+                    : 'bg-white/40 hover:bg-white/60 hover:scale-110'
+                }`}
+                aria-label={`Vai all'immagine ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Card 1: Storia e Tradizione - Full Screen */}
+      <section className="relative min-h-screen bg-white overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Image */}
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-1">
+            <img
+              src="/foto/1.jpg"
+              alt="Storia e Tradizione"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
           </div>
 
-          <div
-            className={`inline-flex flex-col gap-4 transition-all duration-700 delay-300 ${
-              isSection4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
-          >
+          {/* Content */}
+          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-2">
+            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-6 block">
+                Dal 1860
+              </span>
+
+              <h3 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
+                Storia e <span className="italic text-chiarli-wine">Tradizione</span>
+              </h3>
+
+              <p className="font-serif italic text-2xl text-chiarli-text/70 mb-8 leading-relaxed">
+                Dal 1860 custodiamo la memoria del Lambrusco
+              </p>
+
+              <p className="font-sans text-chiarli-text/60 text-lg leading-relaxed max-w-lg">
+                Generazione dopo generazione, trasmettiamo la passione per il Lambrusco, custodendo i segreti della tradizione e innovando con rispetto per il territorio.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Card 2: Le Nostre Terre - Full Screen */}
+      <section className="relative min-h-screen bg-chiarli-stone overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Image */}
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
+            <img
+              src="/foto/close-up-78-scaled.jpeg"
+              alt="Le Nostre Terre"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-stone/20 lg:bg-gradient-to-r lg:from-chiarli-stone/20 lg:to-transparent" />
+          </div>
+
+          {/* Content */}
+          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-1">
+            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-6 block">
+                3 Tenute Storiche
+              </span>
+
+              <h3 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
+                Le Nostre <span className="italic text-chiarli-wine">Terre</span>
+              </h3>
+
+              <p className="font-serif italic text-2xl text-chiarli-text/70 mb-8 leading-relaxed">
+                195 ettari di vigneti nelle terre d'origine
+              </p>
+
+              <p className="font-sans text-chiarli-text/60 text-lg leading-relaxed max-w-lg">
+                Tre tenute storiche dove il Lambrusco trova la sua massima espressione: Villa Cialdini, Sozzigalli e Belvedere. Terroir unici che raccontano la diversità del nostro territorio.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Card 3: Le Nostre Cantine - Full Screen */}
+      <section className="relative min-h-screen bg-white overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Image */}
+          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-1">
+            <img
+              src="/foto/close-up-41.jpg"
+              alt="Le Nostre Cantine"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
+          </div>
+
+          {/* Content */}
+          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-2">
+            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-6 block">
+                Innovazione e Qualità
+              </span>
+
+              <h3 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
+                Le Nostre <span className="italic text-chiarli-wine">Cantine</span>
+              </h3>
+
+              <p className="font-serif italic text-2xl text-chiarli-text/70 mb-8 leading-relaxed">
+                Tecnologia e passione al servizio della qualità
+              </p>
+
+              <p className="font-sans text-chiarli-text/60 text-lg leading-relaxed max-w-lg">
+                Impianti all'avanguardia e metodi tradizionali si fondono per preservare l'autenticità del Lambrusco, rispettando i ritmi naturali dell'uva e del territorio.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Final Section */}
+      <section className="relative min-h-screen bg-chiarli-text overflow-hidden flex items-center justify-center">
+        <div className="absolute inset-0">
+          <img
+            key={ctaImageIndex}
+            src={ctaImages[ctaImageIndex]}
+            alt="Villa Cialdini"
+            className="w-full h-full object-cover opacity-30 transition-opacity duration-1000"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-chiarli-text/70 via-chiarli-text/80 to-chiarli-text" />
+        </div>
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-32 text-center">
+          <p className="font-serif italic text-3xl md:text-4xl text-white/70 mb-12">
+            Vieni a conoscerci
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
             <a
               href="tel:059702761"
-              className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-chiarli-wine text-white font-sans text-sm uppercase tracking-widest font-bold hover:bg-chiarli-wine-light transition-all"
+              className="group relative inline-flex items-center gap-3 px-12 py-6 bg-chiarli-wine text-white font-sans text-sm uppercase tracking-widest font-bold overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-chiarli-wine/50 hover:scale-105"
             >
-              <Calendar size={20} />
-              Prenota una Visita: 059 702 761
+              <div className="absolute inset-0 bg-gradient-to-r from-chiarli-wine-light to-chiarli-wine opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <Calendar size={20} className="relative z-10" />
+              <span className="relative z-10">Prenota una Visita</span>
             </a>
-            <p className="font-sans text-white/60 text-sm">
-              Villa Cialdini, Castelvetro di Modena | accoglienza.cletochiarli@chiarli.it
-            </p>
+
+            <a
+              href="mailto:accoglienza.cletochiarli@chiarli.it"
+              className="group inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors duration-300"
+            >
+              <span className="font-sans text-sm">o scrivici via email</span>
+              <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-300" />
+            </a>
+          </div>
+
+          <div className="pt-12 border-t border-white/10 max-w-2xl mx-auto">
+            <p className="font-sans text-white/50 text-base mb-3">Villa Cialdini, Castelvetro di Modena</p>
+            <p className="font-sans text-white/40 text-sm">059 702 761 • accoglienza.cletochiarli@chiarli.it</p>
           </div>
         </div>
       </section>

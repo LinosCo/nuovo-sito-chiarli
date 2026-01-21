@@ -201,24 +201,29 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
             </p>
 
             {/* Highlights Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
               {highlights.map((highlight, index) => {
-                const Icon = highlight.icon;
                 return (
                   <div
                     key={index}
-                    className={`flex flex-col items-center text-center transition-all duration-700 ${
+                    className={`group relative transition-all duration-700 ${
                       isStoryVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                     }`}
                     style={{ transitionDelay: `${300 + index * 100}ms` }}
                   >
-                    <div className="w-16 h-16 flex items-center justify-center mb-6 bg-chiarli-wine/10 rounded-full">
-                      <Icon size={28} className="text-chiarli-wine" />
+                    {/* Large decorative number */}
+                    <span className="font-serif italic text-9xl text-chiarli-wine/10 absolute -top-8 -left-4 leading-none select-none group-hover:text-chiarli-wine/20 transition-colors duration-500">
+                      {index + 1}
+                    </span>
+
+                    <div className="relative pt-16">
+                      <h3 className="font-serif text-3xl md:text-4xl text-chiarli-text leading-tight group-hover:text-chiarli-wine transition-colors duration-300">
+                        {highlight.label}
+                      </h3>
+
+                      {/* Subtle underline that expands on hover */}
+                      <div className="mt-6 h-px w-12 bg-chiarli-text/30 group-hover:w-full group-hover:bg-chiarli-wine transition-all duration-500" />
                     </div>
-                    <h3 className="font-serif text-2xl text-chiarli-text mb-2">{highlight.label}</h3>
-                    {highlight.description && (
-                      <p className="font-sans text-sm text-chiarli-text/60 uppercase tracking-wide">{highlight.description}</p>
-                    )}
                   </div>
                 );
               })}

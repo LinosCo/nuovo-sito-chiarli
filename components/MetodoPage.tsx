@@ -8,6 +8,7 @@ interface MetodoPageProps {
 export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const [activeStep, setActiveStep] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -232,8 +233,8 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
         </div>
       </div>
 
-      {/* Process Steps Section */}
-      <section className="relative min-h-screen bg-chiarli-text overflow-hidden flex items-center">
+      {/* Process Steps Section - INTERACTIVE */}
+      <section className="relative min-h-screen bg-chiarli-text overflow-hidden flex items-center py-24">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
@@ -241,10 +242,10 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
             alt="Le Fasi del Metodo"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/50 to-black/55" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/60" />
         </div>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-24 w-full">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 w-full">
 
           <div className="text-center mb-20">
             <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block">
@@ -258,49 +259,284 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Interactive Steps with Timeline */}
+          <div className="relative">
 
-            {/* Step 1 */}
-            <div className="bg-white/5 backdrop-blur-sm p-8 hover:bg-white/10 transition-all duration-500 border border-white/10 hover:border-chiarli-wine-light/50">
-              <div className="w-20 h-20 bg-chiarli-wine-light/20 rounded-full flex items-center justify-center mb-6">
-                <span className="font-serif text-3xl text-chiarli-wine-light">1</span>
-              </div>
-              <h3 className="font-serif text-2xl text-white mb-4">Pressatura</h3>
-              <p className="font-sans text-white/70 leading-relaxed">
-                Le uve vengono pressate e macerate brevemente a freddo sulle bucce
-              </p>
+            {/* Horizontal Timeline - Hidden on mobile, visible on lg */}
+            <div className="hidden lg:block absolute top-24 left-0 right-0 h-1 mx-24">
+              <div className="absolute inset-0 bg-white/20" />
+              <div
+                className="absolute inset-0 bg-gradient-to-r from-chiarli-wine-light to-chiarli-wine transition-all duration-1000"
+                style={{
+                  width: activeStep !== null ? `${(activeStep / 3) * 100}%` : '0%'
+                }}
+              />
             </div>
 
-            {/* Step 2 */}
-            <div className="bg-white/5 backdrop-blur-sm p-8 hover:bg-white/10 transition-all duration-500 border border-white/10 hover:border-chiarli-wine-light/50">
-              <div className="w-20 h-20 bg-chiarli-wine-light/20 rounded-full flex items-center justify-center mb-6">
-                <span className="font-serif text-3xl text-chiarli-wine-light">2</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+
+              {/* Step 1 - Pressatura */}
+              <div
+                className={`group relative cursor-pointer transition-all duration-500 ${
+                  activeStep === 1 ? 'scale-105' : ''
+                }`}
+                onClick={() => setActiveStep(activeStep === 1 ? null : 1)}
+                onMouseEnter={() => activeStep === null && setActiveStep(1)}
+                style={{ animationDelay: '0ms' }}
+              >
+                <div className={`
+                  bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-8
+                  border transition-all duration-500 relative overflow-hidden
+                  ${activeStep === 1
+                    ? 'border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15'
+                    : 'border-white/10 hover:border-white/30 hover:bg-white/10'
+                  }
+                `}>
+
+                  {/* Animated Background Gradient */}
+                  <div className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
+                    activeStep === 1 ? 'opacity-100' : ''
+                  }`} />
+
+                  {/* Icon Circle with animated icon */}
+                  <div className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                    activeStep === 1
+                      ? 'bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50'
+                      : 'bg-chiarli-wine-light/20'
+                  }`}>
+                    <Droplet
+                      className={`transition-all duration-500 ${
+                        activeStep === 1 ? 'text-white scale-110' : 'text-chiarli-wine-light'
+                      }`}
+                      size={32}
+                    />
+                  </div>
+
+                  {/* Number Badge */}
+                  <div className="absolute top-4 right-4">
+                    <span className={`font-serif text-5xl transition-all duration-300 ${
+                      activeStep === 1 ? 'text-chiarli-wine-light' : 'text-white/20'
+                    }`}>1</span>
+                  </div>
+
+                  <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
+                    Pressatura
+                  </h3>
+
+                  <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
+                    activeStep === 1 ? 'text-white' : ''
+                  }`}>
+                    Le uve vengono pressate e macerate brevemente a freddo sulle bucce
+                  </p>
+
+                  {/* Expanded Content */}
+                  <div className={`relative overflow-hidden transition-all duration-500 ${
+                    activeStep === 1 ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                  }`}>
+                    <div className="pt-4 border-t border-white/20">
+                      <p className="font-sans text-sm text-white/80 leading-relaxed">
+                        Questo passaggio fondamentale preserva i profumi naturali dell'uva e garantisce la massima espressione aromatica del Lambrusco.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="font-serif text-2xl text-white mb-4">Refrigerazione</h3>
-              <p className="font-sans text-white/70 leading-relaxed">
-                Il mosto viene raffreddato in serbatoi preservando gli zuccheri naturali
-              </p>
+
+              {/* Step 2 - Refrigerazione */}
+              <div
+                className={`group relative cursor-pointer transition-all duration-500 ${
+                  activeStep === 2 ? 'scale-105' : ''
+                }`}
+                onClick={() => setActiveStep(activeStep === 2 ? null : 2)}
+                onMouseEnter={() => activeStep === null && setActiveStep(2)}
+                style={{ animationDelay: '150ms' }}
+              >
+                <div className={`
+                  bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-8
+                  border transition-all duration-500 relative overflow-hidden
+                  ${activeStep === 2
+                    ? 'border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15'
+                    : 'border-white/10 hover:border-white/30 hover:bg-white/10'
+                  }
+                `}>
+
+                  <div className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
+                    activeStep === 2 ? 'opacity-100' : ''
+                  }`} />
+
+                  <div className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                    activeStep === 2
+                      ? 'bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50'
+                      : 'bg-chiarli-wine-light/20'
+                  }`}>
+                    <Snowflake
+                      className={`transition-all duration-500 ${
+                        activeStep === 2 ? 'text-white scale-110 animate-spin-slow' : 'text-chiarli-wine-light'
+                      }`}
+                      size={32}
+                    />
+                  </div>
+
+                  <div className="absolute top-4 right-4">
+                    <span className={`font-serif text-5xl transition-all duration-300 ${
+                      activeStep === 2 ? 'text-chiarli-wine-light' : 'text-white/20'
+                    }`}>2</span>
+                  </div>
+
+                  <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
+                    Refrigerazione
+                  </h3>
+
+                  <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
+                    activeStep === 2 ? 'text-white' : ''
+                  }`}>
+                    Il mosto viene raffreddato in serbatoi preservando gli zuccheri naturali
+                  </p>
+
+                  <div className={`relative overflow-hidden transition-all duration-500 ${
+                    activeStep === 2 ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                  }`}>
+                    <div className="pt-4 border-t border-white/20">
+                      <p className="font-sans text-sm text-white/80 leading-relaxed">
+                        La refrigerazione controllata blocca la fermentazione naturale mantenendo intatti gli zuccheri e gli aromi del frutto.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 3 - Presa di Spuma */}
+              <div
+                className={`group relative cursor-pointer transition-all duration-500 ${
+                  activeStep === 3 ? 'scale-105' : ''
+                }`}
+                onClick={() => setActiveStep(activeStep === 3 ? null : 3)}
+                onMouseEnter={() => activeStep === null && setActiveStep(3)}
+                style={{ animationDelay: '300ms' }}
+              >
+                <div className={`
+                  bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-8
+                  border transition-all duration-500 relative overflow-hidden
+                  ${activeStep === 3
+                    ? 'border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15'
+                    : 'border-white/10 hover:border-white/30 hover:bg-white/10'
+                  }
+                `}>
+
+                  <div className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
+                    activeStep === 3 ? 'opacity-100' : ''
+                  }`} />
+
+                  <div className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                    activeStep === 3
+                      ? 'bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50'
+                      : 'bg-chiarli-wine-light/20'
+                  }`}>
+                    <Sparkles
+                      className={`transition-all duration-500 ${
+                        activeStep === 3 ? 'text-white scale-110 animate-pulse' : 'text-chiarli-wine-light'
+                      }`}
+                      size={32}
+                    />
+                  </div>
+
+                  <div className="absolute top-4 right-4">
+                    <span className={`font-serif text-5xl transition-all duration-300 ${
+                      activeStep === 3 ? 'text-chiarli-wine-light' : 'text-white/20'
+                    }`}>3</span>
+                  </div>
+
+                  <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
+                    Presa di Spuma
+                  </h3>
+
+                  <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
+                    activeStep === 3 ? 'text-white' : ''
+                  }`}>
+                    Fermentazione in autoclave con mosto fresco non fermentato
+                  </p>
+
+                  <div className={`relative overflow-hidden transition-all duration-500 ${
+                    activeStep === 3 ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                  }`}>
+                    <div className="pt-4 border-t border-white/20">
+                      <p className="font-sans text-sm text-white/80 leading-relaxed">
+                        Il cuore del metodo Charmat: la rifermentazione in autoclave crea le bollicine caratteristiche del Lambrusco.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 4 - Imbottigliamento */}
+              <div
+                className={`group relative cursor-pointer transition-all duration-500 ${
+                  activeStep === 4 ? 'scale-105' : ''
+                }`}
+                onClick={() => setActiveStep(activeStep === 4 ? null : 4)}
+                onMouseEnter={() => activeStep === null && setActiveStep(4)}
+                style={{ animationDelay: '450ms' }}
+              >
+                <div className={`
+                  bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-8
+                  border transition-all duration-500 relative overflow-hidden
+                  ${activeStep === 4
+                    ? 'border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15'
+                    : 'border-white/10 hover:border-white/30 hover:bg-white/10'
+                  }
+                `}>
+
+                  <div className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
+                    activeStep === 4 ? 'opacity-100' : ''
+                  }`} />
+
+                  <div className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                    activeStep === 4
+                      ? 'bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50'
+                      : 'bg-chiarli-wine-light/20'
+                  }`}>
+                    <Wine
+                      className={`transition-all duration-500 ${
+                        activeStep === 4 ? 'text-white scale-110' : 'text-chiarli-wine-light'
+                      }`}
+                      size={32}
+                    />
+                  </div>
+
+                  <div className="absolute top-4 right-4">
+                    <span className={`font-serif text-5xl transition-all duration-300 ${
+                      activeStep === 4 ? 'text-chiarli-wine-light' : 'text-white/20'
+                    }`}>4</span>
+                  </div>
+
+                  <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
+                    Imbottigliamento
+                  </h3>
+
+                  <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
+                    activeStep === 4 ? 'text-white' : ''
+                  }`}>
+                    Breve affinamento seguito dall'imbottigliamento per preservare la freschezza
+                  </p>
+
+                  <div className={`relative overflow-hidden transition-all duration-500 ${
+                    activeStep === 4 ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                  }`}>
+                    <div className="pt-4 border-t border-white/20">
+                      <p className="font-sans text-sm text-white/80 leading-relaxed">
+                        L'imbottigliamento rapido cattura la freschezza e i profumi del vino, mantenendone intatte tutte le qualità.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
-            {/* Step 3 */}
-            <div className="bg-white/5 backdrop-blur-sm p-8 hover:bg-white/10 transition-all duration-500 border border-white/10 hover:border-chiarli-wine-light/50">
-              <div className="w-20 h-20 bg-chiarli-wine-light/20 rounded-full flex items-center justify-center mb-6">
-                <span className="font-serif text-3xl text-chiarli-wine-light">3</span>
-              </div>
-              <h3 className="font-serif text-2xl text-white mb-4">Presa di Spuma</h3>
-              <p className="font-sans text-white/70 leading-relaxed">
-                Fermentazione in autoclave con mosto fresco non fermentato
-              </p>
-            </div>
-
-            {/* Step 4 */}
-            <div className="bg-white/5 backdrop-blur-sm p-8 hover:bg-white/10 transition-all duration-500 border border-white/10 hover:border-chiarli-wine-light/50">
-              <div className="w-20 h-20 bg-chiarli-wine-light/20 rounded-full flex items-center justify-center mb-6">
-                <span className="font-serif text-3xl text-chiarli-wine-light">4</span>
-              </div>
-              <h3 className="font-serif text-2xl text-white mb-4">Imbottigliamento</h3>
-              <p className="font-sans text-white/70 leading-relaxed">
-                Breve affinamento seguito dall'imbottigliamento per preservare la freschezza
+            {/* Instruction hint */}
+            <div className="text-center mt-12">
+              <p className="font-sans text-sm text-white/50 italic">
+                Passa il mouse o clicca su ogni fase per scoprire i dettagli
               </p>
             </div>
 
@@ -330,6 +566,17 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
         }
         .animate-fade-in {
           animation: fade-in 0.6s ease-out forwards;
+        }
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
         }
       `}</style>
     </div>
