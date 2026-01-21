@@ -83,18 +83,7 @@ export const Hero: React.FC = () => {
        {/* Content */}
        <div className="relative z-20 h-full max-w-[1800px] mx-auto px-6 md:px-12 flex flex-col justify-end pb-24 md:pb-32">
 
-          {/* Vertical Label */}
-          <div
-            className={`absolute left-6 md:left-12 top-1/2 -translate-y-1/2 hidden md:block transition-all duration-1000 delay-700 ${
-              isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-            }`}
-          >
-             <span className="vertical-text font-sans text-xs font-bold tracking-[0.4em] text-white/60 uppercase">
-                Collezione
-             </span>
-          </div>
-
-          <div className="max-w-4xl md:ml-24">
+          <div className="max-w-4xl">
              {/* Title */}
              <h1 className="flex flex-col leading-none text-white mb-8 overflow-hidden">
                 <span
