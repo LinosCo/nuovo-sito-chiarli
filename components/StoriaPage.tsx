@@ -118,8 +118,8 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/30" />
         </div>
 
-        <div className="relative z-20 min-h-screen flex items-center max-w-[1800px] mx-auto px-6 md:px-12 py-24">
-          <div className="max-w-4xl">
+        <div className="relative z-20 min-h-screen flex items-center justify-center max-w-[1800px] mx-auto px-6 md:px-12 py-24">
+          <div className="max-w-4xl mx-auto text-center">
             <span
               className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-6 block transition-all duration-700 ${
                 isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -145,7 +145,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
             </p>
 
             <p
-              className={`font-sans text-white/80 text-xl leading-relaxed max-w-2xl transition-all duration-700 delay-300 ${
+              className={`font-sans text-white/80 text-xl leading-relaxed max-w-2xl mx-auto transition-all duration-700 delay-300 ${
                 isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
             >

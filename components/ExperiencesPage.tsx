@@ -129,7 +129,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
 
         {/* Hero Content */}
         <div className="relative z-20 max-w-[1800px] mx-auto px-6 md:px-12 py-24 w-full">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto text-center">
             <span
               className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-6 block transition-all duration-700 ${
                 isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'

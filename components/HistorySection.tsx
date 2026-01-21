@@ -86,14 +86,6 @@ export const HistorySection: React.FC = () => {
               Siamo stati i primi a credere che questo vino potesse sedere alle tavole più prestigiose del mondo.
             </p>
 
-            <p
-              className={`font-serif italic text-xl text-chiarli-text/70 border-l-2 border-chiarli-text/30 pl-6 mb-10 transition-all duration-700 delay-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-            >
-              Dalla bottiglia "Anfora" ai moderni Cru, ogni etichetta è un manifesto di qualità senza compromessi.
-            </p>
-
             {/* Stats row */}
             <div
               className={`flex flex-wrap gap-8 md:gap-10 mb-10 transition-all duration-700 delay-500 ${

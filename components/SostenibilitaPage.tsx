@@ -310,10 +310,10 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
                 La sostenibilità non è per noi una moda, ma un impegno concreto che si traduce in scelte quotidiane, investimenti in ricerca e sviluppo, e una costante attenzione all'evoluzione delle migliori pratiche agricole.
               </p>
 
-              <div className="inline-flex items-center gap-3 text-chiarli-wine-light font-sans text-sm font-bold uppercase tracking-widest group cursor-pointer">
+              <a href="#/metodo" className="inline-flex items-center gap-3 text-chiarli-wine-light font-sans text-sm font-bold uppercase tracking-widest group cursor-pointer hover:text-white transition-colors duration-300">
                 <span>Il Metodo Chiarli</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
-              </div>
+              </a>
             </div>
 
           </div>
