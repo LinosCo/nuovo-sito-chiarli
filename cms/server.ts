@@ -12,6 +12,8 @@ import { contentService } from './services/content.service.js';
 import { claudeService } from './services/claude.service.js';
 import { gitService } from './services/git.service.js';
 import { uploadService } from './services/upload.service.js';
+import { btAuth } from './middleware/btAuth.js';
+import { integrationController } from './controllers/integration.controller.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -413,6 +415,58 @@ app.get('/api/status', async (req, res) => {
 });
 
 // ============================================
+// ROUTES - BUSINESS TUNER INTEGRATION
+// ============================================
+
+/**
+ * GET /api/integration/status
+ * Verifica stato integrazione Business Tuner
+ */
+app.get('/api/integration/status', btAuth, (req, res) => {
+  integrationController.getStatus(req, res);
+});
+
+/**
+ * POST /api/integration/suggestions
+ * Riceve suggerimenti da Business Tuner
+ */
+app.post('/api/integration/suggestions', btAuth, (req, res) => {
+  integrationController.receiveSuggestions(req, res);
+});
+
+/**
+ * GET /api/integration/content
+ * Esporta contenuti per Business Tuner
+ */
+app.get('/api/integration/content', btAuth, (req, res) => {
+  integrationController.getContent(req, res);
+});
+
+/**
+ * POST /api/integration/config
+ * Aggiorna configurazione integrazione
+ */
+app.post('/api/integration/config', btAuth, (req, res) => {
+  integrationController.updateConfig(req, res);
+});
+
+/**
+ * POST /api/integration/suggestions/:id/apply
+ * Applica un suggerimento ricevuto
+ */
+app.post('/api/integration/suggestions/:id/apply', btAuth, (req, res) => {
+  integrationController.applySuggestion(req, res);
+});
+
+/**
+ * POST /api/integration/test-webhook
+ * Test connessione webhook
+ */
+app.post('/api/integration/test-webhook', btAuth, (req, res) => {
+  integrationController.testWebhook(req, res);
+});
+
+// ============================================
 // START SERVER
 // ============================================
 
@@ -430,6 +484,11 @@ app.listen(PORT, () => {
 ║   - GET  /api/content/:type Leggi contenuti           ║
 ║   - POST /api/upload/:cat   Upload immagini           ║
 ║   - GET  /api/history       Storia modifiche          ║
+║                                                       ║
+║   Business Tuner Integration:                         ║
+║   - GET  /api/integration/status                      ║
+║   - POST /api/integration/suggestions                 ║
+║   - GET  /api/integration/content                     ║
 ║                                                       ║
 ╚═══════════════════════════════════════════════════════╝
   `);
