@@ -86,6 +86,33 @@ const pdfUpload = multer({
 });
 
 // ============================================
+// ROUTES - HOME
+// ============================================
+
+/**
+ * GET /
+ * Home page - API status
+ */
+app.get('/', (req, res) => {
+  res.json({
+    name: 'Chiarli CMS API',
+    version: '1.0.0',
+    status: 'online',
+    endpoints: {
+      chat: 'POST /api/chat',
+      content: 'GET /api/content/:type',
+      upload: 'POST /api/upload/:category',
+      integration: {
+        status: 'GET /api/integration/status',
+        suggestions: 'POST /api/integration/suggestions',
+        content: 'GET /api/integration/content'
+      }
+    },
+    dashboard: process.env.DASHBOARD_URL || 'http://localhost:3002'
+  });
+});
+
+// ============================================
 // ROUTES - CHAT
 // ============================================
 
