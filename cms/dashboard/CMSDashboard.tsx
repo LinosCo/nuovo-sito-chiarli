@@ -174,18 +174,18 @@ export const CMSDashboard: React.FC = () => {
           role: 'system',
           content: data.success
             ? '✓ Test webhook inviato con successo a Business Tuner'
-            : '✗ Errore invio webhook - verifica la configurazione',
+            : `✗ ${data.message || 'Errore invio webhook'}`,
           timestamp: new Date(),
         },
       ]);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Errore test webhook:', error);
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now().toString(),
           role: 'system',
-          content: '✗ Errore connessione webhook',
+          content: '✗ Business Tuner non configurato. Aggiungi BUSINESS_TUNER_WEBHOOK_URL e BUSINESS_TUNER_WEBHOOK_SECRET al file cms/.env per abilitare i webhook.',
           timestamp: new Date(),
         },
       ]);

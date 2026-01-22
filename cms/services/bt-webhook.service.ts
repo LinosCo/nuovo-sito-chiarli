@@ -42,7 +42,7 @@ export class BTWebhookService {
   async notify(event: string, data: Record<string, any>): Promise<boolean> {
     if (!this.webhookUrl) {
       console.log('Webhook disabilitato - evento non inviato:', event);
-      return false;
+      throw new Error('Business Tuner non configurato. Aggiungi BUSINESS_TUNER_WEBHOOK_URL al file .env');
     }
 
     const payload: WebhookPayload = {
