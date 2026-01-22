@@ -631,7 +631,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           </div>
 
           {/* Right - Content */}
-          <div className="w-full lg:w-1/2 flex items-center relative bg-white">
+          <div className="w-full lg:w-1/2 lg:min-h-[80vh] flex items-center relative bg-white">
 
             <div className="relative z-10 px-6 md:px-16 lg:px-20 py-12 md:py-16 lg:py-24">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-4 block">
@@ -725,7 +725,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           </div>
 
           {/* Right - Content */}
-          <div className="w-full lg:w-1/2 flex items-center relative bg-white">
+          <div className="w-full lg:w-1/2 lg:min-h-[80vh] flex items-center relative bg-white">
 
             <div className="relative z-10 px-6 md:px-16 lg:px-20 py-10 md:py-16 lg:py-24">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
