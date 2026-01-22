@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { contentService, ContentType } from './content.service.js';
 import { fileService } from './file.service.js';
-import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { createCanvas } from 'canvas';
 import fs from 'fs/promises';
 
@@ -574,6 +573,9 @@ Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo.`,
    */
   async extractBottleImageFromPdf(pdfBuffer: Buffer, wineSlug: string): Promise<{ success: boolean; imagePath?: string; error?: string }> {
     try {
+      // Dynamic import of pdfjs to avoid loading it at startup
+      const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs');
+
       // Load PDF with pdfjs
       const pdfData = new Uint8Array(pdfBuffer);
       const loadingTask = pdfjsLib.getDocument({ data: pdfData });
