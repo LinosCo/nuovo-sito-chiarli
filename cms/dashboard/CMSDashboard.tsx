@@ -14,10 +14,14 @@ import {
   Settings,
   ChevronRight,
   MessageCircle,
+  Zap,
+  CheckCircle2,
+  XCircle,
+  Lightbulb,
 } from 'lucide-react';
 
-// Configurazione API
-const API_URL = import.meta.env.VITE_CMS_API_URL || 'http://localhost:3001';
+// Configurazione API - usa proxy di Vite in development
+const API_URL = import.meta.env.VITE_CMS_API_URL || '';
 const SITE_PREVIEW_URL = import.meta.env.VITE_SITE_URL || 'http://localhost:3000';
 
 // Tipi
@@ -46,6 +50,25 @@ interface HistoryEntry {
   author: string;
 }
 
+interface BTStatus {
+  connected: boolean;
+  version: string;
+  capabilities: string[];
+  lastSync: string;
+  cmsUrl: string;
+  dashboardUrl: string;
+}
+
+interface BTSuggestion {
+  id: string;
+  type: string;
+  contentType: string;
+  priority: 'low' | 'medium' | 'high';
+  reasoning: string;
+  status: 'pending' | 'applied' | 'rejected';
+  receivedAt: string;
+}
+
 // Componente principale
 export const CMSDashboard: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
@@ -70,6 +93,10 @@ export const CMSDashboard: React.FC = () => {
   const [uploadingPdf, setUploadingPdf] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(SITE_PREVIEW_URL);
+  const [showBTPanel, setShowBTPanel] = useState(false);
+  const [btStatus, setBtStatus] = useState<BTStatus | null>(null);
+  const [btSuggestions, setBtSuggestions] = useState<BTSuggestion[]>([]);
+  const [loadingBT, setLoadingBT] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -94,6 +121,78 @@ export const CMSDashboard: React.FC = () => {
   useEffect(() => {
     if (showHistory) loadHistory();
   }, [showHistory, loadHistory]);
+
+  // Carica stato Business Tuner
+  const loadBTStatus = useCallback(async () => {
+    if (!showBTPanel) return;
+    setLoadingBT(true);
+    try {
+      // Usa la stessa API key configurata nel backend
+      const res = await fetch(`${API_URL}/api/integration/status`, {
+        headers: {
+          'Authorization': 'Bearer bt_test_12345'
+        }
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setBtStatus(data);
+      } else {
+        console.error('Errore caricamento status BT:', res.status);
+        setBtStatus(null);
+      }
+    } catch (error) {
+      console.error('Errore connessione Business Tuner:', error);
+      setBtStatus(null);
+    } finally {
+      setLoadingBT(false);
+    }
+  }, [showBTPanel]);
+
+  useEffect(() => {
+    loadBTStatus();
+  }, [showBTPanel, loadBTStatus]);
+
+  // Test webhook Business Tuner
+  const testWebhook = async () => {
+    setLoadingBT(true);
+    try {
+      const res = await fetch(`${API_URL}/api/integration/test-webhook`, {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer bt_test_12345',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const data = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          role: 'system',
+          content: data.success
+            ? '✓ Test webhook inviato con successo a Business Tuner'
+            : '✗ Errore invio webhook - verifica la configurazione',
+          timestamp: new Date(),
+        },
+      ]);
+    } catch (error) {
+      console.error('Errore test webhook:', error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          role: 'system',
+          content: '✗ Errore connessione webhook',
+          timestamp: new Date(),
+        },
+      ]);
+    } finally {
+      setLoadingBT(false);
+    }
+  };
 
   // Invia messaggio
   const sendMessage = async () => {
@@ -453,6 +552,137 @@ export const CMSDashboard: React.FC = () => {
         }`}
       >
         <div className="flex h-full bg-stone-100">
+          {/* Sidebar Business Tuner */}
+          {showBTPanel && (
+            <div className="w-96 bg-white border-r border-stone-200 flex flex-col">
+              <div className="p-4 border-b border-stone-200">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <Zap size={20} className="text-amber-600" />
+                    <h3 className="font-semibold text-stone-800">Business Tuner</h3>
+                  </div>
+                  <button onClick={() => setShowBTPanel(false)} className="text-stone-400 hover:text-stone-600">
+                    <X size={20} />
+                  </button>
+                </div>
+
+                {/* Connection Status */}
+                {loadingBT ? (
+                  <div className="flex items-center gap-2 text-stone-500">
+                    <Loader2 size={16} className="animate-spin" />
+                    <span className="text-sm">Connessione...</span>
+                  </div>
+                ) : btStatus ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-green-600">
+                      <CheckCircle2 size={16} />
+                      <span className="text-sm font-medium">Connesso</span>
+                    </div>
+                    <div className="text-xs text-stone-500 space-y-1">
+                      <p>Versione: {btStatus.version}</p>
+                      <p>Ultimo sync: {new Date(btStatus.lastSync).toLocaleString('it-IT')}</p>
+                    </div>
+                    <div className="pt-2">
+                      <p className="text-xs font-medium text-stone-700 mb-2">Capabilities:</p>
+                      <div className="flex flex-wrap gap-1">
+                        {btStatus.capabilities.map((cap) => (
+                          <span
+                            key={cap}
+                            className="text-xs px-2 py-1 bg-amber-50 text-amber-700 rounded"
+                          >
+                            {cap.replace('_', ' ')}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 text-red-600">
+                    <XCircle size={16} />
+                    <span className="text-sm font-medium">Non connesso</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Actions */}
+              <div className="p-4 border-b border-stone-200">
+                <h4 className="text-sm font-medium text-stone-700 mb-3">Azioni</h4>
+                <div className="space-y-2">
+                  <button
+                    onClick={testWebhook}
+                    disabled={loadingBT || !btStatus}
+                    className="w-full px-3 py-2 text-sm bg-amber-50 text-amber-700 rounded-lg hover:bg-amber-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+                  >
+                    {loadingBT ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" />
+                        Test in corso...
+                      </>
+                    ) : (
+                      <>
+                        <Zap size={16} />
+                        Test Webhook
+                      </>
+                    )}
+                  </button>
+                  <button
+                    onClick={loadBTStatus}
+                    disabled={loadingBT}
+                    className="w-full px-3 py-2 text-sm bg-stone-100 text-stone-700 rounded-lg hover:bg-stone-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    Ricarica Stato
+                  </button>
+                </div>
+              </div>
+
+              {/* Suggestions Section */}
+              <div className="flex-1 overflow-y-auto p-4">
+                <h4 className="text-sm font-medium text-stone-700 mb-3 flex items-center gap-2">
+                  <Lightbulb size={16} />
+                  Suggerimenti
+                </h4>
+                {btSuggestions.length === 0 ? (
+                  <div className="text-center py-8">
+                    <p className="text-sm text-stone-500">Nessun suggerimento disponibile</p>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {btSuggestions.map((suggestion) => (
+                      <div
+                        key={suggestion.id}
+                        className="p-3 bg-stone-50 rounded-lg border border-stone-200"
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <span
+                            className={`text-xs px-2 py-1 rounded ${
+                              suggestion.priority === 'high'
+                                ? 'bg-red-100 text-red-700'
+                                : suggestion.priority === 'medium'
+                                ? 'bg-amber-100 text-amber-700'
+                                : 'bg-blue-100 text-blue-700'
+                            }`}
+                          >
+                            {suggestion.priority}
+                          </span>
+                          <span className="text-xs text-stone-500">{suggestion.contentType}</span>
+                        </div>
+                        <p className="text-sm text-stone-700">{suggestion.reasoning}</p>
+                        <div className="mt-2 flex gap-2">
+                          <button className="text-xs px-2 py-1 bg-amber-600 text-white rounded hover:bg-amber-700">
+                            Applica
+                          </button>
+                          <button className="text-xs px-2 py-1 bg-stone-200 text-stone-700 rounded hover:bg-stone-300">
+                            Rifiuta
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* Sidebar Storia */}
           {showHistory && (
             <div className="w-80 bg-white border-r border-stone-200 flex flex-col">
@@ -512,7 +742,22 @@ export const CMSDashboard: React.FC = () => {
                   <ChevronRight size={20} className="rotate-180" />
                 </button>
                 <button
-                  onClick={() => setShowHistory(!showHistory)}
+                  onClick={() => {
+                    setShowBTPanel(!showBTPanel);
+                    setShowHistory(false);
+                  }}
+                  className={`p-2 rounded-lg transition-colors ${
+                    showBTPanel ? 'bg-amber-100 text-amber-700' : 'hover:bg-stone-100 text-stone-600'
+                  }`}
+                  title="Business Tuner"
+                >
+                  <Zap size={20} />
+                </button>
+                <button
+                  onClick={() => {
+                    setShowHistory(!showHistory);
+                    setShowBTPanel(false);
+                  }}
                   className={`p-2 rounded-lg transition-colors ${
                     showHistory ? 'bg-amber-100 text-amber-700' : 'hover:bg-stone-100 text-stone-600'
                   }`}
