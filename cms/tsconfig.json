@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
@@ -11,6 +11,11 @@
     "declaration": true,
     "resolveJsonModule": true
   },
-  "include": ["./**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "server.ts",
+    "services/**/*.ts",
+    "middleware/**/*.ts",
+    "controllers/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "dashboard"]
 }
