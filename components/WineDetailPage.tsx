@@ -211,23 +211,12 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           {wine.image && (
             <div className="lg:hidden w-full flex justify-center pt-24 pb-8">
               <div className="relative">
-                {/* Spotlight effect for mobile - ridotto */}
-                <div
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full opacity-30"
-                  style={{
-                    background: `radial-gradient(circle, rgba(200,100,120,0.3) 0%, rgba(180,80,100,0.18) 30%, rgba(150,60,80,0.08) 50%, transparent 70%)`,
-                    filter: 'blur(50px)',
-                  }}
-                />
-                {/* Decorative circles for mobile - glow ridotto */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full border border-chiarli-wine-light/15" style={{ boxShadow: '0 0 15px rgba(200,100,120,0.15)' }} />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] rounded-full border border-white/10" style={{ boxShadow: '0 0 12px rgba(255,255,255,0.08)' }} />
                 <img
                   src={wine.image}
                   alt={wine.name}
                   className="relative z-10 h-[35vh] w-auto object-contain"
                   style={{
-                    filter: `drop-shadow(0 0 25px rgba(200,100,120,0.25)) drop-shadow(0 0 12px rgba(180,80,100,0.2)) drop-shadow(0 0 6px rgba(255,180,180,0.15)) brightness(0.92)`,
+                    filter: `drop-shadow(0 10px 30px rgba(0,0,0,0.3))`,
                   }}
                 />
               </div>
@@ -420,12 +409,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                     alt={wine.name}
                     className="relative z-10 h-[75vh] w-auto object-contain"
                     style={{
-                      filter: `
-                        drop-shadow(0 0 30px rgba(200,100,120,0.25))
-                        drop-shadow(0 0 15px rgba(180,80,100,0.2))
-                        drop-shadow(0 0 8px rgba(255,180,180,0.15))
-                        brightness(0.92)
-                      `,
+                      filter: `drop-shadow(0 10px 30px rgba(0,0,0,0.3))`,
                     }}
                   />
                 </div>
@@ -453,16 +437,13 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/close-up-64-scaled.jpeg"
+            src="/foto/vasche-4.jpg"
             alt="Vigneto"
             className="w-full h-full object-cover"
           />
         </div>
 
-        {/* Dark overlay per leggibilità */}
-        <div className="absolute inset-0 bg-black/50" />
-
-        {/* Floating bubbles rosse */}
+        {/* Floating bubbles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(20)].map((_, i) => (
             <div
@@ -473,7 +454,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                 height: `${4 + (i % 4) * 3}px`,
                 left: `${5 + (i * 5) % 90}%`,
                 bottom: `-${5 + (i % 3) * 3}%`,
-                background: `radial-gradient(circle at 30% 30%, rgba(214,69,80,${0.5 + (i % 3) * 0.15}), rgba(180,60,80,${0.3 + (i % 3) * 0.1}))`,
+                background: `radial-gradient(circle at 30% 30%, rgba(214,69,80,${0.2 + (i % 3) * 0.1}), rgba(180,60,80,${0.1 + (i % 3) * 0.05}))`,
                 animation: `bubble-rise ${10 + (i % 5) * 2}s ease-in-out infinite`,
                 animationDelay: `${(i * 0.4) % 10}s`,
               }}
@@ -488,10 +469,10 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
               {/* Left - Title and tabs */}
               <div>
-                <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
+                <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white mb-4 block" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.5)' }}>
                   Note di Degustazione
                 </span>
-                <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white mb-6 md:mb-8 leading-tight">
+                <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white mb-6 md:mb-8 leading-tight" style={{ textShadow: '0 2px 25px rgba(0,0,0,0.9), 0 0 50px rgba(0,0,0,0.6)' }}>
                   Un viaggio
                   <span className="italic text-chiarli-wine-light block">sensoriale</span>
                 </h2>
@@ -502,22 +483,22 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                     <button
                       key={index}
                       onClick={() => setActiveTab(index)}
-                      className={`w-full text-left p-4 md:p-6 border transition-all duration-500 group ${
+                      className={`w-full text-left p-4 md:p-6 border transition-all duration-500 group backdrop-blur-sm ${
                         activeTab === index
-                          ? 'bg-chiarli-wine-light/20 border-chiarli-wine-light shadow-[0_0_25px_rgba(214,69,80,0.4)]'
-                          : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_20px_rgba(180,100,120,0.25)]'
+                          ? 'bg-white/60 border-chiarli-wine shadow-[0_0_25px_rgba(214,69,80,0.3)]'
+                          : 'bg-white/40 border-chiarli-text/10 hover:bg-white/55 hover:border-chiarli-text/20 hover:shadow-[0_0_20px_rgba(180,100,120,0.2)]'
                       }`}
                     >
                       <div className="flex items-center gap-3 md:gap-4">
                         <span className={`font-serif text-2xl md:text-4xl transition-all duration-300 ${
                           activeTab === index
-                            ? 'text-chiarli-wine-light drop-shadow-[0_0_20px_rgba(180,100,120,0.8)]'
-                            : 'text-white/20 group-hover:text-white/40'
+                            ? 'text-chiarli-wine drop-shadow-[0_0_15px_rgba(180,100,120,0.5)]'
+                            : 'text-chiarli-text/20 group-hover:text-chiarli-text/40'
                         }`}>
                           {String(index + 1).padStart(2, '0')}
                         </span>
                         <span className={`font-sans text-xs md:text-sm font-bold uppercase tracking-widest transition-colors ${
-                          activeTab === index ? 'text-chiarli-wine-light' : 'text-white/60 group-hover:text-white'
+                          activeTab === index ? 'text-chiarli-wine' : 'text-chiarli-text/60 group-hover:text-chiarli-text'
                         }`}>
                           {note.title}
                         </span>
@@ -529,24 +510,24 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
               {/* Right - Content with animation - aligned to tabs */}
               <div className="relative mt-8 lg:mt-[175px]">
-                <div className="absolute top-1/2 left-1/2 w-48 md:w-64 h-48 md:h-64 rounded-full border border-chiarli-wine-light/10 hidden md:block"
+                <div className="absolute top-1/2 left-1/2 w-48 md:w-64 h-48 md:h-64 rounded-full border border-chiarli-wine/10 hidden md:block"
                   style={{ transform: `translate(-50%, -50%) rotate(${scrollY * 0.02}deg)` }}
                 />
-                <div className="absolute top-1/2 left-1/2 w-32 md:w-40 h-32 md:h-40 rounded-full border border-white/5 hidden md:block"
+                <div className="absolute top-1/2 left-1/2 w-32 md:w-40 h-32 md:h-40 rounded-full border border-chiarli-text/5 hidden md:block"
                   style={{ transform: `translate(-50%, -50%) rotate(${-scrollY * 0.03}deg)` }}
                 />
 
-                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-6 md:p-10 lg:p-12 hover:border-chiarli-wine-light/30 hover:shadow-[0_0_30px_rgba(180,100,120,0.2)] transition-all duration-500">
-                  <div className="absolute top-0 left-0 w-12 md:w-20 h-1 bg-chiarli-wine-light" />
-                  <div className="absolute top-0 left-0 w-1 h-12 md:h-20 bg-chiarli-wine-light" />
+                <div className="relative bg-white/65 backdrop-blur-sm border border-chiarli-text/15 p-6 md:p-10 lg:p-12 hover:border-chiarli-wine/40 hover:shadow-[0_0_30px_rgba(180,100,120,0.2)] transition-all duration-500">
+                  <div className="absolute top-0 left-0 w-12 md:w-20 h-1 bg-chiarli-wine" />
+                  <div className="absolute top-0 left-0 w-1 h-12 md:h-20 bg-chiarli-wine" />
 
-                  <p className="font-serif text-xl md:text-2xl lg:text-3xl text-white/90 leading-relaxed mb-6 md:mb-8">
+                  <p className="font-serif text-xl md:text-2xl lg:text-3xl text-chiarli-text leading-relaxed mb-6 md:mb-8">
                     {tastingNotes[activeTab].description}
                   </p>
 
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-[1px] bg-chiarli-wine-light" />
-                    <span className="font-sans text-[10px] uppercase tracking-widest text-white/40">
+                    <div className="w-12 h-[1px] bg-chiarli-wine" />
+                    <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/50">
                       {tastingNotes[activeTab].title}
                     </span>
                   </div>
