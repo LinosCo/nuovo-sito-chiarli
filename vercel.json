@@ -1,17 +1,18 @@
 {
   "version": 2,
-  "buildCommand": "cd cms && npm install && npm run build",
-  "outputDirectory": "cms/dist",
   "builds": [
     {
-      "src": "cms/dist/server.js",
-      "use": "@vercel/node"
+      "src": "cms/server.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["cms/**", "content/**"]
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "cms/dist/server.js"
+      "dest": "cms/server.ts"
     }
   ]
 }
