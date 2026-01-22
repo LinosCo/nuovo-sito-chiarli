@@ -279,9 +279,10 @@ app.delete('/api/content/:type/:id', async (req, res) => {
 app.post('/api/upload/:category', upload.single('image'), async (req, res) => {
   try {
     const { category } = req.params;
+    const categoryStr = Array.isArray(category) ? category[0] : category;
     const validCategories = ['wines', 'news', 'tenute', 'experiences', 'gallery'];
 
-    if (!validCategories.includes(category)) {
+    if (!validCategories.includes(categoryStr)) {
       return res.status(400).json({ error: 'Categoria non valida' });
     }
 
@@ -293,7 +294,7 @@ app.post('/api/upload/:category', upload.single('image'), async (req, res) => {
       req.file.buffer,
       req.file.originalname,
       req.file.mimetype,
-      category as any
+      categoryStr as any
     );
 
     if (!result.success) {

@@ -70,7 +70,7 @@ export class ContentService {
     updates: Partial<T>,
     modifiedBy: string = 'cms'
   ): Promise<T | null> {
-    const data = await this.read<{ [key: string]: T[]; _meta: ContentMeta }>(contentType);
+    const data = await this.read<{ [key: string]: T[] | ContentMeta; _meta: ContentMeta }>(contentType);
     const key = contentType.replace('pages/', '');
     const items = data[key] as T[];
 
@@ -93,7 +93,7 @@ export class ContentService {
     item: T,
     modifiedBy: string = 'cms'
   ): Promise<T> {
-    const data = await this.read<{ [key: string]: T[]; _meta: ContentMeta }>(contentType);
+    const data = await this.read<{ [key: string]: T[] | ContentMeta; _meta: ContentMeta }>(contentType);
     const key = contentType.replace('pages/', '');
     const items = data[key] as T[];
 
@@ -116,7 +116,7 @@ export class ContentService {
     itemId: number,
     modifiedBy: string = 'cms'
   ): Promise<boolean> {
-    const data = await this.read<{ [key: string]: T[]; _meta: ContentMeta }>(contentType);
+    const data = await this.read<{ [key: string]: T[] | ContentMeta; _meta: ContentMeta }>(contentType);
     const key = contentType.replace('pages/', '');
     const items = data[key] as T[];
 

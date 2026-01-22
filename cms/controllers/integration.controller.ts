@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { contentService } from '../services/content.service.ts';
-import { btWebhookService } from '../services/bt-webhook.service.ts';
+import { contentService } from '../services/content.service.js';
+import { btWebhookService } from '../services/bt-webhook.service.js';
 
 /**
  * Controller per l'integrazione con Business Tuner
@@ -108,7 +108,15 @@ export class IntegrationController {
 
       if (format === 'structured') {
         // Formato strutturato per Business Tuner
-        const structured = {
+        const structured: {
+          wines: any[];
+          tenute: any[];
+          experiences: any[];
+          news: any[];
+          pages: Record<string, any>;
+          settings: Record<string, any>;
+          exportedAt: string;
+        } = {
           wines: [],
           tenute: [],
           experiences: [],
@@ -214,7 +222,8 @@ export class IntegrationController {
       console.log(`Applicando suggerimento ${id} a ${contentType}:`, changes);
 
       // Notifica Business Tuner
-      await btWebhookService.notifySuggestionApplied(id, changes);
+      const suggestionId = Array.isArray(id) ? id[0] : id;
+      await btWebhookService.notifySuggestionApplied(suggestionId, changes);
 
       res.json({
         success: true,
