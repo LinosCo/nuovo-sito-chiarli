@@ -24,6 +24,10 @@ import {
 const API_URL = import.meta.env.VITE_CMS_API_URL || '';
 const SITE_PREVIEW_URL = import.meta.env.VITE_SITE_URL || 'http://localhost:3000';
 
+console.log('🎯 [CMSDashboard] Componente caricato');
+console.log('🔧 [CMSDashboard] API_URL:', API_URL);
+console.log('🔧 [CMSDashboard] SITE_PREVIEW_URL:', SITE_PREVIEW_URL);
+
 // Tipi
 interface Message {
   id: string;

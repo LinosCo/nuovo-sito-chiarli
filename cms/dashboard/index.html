@@ -57,6 +57,22 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Global error handler per debugging
+      window.addEventListener('error', function(event) {
+        console.error('❌ [Global Error]', event.error);
+        console.error('Message:', event.message);
+        console.error('Filename:', event.filename);
+        console.error('Line:', event.lineno, 'Column:', event.colno);
+      });
+
+      window.addEventListener('unhandledrejection', function(event) {
+        console.error('❌ [Unhandled Promise Rejection]', event.reason);
+      });
+
+      console.log('🏁 [HTML] Documento caricato');
+      console.log('📋 [HTML] User Agent:', navigator.userAgent);
+    </script>
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>
