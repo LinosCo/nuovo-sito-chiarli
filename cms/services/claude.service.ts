@@ -568,60 +568,13 @@ Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo.`,
   }
 
   /**
-   * Estrae l'immagine della bottiglia dal PDF della scheda tecnica
+   * Estrazione immagine da PDF disabilitata - il cliente caricherà le immagini manualmente
    */
   async extractBottleImageFromPdf(pdfBuffer: Buffer, wineSlug: string): Promise<{ success: boolean; imagePath?: string; error?: string }> {
-    try {
-      // Dynamic imports to avoid loading heavy dependencies at startup
-      const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs');
-      const { createCanvas } = await import('canvas');
-
-      // Load PDF with pdfjs
-      const pdfData = new Uint8Array(pdfBuffer);
-      const loadingTask = pdfjsLib.getDocument({ data: pdfData });
-      const pdf = await loadingTask.promise;
-
-      // Get first page (usually contains the bottle image)
-      const page = await pdf.getPage(1);
-      const viewport = page.getViewport({ scale: 2.0 });
-
-      // Create canvas
-      const canvas = createCanvas(viewport.width, viewport.height);
-      const context = canvas.getContext('2d');
-
-      // Render PDF page to canvas
-      await page.render({
-        canvasContext: context as any,
-        viewport: viewport,
-        canvas: canvas as any,
-      } as any).promise;
-
-      // Convert to PNG buffer
-      const imageBuffer = canvas.toBuffer('image/png');
-
-      // Save image using upload service
-      const timestamp = Date.now();
-      const fileName = `${wineSlug}-bottle-${timestamp}.png`;
-      const publicPath = path.join(__dirname, '../../public/uploads/wines');
-
-      // Ensure directory exists
-      await fs.mkdir(publicPath, { recursive: true });
-
-      const filePath = path.join(publicPath, fileName);
-      await fs.writeFile(filePath, imageBuffer);
-
-      // Return relative path for web
-      return {
-        success: true,
-        imagePath: `/uploads/wines/${fileName}`,
-      };
-    } catch (error: any) {
-      console.error('[PDF Image Extract] Error:', error);
-      return {
-        success: false,
-        error: `Errore estrazione immagine: ${error.message}`,
-      };
-    }
+    return {
+      success: false,
+      error: 'Estrazione automatica immagini da PDF non disponibile. Caricare l\'immagine della bottiglia manualmente.',
+    };
   }
 
   /**
