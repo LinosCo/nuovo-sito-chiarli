@@ -1,3 +1,1 @@
-cms/dashboard
-cms/node_modules
-cms/dist
+cms/**
