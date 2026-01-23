@@ -17,7 +17,7 @@ export const HeroLight: React.FC = () => {
       <div className="grid grid-cols-12 min-h-screen">
 
         {/* Left Side - Typography */}
-        <div className="col-span-12 lg:col-span-5 flex flex-col justify-center px-8 md:px-16 lg:px-20 py-24 lg:py-0 order-2 lg:order-1">
+        <div className="col-span-12 lg:col-span-7 flex flex-col justify-center px-8 md:px-16 lg:px-20 py-24 lg:py-0 order-2 lg:order-1">
 
           {/* Small label */}
           <div
@@ -36,10 +36,10 @@ export const HeroLight: React.FC = () => {
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <span className="font-serif text-[12vw] lg:text-[7vw] xl:text-[6vw] text-chiarli-text block leading-[0.85] tracking-tight">
+            <span className="font-serif text-[10vw] lg:text-[4.5vw] xl:text-[4vw] text-chiarli-text block leading-[0.85] tracking-tight whitespace-nowrap">
               {homeContent.hero.titleLine1}
             </span>
-            <span className="font-serif italic text-[12vw] lg:text-[7vw] xl:text-[6vw] text-chiarli-wine block leading-[0.85] tracking-tight">
+            <span className="font-serif italic text-[10vw] lg:text-[4.5vw] xl:text-[4vw] text-chiarli-wine block leading-[0.85] tracking-tight whitespace-nowrap">
               {homeContent.hero.titleLine2}
             </span>
           </h1>
@@ -79,7 +79,7 @@ export const HeroLight: React.FC = () => {
         </div>
 
         {/* Right Side - Full Image */}
-        <div className="col-span-12 lg:col-span-7 relative order-1 lg:order-2 h-[50vh] lg:h-auto">
+        <div className="col-span-12 lg:col-span-5 relative order-1 lg:order-2 h-[50vh] lg:h-auto">
           <img
             src="/foto/close-up-26-scaled.jpeg"
             alt="Lambrusco Chiarli"
