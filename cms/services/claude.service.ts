@@ -333,14 +333,41 @@ export class ClaudeService {
   /**
    * Processa un messaggio del cliente
    */
-  async processMessage(userMessage: string): Promise<CMSResponse> {
+  async processMessage(userMessage: string, imageBase64?: string | null): Promise<CMSResponse> {
     // Carica contesto corrente
     const context = await this.loadCurrentContext();
+
+    // Prepara il contenuto del messaggio utente
+    // Se c'è un'immagine, usa formato array con image + text
+    // Altrimenti usa solo text come stringa
+    let messageContent: any;
+
+    if (imageBase64) {
+      // Determina il media type dall'header base64 o usa default
+      const mediaType = 'image/png'; // Default, può essere migliorato rilevando il tipo
+
+      messageContent = [
+        {
+          type: 'image',
+          source: {
+            type: 'base64',
+            media_type: mediaType,
+            data: imageBase64,
+          },
+        },
+        {
+          type: 'text',
+          text: userMessage + '\n\n(Analizza lo screenshot allegato e identifica quale parte del sito vuole modificare l\'utente. Usa questa informazione visiva per capire esattamente quale contenuto modificare.)',
+        },
+      ];
+    } else {
+      messageContent = userMessage;
+    }
 
     // Aggiungi messaggio utente alla storia
     this.conversationHistory.push({
       role: 'user',
-      content: userMessage,
+      content: messageContent,
     });
 
     // Loop per gestire tool use

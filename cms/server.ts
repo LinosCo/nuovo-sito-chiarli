@@ -124,13 +124,14 @@ app.get('/', (req, res) => {
  */
 app.post('/api/chat', async (req, res) => {
   try {
-    const { message } = req.body;
+    const { message, image } = req.body;
 
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Messaggio richiesto' });
     }
 
-    const response = await claudeService.processMessage(message);
+    // Passa sia il messaggio che l'eventuale immagine (base64)
+    const response = await claudeService.processMessage(message, image || null);
 
     res.json(response);
   } catch (error: any) {

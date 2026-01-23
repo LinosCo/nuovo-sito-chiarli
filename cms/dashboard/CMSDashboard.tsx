@@ -84,7 +84,7 @@ export const CMSDashboard: React.FC = () => {
         '- Modificare testi delle pagine\n' +
         '- Aggiungere o modificare vini\n' +
         '- Creare news e articoli\n' +
-        '- Caricare immagini\n\n' +
+        '- Caricare immagini o screenshot per modifiche visive\n\n' +
         'Come posso aiutarti oggi?',
       timestamp: new Date(),
     },
@@ -95,6 +95,7 @@ export const CMSDashboard: React.FC = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingPdf, setUploadingPdf] = useState(false);
+  const [attachedImage, setAttachedImage] = useState<{ base64: string; name: string } | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(SITE_PREVIEW_URL);
   const [showBTPanel, setShowBTPanel] = useState(false);
@@ -205,19 +206,25 @@ export const CMSDashboard: React.FC = () => {
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
-      content: inputValue.trim(),
+      content: inputValue.trim() + (attachedImage ? ' [Screenshot allegato]' : ''),
       timestamp: new Date(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
+    const messageContent = inputValue.trim();
+    const imageData = attachedImage;
     setInputValue('');
+    setAttachedImage(null); // Pulisci immagine allegata
     setIsLoading(true);
 
     try {
       const res = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userMessage.content }),
+        body: JSON.stringify({
+          message: messageContent,
+          image: imageData?.base64 || null, // Invia immagine se presente
+        }),
       });
 
       const data = await res.json();
@@ -333,46 +340,54 @@ export const CMSDashboard: React.FC = () => {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    // Verifica che sia un'immagine
+    if (!file.type.startsWith('image/')) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          role: 'system',
+          content: 'Per favore carica solo file immagine (PNG, JPG, ecc.)',
+          timestamp: new Date(),
+        },
+      ]);
+      return;
+    }
+
     setUploadingImage(true);
 
-    const formData = new FormData();
-    formData.append('image', file);
-
     try {
-      const res = await fetch(`${API_URL}/api/upload/gallery`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
+      // Converti in base64 per Claude Vision API
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64 = reader.result as string;
+        setAttachedImage({
+          base64: base64.split(',')[1], // Rimuovi il prefisso "data:image/..."
+          name: file.name,
+        });
+        setUploadingImage(false);
+        // Placeholder nel campo di testo per indicare che c'è un'immagine allegata
+        if (!inputValue.trim()) {
+          setInputValue('Puoi vedere cosa voglio modificare nello screenshot allegato?');
+        }
+      };
+      reader.onerror = () => {
         setMessages((prev) => [
           ...prev,
           {
             id: Date.now().toString(),
             role: 'system',
-            content: `Immagine caricata: ${data.url}`,
+            content: 'Errore nella lettura del file immagine',
             timestamp: new Date(),
           },
         ]);
-        // Aggiungi l'URL all'input per permettere di associarla
-        setInputValue(`Usa l'immagine ${data.url} per `);
-      } else {
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: Date.now().toString(),
-            role: 'system',
-            content: `Errore upload: ${data.error}`,
-            timestamp: new Date(),
-          },
-        ]);
-      }
+        setUploadingImage(false);
+      };
+      reader.readAsDataURL(file);
     } catch (error) {
       console.error('Errore upload:', error);
-    } finally {
       setUploadingImage(false);
+    } finally {
       if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
@@ -911,6 +926,20 @@ export const CMSDashboard: React.FC = () => {
 
                   {/* Input text */}
                   <div className="flex-1 relative">
+                    {/* Preview immagine allegata */}
+                    {attachedImage && (
+                      <div className="mb-2 p-2 bg-amber-50 border border-amber-200 rounded-lg flex items-center gap-2">
+                        <Image size={16} className="text-amber-900" />
+                        <span className="text-sm text-amber-900 flex-1">{attachedImage.name}</span>
+                        <button
+                          onClick={() => setAttachedImage(null)}
+                          className="p-1 hover:bg-amber-100 rounded transition-colors"
+                          title="Rimuovi screenshot"
+                        >
+                          <X size={16} className="text-amber-700" />
+                        </button>
+                      </div>
+                    )}
                     <textarea
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
@@ -920,7 +949,7 @@ export const CMSDashboard: React.FC = () => {
                           sendMessage();
                         }
                       }}
-                      placeholder="Scrivi un messaggio... (es: 'Aggiungi un nuovo vino', 'Cambia il titolo della homepage')"
+                      placeholder={attachedImage ? "Descrivi cosa vuoi modificare nello screenshot..." : "Scrivi un messaggio... (es: 'Aggiungi un nuovo vino', 'Cambia il titolo della homepage')"}
                       className="w-full px-4 py-3 bg-stone-100 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-amber-900/20 max-h-32"
                       rows={1}
                     />
