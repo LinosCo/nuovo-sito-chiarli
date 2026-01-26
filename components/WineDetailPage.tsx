@@ -65,13 +65,21 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           setWineData(wine);
 
           // Get related wines (same family or denomination, excluding current wine)
-          const related = data.wines
+          let related = data.wines
             .filter((w: WineData) =>
               w.isActive &&
               w.slug !== slug &&
               (w.family === wine.family || w.denomination === wine.denomination)
             )
             .slice(0, 3);
+
+          // If no related wines found, show random active wines
+          if (related.length === 0) {
+            related = data.wines
+              .filter((w: WineData) => w.isActive && w.slug !== slug)
+              .sort(() => Math.random() - 0.5)
+              .slice(0, 3);
+          }
 
           setRelatedWines(related);
         } else {
