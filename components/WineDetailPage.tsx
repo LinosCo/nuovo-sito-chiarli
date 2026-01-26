@@ -175,8 +175,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         {/* Background image con effetto "vedo non vedo" */}
         <div className="absolute inset-0">
           <img
-            src="/foto/vasche-3.jpg"
-            alt="Vigneto"
+            src="/foto/villa-cialdini-ombre.jpg"
+            alt="Villa Cialdini"
             className="w-full h-full object-cover opacity-30"
             style={{
               filter: 'blur(5px)',
@@ -329,18 +329,6 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                   </div>
                 )}
 
-                {/* Vinificazione */}
-                {wine.vinification && (
-                  <div className="flex flex-col gap-2 group">
-                    <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light/60">
-                      Vinificazione
-                    </span>
-                    <span className="font-serif text-sm text-white/80 group-hover:text-chiarli-wine-light transition-colors leading-relaxed">
-                      {wine.vinification}
-                    </span>
-                  </div>
-                )}
-
                 {/* Gradazione e Temperatura */}
                 <div className="flex items-center gap-6 pt-2">
                   {wine.alcohol && (
@@ -467,8 +455,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/vasche-4.jpg"
-            alt="Vigneto"
+            src="/foto/villa-cialdini-cielo.jpg"
+            alt="Villa Cialdini"
             className="w-full h-full object-cover"
           />
         </div>
@@ -665,8 +653,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           {/* Left - Image */}
           <div className="w-full lg:w-1/2 h-[40vh] md:h-[50vh] lg:h-[80vh] relative">
             <img
-              src="/foto/sozzigalli-24-uai-720x1080.jpg"
-              alt="Vigneti"
+              src="/foto/villa-cialdini-viale.jpg"
+              alt="Villa Cialdini"
               className="absolute inset-0 w-full h-full object-cover"
             />
             {/* Gradient overlay for text readability on mobile */}
@@ -714,57 +702,51 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         </div>
       </section>
 
-      {/* Abbinamenti Gastronomici Section */}
+      {/* Abbinamenti Gastronomici Section - Split layout with slider */}
       {wine.pairings && wine.pairings.length > 0 && (
-        <section className="py-16 md:py-24 lg:py-32 relative overflow-hidden">
-          {/* Background image */}
-          <div className="absolute inset-0">
+        <section className="relative flex flex-col lg:flex-row overflow-hidden">
+
+          {/* Left - Single image */}
+          <div className="w-full lg:w-1/2 relative">
             <img
-              src="/foto/vasche-3.jpg"
-              alt="Cantina Chiarli"
-              className="w-full h-full object-cover"
+              src="/foto/abbinamento-2.jpg"
+              alt="Abbinamento gastronomico"
+              className="w-full h-full object-cover absolute inset-0"
             />
+            <div className="lg:hidden aspect-square" />
           </div>
 
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-chiarli-text/80" />
+          {/* Right - Content */}
+          <div className="w-full lg:w-1/2 bg-chiarli-text flex items-center">
+            <div className="px-6 md:px-12 lg:px-16 py-12 md:py-16 lg:py-24 w-full">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
+                In Tavola
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight">
+                Abbinamenti
+                <span className="italic text-chiarli-wine-light block">Gastronomici</span>
+              </h2>
 
-          <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
+              <p className="font-serif text-base md:text-lg text-white/70 leading-relaxed mb-8">
+                Ottimo come aperitivo, è ideale per le cene più raffinate; si sposa bene anche con desserts quali torta con fragole o macedonie di frutta.
+              </p>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-              {/* Left - Title and description */}
-              <div>
-                <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
-                  In Tavola
-                </span>
-                <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight">
-                  Abbinamenti
-                  <span className="italic text-chiarli-wine-light block">Gastronomici</span>
-                </h2>
-
-                <p className="font-serif text-base md:text-lg text-white/70 leading-relaxed">
-                  Ottimo come aperitivo, è ideale per le cene più raffinate; si sposa bene anche con desserts quali torta con fragole o macedonie di frutta.
-                </p>
-              </div>
-
-              {/* Right - Pairings list */}
-              <div className="grid grid-cols-2 gap-4 md:gap-6">
+              {/* Pairings list */}
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
                 {wine.pairings.map((pairing, index) => (
                   <div
                     key={index}
-                    className="group p-4 md:p-6 border border-white/20 bg-white/5 backdrop-blur-sm hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default"
+                    className="group p-3 md:p-4 border border-white/20 bg-white/5 hover:border-chiarli-wine-light/50 hover:bg-white/10 transition-all duration-300"
                   >
-                    <span className="font-serif text-sm md:text-base text-white group-hover:text-chiarli-wine-light transition-colors">
+                    <span className="font-serif text-sm text-white group-hover:text-chiarli-wine-light transition-colors">
                       {pairing}
                     </span>
                   </div>
                 ))}
               </div>
-
             </div>
-
           </div>
+
         </section>
       )}
 

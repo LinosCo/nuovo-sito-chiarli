@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { CMSDashboard } from './CMSDashboard';
+import App from './App';
 import './styles.css';
 
 console.log('🚀 [Dashboard] index.tsx caricato');
@@ -8,6 +8,7 @@ console.log('📍 [Dashboard] Location:', window.location.href);
 console.log('🌐 [Dashboard] Environment:', {
   VITE_CMS_API_URL: import.meta.env.VITE_CMS_API_URL,
   VITE_SITE_URL: import.meta.env.VITE_SITE_URL,
+  VITE_BUSINESS_TUNER_URL: import.meta.env.VITE_BUSINESS_TUNER_URL,
   MODE: import.meta.env.MODE,
   DEV: import.meta.env.DEV,
   PROD: import.meta.env.PROD,
@@ -24,10 +25,10 @@ try {
   console.log('⚛️ [Dashboard] Creazione React root...');
   const root = ReactDOM.createRoot(rootElement);
 
-  console.log('🎨 [Dashboard] Rendering CMSDashboard...');
+  console.log('🎨 [Dashboard] Rendering App con AuthProvider...');
   root.render(
     <React.StrictMode>
-      <CMSDashboard />
+      <App />
     </React.StrictMode>
   );
 

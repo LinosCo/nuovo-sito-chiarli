@@ -4,6 +4,7 @@ import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 
 // Carica variabili d'ambiente
 dotenv.config();
@@ -14,6 +15,14 @@ import { gitService } from './services/git.service.js';
 import { uploadService } from './services/upload.service.js';
 import { btAuth } from './middleware/btAuth.js';
 import { integrationController } from './controllers/integration.controller.js';
+import {
+  requireAuth,
+  optionalAuth,
+  createSession,
+  destroySession,
+  getSession
+} from './middleware/sessionAuth.js';
+import { validateBTToken } from './services/btAuth.service.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -28,17 +37,40 @@ app.use(cors({
     /\.vercel\.app$/, // Tutti i deployment preview Vercel
   ],
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Cookie parser per gestione sessioni
+app.use(cookieParser());
 
 // IMPORTANTE: Route PDF DEVE venire PRIMA di express.json() per evitare conflitti
 /**
  * POST /api/upload/pdf
  * Carica e analizza un PDF (scheda tecnica vino)
  * Usa un handler personalizzato per evitare conflitti con Multer
+ * RICHIEDE AUTENTICAZIONE (verificata manualmente perché viene prima di cookieParser)
  */
 app.post('/api/upload/pdf', express.raw({ type: 'application/pdf', limit: '10mb' }), async (req, res) => {
   try {
-    console.log('[Upload/PDF] Richiesta ricevuta');
+    // Verifica autenticazione manualmente (il middleware requireAuth non può essere usato qui)
+    const authHeader = req.headers.authorization;
+    if (!authHeader?.startsWith('Bearer ')) {
+      return res.status(401).json({
+        error: 'Authentication required',
+        code: 'NO_SESSION'
+      });
+    }
+    const token = authHeader.substring(7);
+    const session = getSession(token);
+    if (!session) {
+      return res.status(401).json({
+        error: 'Session expired',
+        code: 'SESSION_EXPIRED'
+      });
+    }
+
+    console.log(`[Upload/PDF] User ${session.userEmail} uploading PDF`);
     console.log('[Upload/PDF] Content-Type:', req.headers['content-type']);
     console.log('[Upload/PDF] Body length:', req.body?.length);
 
@@ -115,20 +147,128 @@ app.get('/', (req, res) => {
 });
 
 // ============================================
-// ROUTES - CHAT
+// ROUTES - AUTHENTICATION
+// ============================================
+
+/**
+ * POST /api/auth/validate
+ * Valida token JWT da Business Tuner e crea sessione locale
+ */
+app.post('/api/auth/validate', async (req, res) => {
+  try {
+    const { bt_token } = req.body;
+
+    if (!bt_token) {
+      return res.status(400).json({
+        error: 'Missing token',
+        code: 'MISSING_TOKEN'
+      });
+    }
+
+    // Valida con Business Tuner
+    const validation = await validateBTToken(bt_token);
+
+    if (!validation.valid) {
+      return res.status(401).json({
+        error: validation.error || 'Invalid token',
+        code: 'INVALID_TOKEN'
+      });
+    }
+
+    // Crea sessione locale
+    const sessionToken = createSession({
+      userId: validation.user!.id,
+      userEmail: validation.user!.email,
+      projectId: validation.project!.id,
+      organizationId: validation.organization!.id,
+      permissions: validation.user!.permissions
+    });
+
+    // Set cookie sicuro
+    res.cookie('cms_session', sessionToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 24 * 60 * 60 * 1000 // 24 ore
+    });
+
+    console.log(`[Auth] User ${validation.user!.email} authenticated successfully`);
+
+    res.json({
+      success: true,
+      user: {
+        email: validation.user!.email,
+        permissions: validation.user!.permissions
+      },
+      sessionToken // Anche come risposta per client-side storage
+    });
+
+  } catch (error: any) {
+    console.error('[Auth] Validation error:', error.message);
+    res.status(500).json({
+      error: 'Authentication failed',
+      code: 'AUTH_ERROR'
+    });
+  }
+});
+
+/**
+ * GET /api/auth/session
+ * Verifica sessione corrente
+ */
+app.get('/api/auth/session', optionalAuth, (req, res) => {
+  const session = (req as any).session;
+
+  if (!session) {
+    return res.json({
+      authenticated: false
+    });
+  }
+
+  res.json({
+    authenticated: true,
+    user: {
+      email: session.userEmail,
+      permissions: session.permissions
+    }
+  });
+});
+
+/**
+ * POST /api/auth/logout
+ * Termina sessione
+ */
+app.post('/api/auth/logout', optionalAuth, (req, res) => {
+  const token = (req as any).sessionToken;
+
+  if (token) {
+    destroySession(token);
+  }
+
+  res.clearCookie('cms_session');
+  res.json({ success: true });
+});
+
+// ============================================
+// ROUTES - CHAT (PROTECTED)
 // ============================================
 
 /**
  * POST /api/chat
  * Endpoint principale per la chat con l'assistente
+ * RICHIEDE AUTENTICAZIONE
  */
-app.post('/api/chat', async (req, res) => {
+app.post('/api/chat', requireAuth, async (req, res) => {
   try {
     const { message, image } = req.body;
+    const session = (req as any).session;
 
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Messaggio richiesto' });
     }
+
+    // Log per audit
+    console.log(`[Chat] User ${session.userEmail}: ${message.substring(0, 50)}...`);
 
     // Passa sia il messaggio che l'eventuale immagine (base64)
     const response = await claudeService.processMessage(message, image || null);
@@ -143,21 +283,28 @@ app.post('/api/chat', async (req, res) => {
 /**
  * POST /api/chat/confirm
  * Conferma ed esegue un'azione
+ * RICHIEDE AUTENTICAZIONE
  */
-app.post('/api/chat/confirm', async (req, res) => {
+app.post('/api/chat/confirm', requireAuth, async (req, res) => {
   try {
     const { action } = req.body;
+    const session = (req as any).session;
 
     if (!action) {
       return res.status(400).json({ error: 'Azione richiesta' });
     }
 
+    // Log per audit
+    console.log(`[Chat/Confirm] User ${session.userEmail} executing: ${action.type}`);
+
     // Esegui l'azione
     const result = await claudeService.executeAction(action);
 
-    // Se successo, crea commit automatico
+    // Se successo, crea commit automatico con info utente
     if (result.success && process.env.GIT_AUTO_COMMIT === 'true') {
-      await gitService.autoCommit(`${action.type} ${action.contentType}${action.itemId ? ` #${action.itemId}` : ''}`);
+      await gitService.autoCommit(
+        `${action.type} ${action.contentType}${action.itemId ? ` #${action.itemId}` : ''} [by ${session.userEmail}]`
+      );
     }
 
     res.json(result);
@@ -170,8 +317,9 @@ app.post('/api/chat/confirm', async (req, res) => {
 /**
  * POST /api/chat/reset
  * Resetta la conversazione
+ * RICHIEDE AUTENTICAZIONE
  */
-app.post('/api/chat/reset', (req, res) => {
+app.post('/api/chat/reset', requireAuth, (req, res) => {
   claudeService.resetConversation();
   res.json({ success: true, message: 'Conversazione resettata' });
 });
@@ -225,13 +373,17 @@ app.get('/api/content/pages/:page', async (req, res) => {
 /**
  * PUT /api/content/:type/:id
  * Aggiorna un item specifico
+ * RICHIEDE AUTENTICAZIONE
  */
-app.put('/api/content/:type/:id', async (req, res) => {
+app.put('/api/content/:type/:id', requireAuth, async (req, res) => {
   try {
     const { type, id } = req.params;
     const updates = req.body;
+    const session = (req as any).session;
 
-    const result = await contentService.updateItem(type as any, parseInt(id), updates, 'api');
+    console.log(`[Content] User ${session.userEmail} updating ${type} #${id}`);
+
+    const result = await contentService.updateItem(type as any, parseInt(id as string), updates, 'api');
 
     if (!result) {
       return res.status(404).json({ error: 'Item non trovato' });
@@ -239,7 +391,7 @@ app.put('/api/content/:type/:id', async (req, res) => {
 
     // Commit automatico
     if (process.env.GIT_AUTO_COMMIT === 'true') {
-      await gitService.autoCommit(`Aggiornato ${type} #${id}`);
+      await gitService.autoCommit(`Aggiornato ${type} #${id} [by ${session.userEmail}]`);
     }
 
     res.json(result);
@@ -252,17 +404,21 @@ app.put('/api/content/:type/:id', async (req, res) => {
 /**
  * POST /api/content/:type
  * Crea un nuovo item
+ * RICHIEDE AUTENTICAZIONE
  */
-app.post('/api/content/:type', async (req, res) => {
+app.post('/api/content/:type', requireAuth, async (req, res) => {
   try {
     const { type } = req.params;
     const item = req.body;
+    const session = (req as any).session;
+
+    console.log(`[Content] User ${session.userEmail} creating ${type}`);
 
     const result = await contentService.addItem(type as any, item, 'api');
 
     // Commit automatico
     if (process.env.GIT_AUTO_COMMIT === 'true') {
-      await gitService.autoCommit(`Creato ${type} #${result.id}`);
+      await gitService.autoCommit(`Creato ${type} #${result.id} [by ${session.userEmail}]`);
     }
 
     res.status(201).json(result);
@@ -275,12 +431,16 @@ app.post('/api/content/:type', async (req, res) => {
 /**
  * DELETE /api/content/:type/:id
  * Elimina un item
+ * RICHIEDE AUTENTICAZIONE
  */
-app.delete('/api/content/:type/:id', async (req, res) => {
+app.delete('/api/content/:type/:id', requireAuth, async (req, res) => {
   try {
     const { type, id } = req.params;
+    const session = (req as any).session;
 
-    const result = await contentService.removeItem(type as any, parseInt(id), 'api');
+    console.log(`[Content] User ${session.userEmail} deleting ${type} #${id}`);
+
+    const result = await contentService.removeItem(type as any, parseInt(id as string), 'api');
 
     if (!result) {
       return res.status(404).json({ error: 'Item non trovato' });
@@ -288,7 +448,7 @@ app.delete('/api/content/:type/:id', async (req, res) => {
 
     // Commit automatico
     if (process.env.GIT_AUTO_COMMIT === 'true') {
-      await gitService.autoCommit(`Eliminato ${type} #${id}`);
+      await gitService.autoCommit(`Eliminato ${type} #${id} [by ${session.userEmail}]`);
     }
 
     res.json({ success: true });
@@ -305,10 +465,12 @@ app.delete('/api/content/:type/:id', async (req, res) => {
 /**
  * POST /api/upload/:category
  * Carica un'immagine
+ * RICHIEDE AUTENTICAZIONE
  */
-app.post('/api/upload/:category', upload.single('image'), async (req, res) => {
+app.post('/api/upload/:category', requireAuth, upload.single('image'), async (req, res) => {
   try {
     const { category } = req.params;
+    const session = (req as any).session;
     const categoryStr = Array.isArray(category) ? category[0] : category;
     const validCategories = ['wines', 'news', 'tenute', 'experiences', 'gallery'];
 
@@ -319,6 +481,8 @@ app.post('/api/upload/:category', upload.single('image'), async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: 'Nessun file caricato' });
     }
+
+    console.log(`[Upload] User ${session.userEmail} uploading to ${categoryStr}`);
 
     const result = await uploadService.upload(
       req.file.buffer,
@@ -341,14 +505,18 @@ app.post('/api/upload/:category', upload.single('image'), async (req, res) => {
 /**
  * DELETE /api/upload
  * Elimina un'immagine
+ * RICHIEDE AUTENTICAZIONE
  */
-app.delete('/api/upload', async (req, res) => {
+app.delete('/api/upload', requireAuth, async (req, res) => {
   try {
     const { path: imagePath } = req.body;
+    const session = (req as any).session;
 
     if (!imagePath) {
       return res.status(400).json({ error: 'Path richiesto' });
     }
+
+    console.log(`[Upload] User ${session.userEmail} deleting ${imagePath}`);
 
     const result = await uploadService.delete(imagePath);
 
@@ -400,14 +568,18 @@ app.get('/api/history', async (req, res) => {
 /**
  * POST /api/history/rollback
  * Ripristina una versione precedente
+ * RICHIEDE AUTENTICAZIONE
  */
-app.post('/api/history/rollback', async (req, res) => {
+app.post('/api/history/rollback', requireAuth, async (req, res) => {
   try {
     const { commitHash } = req.body;
+    const session = (req as any).session;
 
     if (!commitHash) {
       return res.status(400).json({ error: 'Commit hash richiesto' });
     }
+
+    console.log(`[History] User ${session.userEmail} rolling back to ${commitHash}`);
 
     const result = await gitService.restoreContent(commitHash);
 

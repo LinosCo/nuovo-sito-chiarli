@@ -73,8 +73,18 @@ interface BTSuggestion {
   receivedAt: string;
 }
 
+interface User {
+  email: string;
+  permissions: string;
+}
+
+interface CMSDashboardProps {
+  user?: User | null;
+  onLogout?: () => void;
+}
+
 // Componente principale
-export const CMSDashboard: React.FC = () => {
+export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -753,6 +763,15 @@ export const CMSDashboard: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2">
+                {/* User info */}
+                {user && (
+                  <div className="hidden sm:flex items-center gap-2 mr-2 px-3 py-1.5 bg-stone-100 rounded-lg">
+                    <div className="w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center text-white text-xs font-medium">
+                      {user.email.charAt(0).toUpperCase()}
+                    </div>
+                    <span className="text-xs text-stone-600 max-w-[150px] truncate">{user.email}</span>
+                  </div>
+                )}
                 <button
                   onClick={() => setPreviewUrl(SITE_PREVIEW_URL)}
                   className="p-2 rounded-lg hover:bg-stone-100 text-stone-600 transition-colors"
@@ -784,6 +803,18 @@ export const CMSDashboard: React.FC = () => {
                 >
                   <History size={20} />
                 </button>
+                {/* Logout button */}
+                {onLogout && (
+                  <button
+                    onClick={onLogout}
+                    className="p-2 rounded-lg hover:bg-red-100 text-stone-600 hover:text-red-600 transition-colors"
+                    title="Esci"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                  </button>
+                )}
                 <button
                   onClick={() => setChatOpen(false)}
                   className="p-2 rounded-lg hover:bg-stone-100 text-stone-600 transition-colors"

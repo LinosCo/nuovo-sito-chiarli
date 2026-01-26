@@ -464,7 +464,7 @@
       "name": "Villa Cialdini",
       "subtitle": "Rosè Brut",
       "denomination": "Vino Spumante Rosé Brut",
-      "family": "Metodo Ancestrale",
+      "family": "Metodo Charmat",
       "grape": "Grasparossa",
       "description": "Spuma vivace, colore rosa ribes, bollicine fini ed abbondanti. Profumo intenso e fruttato, sapore ben composto con tipici sentori di frutti di sottobosco.",
       "image": "/foto/villa-cialdini-rose-de-noir.png",
@@ -472,7 +472,7 @@
       "tags": [
         "Rosé",
         "DOC",
-        "Metodo Ancestrale"
+        "Metodo Charmat"
       ],
       "price": null,
       "year": null,
