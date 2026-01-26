@@ -833,16 +833,16 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
       {/* Related Wines Section */}
       {relatedWines.length > 0 && (
-        <section className="py-16 md:py-20 lg:py-24 bg-white relative overflow-hidden">
+        <section className="py-16 md:py-20 lg:py-24 bg-chiarli-text relative overflow-hidden">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
 
             {/* Section Header */}
             <div className="mb-12 md:mb-16">
-              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
                 Scopri Anche
               </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-chiarli-text">
-                Vini <span className="italic text-chiarli-wine">correlati</span>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white">
+                Vini <span className="italic text-chiarli-wine-light">correlati</span>
               </h2>
             </div>
 
@@ -867,30 +867,30 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                       />
                     ) : (
                       <div className="w-full h-80 md:h-96 flex items-center justify-center">
-                        <Wine size={80} className="text-chiarli-text/20" />
+                        <Wine size={80} className="text-white/20" />
                       </div>
                     )}
                   </div>
 
                   {/* Wine Info */}
                   <div>
-                    <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine/60 mb-2 block">
+                    <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light/60 mb-2 block">
                       {relatedWine.family}
                     </span>
 
-                    <h3 className="font-serif text-2xl md:text-3xl text-chiarli-text mb-2 group-hover:text-chiarli-wine transition-colors">
+                    <h3 className="font-serif text-2xl md:text-3xl text-white mb-2 group-hover:text-chiarli-wine-light transition-colors">
                       {relatedWine.name}
                     </h3>
 
-                    <p className="font-sans text-xs uppercase tracking-wider text-chiarli-text/50 mb-4">
+                    <p className="font-sans text-xs uppercase tracking-wider text-white/50 mb-4">
                       {relatedWine.denomination}
                     </p>
 
                     {/* Separator line */}
-                    <div className="w-12 h-[1px] bg-chiarli-wine/30 group-hover:w-20 group-hover:bg-chiarli-wine transition-all duration-500 mb-4" />
+                    <div className="w-12 h-[1px] bg-chiarli-wine-light/30 group-hover:w-20 group-hover:bg-chiarli-wine-light transition-all duration-500 mb-4" />
 
                     {/* CTA */}
-                    <div className="flex items-center gap-2 text-chiarli-wine group-hover:gap-3 transition-all">
+                    <div className="flex items-center gap-2 text-chiarli-wine-light group-hover:gap-3 transition-all">
                       <span className="font-sans text-xs font-bold uppercase tracking-widest">
                         Scopri
                       </span>
@@ -906,26 +906,26 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
       )}
 
       {/* Newsletter Section */}
-      <section className="py-20 md:py-28 bg-chiarli-text relative overflow-hidden">
+      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
         {/* Subtle gradient overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: `radial-gradient(ellipse 80% 80% at 50% 50%, rgba(180,100,120,0.08) 0%, transparent 70%)`,
+            background: `radial-gradient(ellipse 80% 80% at 50% 50%, rgba(180,100,120,0.05) 0%, transparent 70%)`,
           }}
         />
 
         <div className="max-w-3xl mx-auto px-6 md:px-12 text-center relative z-10">
-          <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
+          <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
             Resta aggiornato
           </span>
 
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-chiarli-text mb-4">
             Iscriviti alla nostra
-            <span className="italic text-chiarli-wine-light block">Newsletter</span>
+            <span className="italic text-chiarli-wine block">Newsletter</span>
           </h2>
 
-          <p className="font-serif text-base text-white/50 mb-10 max-w-lg mx-auto">
+          <p className="font-serif text-base text-chiarli-text/50 mb-10 max-w-lg mx-auto">
             Scopri in anteprima le novità, gli eventi e le storie dal mondo Chiarli.
           </p>
 
@@ -934,11 +934,11 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
               <input
                 type="email"
                 placeholder="La tua email"
-                className="flex-1 px-6 py-4 bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-chiarli-wine-light focus:bg-white/15 transition-all font-sans text-sm"
+                className="flex-1 px-6 py-4 bg-chiarli-text/5 border border-chiarli-text/20 text-chiarli-text placeholder-chiarli-text/40 focus:outline-none focus:border-chiarli-wine focus:bg-chiarli-text/10 transition-all font-sans text-sm"
               />
               <button
                 type="submit"
-                className="px-8 py-4 bg-chiarli-wine-light text-white font-sans text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-chiarli-text transition-all duration-300"
+                className="px-8 py-4 bg-chiarli-wine text-white font-sans text-xs font-bold uppercase tracking-widest hover:bg-chiarli-text transition-all duration-300"
               >
                 Iscriviti
               </button>
@@ -947,9 +947,9 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
             <label className="flex items-center justify-center gap-3 cursor-pointer group">
               <input
                 type="checkbox"
-                className="w-4 h-4 appearance-none border border-white/30 bg-transparent checked:bg-chiarli-wine-light checked:border-chiarli-wine-light transition-all cursor-pointer"
+                className="w-4 h-4 appearance-none border border-chiarli-text/30 bg-transparent checked:bg-chiarli-wine checked:border-chiarli-wine transition-all cursor-pointer"
               />
-              <span className="font-sans text-xs text-white/40 group-hover:text-white/60 transition-colors">
+              <span className="font-sans text-xs text-chiarli-text/40 group-hover:text-chiarli-text/60 transition-colors">
                 Accetto i termini e le condizioni della Privacy Policy.
               </span>
             </label>
