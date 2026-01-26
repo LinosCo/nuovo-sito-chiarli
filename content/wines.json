@@ -461,11 +461,12 @@
     {
       "id": 12,
       "slug": "villa-cialdini-rose-brut",
-      "name": "Villa Cialdini Rosè de Noir",
-      "denomination": "Lambrusco di Sorbara DOC - Fermentato in bottiglia",
-      "family": "Metodo Classico",
+      "name": "Villa Cialdini",
+      "subtitle": "Rosè de Noir",
+      "denomination": "Lambrusco di Sorbara DOC – Fermentato in bottiglia",
+      "family": "Metodo Ancestrale",
       "grape": "Grasparossa",
-      "description": "Un patrimonio enologico che riflette il metodo ancestrale. La rifermentazione in bottiglia dona eleganza, freschezza e finezza uniche. Rosé vibrante dal bouquet intenso e fruttato.",
+      "description": "Spuma vivace, colore rosa ribes, bollicine fini ed abbondanti. Profumo intenso e fruttato, sapore ben composto con tipici sentori di frutti di sottobosco.",
       "image": "/foto/villa-cialdini-rose-de-noir.png",
       "format": "0.75L",
       "tags": [
@@ -475,8 +476,9 @@
       ],
       "price": null,
       "year": null,
-      "alcohol": 12,
-      "servingTemp": "8-10°C",
+      "alcohol": "12% vol.",
+      "servingTemp": "Servire fresco (8 – 10° C.)",
+      "vinification": "Pressatura soffice con uva integra o diraspata a temperatura controllata e aggiunta di lieviti selezionati. Presa di spuma in \"cuve close\" a bassa temperatura.",
       "pairings": [
         "Ingredienti di stagione",
         "Piatti contemporanei",
@@ -484,33 +486,113 @@
         "Cucina fusion",
         "Frutti di mare"
       ],
+      "heritage": "Il \"Fondatore\" rifermentato in bottiglia è un Lambrusco che per Chiarli ha un grande significato: ci ricorda non solo che con questo metodo, ora chiamato Ancestrale, ebbe inizio l'attività di Cleto nel 1860, ma anche che la rifermentazione in bottiglia ha accompagnato la storia del Lambrusco dai tempi antichi fino alla introduzione del Metodo Charmat a metà degli anni '50 del secolo scorso. Il metodo Charmat, garantendo un risultato qualitativo costante con vini più 'puliti', fruttati e variegati e quindi perfetti per affrontare i mercati, rivoluzionò il mondo del Lambrusco spazzando via quasi completamente e in brevissimo tempo il Metodo Ancestrale. Un impegno che, grazie all'esperienza e alla moderna tecnologia, ci consente oggi di produrre, nel rispetto del Metodo Ancestrale, un Lambrusco che racchiude in sé la freschezza, i profumi, la finezza e l'eleganza del Sorbara senza perdere quel suggestivo sentore dato dai lieviti presenti nel vino.",
       "awards": [
         {
+          "year": "2022",
+          "name": "Wine Enthusiast",
+          "score": ""
+        },
+        {
+          "year": "2021",
           "name": "Gambero Rosso",
-          "score": "Tre Bicchieri",
-          "years": "2019-2021"
+          "score": "Tre Bicchieri"
         },
         {
+          "year": "2021",
+          "name": "Gambero Rosso",
+          "score": "Premio qualità – prezzo"
+        },
+        {
+          "year": "2021",
           "name": "Falstaff",
-          "score": "93/100",
-          "years": "2021"
+          "score": "93/100"
         },
         {
-          "name": "Vinitaly",
-          "score": "91/100",
-          "years": "2019"
+          "year": "2020",
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri"
         },
         {
+          "year": "2020",
           "name": "Touring Club",
-          "score": "Corona",
-          "years": "2019-2020"
+          "score": "Corona"
+        },
+        {
+          "year": "2020",
+          "name": "Gambero Rosso",
+          "score": "Premio qualità-prezzo"
+        },
+        {
+          "year": "2020",
+          "name": "Gentleman",
+          "score": "Top 100 migliori vini rossi italiani"
+        },
+        {
+          "year": "2020",
+          "name": "Civiltà del Bere",
+          "score": "Medaglia di Bronzo"
+        },
+        {
+          "year": "2019",
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri"
+        },
+        {
+          "year": "2019",
+          "name": "Associazione Italiana Sommelier",
+          "score": "Eccellenza"
+        },
+        {
+          "year": "2019",
+          "name": "Luca Maroni",
+          "score": "89/100"
+        },
+        {
+          "year": "2019",
+          "name": "Touring Club",
+          "score": "Corona"
+        },
+        {
+          "year": "2019",
+          "name": "Vinitaly",
+          "score": "91/100"
+        },
+        {
+          "year": "2019",
+          "name": "Falstaff",
+          "score": "91/100"
+        },
+        {
+          "year": "2019",
+          "name": "WEIN-PLUS",
+          "score": "Primo categoria Sorbara Dop"
         }
       ],
       "tastingNotes": {
-        "aspetto": "Colore rosa vibrante con bollicine fini e abbondanti.",
-        "profumo": "Bouquet intenso e fruttato con note di frutti di bosco.",
-        "gusto": "Sapore ben equilibrato con caratteristici sentori di frutti di bosco. Fresco e persistente."
+        "aspetto": "Spuma vivace, colore rosa ribes, bollicine fini ed abbondanti.",
+        "profumo": "Profumo intenso e fruttato, con tipici sentori di frutti di sottobosco.",
+        "gusto": "Sapore ben composto con tipici sentori di frutti di sottobosco."
       },
+      "experienceSections": {
+        "degusta": "Lasciati guidare dal colore, dal bouquet e dal perlage: è qui che inizia il piacere. Le bollicine raccontano la vitalità del vino, la luce ne rivela il carattere. Degustare diventa un gesto spontaneo, un invito alla freschezza e alla leggerezza che accompagna ogni sorso.",
+        "abbina": "Dalla freschezza di un ingrediente di stagione alla creatività di un piatto contemporaneo, l'abbinamento è un dialogo aperto. Versatilità e curiosità guidano l'incontro tra sapori, texture e emozioni.",
+        "scopri": "Sperimenta nuove armonie, segui la tua curiosità. Ogni vino rivela una storia diversa, un modo inedito di vivere la tavola e il piacere della convivialità — con leggerezza, eleganza e spirito di scoperta."
+      },
+      "technicalSpecs": [
+        {
+          "label": "Vitigno",
+          "value": "Grasparossa"
+        },
+        {
+          "label": "Gradazione",
+          "value": "12% vol."
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "Servire fresco (8 – 10° C.)"
+        }
+      ],
       "isActive": true,
       "order": 12
     }
