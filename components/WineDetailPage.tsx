@@ -45,7 +45,6 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isHeritageExpanded, setIsHeritageExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [isHoveringBottle, setIsHoveringBottle] = useState(false);
   const [wineData, setWineData] = useState<WineData | null>(null);
@@ -666,8 +665,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           {/* Left - Image */}
           <div className="w-full lg:w-1/2 h-[40vh] md:h-[50vh] lg:h-[80vh] relative">
             <img
-              src="/foto/473621029_9076404249105544_259046815810117743_n-uai-720x1080.jpg"
-              alt="Degustazione"
+              src="/foto/sozzigalli-24-uai-720x1080.jpg"
+              alt="Vigneti"
               className="absolute inset-0 w-full h-full object-cover"
             />
             {/* Gradient overlay for text readability on mobile */}
@@ -678,32 +677,16 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           <div className="w-full lg:w-1/2 lg:h-[80vh] flex items-center relative bg-white">
 
             <div className="relative z-10 px-6 md:px-16 lg:px-20 py-12 md:py-16 lg:py-24">
-              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-4 block">
-                Un patrimonio enologico
-              </span>
-
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-chiarli-text mb-6 md:mb-8 leading-tight">
-                Il metodo che ha fatto
-                <span className="italic text-chiarli-text block">la storia</span>
+                Un patrimonio
+                <span className="italic text-chiarli-wine block">enologico</span>
               </h2>
 
               {wine.heritage ? (
                 <div className="mb-6 md:mb-8">
-                  <p className={`font-serif text-base md:text-lg text-chiarli-text/70 leading-relaxed transition-all duration-500 ${
-                    isHeritageExpanded ? '' : 'line-clamp-4'
-                  }`}>
+                  <p className="font-serif text-base md:text-lg text-chiarli-text/70 leading-relaxed">
                     {wine.heritage}
                   </p>
-                  <button
-                    onClick={() => setIsHeritageExpanded(!isHeritageExpanded)}
-                    className="mt-4 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-wine hover:text-chiarli-text transition-colors flex items-center gap-2 group"
-                  >
-                    <span>{isHeritageExpanded ? 'Mostra meno' : 'Leggi di più'}</span>
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-300 ${isHeritageExpanded ? 'rotate-180' : ''}`}
-                    />
-                  </button>
                 </div>
               ) : (
                 <>
@@ -730,6 +713,60 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
         </div>
       </section>
+
+      {/* Abbinamenti Gastronomici Section */}
+      {wine.pairings && wine.pairings.length > 0 && (
+        <section className="py-16 md:py-24 lg:py-32 relative overflow-hidden">
+          {/* Background image */}
+          <div className="absolute inset-0">
+            <img
+              src="/foto/vasche-3.jpg"
+              alt="Cantina Chiarli"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-chiarli-text/80" />
+
+          <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+              {/* Left - Title and description */}
+              <div>
+                <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block">
+                  In Tavola
+                </span>
+                <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight">
+                  Abbinamenti
+                  <span className="italic text-chiarli-wine-light block">Gastronomici</span>
+                </h2>
+
+                <p className="font-serif text-base md:text-lg text-white/70 leading-relaxed">
+                  Ottimo come aperitivo, è ideale per le cene più raffinate; si sposa bene anche con desserts quali torta con fragole o macedonie di frutta.
+                </p>
+              </div>
+
+              {/* Right - Pairings list */}
+              <div className="grid grid-cols-2 gap-4 md:gap-6">
+                {wine.pairings.map((pairing, index) => (
+                  <div
+                    key={index}
+                    className="group p-4 md:p-6 border border-white/20 bg-white/5 backdrop-blur-sm hover:border-chiarli-wine-light/50 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(180,100,120,0.3)] transition-all duration-300 cursor-default"
+                  >
+                    <span className="font-serif text-sm md:text-base text-white group-hover:text-chiarli-wine-light transition-colors">
+                      {pairing}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
 
       {/* Awards - Horizontal scrolling marquee */}
       {wine.awards && wine.awards.length > 0 && (
@@ -787,8 +824,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
       <section className="py-16 md:py-24 lg:py-32 bg-white relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 md:px-12 text-center relative z-10">
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-chiarli-text mb-4 md:mb-6">
-            Pronto a scoprire il
-            <span className="italic text-chiarli-wine block">Metodo del Fondatore?</span>
+            Scopri i nostri
+            <span className="italic text-chiarli-wine block">vini</span>
           </h2>
 
           <p className="font-serif text-base md:text-lg text-chiarli-text/60 mb-8 md:mb-10 max-w-xl mx-auto">

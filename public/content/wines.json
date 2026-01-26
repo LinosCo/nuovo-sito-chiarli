@@ -462,8 +462,8 @@
       "id": 12,
       "slug": "villa-cialdini-rose-brut",
       "name": "Villa Cialdini",
-      "subtitle": "Rosè de Noir",
-      "denomination": "Lambrusco di Sorbara DOC – Fermentato in bottiglia",
+      "subtitle": "Rosè Brut",
+      "denomination": "Vino Spumante Rosé Brut",
       "family": "Metodo Ancestrale",
       "grape": "Grasparossa",
       "description": "Spuma vivace, colore rosa ribes, bollicine fini ed abbondanti. Profumo intenso e fruttato, sapore ben composto con tipici sentori di frutti di sottobosco.",
@@ -480,93 +480,73 @@
       "servingTemp": "Servire fresco (8 – 10° C.)",
       "vinification": "Pressatura soffice con uva integra o diraspata a temperatura controllata e aggiunta di lieviti selezionati. Presa di spuma in \"cuve close\" a bassa temperatura.",
       "pairings": [
-        "Ingredienti di stagione",
-        "Piatti contemporanei",
-        "Aperitivi gourmet",
-        "Cucina fusion",
-        "Frutti di mare"
+        "Aperitivo",
+        "Cene raffinate",
+        "Torta con fragole",
+        "Macedonie di frutta",
+        "Dessert alla frutta"
       ],
-      "heritage": "Il \"Fondatore\" rifermentato in bottiglia è un Lambrusco che per Chiarli ha un grande significato: ci ricorda non solo che con questo metodo, ora chiamato Ancestrale, ebbe inizio l'attività di Cleto nel 1860, ma anche che la rifermentazione in bottiglia ha accompagnato la storia del Lambrusco dai tempi antichi fino alla introduzione del Metodo Charmat a metà degli anni '50 del secolo scorso. Il metodo Charmat, garantendo un risultato qualitativo costante con vini più 'puliti', fruttati e variegati e quindi perfetti per affrontare i mercati, rivoluzionò il mondo del Lambrusco spazzando via quasi completamente e in brevissimo tempo il Metodo Ancestrale. Un impegno che, grazie all'esperienza e alla moderna tecnologia, ci consente oggi di produrre, nel rispetto del Metodo Ancestrale, un Lambrusco che racchiude in sé la freschezza, i profumi, la finezza e l'eleganza del Sorbara senza perdere quel suggestivo sentore dato dai lieviti presenti nel vino.",
+      "heritage": "CHIARLI è il più antico produttore di Vini Tipici dell'Emilia-Romagna. La sua fondazione risale al 1860. L'Azienda 'Cleto Chiarli Tenute Agricole' firma vini di alta qualità ottenuti dalla selezione delle migliori uve provenienti da oltre 100 ettari di vigneti di proprietà e dalle più vocate zone di produzione dei vini DOC dell'Emilia-Romagna.",
       "awards": [
         {
-          "year": "2022",
-          "name": "Wine Enthusiast",
-          "score": ""
+          "year": "2024",
+          "name": "Merano WineFestival",
+          "score": "The WineHunter Rosso"
         },
         {
-          "year": "2021",
+          "year": "2024",
           "name": "Gambero Rosso",
-          "score": "Tre Bicchieri"
+          "score": "1 Bicchiere"
         },
         {
-          "year": "2021",
-          "name": "Gambero Rosso",
-          "score": "Premio qualità – prezzo"
+          "year": "2024",
+          "name": "Vitae AIS",
+          "score": "3 Viti"
         },
         {
-          "year": "2021",
-          "name": "Falstaff",
-          "score": "93/100"
+          "year": "2024",
+          "name": "Veronelli",
+          "score": "84/100"
         },
         {
-          "year": "2020",
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri"
+          "year": "2023",
+          "name": "Merano WineFestival",
+          "score": "The WineHunter Rosso"
         },
         {
-          "year": "2020",
-          "name": "Touring Club",
-          "score": "Corona"
+          "year": "2023",
+          "name": "Bibenda",
+          "score": "4 Grappoli"
         },
         {
-          "year": "2020",
-          "name": "Gambero Rosso",
-          "score": "Premio qualità-prezzo"
+          "year": "2023",
+          "name": "Vitae AIS",
+          "score": "3 Viti"
         },
         {
-          "year": "2020",
-          "name": "Gentleman",
-          "score": "Top 100 migliori vini rossi italiani"
-        },
-        {
-          "year": "2020",
-          "name": "Civiltà del Bere",
-          "score": "Medaglia di Bronzo"
-        },
-        {
-          "year": "2019",
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri"
-        },
-        {
-          "year": "2019",
-          "name": "Associazione Italiana Sommelier",
-          "score": "Eccellenza"
-        },
-        {
-          "year": "2019",
+          "year": "2023",
           "name": "Luca Maroni",
-          "score": "89/100"
+          "score": "94/100"
         },
         {
-          "year": "2019",
-          "name": "Touring Club",
-          "score": "Corona"
+          "year": "2022",
+          "name": "Gambero Rosso",
+          "score": "1 Bicchiere"
         },
         {
-          "year": "2019",
-          "name": "Vinitaly",
-          "score": "91/100"
+          "year": "2022",
+          "name": "Bibenda",
+          "score": "4 Grappoli"
         },
         {
-          "year": "2019",
-          "name": "Falstaff",
-          "score": "91/100"
+          "year": "2022",
+          "name": "Vitae AIS",
+          "score": "3 Viti"
         },
         {
-          "year": "2019",
-          "name": "WEIN-PLUS",
-          "score": "Primo categoria Sorbara Dop"
+          "year": "2022",
+          "name": "Veronelli",
+          "score": "85/100"
         }
       ],
       "tastingNotes": {
