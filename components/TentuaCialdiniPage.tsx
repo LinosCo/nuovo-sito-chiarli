@@ -20,12 +20,12 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
 
   const slides = [
     {
-      image: "/foto/DSC04010.jpg",
+      image: "/foto/villa-cialdini-viale.jpg",
       title: "La Tenuta",
       description: "Oltre 140 anni di storia familiare nel cuore della zona di produzione del Lambrusco Grasparossa."
     },
     {
-      image: "/foto/galleria-chiarli-136.jpeg",
+      image: "/foto/sozzigalli-29.jpg",
       title: "Il Territorio",
       description: "50 ettari di vigneti alle pendici dell'Appennino, dove il microclima unico crea le condizioni ideali per una produzione premium."
     }
@@ -51,8 +51,8 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
       <section className="relative min-h-screen bg-chiarli-text overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/foto/DSC04010.jpg"
-            alt="Tenuta Cialdini"
+            src="/foto/cialdini-tenuta.jpg"
+            alt="Vigneto Tenuta Cialdini"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/25" />
@@ -105,7 +105,7 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
         </div>
       </section>
 
-      {/* Storia e Territorio - Split Full Screen */}
+      {/* Storia e Territorio - Split Full Screen - CHIARA */}
       <section className="relative min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Image */}
@@ -115,11 +115,11 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
               alt="Territorio"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-chiarli-stone/20 lg:bg-gradient-to-l lg:from-chiarli-stone/20 lg:to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
           </div>
 
           {/* Content */}
-          <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-chiarli-stone">
+          <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-white">
             <div className="w-full max-w-xl mx-auto px-8 md:px-12 lg:px-16">
               <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-8 leading-tight">
                 La Storia e il <span className="italic text-chiarli-wine">Territorio</span>
@@ -160,43 +160,43 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
         </div>
       </section>
 
-      {/* Lambrusco Grasparossa - Split Full Screen */}
+      {/* Lambrusco Grasparossa - Split Full Screen - SCURA */}
       <section className="relative min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Content */}
-          <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-white lg:order-1">
+          <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-chiarli-text lg:order-1">
             <div className="w-full max-w-xl mx-auto px-8 md:px-12 lg:px-16">
-              <h2 className="font-serif text-4xl md:text-5xl text-chiarli-wine mb-6 leading-tight">
+              <h2 className="font-serif text-4xl md:text-5xl text-chiarli-wine-light mb-6 leading-tight">
                 Lambrusco Grasparossa
               </h2>
 
-              <p className="font-serif italic text-2xl text-chiarli-text/70 mb-8 leading-relaxed">
+              <p className="font-serif italic text-2xl text-white/80 mb-8 leading-relaxed">
                 Il più classico dei Lambruschi di Modena, da scoprire la sua ricchezza aromatica che ne fa un grande vino.
               </p>
 
-              <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-8">
+              <p className="font-sans text-white/70 text-lg leading-relaxed mb-8">
                 Il Grasparossa è un vitigno di antichissime origini coltivato nella zona che si estende attorno al paese di Castelvetro a Sud di Modena dove si incontrano le prime colline dell'Appennino.
               </p>
 
               <div className={`overflow-hidden transition-all duration-500 ${expandedSections.grasparossa ? 'max-h-[2000px] opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
-                <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
+                <p className="font-sans text-white/70 text-lg leading-relaxed mb-6">
                   I terreni si sviluppano su antichi depositi alluvionali del torrente Guerro misti a ghiaie talora affioranti. Le uve, di un colore rosso intenso e con elevata presenza di tannini, danno vita a un vino di forte struttura, ricco e polposo. Prodotto storicamente con il metodo ancestrale risultava spesso ruvido e causa anche l'elevata presenza di 'fondo' veniva relegato a un consumo prettamente locale. L'avvento del Metodo Charmat ha fatto scoprire le migliori caratteristiche del Grasparossa rendendo evidente la sua freschezza, i piacevoli aromi e l'armonia del suo frutto.
                 </p>
 
-                <div className="border-l-4 border-chiarli-wine pl-6 mb-6">
-                  <p className="font-serif italic text-xl text-chiarli-text/80">
+                <div className="border-l-4 border-chiarli-wine-light pl-6 mb-6">
+                  <p className="font-serif italic text-xl text-white/80">
                     Un grande vino rosso, Equilibrio e Versatilità per un vino veramente "polposo"
                   </p>
                 </div>
 
-                <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed">
+                <p className="font-sans text-white/70 text-lg leading-relaxed">
                   Inoltre il giusto equilibrio tra una importante acidità e un naturale residuo zuccherino lo rendono un Lambrusco dal gusto trasversale. In breve, grazie alla sua nuova personalità, ha ottenuto importantissimi apprezzamenti dal mercato tanto che oggi il Grasparossa, a buon diritto, è entrato a far parte dell'aristocrazia del vino italiano. Il Grasparossa è vino fondamentale per la Cleto Chiarli: è proprio all'interno della Tenuta Villa Cialdini che si trova un antico vigneto costituito da cloni originari di "Graspa Rossa" in grado di darci uve straordinarie che ci consentono di ottenere il famoso Lambrusco "Vigneto Cialdini" riconosciuto e apprezzato dalla migliore clientela italiana ed estera.
                 </p>
               </div>
 
               <button
                 onClick={() => toggleSection('grasparossa')}
-                className="flex items-center gap-2 text-chiarli-wine hover:text-chiarli-wine/80 transition-colors group"
+                className="flex items-center gap-2 text-chiarli-wine-light hover:text-chiarli-wine-light/80 transition-colors group"
               >
                 <span className="font-sans text-sm uppercase tracking-widest">
                   {expandedSections.grasparossa ? 'Mostra meno' : 'Leggi di più'}
@@ -212,11 +212,11 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           {/* Image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
             <img
-              src="/foto/close-up-87-scaled.jpeg"
+              src="/foto/cialdini-grasparossa.jpg"
               alt="Lambrusco Grasparossa"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-white/20 lg:bg-gradient-to-r lg:from-white/20 lg:to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-text/20 lg:bg-gradient-to-r lg:from-chiarli-text/20 lg:to-transparent" />
           </div>
         </div>
       </section>
@@ -227,15 +227,15 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           {/* Image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/close-up-26-scaled.jpeg"
+              src="/foto/cialdini-pignoletto.jpg"
               alt="Pignoletto"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-chiarli-stone/20 lg:bg-gradient-to-l lg:from-chiarli-stone/20 lg:to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
           </div>
 
           {/* Content */}
-          <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-chiarli-stone">
+          <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-white">
             <div className="w-full max-w-xl mx-auto px-8 md:px-12 lg:px-16">
               <h2 className="font-serif text-4xl md:text-5xl text-chiarli-wine mb-6 leading-tight">
                 Pignoletto
@@ -316,22 +316,6 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           </div>
         ))}
 
-        {/* Navigation Dots */}
-        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide
-                  ? 'bg-chiarli-wine-light w-8'
-                  : 'bg-white/50 hover:bg-white/80'
-              }`}
-              aria-label={`Vai a slide ${index + 1}`}
-            />
-          ))}
-        </div>
-
         {/* Navigation Arrows */}
         <button
           onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
@@ -348,6 +332,57 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
         >
           <ChevronDown size={24} className="text-white -rotate-90 group-hover:scale-110 transition-transform" />
         </button>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `radial-gradient(ellipse 80% 80% at 50% 50%, rgba(180,100,120,0.05) 0%, transparent 70%)`,
+          }}
+        />
+
+        <div className="max-w-3xl mx-auto px-6 md:px-12 text-center relative z-10">
+          <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
+            Resta aggiornato
+          </span>
+
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-chiarli-text mb-4">
+            Iscriviti alla nostra
+            <span className="italic text-chiarli-wine block">Newsletter</span>
+          </h2>
+
+          <p className="font-serif text-base text-chiarli-text/50 mb-10 max-w-lg mx-auto">
+            Scopri in anteprima le novità, gli eventi e le storie dal mondo Chiarli.
+          </p>
+
+          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <div className="flex flex-col sm:flex-row gap-0 max-w-xl mx-auto">
+              <input
+                type="email"
+                placeholder="La tua email"
+                className="flex-1 px-6 py-4 bg-chiarli-text/5 border border-chiarli-text/20 text-chiarli-text placeholder-chiarli-text/40 focus:outline-none focus:border-chiarli-wine focus:bg-chiarli-text/10 transition-all font-sans text-sm"
+              />
+              <button
+                type="submit"
+                className="px-8 py-4 bg-chiarli-wine text-white font-sans text-xs font-bold uppercase tracking-widest hover:bg-chiarli-text transition-all duration-300"
+              >
+                Iscriviti
+              </button>
+            </div>
+
+            <label className="flex items-center justify-center gap-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                className="w-4 h-4 appearance-none border border-chiarli-text/30 bg-transparent checked:bg-chiarli-wine checked:border-chiarli-wine transition-all cursor-pointer"
+              />
+              <span className="font-sans text-xs text-chiarli-text/40 group-hover:text-chiarli-text/60 transition-colors">
+                Accetto i termini e le condizioni della Privacy Policy.
+              </span>
+            </label>
+          </form>
+        </div>
       </section>
     </div>
   );
