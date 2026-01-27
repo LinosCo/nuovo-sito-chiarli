@@ -12,10 +12,31 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
     grasparossa: false,
     pignoletto: false,
   });
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     setIsHeroVisible(true);
   }, []);
+
+  const slides = [
+    {
+      image: "/foto/DSC04010.jpg",
+      title: "La Tenuta",
+      description: "Oltre 140 anni di storia familiare nel cuore della zona di produzione del Lambrusco Grasparossa."
+    },
+    {
+      image: "/foto/galleria-chiarli-136.jpeg",
+      title: "Il Territorio",
+      description: "50 ettari di vigneti alle pendici dell'Appennino, dove il microclima unico crea le condizioni ideali per una produzione premium."
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections(prev => ({
@@ -261,57 +282,72 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
         </div>
       </section>
 
-      {/* Final Gallery Section */}
-      <section className="relative min-h-screen">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
-          {/* Content */}
-          <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-white lg:order-1">
-            <div className="w-full max-w-xl mx-auto px-8 md:px-12 lg:px-16">
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                La <span className="italic text-chiarli-wine">Tenuta</span>
-              </h2>
-              <p className="font-serif italic text-xl text-chiarli-text/70 leading-relaxed">
-                Oltre 140 anni di storia familiare nel cuore della zona di produzione del Lambrusco Grasparossa.
-              </p>
-            </div>
-          </div>
-
-          {/* Image */}
-          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
+      {/* Gallery Slider Full Screen */}
+      <section className="relative h-screen overflow-hidden">
+        {/* Slides */}
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            {/* Background Image */}
             <img
-              src="/foto/DSC04010.jpg"
-              alt="Tenuta"
+              src={slide.image}
+              alt={slide.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-white/20 lg:bg-gradient-to-r lg:from-white/20 lg:to-transparent" />
-          </div>
-        </div>
-      </section>
 
-      <section className="relative min-h-screen">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
-          {/* Image */}
-          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
-            <img
-              src="/foto/galleria-chiarli-136.jpeg"
-              alt="Vigneto"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-chiarli-stone/20 lg:bg-gradient-to-l lg:from-chiarli-stone/20 lg:to-transparent" />
-          </div>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20" />
 
-          {/* Content */}
-          <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-chiarli-stone">
-            <div className="w-full max-w-xl mx-auto px-8 md:px-12 lg:px-16">
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                Il <span className="italic text-chiarli-wine">Territorio</span>
-              </h2>
-              <p className="font-serif italic text-xl text-chiarli-text/70 leading-relaxed">
-                50 ettari di vigneti alle pendici dell'Appennino, dove il microclima unico crea le condizioni ideali per una produzione premium.
-              </p>
+            {/* Content */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center px-6 md:px-12 max-w-4xl">
+                <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
+                  {slide.title.split(' ')[0]} <span className="italic text-chiarli-wine-light">{slide.title.split(' ').slice(1).join(' ')}</span>
+                </h2>
+                <p className="font-serif italic text-xl md:text-2xl text-white/90 leading-relaxed">
+                  {slide.description}
+                </p>
+              </div>
             </div>
           </div>
+        ))}
+
+        {/* Navigation Dots */}
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? 'bg-chiarli-wine-light w-8'
+                  : 'bg-white/50 hover:bg-white/80'
+              }`}
+              aria-label={`Vai a slide ${index + 1}`}
+            />
+          ))}
         </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+          className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group"
+          aria-label="Slide precedente"
+        >
+          <ChevronDown size={24} className="text-white rotate-90 group-hover:scale-110 transition-transform" />
+        </button>
+
+        <button
+          onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+          className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group"
+          aria-label="Slide successiva"
+        >
+          <ChevronDown size={24} className="text-white -rotate-90 group-hover:scale-110 transition-transform" />
+        </button>
       </section>
     </div>
   );
