@@ -211,8 +211,10 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({ onBack, onWineCl
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
                 Collezione Classica
               </span>
-              <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-6">
-                Radicati nel <span className="italic text-chiarli-wine">territorio</span>
+              <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-6 leading-tight">
+                Una collezione che cattura<br />
+                l'essenza della nostra terra —<br />
+                <span className="italic text-chiarli-wine">energia e anima.</span>
               </h2>
               <p className="font-serif text-base md:text-lg text-chiarli-text/70 leading-relaxed mb-4">
                 La Collezione Classica di Villa Cialdini nasce dove tutto è più vicino: la terra, la famiglia, i gesti quotidiani. È l'espressione più domestica e autentica dello stile Cleto Chiarli, legata alle uve coltivate intorno alla storica tenuta e a una tradizione che non ha bisogno di essere celebrata per essere riconosciuta. Ciascun spumante racconta il "classico" come continuità, equilibrio e appartenenza: vini pensati per la tavola, per il territorio, per chi conosce il valore delle cose fatte bene.
