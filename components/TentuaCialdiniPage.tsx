@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MapPin } from 'lucide-react';
+import { MapPin, ChevronDown } from 'lucide-react';
 
 interface TentuaCialdiniPageProps {
   onBack?: () => void;
@@ -7,10 +7,22 @@ interface TentuaCialdiniPageProps {
 
 export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
+  const [expandedSections, setExpandedSections] = useState({
+    storia: false,
+    grasparossa: false,
+    pignoletto: false,
+  });
 
   useEffect(() => {
     setIsHeroVisible(true);
   }, []);
+
+  const toggleSection = (section: keyof typeof expandedSections) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
 
   return (
     <div>
@@ -96,17 +108,32 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
                 Di proprietà della famiglia da oltre 140 anni, la Tenuta si trova nel cuore della zona di produzione del Lambrusco Grasparossa, nel comune di Castelvetro. I suoi oltre 50 ettari di vigneti si estendono fino alle prime colline appenniniche, dove i depositi alluvionali dell'antico fiume Guerro hanno modellato i terreni.
               </p>
 
-              <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
-                Il paesaggio dolcemente ondulato è il risultato del naturale alternarsi di erosione e sedimentazione, e il suolo superficiale — profondo fino a 50–60 cm — presenta una tessitura limosa con tracce di ghiaia.
-              </p>
+              <div className={`overflow-hidden transition-all duration-500 ${expandedSections.storia ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
+                  Il paesaggio dolcemente ondulato è il risultato del naturale alternarsi di erosione e sedimentazione, e il suolo superficiale — profondo fino a 50–60 cm — presenta una tessitura limosa con tracce di ghiaia.
+                </p>
 
-              <p className="font-serif italic text-xl text-chiarli-text/80 border-l-4 border-chiarli-wine pl-6 mb-6">
-                Al centro della tenuta si trova il rinomato vigneto Cialdini, da cui nasce il Grasparossa "Vigneto Cialdini" — un vero cru di Lambrusco, riconoscibile per il suo carattere unico e la sua complessità.
-              </p>
+                <p className="font-serif italic text-xl text-chiarli-text/80 border-l-4 border-chiarli-wine pl-6 mb-6">
+                  Al centro della tenuta si trova il rinomato vigneto Cialdini, da cui nasce il Grasparossa "Vigneto Cialdini" — un vero cru di Lambrusco, riconoscibile per il suo carattere unico e la sua complessità.
+                </p>
 
-              <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed">
-                Un microclima unico, ventilazione costante e forti escursioni termiche rendono questo luogo la culla perfetta per un grande Grasparossa.
-              </p>
+                <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
+                  Un microclima unico, ventilazione costante e forti escursioni termiche rendono questo luogo la culla perfetta per un grande Grasparossa.
+                </p>
+              </div>
+
+              <button
+                onClick={() => toggleSection('storia')}
+                className="flex items-center gap-2 text-chiarli-wine hover:text-chiarli-wine/80 transition-colors mt-4 group"
+              >
+                <span className="font-sans text-sm uppercase tracking-widest">
+                  {expandedSections.storia ? 'Mostra meno' : 'Leggi di più'}
+                </span>
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-300 ${expandedSections.storia ? 'rotate-180' : ''}`}
+                />
+              </button>
             </div>
           </div>
         </div>
@@ -127,26 +154,37 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
               </p>
 
               <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
-                Un gusto perfetto per il moderno stile di vita che cerca intensità e leggerezza.
-              </p>
-
-              <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
                 Il Grasparossa è un vitigno di antichissime origini coltivato nella zona che si estende attorno al paese di Castelvetro a Sud di Modena dove si incontrano le prime colline dell'Appennino.
               </p>
 
-              <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
-                I terreni si sviluppano su antichi depositi alluvionali del torrente Guerro misti a ghiaie talora affioranti. Le uve, di un colore rosso intenso e con elevata presenza di tannini, danno vita a un vino di forte struttura, ricco e polposo. Prodotto storicamente con il metodo ancestrale risultava spesso ruvido e causa anche l'elevata presenza di 'fondo' veniva relegato a un consumo prettamente locale. L'avvento del Metodo Charmat ha fatto scoprire le migliori caratteristiche del Grasparossa rendendo evidente la sua freschezza, i piacevoli aromi e l'armonia del suo frutto.
-              </p>
+              <div className={`overflow-hidden transition-all duration-500 ${expandedSections.grasparossa ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
+                  I terreni si sviluppano su antichi depositi alluvionali del torrente Guerro misti a ghiaie talora affioranti. Le uve, di un colore rosso intenso e con elevata presenza di tannini, danno vita a un vino di forte struttura, ricco e polposo. Prodotto storicamente con il metodo ancestrale risultava spesso ruvido e causa anche l'elevata presenza di 'fondo' veniva relegato a un consumo prettamente locale. L'avvento del Metodo Charmat ha fatto scoprire le migliori caratteristiche del Grasparossa rendendo evidente la sua freschezza, i piacevoli aromi e l'armonia del suo frutto.
+                </p>
 
-              <div className="border-l-4 border-chiarli-wine pl-6 mb-6">
-                <p className="font-serif italic text-xl text-chiarli-text/80">
-                  Un grande vino rosso, Equilibrio e Versatilità per un vino veramente "polposo"
+                <div className="border-l-4 border-chiarli-wine pl-6 mb-6">
+                  <p className="font-serif italic text-xl text-chiarli-text/80">
+                    Un grande vino rosso, Equilibrio e Versatilità per un vino veramente "polposo"
+                  </p>
+                </div>
+
+                <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
+                  Inoltre il giusto equilibrio tra una importante acidità e un naturale residuo zuccherino lo rendono un Lambrusco dal gusto trasversale. In breve, grazie alla sua nuova personalità, ha ottenuto importantissimi apprezzamenti dal mercato tanto che oggi il Grasparossa, a buon diritto, è entrato a far parte dell'aristocrazia del vino italiano. Il Grasparossa è vino fondamentale per la Cleto Chiarli: è proprio all'interno della Tenuta Villa Cialdini che si trova un antico vigneto costituito da cloni originari di "Graspa Rossa" in grado di darci uve straordinarie che ci consentono di ottenere il famoso Lambrusco "Vigneto Cialdini" riconosciuto e apprezzato dalla migliore clientela italiana ed estera.
                 </p>
               </div>
 
-              <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed">
-                Inoltre il giusto equilibrio tra una importante acidità e un naturale residuo zuccherino lo rendono un Lambrusco dal gusto trasversale. In breve, grazie alla sua nuova personalità, ha ottenuto importantissimi apprezzamenti dal mercato tanto che oggi il Grasparossa, a buon diritto, è entrato a far parte dell'aristocrazia del vino italiano. Il Grasparossa è vino fondamentale per la Cleto Chiarli: è proprio all'interno della Tenuta Villa Cialdini che si trova un antico vigneto costituito da cloni originari di "Graspa Rossa" in grado di darci uve straordinarie che ci consentono di ottenere il famoso Lambrusco "Vigneto Cialdini" riconosciuto e apprezzato dalla migliore clientela italiana ed estera.
-              </p>
+              <button
+                onClick={() => toggleSection('grasparossa')}
+                className="flex items-center gap-2 text-chiarli-wine hover:text-chiarli-wine/80 transition-colors mt-4 group"
+              >
+                <span className="font-sans text-sm uppercase tracking-widest">
+                  {expandedSections.grasparossa ? 'Mostra meno' : 'Leggi di più'}
+                </span>
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-300 ${expandedSections.grasparossa ? 'rotate-180' : ''}`}
+                />
+              </button>
             </div>
           </div>
 
@@ -183,26 +221,41 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
               </h2>
 
               <p className="font-serif italic text-2xl text-chiarli-text/70 mb-8 leading-relaxed">
-                Un vitigno versatile e completo, dalle radici antiche del Grechetto Gentile, che siamo riusciti ad esaltare nella sua versione spumante, rendendolo completo ed equilibrato in un modo difficilmente imitabile.
+                Un vitigno versatile e completo, dalle radici antiche del Grechetto Gentile.
               </p>
 
               <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
                 Come dice il nome, la Grecia è il paese d'origine di questo vitigno, che verrà coltivato in molte parti dell'Italia centro-meridionale. In Emilia, prendendo il nome di Pignoletto troverà un habitat perfetto nella fascia collinare e pedecollinare tra Modena e Bologna, tanto che se ne hanno notizie certe fin dal 1600.
               </p>
 
-              <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
-                Però del Pignoletto ci interessa soprattutto la versatilità, poche uve possono, sullo stesso territorio, dare vini frizzanti di pronta beva, ma anche vini bianchi fermi di bella struttura e longevità, per passare poi ad importanti passiti.
-              </p>
+              <div className={`overflow-hidden transition-all duration-500 ${expandedSections.pignoletto ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
+                  Però del Pignoletto ci interessa soprattutto la versatilità, poche uve possono, sullo stesso territorio, dare vini frizzanti di pronta beva, ma anche vini bianchi fermi di bella struttura e longevità, per passare poi ad importanti passiti.
+                </p>
 
-              <div className="border-l-4 border-chiarli-wine pl-6 mb-6">
-                <p className="font-serif italic text-xl text-chiarli-text/80">
-                  Il perfetto bilanciamento tra aromaticità e struttura
+                <div className="border-l-4 border-chiarli-wine pl-6 mb-6">
+                  <p className="font-serif italic text-xl text-chiarli-text/80">
+                    Il perfetto bilanciamento tra aromaticità e struttura
+                  </p>
+                </div>
+
+                <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
+                  Questo perché ci troviamo in presenza di un vitigno che riesce a coniugare una bella parte aromatica, tanto che in passato lo si riteneva derivante dal Riesling o dal Pinot Bianco, con una componente tannica e polifenolica da grande vino. Tutto questo lo ritroviamo nel nostro Pignoletto spumante Modén e in parte anche nel Blanc de Blanc, dove il terroir particolare della zona di Castelvetro, tra pianura e collina, esalta la vena fresca e fruttata, che invita al sorso, mantiene sempre la tensione e rende il vino veramente appagante, nonché aperto a molti abbinamenti che sarebbero difficili per altri spumanti aromatici.
                 </p>
               </div>
 
-              <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed">
-                Questo perché ci troviamo in presenza di un vitigno che riesce a coniugare una bella parte aromatica, tanto che in passato lo si riteneva derivante dal Riesling o dal Pinot Bianco, con una componente tannica e polifenolica da grande vino. Tutto questo lo ritroviamo nel nostro Pignoletto spumante Modén e in parte anche nel Blanc de Blanc, dove il terroir particolare della zona di Castelvetro, tra pianura e collina, esalta la vena fresca e fruttata, che invita al sorso, mantiene sempre la tensione e rende il vino veramente appagante, nonché aperto a molti abbinamenti che sarebbero difficili per altri spumanti aromatici.
-              </p>
+              <button
+                onClick={() => toggleSection('pignoletto')}
+                className="flex items-center gap-2 text-chiarli-wine hover:text-chiarli-wine/80 transition-colors mt-4 group"
+              >
+                <span className="font-sans text-sm uppercase tracking-widest">
+                  {expandedSections.pignoletto ? 'Mostra meno' : 'Leggi di più'}
+                </span>
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-300 ${expandedSections.pignoletto ? 'rotate-180' : ''}`}
+                />
+              </button>
             </div>
           </div>
         </div>
