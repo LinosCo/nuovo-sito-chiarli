@@ -12,9 +12,11 @@ interface WineData {
   name: string;
   denomination: string;
   family: string;
+  collection?: string;
   description: string;
   image: string | null;
   isActive: boolean;
+  order?: number;
 }
 
 export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({ onBack, onWineClick }) => {
@@ -29,12 +31,12 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({ onBack, onWineCl
         const response = await fetch('/content/wines.json');
         const data = await response.json();
 
-        const premium = data.wines.filter(
-          (w: WineData) => w.family === 'Premium' && w.isActive
-        );
-        const classic = data.wines.filter(
-          (w: WineData) => w.family === 'Metodo Classico' && w.isActive
-        );
+        const premium = data.wines
+          .filter((w: WineData) => w.family === 'Premium' && w.isActive)
+          .sort((a: WineData, b: WineData) => (a.order ?? 99) - (b.order ?? 99));
+        const classic = data.wines
+          .filter((w: WineData) => (w.family === 'Metodo Classico' || w.collection === 'Metodo Classico') && w.isActive)
+          .sort((a: WineData, b: WineData) => (a.order ?? 99) - (b.order ?? 99));
 
         setPremiumWines(premium);
         setClassicWines(classic);
@@ -205,13 +207,16 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({ onBack, onWineCl
           <div className="max-w-[1600px] mx-auto px-6 md:px-12">
 
             {/* Section Header */}
-            <div className="mb-12">
+            <div className="mb-12 max-w-3xl">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-4 block">
                 Collezione Classica
               </span>
-              <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-4">
+              <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-6">
                 Radicati nel <span className="italic text-chiarli-wine">territorio</span>
               </h2>
+              <p className="font-serif text-base md:text-lg text-chiarli-text/70 leading-relaxed mb-4">
+                La Collezione Classica di Villa Cialdini nasce dove tutto è più vicino: la terra, la famiglia, i gesti quotidiani. È l'espressione più domestica e autentica dello stile Cleto Chiarli, legata alle uve coltivate intorno alla storica tenuta e a una tradizione che non ha bisogno di essere celebrata per essere riconosciuta. Ciascun spumante racconta il "classico" come continuità, equilibrio e appartenenza: vini pensati per la tavola, per il territorio, per chi conosce il valore delle cose fatte bene.
+              </p>
               <p className="font-sans text-sm text-chiarli-text/60 uppercase tracking-wider">
                 {classicWines.length} {classicWines.length === 1 ? 'vino' : 'vini'}
               </p>

@@ -465,6 +465,7 @@
       "subtitle": "Rosè Brut",
       "denomination": "Vino Spumante Rosé Brut",
       "family": "Metodo Charmat",
+      "collection": "Metodo Classico",
       "grape": "Grasparossa",
       "description": "Spuma vivace, colore rosa ribes, bollicine fini ed abbondanti. Profumo intenso e fruttato, sapore ben composto con tipici sentori di frutti di sottobosco.",
       "image": "/foto/villa-cialdini-rose-de-noir.png",
@@ -574,7 +575,7 @@
         }
       ],
       "isActive": true,
-      "order": 12
+      "order": 0
     }
   ],
   "_meta": {

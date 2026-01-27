@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
   const navItems = [
     {
       label: 'Vini',
-      href: '#vini',
+      href: '#/tutti-i-vini',
       submenu: [
         { label: 'Collezione Classica', href: '#/collezione-classica' },
         { label: 'Collezione Premium', href: '#/collezione-premium' }

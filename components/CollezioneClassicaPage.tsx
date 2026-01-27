@@ -12,9 +12,11 @@ interface WineData {
   name: string;
   denomination: string;
   family: string;
+  collection?: string;
   description: string;
   image: string | null;
   isActive: boolean;
+  order?: number;
 }
 
 export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ onBack, onWineClick }) => {
@@ -27,9 +29,9 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
       try {
         const response = await fetch('/content/wines.json');
         const data = await response.json();
-        const classicWines = data.wines.filter(
-          (w: WineData) => w.family === 'Metodo Classico' && w.isActive
-        );
+        const classicWines = data.wines
+          .filter((w: WineData) => (w.family === 'Metodo Classico' || w.collection === 'Metodo Classico') && w.isActive)
+          .sort((a: WineData, b: WineData) => (a.order ?? 99) - (b.order ?? 99));
         setWines(classicWines);
       } catch (error) {
         console.error('Error loading wines:', error);

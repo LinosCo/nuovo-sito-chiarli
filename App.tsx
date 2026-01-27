@@ -116,6 +116,11 @@ function AppContent() {
     window.scrollTo(0, 0);
   };
 
+  const navigateToAllWines = () => {
+    window.location.hash = '#/tutti-i-vini';
+    window.scrollTo(0, 0);
+  };
+
   const navigateToExperiences = () => {
     window.location.hash = '#/esperienze';
     window.scrollTo(0, 0);
@@ -181,7 +186,7 @@ function AppContent() {
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
-          <WineDetailPage slug={wineSlug} onBack={navigateToHome} />
+          <WineDetailPage slug={wineSlug} onBack={navigateToAllWines} />
           <Footer />
         </div>
       </div>
