@@ -98,8 +98,8 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           </div>
 
           {/* Content */}
-          <div className="flex items-center py-16 md:py-24 lg:py-0 bg-chiarli-stone">
-            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full max-w-3xl">
+          <div className="flex items-center justify-center py-16 md:py-24 lg:py-0 bg-chiarli-stone">
+            <div className="px-8 md:px-12 lg:px-20 xl:px-32 w-full max-w-2xl">
               <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-8 leading-tight">
                 La Storia e il <span className="italic text-chiarli-wine">Territorio</span>
               </h2>
@@ -143,8 +143,8 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
       <section className="relative min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Content */}
-          <div className="flex items-center py-16 md:py-24 lg:py-0 bg-white lg:order-1">
-            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full max-w-3xl">
+          <div className="flex items-center justify-center py-16 md:py-24 lg:py-0 bg-white lg:order-1">
+            <div className="px-8 md:px-12 lg:px-20 xl:px-32 w-full max-w-2xl">
               <h2 className="font-serif text-4xl md:text-5xl text-chiarli-wine mb-6 leading-tight">
                 Lambrusco Grasparossa
               </h2>
@@ -214,8 +214,8 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           </div>
 
           {/* Content */}
-          <div className="flex items-center py-16 md:py-24 lg:py-0 bg-chiarli-stone">
-            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full max-w-3xl">
+          <div className="flex items-center justify-center py-16 md:py-24 lg:py-0 bg-chiarli-stone">
+            <div className="px-8 md:px-12 lg:px-20 xl:px-32 w-full max-w-2xl">
               <h2 className="font-serif text-4xl md:text-5xl text-chiarli-wine mb-6 leading-tight">
                 Pignoletto
               </h2>
@@ -265,8 +265,8 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
       <section className="relative min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Content */}
-          <div className="flex items-center py-16 md:py-24 lg:py-0 bg-white lg:order-1">
-            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+          <div className="flex items-center justify-center py-16 md:py-24 lg:py-0 bg-white lg:order-1">
+            <div className="px-8 md:px-12 lg:px-20 xl:px-32 w-full max-w-2xl">
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
                 La <span className="italic text-chiarli-wine">Tenuta</span>
               </h2>
@@ -301,8 +301,8 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           </div>
 
           {/* Content */}
-          <div className="flex items-center py-16 md:py-24 lg:py-0 bg-chiarli-stone">
-            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
+          <div className="flex items-center justify-center py-16 md:py-24 lg:py-0 bg-chiarli-stone">
+            <div className="px-8 md:px-12 lg:px-20 xl:px-32 w-full max-w-2xl">
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
                 Il <span className="italic text-chiarli-wine">Territorio</span>
               </h2>
