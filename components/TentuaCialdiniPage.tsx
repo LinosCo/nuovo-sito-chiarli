@@ -1,282 +1,247 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { MapPin } from 'lucide-react';
+import { MapPin, TrendingUp, Calendar, Grape } from 'lucide-react';
 
 interface TentuaCialdiniPageProps {
   onBack?: () => void;
 }
 
 export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = ({ onBack }) => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [isHeroVisible, setIsHeroVisible] = useState(false);
-  const [isContentVisible, setIsContentVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.target === heroRef.current && entry.isIntersecting) {
-            setIsHeroVisible(true);
-          }
-          if (entry.target === contentRef.current && entry.isIntersecting) {
-            setIsContentVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (heroRef.current) observer.observe(heroRef.current);
-    if (contentRef.current) observer.observe(contentRef.current);
-
-    return () => observer.disconnect();
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const vitigni = [
-    {
-      name: "Lambrusco Grasparossa",
-      subtitle: "Il più classico dei Lambruschi di Modena",
-      description: "Il più classico dei Lambruschi di Modena, da scoprire la sua ricchezza aromatica che ne fa un grande vino. Un gusto perfetto per il moderno stile di vita che cerca intensità e leggerezza.",
-      intro: "Il Grasparossa è un vitigno di antichissime origini coltivato nella zona che si estende attorno al paese di Castelvetro a Sud di Modena dove si incontrano le prime colline dell'Appennino.",
-      details: "I terreni si sviluppano su antichi depositi alluvionali del torrente Guerro misti a ghiaie talora affioranti. Le uve, di un colore rosso intenso e con elevata presenza di tannini, danno vita a un vino di forte struttura, ricco e polposo. Prodotto storicamente con il metodo ancestrale risultava spesso ruvido e causa anche l'elevata presenza di 'fondo' veniva relegato a un consumo prettamente locale. L'avvento del Metodo Charmat ha fatto scoprire le migliori caratteristiche del Grasparossa rendendo evidente la sua freschezza, i piacevoli aromi e l'armonia del suo frutto.",
-      conclusion: `Un grande vino rosso, Equilibrio e Versatilità per un vino veramente "polposo". Inoltre il giusto equilibrio tra una importante acidità e un naturale residuo zuccherino lo rendono un Lambrusco dal gusto trasversale. In breve, grazie alla sua nuova personalità, ha ottenuto importantissimi apprezzamenti dal mercato tanto che oggi il Grasparossa, a buon diritto, è entrato a far parte dell'aristocrazia del vino italiano. Il Grasparossa è vino fondamentale per la Cleto Chiarli: è proprio all'interno della Tenuta Villa Cialdini che si trova un antico vigneto costituito da cloni originari di "Graspa Rossa" in grado di darci uve straordinarie che ci consentono di ottenere il famoso Lambrusco "Vigneto Cialdini" riconosciuto e apprezzato dalla migliore clientela italiana ed estera.`,
-      image: "/foto/close-up-87-scaled.jpeg"
-    },
-    {
-      name: "Pignoletto",
-      subtitle: "Un vitigno versatile e completo",
-      description: "Un vitigno versatile e completo, dalle radici antiche del Grechetto Gentile, che siamo riusciti ad esaltare nella sua versione spumante, rendendolo completo ed equilibrato in un modo difficilmente imitabile.",
-      intro: "Come dice il nome, la Grecia è il paese d'origine di questo vitigno, che verrà coltivato in molte parti dell'Italia centro-meridionale. In Emilia, prendendo il nome di Pignoletto troverà un habitat perfetto nella fascia collinare e pedecollinare tra Modena e Bologna, tanto che se ne hanno notizie certe fin dal 1600.",
-      details: "Però del Pignoletto ci interessa soprattutto la versatilità, poche uve possono, sullo stesso territorio, dare vini frizzanti di pronta beva, ma anche vini bianchi fermi di bella struttura e longevità, per passare poi ad importanti passiti.",
-      conclusion: "Il perfetto bilanciamento tra aromaticità e struttura. Questo perché ci troviamo in presenza di un vitigno che riesce a coniugare una bella parte aromatica, tanto che in passato lo si riteneva derivante dal Riesling o dal Pinot Bianco, con una componente tannica e polifenolica da grande vino. Tutto questo lo ritroviamo nel nostro Pignoletto spumante Modén e in parte anche nel Blanc de Blanc, dove il terroir particolare della zona di Castelvetro, tra pianura e collina, esalta la vena fresca e fruttata, che invita al sorso, mantiene sempre la tensione e rende il vino veramente appagante, nonché aperto a molti abbinamenti che sarebbero difficili per altri spumanti aromatici.",
-      image: "/foto/close-up-26-scaled.jpeg"
-    }
+  const stats = [
+    { icon: Calendar, value: "140+", label: "Anni di storia" },
+    { icon: TrendingUp, value: "50", label: "Ettari di vigneti" },
+    { icon: Grape, value: "2", label: "Vitigni principali" },
   ];
 
   return (
-    <div>
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen bg-chiarli-text overflow-hidden">
-        <div className="absolute inset-0">
+    <div className="bg-white">
+
+      {/* Hero Section - Full Screen */}
+      <section className="relative h-screen overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`,
+          }}
+        >
           <img
             src="/foto/DSC04010.jpg"
             alt="Tenuta Cialdini"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
         </div>
 
-        <div className="relative z-20 min-h-screen flex items-center max-w-[1800px] mx-auto px-6 md:px-12 py-24">
-          <div className="max-w-3xl">
-            <span
-              className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-6 block transition-all duration-700 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-            >
-              Le Nostre Tenute
-            </span>
-
-            <h1
-              className={`font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight transition-all duration-700 delay-100 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              Tenuta Cialdini
-            </h1>
-
-            <p
-              className={`flex items-center gap-2 text-white/70 text-xl mb-8 transition-all duration-700 delay-200 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
-            >
-              <MapPin size={20} />
-              <span className="font-sans uppercase tracking-widest">Castelvetro di Modena</span>
-            </p>
-
-            <p
-              className={`font-serif italic text-3xl text-chiarli-wine-light mb-8 transition-all duration-700 delay-300 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
-            >
-              La culla di Grasparossa, la salvaguardia di Pignoletto
-            </p>
-
-            <p
-              className={`font-sans text-white/70 text-xl leading-relaxed transition-all duration-700 delay-400 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
-            >
-              Oltre 140 anni di storia familiare e 50 ettari di vigneti nel cuore della zona di produzione del Lambrusco Grasparossa.
-            </p>
+        <div className="relative z-10 h-full flex flex-col justify-end pb-20 max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="flex items-center gap-2 text-white/60 mb-6">
+            <MapPin size={20} />
+            <span className="font-sans text-sm uppercase tracking-widest">Castelvetro di Modena</span>
           </div>
+
+          <h1 className="font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-6 leading-none">
+            Tenuta<br />
+            <span className="italic text-chiarli-wine-light">Cialdini</span>
+          </h1>
+
+          <p className="font-serif text-2xl md:text-3xl text-white/90 max-w-3xl leading-relaxed">
+            La culla di Grasparossa, la salvaguardia di Pignoletto
+          </p>
         </div>
       </section>
 
-      {/* Content Section */}
-      <section ref={contentRef} className="relative bg-chiarli-stone py-32">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
-            {/* Left Column */}
-            <div>
-              <h2
-                className={`font-serif text-4xl md:text-5xl text-chiarli-text mb-8 transition-all duration-700 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                La Storia
-              </h2>
-
-              <p
-                className={`font-sans text-chiarli-text/70 text-lg leading-relaxed mb-6 transition-all duration-700 delay-100 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
-              >
-                Di proprietà della famiglia da oltre 140 anni, la Tenuta si trova nel cuore della zona di produzione del Lambrusco Grasparossa, nel comune di Castelvetro. I suoi oltre 50 ettari di vigneti si estendono fino alle prime colline appenniniche, dove i depositi alluvionali dell'antico fiume Guerro hanno modellato i terreni.
-              </p>
-
-              <p
-                className={`font-sans text-chiarli-text/70 text-lg leading-relaxed mb-6 transition-all duration-700 delay-150 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
-              >
-                Il paesaggio dolcemente ondulato è il risultato del naturale alternarsi di erosione e sedimentazione, e il suolo superficiale — profondo fino a 50–60 cm — presenta una tessitura limosa con tracce di ghiaia.
-              </p>
-
-              <p
-                className={`font-serif italic text-xl text-chiarli-text/70 border-l-2 border-chiarli-text/30 pl-6 transition-all duration-700 delay-200 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
-              >
-                Al centro della tenuta si trova il rinomato vigneto Cialdini, da cui nasce il Grasparossa "Vigneto Cialdini" — un vero cru di Lambrusco, riconoscibile per il suo carattere unico e la sua complessità.
-              </p>
-            </div>
-
-            {/* Right Column */}
-            <div>
-              <h2
-                className={`font-serif text-4xl md:text-5xl text-chiarli-text mb-8 transition-all duration-700 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                Il Territorio
-              </h2>
-
-              <p
-                className={`font-sans text-chiarli-text/70 text-lg leading-relaxed transition-all duration-700 delay-100 ${
-                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
-              >
-                Un microclima unico, ventilazione costante e forti escursioni termiche rendono questo luogo la culla perfetta per un grande Grasparossa.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Vitigni Full Split Sections */}
-      {vitigni.map((vitigno, index) => {
-        const isEven = index % 2 === 0;
-        return (
-          <section key={index} className={`relative min-h-screen ${isEven ? 'bg-white' : 'bg-chiarli-stone'} overflow-hidden`}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
-              {/* Image */}
-              <div className={`relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                <img
-                  src={vitigno.image}
-                  alt={vitigno.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className={`absolute inset-0 ${isEven ? 'bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent' : 'bg-gradient-to-l from-transparent to-chiarli-stone/20 lg:bg-gradient-to-r lg:from-chiarli-stone/20 lg:to-transparent'}`} />
+      {/* Stats Section - Visual Numbers */}
+      <section className="py-20 bg-chiarli-text">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <stat.icon className="mx-auto mb-4 text-chiarli-wine-light" size={40} />
+                <div className="font-serif text-5xl md:text-6xl text-white mb-2">{stat.value}</div>
+                <div className="font-sans text-sm uppercase tracking-widest text-white/60">{stat.label}</div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              {/* Content */}
-              <div className={`flex items-center py-16 md:py-24 lg:py-0 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
-                <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full max-w-3xl">
-                  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-wine mb-4 leading-tight">
-                    {vitigno.name}
-                  </h2>
+      {/* Intro Section - Short and Visual */}
+      <section className="py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-12 leading-tight">
+            Nel cuore del <span className="italic text-chiarli-wine">Lambrusco Grasparossa</span>
+          </h2>
 
-                  <p className="font-serif italic text-xl text-chiarli-text/70 mb-8">
-                    {vitigno.subtitle}
-                  </p>
+          <p className="font-sans text-xl text-chiarli-text/70 leading-relaxed mb-8">
+            Di proprietà della famiglia da oltre 140 anni, la Tenuta si trova nel cuore della zona di produzione del Lambrusco Grasparossa. I suoi oltre 50 ettari di vigneti si estendono fino alle prime colline appenniniche, dove i depositi alluvionali dell'antico fiume Guerro hanno modellato i terreni.
+          </p>
 
-                  <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
-                    {vitigno.description}
-                  </p>
+          <div className="w-24 h-1 bg-chiarli-wine mx-auto" />
+        </div>
+      </section>
 
-                  <p className="font-sans text-chiarli-text/70 text-base leading-relaxed mb-6">
-                    {vitigno.intro}
-                  </p>
+      {/* Split Image/Text - Territorio */}
+      <section className="relative h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
+          {/* Image */}
+          <div className="relative h-[50vh] lg:h-full">
+            <img
+              src="/foto/2.jpg"
+              alt="Territorio"
+              className="w-full h-full object-cover"
+            />
+          </div>
 
-                  <p className="font-sans text-chiarli-text/70 text-base leading-relaxed mb-6">
-                    {vitigno.details}
-                  </p>
+          {/* Content */}
+          <div className="flex items-center justify-center bg-chiarli-stone h-[50vh] lg:h-full">
+            <div className="px-8 md:px-16 max-w-xl">
+              <span className="font-sans text-xs uppercase tracking-widest text-chiarli-wine mb-4 block">Il Territorio</span>
+              <h3 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-8 leading-tight">
+                Un microclima <span className="italic text-chiarli-wine">unico</span>
+              </h3>
+              <div className="space-y-4 text-chiarli-text/70">
+                <p className="flex items-start gap-3">
+                  <span className="text-chiarli-wine mt-1">•</span>
+                  <span>Paesaggio dolcemente ondulato tra pianura e collina</span>
+                </p>
+                <p className="flex items-start gap-3">
+                  <span className="text-chiarli-wine mt-1">•</span>
+                  <span>Suolo limoso profondo 50-60 cm con tracce di ghiaia</span>
+                </p>
+                <p className="flex items-start gap-3">
+                  <span className="text-chiarli-wine mt-1">•</span>
+                  <span>Ventilazione costante e forti escursioni termiche</span>
+                </p>
+                <p className="flex items-start gap-3">
+                  <span className="text-chiarli-wine mt-1">•</span>
+                  <span>Condizioni ideali per un grande Grasparossa</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                  <p className="font-sans text-chiarli-text/70 text-base leading-relaxed">
-                    {vitigno.conclusion}
+      {/* Vigneto Cialdini - Feature Highlight */}
+      <section className="relative py-32 bg-chiarli-text overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <img
+            src="/foto/close-up-87-scaled.jpeg"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center">
+          <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-12 leading-tight">
+            Vigneto <span className="italic text-chiarli-wine-light">Cialdini</span>
+          </h2>
+
+          <p className="font-serif text-2xl md:text-3xl text-white/90 leading-relaxed italic">
+            "Un vero cru di Lambrusco, riconoscibile per il suo carattere unico e la sua complessità"
+          </p>
+
+          <div className="mt-12 flex justify-center">
+            <div className="w-32 h-1 bg-chiarli-wine-light" />
+          </div>
+        </div>
+      </section>
+
+      {/* Vitigni Cards */}
+      <section className="py-32 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-4 text-center">
+            I Nostri <span className="italic text-chiarli-wine">Vitigni</span>
+          </h2>
+          <p className="text-center text-chiarli-text/60 mb-20 max-w-2xl mx-auto">
+            Due grandi protagonisti del territorio emiliano, custoditi e valorizzati con passione
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            {/* Lambrusco Grasparossa Card */}
+            <div className="group relative overflow-hidden bg-chiarli-stone hover:shadow-2xl transition-all duration-500">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src="/foto/close-up-87-scaled.jpeg"
+                  alt="Lambrusco Grasparossa"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-8 md:p-12">
+                <h3 className="font-serif text-3xl md:text-4xl text-chiarli-wine mb-3">
+                  Lambrusco Grasparossa
+                </h3>
+                <p className="font-serif italic text-xl text-chiarli-text/70 mb-6">
+                  Il più classico dei Lambruschi di Modena
+                </p>
+                <p className="font-sans text-chiarli-text/70 leading-relaxed mb-6">
+                  Vitigno di antichissime origini coltivato nella zona di Castelvetro. Le uve, di un colore rosso intenso e con elevata presenza di tannini, danno vita a un vino di forte struttura, ricco e polposo.
+                </p>
+                <div className="border-l-4 border-chiarli-wine pl-6">
+                  <p className="font-serif italic text-chiarli-text/80">
+                    "Un grande vino rosso, equilibrio e versatilità per un vino veramente polposo"
                   </p>
                 </div>
               </div>
             </div>
-          </section>
-        );
-      })}
 
-      {/* Galleria Immagini - Full Split */}
-      <section className="relative min-h-screen bg-white overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
-          {/* Image */}
-          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-1">
-            <img
-              src="/foto/DSC04010.jpg"
-              alt="Vigneto Cialdini"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
-          </div>
-
-          {/* Content */}
-          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-2">
-            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                La <span className="italic text-chiarli-wine">Tenuta</span>
-              </h2>
-              <p className="font-serif italic text-xl text-chiarli-text/70 leading-relaxed max-w-lg">
-                Oltre 140 anni di storia familiare nel cuore della zona di produzione del Lambrusco Grasparossa.
-              </p>
+            {/* Pignoletto Card */}
+            <div className="group relative overflow-hidden bg-chiarli-stone hover:shadow-2xl transition-all duration-500">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src="/foto/close-up-26-scaled.jpeg"
+                  alt="Pignoletto"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-8 md:p-12">
+                <h3 className="font-serif text-3xl md:text-4xl text-chiarli-wine mb-3">
+                  Pignoletto
+                </h3>
+                <p className="font-serif italic text-xl text-chiarli-text/70 mb-6">
+                  Un vitigno versatile e completo
+                </p>
+                <p className="font-sans text-chiarli-text/70 leading-relaxed mb-6">
+                  Dalle radici antiche del Grechetto Gentile. Coltivato dal 1600 nella fascia collinare tra Modena e Bologna, è un vitigno che riesce a coniugare aromaticità e struttura polifenolica.
+                </p>
+                <div className="border-l-4 border-chiarli-wine pl-6">
+                  <p className="font-serif italic text-chiarli-text/80">
+                    "Il perfetto bilanciamento tra aromaticità e struttura"
+                  </p>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      <section className="relative min-h-screen bg-chiarli-stone overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
-          {/* Image */}
-          <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
-            <img
-              src="/foto/close-up-26-scaled.jpeg"
-              alt="Dettaglio Vigneto"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-stone/20 lg:bg-gradient-to-r lg:from-chiarli-stone/20 lg:to-transparent" />
-          </div>
-
-          {/* Content */}
-          <div className="flex items-center py-16 md:py-24 lg:py-0 lg:order-1">
-            <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                Il <span className="italic text-chiarli-wine">Territorio</span>
-              </h2>
-              <p className="font-serif italic text-xl text-chiarli-text/70 leading-relaxed max-w-lg">
-                50 ettari di vigneti alle pendici dell'Appennino, dove il microclima unico crea le condizioni ideali per una produzione premium.
-              </p>
-            </div>
+      {/* Final Full Width Image */}
+      <section className="relative h-[70vh]">
+        <img
+          src="/foto/galleria-chiarli-136.jpeg"
+          alt="Tenuta Cialdini"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+          <div className="text-center px-6">
+            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-6">
+              Vieni a trovarci
+            </h2>
+            <p className="font-sans text-xl text-white/90 max-w-2xl mx-auto">
+              Scopri la nostra tenuta e degusta i nostri vini nel cuore del territorio del Lambrusco
+            </p>
           </div>
         </div>
       </section>
+
     </div>
   );
 };
