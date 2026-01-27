@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapPin, TrendingUp, Calendar, Grape } from 'lucide-react';
 
 interface TentuaCialdiniPageProps {
   onBack?: () => void;
 }
 
-export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = ({ onBack }) => {
+export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
