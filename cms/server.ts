@@ -655,7 +655,7 @@ app.post('/api/integration/config', btAuth, (req, res) => {
 
 /**
  * POST /api/integration/suggestions/:id/apply
- * Applica un suggerimento ricevuto
+ * Applica un suggerimento ricevuto (da BT)
  */
 app.post('/api/integration/suggestions/:id/apply', btAuth, (req, res) => {
   integrationController.applySuggestion(req, res);
@@ -667,6 +667,46 @@ app.post('/api/integration/suggestions/:id/apply', btAuth, (req, res) => {
  */
 app.post('/api/integration/test-webhook', btAuth, (req, res) => {
   integrationController.testWebhook(req, res);
+});
+
+// ============================================
+// ROUTES - SUGGESTIONS (per utenti autenticati)
+// ============================================
+
+/**
+ * GET /api/suggestions
+ * Lista suggerimenti per la dashboard
+ * RICHIEDE AUTENTICAZIONE
+ */
+app.get('/api/suggestions', requireAuth, (req, res) => {
+  integrationController.listSuggestions(req, res);
+});
+
+/**
+ * GET /api/suggestions/:id
+ * Dettaglio singolo suggerimento
+ * RICHIEDE AUTENTICAZIONE
+ */
+app.get('/api/suggestions/:id', requireAuth, (req, res) => {
+  integrationController.getSuggestion(req, res);
+});
+
+/**
+ * POST /api/suggestions/:id/apply
+ * Applica suggerimento dalla dashboard
+ * RICHIEDE AUTENTICAZIONE
+ */
+app.post('/api/suggestions/:id/apply', requireAuth, (req, res) => {
+  integrationController.applySuggestionByUser(req, res);
+});
+
+/**
+ * POST /api/suggestions/:id/reject
+ * Rifiuta suggerimento dalla dashboard
+ * RICHIEDE AUTENTICAZIONE
+ */
+app.post('/api/suggestions/:id/reject', requireAuth, (req, res) => {
+  integrationController.rejectSuggestion(req, res);
 });
 
 // ============================================

@@ -3,6 +3,28 @@ import { contentService } from '../services/content.service.js';
 import { btWebhookService } from '../services/bt-webhook.service.js';
 
 /**
+ * Interface per un suggerimento BT
+ */
+interface BTSuggestion {
+  id: string;
+  title: string;
+  content: string;
+  targetPage: string | null;
+  type: string;
+  contentType: string;
+  priority: 'low' | 'medium' | 'high';
+  reasoning: string;
+  changes: Record<string, any>;
+  status: 'pending' | 'applied' | 'rejected';
+  receivedAt: Date;
+  appliedAt: Date | null;
+  appliedBy: string | null;
+}
+
+// In-memory storage per suggerimenti (in produzione usare database)
+const suggestionsStore = new Map<string, BTSuggestion>();
+
+/**
  * Controller per l'integrazione con Business Tuner
  * Gestisce lo scambio bidirezionale di dati e suggerimenti
  */
@@ -43,40 +65,200 @@ export class IntegrationController {
    */
   async receiveSuggestions(req: Request, res: Response): Promise<void> {
     try {
-      const { suggestionId, type, contentType, changes, priority, reasoning } = req.body;
+      const { suggestionId, id, title, content, targetPage, type, contentType, changes, priority, reasoning } = req.body;
 
-      if (!suggestionId || !type || !contentType || !changes) {
+      const finalId = suggestionId || id;
+
+      if (!finalId || !type) {
         res.status(400).json({
           error: 'Bad Request',
-          message: 'Missing required fields: suggestionId, type, contentType, changes'
+          message: 'Missing required fields: suggestionId (or id), type'
         });
         return;
       }
 
-      // Salva il suggerimento in un file temporaneo per revisione
-      const suggestion = {
-        id: suggestionId,
+      // Salva il suggerimento nello store
+      const suggestion: BTSuggestion = {
+        id: finalId,
+        title: title || `Suggerimento ${type}`,
+        content: content || reasoning || '',
+        targetPage: targetPage || null,
         type,
-        contentType,
-        changes,
+        contentType: contentType || 'general',
+        changes: changes || {},
         priority: priority || 'medium',
         reasoning: reasoning || '',
         status: 'pending',
-        receivedAt: new Date().toISOString()
+        receivedAt: new Date(),
+        appliedAt: null,
+        appliedBy: null
       };
 
-      // In una implementazione reale, salveremmo in un database o file
-      // Per ora lo logghiamo e restituiamo conferma
-      console.log('Nuovo suggerimento ricevuto:', suggestion);
+      suggestionsStore.set(finalId, suggestion);
+
+      console.log(`[BT] Nuovo suggerimento ricevuto: ${suggestion.title} (${finalId})`);
 
       res.json({
         success: true,
-        suggestionId,
+        suggestionId: finalId,
         status: 'received',
         message: 'Suggerimento ricevuto e in attesa di revisione'
       });
     } catch (error: any) {
       console.error('Errore receiving suggestions:', error);
+      res.status(500).json({
+        error: 'Internal Server Error',
+        message: error.message
+      });
+    }
+  }
+
+  /**
+   * GET /api/suggestions (per utenti autenticati)
+   * Lista tutti i suggerimenti per la dashboard
+   */
+  async listSuggestions(req: Request, res: Response): Promise<void> {
+    try {
+      const suggestions = Array.from(suggestionsStore.values())
+        .sort((a, b) => b.receivedAt.getTime() - a.receivedAt.getTime());
+
+      const pending = suggestions.filter(s => s.status === 'pending');
+      const applied = suggestions.filter(s => s.status === 'applied');
+      const rejected = suggestions.filter(s => s.status === 'rejected');
+
+      res.json({
+        suggestions,
+        total: suggestions.length,
+        pending: pending.length,
+        applied: applied.length,
+        rejected: rejected.length
+      });
+    } catch (error: any) {
+      console.error('Errore listing suggestions:', error);
+      res.status(500).json({
+        error: 'Internal Server Error',
+        message: error.message
+      });
+    }
+  }
+
+  /**
+   * GET /api/suggestions/:id (per utenti autenticati)
+   * Dettaglio singolo suggerimento
+   */
+  async getSuggestion(req: Request, res: Response): Promise<void> {
+    try {
+      const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+      const suggestion = suggestionsStore.get(id);
+
+      if (!suggestion) {
+        res.status(404).json({
+          error: 'Not Found',
+          message: 'Suggerimento non trovato'
+        });
+        return;
+      }
+
+      res.json(suggestion);
+    } catch (error: any) {
+      console.error('Errore getting suggestion:', error);
+      res.status(500).json({
+        error: 'Internal Server Error',
+        message: error.message
+      });
+    }
+  }
+
+  /**
+   * POST /api/suggestions/:id/apply (per utenti autenticati)
+   * Marca un suggerimento come applicato e notifica BT
+   */
+  async applySuggestionByUser(req: Request, res: Response): Promise<void> {
+    try {
+      const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+      const session = (req as any).session;
+      const suggestion = suggestionsStore.get(id);
+
+      if (!suggestion) {
+        res.status(404).json({
+          error: 'Not Found',
+          message: 'Suggerimento non trovato'
+        });
+        return;
+      }
+
+      if (suggestion.status !== 'pending') {
+        res.status(400).json({
+          error: 'Bad Request',
+          message: 'Suggerimento già processato'
+        });
+        return;
+      }
+
+      // Aggiorna stato
+      suggestion.status = 'applied';
+      suggestion.appliedAt = new Date();
+      suggestion.appliedBy = session?.userEmail || 'unknown';
+
+      console.log(`[BT] Suggerimento applicato: ${suggestion.title} by ${suggestion.appliedBy}`);
+
+      // Notifica Business Tuner
+      try {
+        await btWebhookService.notifySuggestionApplied(suggestion.id, suggestion.changes);
+      } catch (webhookError) {
+        console.error('Errore notifica BT (non bloccante):', webhookError);
+      }
+
+      res.json({
+        success: true,
+        suggestion,
+        message: 'Suggerimento applicato con successo'
+      });
+    } catch (error: any) {
+      console.error('Errore applying suggestion:', error);
+      res.status(500).json({
+        error: 'Internal Server Error',
+        message: error.message
+      });
+    }
+  }
+
+  /**
+   * POST /api/suggestions/:id/reject (per utenti autenticati)
+   * Rifiuta un suggerimento
+   */
+  async rejectSuggestion(req: Request, res: Response): Promise<void> {
+    try {
+      const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+      const session = (req as any).session;
+      const suggestion = suggestionsStore.get(id);
+
+      if (!suggestion) {
+        res.status(404).json({
+          error: 'Not Found',
+          message: 'Suggerimento non trovato'
+        });
+        return;
+      }
+
+      if (suggestion.status !== 'pending') {
+        res.status(400).json({
+          error: 'Bad Request',
+          message: 'Suggerimento già processato'
+        });
+        return;
+      }
+
+      suggestion.status = 'rejected';
+
+      console.log(`[BT] Suggerimento rifiutato: ${suggestion.title} by ${session?.userEmail || 'unknown'}`);
+
+      res.json({
+        success: true,
+        message: 'Suggerimento rifiutato'
+      });
+    } catch (error: any) {
+      console.error('Errore rejecting suggestion:', error);
       res.status(500).json({
         error: 'Internal Server Error',
         message: error.message

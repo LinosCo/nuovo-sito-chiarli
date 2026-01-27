@@ -37,6 +37,8 @@ interface WineData {
     scopri?: string;
   };
   technicalSpecs?: Array<{ label: string; value: string }>;
+  technicalSheetUrl?: string;
+  pairingImage?: string;
   isActive: boolean;
   order: number;
 }
@@ -612,15 +614,17 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                 </div>
 
                 {/* Download PDF button */}
-                <a
-                  href="https://cletochiarli2.linosandco.com/wp-content/uploads/2025/11/22Villa-Cialdini22-Rose-de-Noir.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 inline-flex items-center gap-3 border border-white/20 px-6 py-3 text-white hover:bg-white/10 hover:border-chiarli-wine-light transition-all duration-300 group"
-                >
-                  <Download size={16} className="text-chiarli-wine-light group-hover:scale-110 transition-transform" />
-                  <span className="font-sans text-xs font-bold uppercase tracking-widest">Scarica Scheda Tecnica</span>
-                </a>
+                {wine.technicalSheetUrl && (
+                  <a
+                    href={wine.technicalSheetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-8 inline-flex items-center gap-3 border border-white/20 px-6 py-3 text-white hover:bg-white/10 hover:border-chiarli-wine-light transition-all duration-300 group"
+                  >
+                    <Download size={16} className="text-chiarli-wine-light group-hover:scale-110 transition-transform" />
+                    <span className="font-sans text-xs font-bold uppercase tracking-widest">Scarica Scheda Tecnica</span>
+                  </a>
+                )}
               </div>
             </div>
 
@@ -717,7 +721,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           {/* Left - Single image */}
           <div className="w-full lg:w-1/2 relative">
             <img
-              src="/foto/abbinamento-2.jpg"
+              src={wine.pairingImage || "/foto/abbinamento-2.jpg"}
               alt="Abbinamento gastronomico"
               className="w-full h-full object-cover absolute inset-0"
             />

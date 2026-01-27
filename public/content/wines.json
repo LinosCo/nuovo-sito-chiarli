@@ -415,48 +415,242 @@
       "id": 11,
       "slug": "metodo-del-fondatore",
       "name": "Metodo del Fondatore",
-      "denomination": "Lambrusco di Sorbara DOC - Fermentato in bottiglia",
-      "family": "Metodo Classico",
+      "subtitle": "Lambrusco di Sorbara DOC",
+      "denomination": "Lambrusco di Sorbara DOC Spumante Rosso Brut",
+      "family": "Metodo Ancestrale",
+      "collection": "Metodo Classico",
       "grape": "Lambrusco Sorbara",
-      "description": "Un omaggio alle origini. La tecnica ancestrale della rifermentazione in bottiglia che Cleto Chiarli utilizzava nel 1860, riscoperta per catturare l'essenza più pura del Sorbara.",
+      "description": "Gusto secco e sapido, piacevole bouquet, spuma fine ed evanescente, colore chiaro e vivace.",
       "image": "/foto/lambrusco-sorbara-doc.png",
       "format": "0.75L",
       "tags": [
         "Sorbara",
         "DOC",
-        "Metodo Ancestrale"
+        "Metodo Ancestrale",
+        "Brut"
       ],
       "price": null,
       "year": null,
-      "alcohol": 11.5,
-      "servingTemp": "12-14°C",
+      "alcohol": "11,5% vol.",
+      "servingTemp": "Servire a temperatura di cantina (12 - 14° C.)",
+      "vinification": "Vinificazione tradizionale, presa di spuma attraverso fermentazione naturale in bottiglia cui segue stagionatura di sei mesi.",
+      "heritage": "CHIARLI è il più antico produttore di Vini Tipici dell'Emilia-Romagna. La sua fondazione risale al 1860. L'Azienda 'Cleto Chiarli Tenute Agricole' firma vini di alta qualità ottenuti dalla selezione delle migliori uve provenienti da oltre 100 ettari di vigneti di proprietà e dalle più vocate zone di produzione dei vini DOC dell'Emilia-Romagna.",
       "pairings": [
-        "Tortellini in brodo",
-        "Prosciutto di Parma",
-        "Parmigiano Reggiano",
-        "Gnocco fritto",
-        "Tigelle e crescentine",
-        "Cotechino"
+        "Paste asciutte",
+        "Tortellini",
+        "Carni bollite",
+        "Piatti tipici della cucina emiliana"
       ],
       "awards": [
         {
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri",
-          "years": "2020-2021"
+          "year": "2024",
+          "name": "Bibenda",
+          "score": "5 Grappoli"
         },
         {
-          "name": "Critici Internazionali",
-          "score": "91-93/100",
-          "years": "2022"
+          "year": "2024",
+          "name": "Slow Wine",
+          "score": "Eccellenza"
+        },
+        {
+          "year": "2024",
+          "name": "Merano WineFestival",
+          "score": "The WineHunter Gold"
+        },
+        {
+          "year": "2024",
+          "name": "Gambero Rosso",
+          "score": "2 Bicchieri"
+        },
+        {
+          "year": "2024",
+          "name": "Vitae AIS",
+          "score": "4 Viti"
+        },
+        {
+          "year": "2024",
+          "name": "Veronelli",
+          "score": "86/100"
+        },
+        {
+          "year": "2023",
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri"
+        },
+        {
+          "year": "2023",
+          "name": "Bibenda",
+          "score": "5 Grappoli"
+        },
+        {
+          "year": "2023",
+          "name": "Merano WineFestival",
+          "score": "The WineHunter Gold"
+        },
+        {
+          "year": "2023",
+          "name": "Slow Wine",
+          "score": "Eccellenza"
+        },
+        {
+          "year": "2023",
+          "name": "Vitae AIS",
+          "score": "3 Viti"
+        },
+        {
+          "year": "2023",
+          "name": "Luca Maroni",
+          "score": "90/100"
+        },
+        {
+          "year": "2022",
+          "name": "Vinibuoni d'Italia",
+          "score": "Corona"
+        },
+        {
+          "year": "2022",
+          "name": "Merano WineFestival",
+          "score": "The WineHunter Gold"
+        },
+        {
+          "year": "2022",
+          "name": "Vitae AIS",
+          "score": "3 Viti"
+        },
+        {
+          "year": "2021",
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri"
+        },
+        {
+          "year": "2021",
+          "name": "Vinibuoni d'Italia",
+          "score": "Corona"
+        },
+        {
+          "year": "2021",
+          "name": "Bibenda",
+          "score": "5 Grappoli"
+        },
+        {
+          "year": "2021",
+          "name": "Slow Wine",
+          "score": "Selezione"
+        },
+        {
+          "year": "2021",
+          "name": "Luca Maroni",
+          "score": "90/100"
+        },
+        {
+          "year": "2020",
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri"
+        },
+        {
+          "year": "2020",
+          "name": "Vinibuoni d'Italia",
+          "score": "Corona"
+        },
+        {
+          "year": "2020",
+          "name": "Merano WineFestival",
+          "score": "The WineHunter Rosso"
+        },
+        {
+          "year": "2020",
+          "name": "Luca Maroni",
+          "score": "90/100"
+        },
+        {
+          "year": "2020",
+          "name": "Slow Wine",
+          "score": "Selezione"
+        },
+        {
+          "year": "2019",
+          "name": "Wine Spectator",
+          "score": "TOP 100"
+        },
+        {
+          "year": "2019",
+          "name": "Gambero Rosso",
+          "score": "Tre Bicchieri"
+        },
+        {
+          "year": "2019",
+          "name": "Slow Wine",
+          "score": "Eccellenza"
+        },
+        {
+          "year": "2019",
+          "name": "Bibenda",
+          "score": "5 Grappoli"
+        },
+        {
+          "year": "2019",
+          "name": "Merano WineFestival",
+          "score": "The WineHunter Rosso"
+        },
+        {
+          "year": "2019",
+          "name": "Luca Maroni",
+          "score": "89/100"
+        },
+        {
+          "year": "2019",
+          "name": "L'Espresso",
+          "score": "Selezione"
         }
       ],
       "tastingNotes": {
-        "aspetto": "Colore chiaro e vivace con riflessi rosati. Spuma fine ed evanescente.",
-        "profumo": "Bouquet floreale con note di viola e rosa canina. Sentori di lievito e crosta di pane.",
-        "gusto": "Secco e sapido, freschezza vibrante caratteristica del territorio Sorbara. Finale lungo e persistente, di grande eleganza."
+        "aspetto": "Colore chiaro e vivace con spuma fine ed evanescente.",
+        "profumo": "Piacevole bouquet con note floreali e sentori di lievito.",
+        "gusto": "Gusto secco e sapido, freschezza vibrante caratteristica del territorio Sorbara."
       },
+      "experienceSections": {
+        "degusta": "Lasciati guidare dal colore, dal bouquet e dal perlage: è qui che inizia il piacere. Le bollicine raccontano la vitalità del vino, la luce ne rivela il carattere. Degustare diventa un gesto spontaneo, un invito alla freschezza e alla leggerezza che accompagna ogni sorso.",
+        "abbina": "Dalla freschezza di un ingrediente di stagione alla creatività di un piatto contemporaneo, l'abbinamento è un dialogo aperto. Versatilità e curiosità guidano l'incontro tra sapori, texture e emozioni.",
+        "scopri": "Sperimenta nuove armonie, segui la tua curiosità. Ogni vino rivela una storia diversa, un modo inedito di vivere la tavola e il piacere della convivialità — con leggerezza, eleganza e spirito di scoperta."
+      },
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Lambrusco di Sorbara DOC Spumante Rosso Brut"
+        },
+        {
+          "label": "Regione",
+          "value": "Emilia Romagna"
+        },
+        {
+          "label": "Vitigno",
+          "value": "Lambrusco Sorbara"
+        },
+        {
+          "label": "Gradazione",
+          "value": "11,5% vol."
+        },
+        {
+          "label": "Caratteristiche",
+          "value": "Gusto secco e sapido, piacevole bouquet, spuma fine ed evanescente, colore chiaro e vivace"
+        },
+        {
+          "label": "Vinificazione",
+          "value": "Vinificazione tradizionale, presa di spuma attraverso fermentazione naturale in bottiglia cui segue stagionatura di sei mesi"
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "Servire a temperatura di cantina (12 - 14° C.)"
+        },
+        {
+          "label": "Avvertenza",
+          "value": "Stappare e mescere con cura per non rimuovere dal fondo il leggero e tipico residuo della fermentazione"
+        }
+      ],
+      "technicalSheetUrl": "https://cletochiarli2.linosandco.com/wp-content/uploads/2025/11/Lambrusco-di-Sorbara-DOC-.pdf",
+      "pairingImage": "/foto/ravioli-2063535_1280-uai-540x810.jpg",
       "isActive": true,
-      "order": 11
+      "order": 1
     },
     {
       "id": 12,

@@ -65,6 +65,9 @@ interface BTStatus {
 
 interface BTSuggestion {
   id: string;
+  title: string;
+  content: string;
+  targetPage: string | null;
   type: string;
   contentType: string;
   priority: 'low' | 'medium' | 'high';
@@ -164,9 +167,100 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
     }
   }, [showBTPanel]);
 
+  // Carica suggerimenti da API autenticata
+  const loadSuggestions = useCallback(async () => {
+    if (!showBTPanel) return;
+    try {
+      const res = await fetch(`${API_URL}/api/suggestions`, {
+        credentials: 'include'
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setBtSuggestions(data.suggestions.filter((s: BTSuggestion) => s.status === 'pending'));
+      } else {
+        console.error('Errore caricamento suggerimenti:', res.status);
+      }
+    } catch (error) {
+      console.error('Errore connessione suggerimenti:', error);
+    }
+  }, [showBTPanel]);
+
   useEffect(() => {
     loadBTStatus();
-  }, [showBTPanel, loadBTStatus]);
+    loadSuggestions();
+  }, [showBTPanel, loadBTStatus, loadSuggestions]);
+
+  // Applica suggerimento
+  const applySuggestion = async (suggestion: BTSuggestion) => {
+    try {
+      // Prima applica via API
+      const res = await fetch(`${API_URL}/api/suggestions/${suggestion.id}/apply`, {
+        method: 'POST',
+        credentials: 'include'
+      });
+
+      if (!res.ok) {
+        throw new Error('Errore applicazione suggerimento');
+      }
+
+      // Inserisci il contenuto nella chat per farlo applicare
+      const message = `Voglio applicare questo suggerimento da Business Tuner:
+
+**${suggestion.title}**
+
+${suggestion.content}
+
+${suggestion.targetPage ? `Pagina target: ${suggestion.targetPage}` : ''}
+
+Per favore, applica questo contenuto.`;
+
+      setInputValue(message);
+
+      // Rimuovi dalla lista
+      setBtSuggestions(prev => prev.filter(s => s.id !== suggestion.id));
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          role: 'system',
+          content: `Suggerimento "${suggestion.title}" applicato. Business Tuner e stato notificato.`,
+          timestamp: new Date(),
+        },
+      ]);
+    } catch (error: any) {
+      console.error('Errore applicazione suggerimento:', error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          role: 'system',
+          content: `Errore: ${error.message}`,
+          timestamp: new Date(),
+        },
+      ]);
+    }
+  };
+
+  // Rifiuta suggerimento
+  const rejectSuggestion = async (suggestionId: string) => {
+    try {
+      const res = await fetch(`${API_URL}/api/suggestions/${suggestionId}/reject`, {
+        method: 'POST',
+        credentials: 'include'
+      });
+
+      if (!res.ok) {
+        throw new Error('Errore rifiuto suggerimento');
+      }
+
+      // Rimuovi dalla lista
+      setBtSuggestions(prev => prev.filter(s => s.id !== suggestionId));
+    } catch (error: any) {
+      console.error('Errore rifiuto suggerimento:', error);
+    }
+  };
 
   // Test webhook Business Tuner
   const testWebhook = async () => {
@@ -666,24 +760,39 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
 
               {/* Suggestions Section */}
               <div className="flex-1 overflow-y-auto p-4">
-                <h4 className="text-sm font-medium text-stone-700 mb-3 flex items-center gap-2">
-                  <Lightbulb size={16} />
-                  Suggerimenti
-                </h4>
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="text-sm font-medium text-stone-700 flex items-center gap-2">
+                    <Lightbulb size={16} />
+                    Suggerimenti
+                    {btSuggestions.length > 0 && (
+                      <span className="bg-amber-600 text-white text-xs px-2 py-0.5 rounded-full">
+                        {btSuggestions.length}
+                      </span>
+                    )}
+                  </h4>
+                  <button
+                    onClick={loadSuggestions}
+                    className="text-xs text-stone-500 hover:text-stone-700"
+                  >
+                    Ricarica
+                  </button>
+                </div>
                 {btSuggestions.length === 0 ? (
                   <div className="text-center py-8">
-                    <p className="text-sm text-stone-500">Nessun suggerimento disponibile</p>
+                    <Lightbulb size={32} className="mx-auto text-stone-300 mb-2" />
+                    <p className="text-sm text-stone-500">Nessun suggerimento in attesa</p>
+                    <p className="text-xs text-stone-400 mt-1">I suggerimenti arrivano da Business Tuner</p>
                   </div>
                 ) : (
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {btSuggestions.map((suggestion) => (
                       <div
                         key={suggestion.id}
-                        className="p-3 bg-stone-50 rounded-lg border border-stone-200"
+                        className="p-4 bg-white rounded-lg border border-stone-200 shadow-sm"
                       >
                         <div className="flex items-start justify-between mb-2">
                           <span
-                            className={`text-xs px-2 py-1 rounded ${
+                            className={`text-xs px-2 py-1 rounded font-medium ${
                               suggestion.priority === 'high'
                                 ? 'bg-red-100 text-red-700'
                                 : suggestion.priority === 'medium'
@@ -693,15 +802,28 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
                           >
                             {suggestion.priority}
                           </span>
-                          <span className="text-xs text-stone-500">{suggestion.contentType}</span>
+                          <span className="text-xs text-stone-400">{suggestion.contentType}</span>
                         </div>
-                        <p className="text-sm text-stone-700">{suggestion.reasoning}</p>
-                        <div className="mt-2 flex gap-2">
-                          <button className="text-xs px-2 py-1 bg-amber-600 text-white rounded hover:bg-amber-700">
+                        <h5 className="font-medium text-stone-800 mb-1">{suggestion.title}</h5>
+                        {suggestion.targetPage && (
+                          <p className="text-xs text-stone-500 mb-2">Pagina: {suggestion.targetPage}</p>
+                        )}
+                        <p className="text-sm text-stone-600 line-clamp-3 mb-3">
+                          {suggestion.content || suggestion.reasoning}
+                        </p>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => applySuggestion(suggestion)}
+                            className="flex-1 text-xs px-3 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 font-medium transition-colors flex items-center justify-center gap-1"
+                          >
+                            <Check size={14} />
                             Applica
                           </button>
-                          <button className="text-xs px-2 py-1 bg-stone-200 text-stone-700 rounded hover:bg-stone-300">
-                            Rifiuta
+                          <button
+                            onClick={() => rejectSuggestion(suggestion.id)}
+                            className="text-xs px-3 py-2 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200 transition-colors"
+                          >
+                            <X size={14} />
                           </button>
                         </div>
                       </div>
