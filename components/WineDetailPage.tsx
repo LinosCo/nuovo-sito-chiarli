@@ -39,7 +39,7 @@ interface WineData {
   technicalSpecs?: Array<{ label: string; value: string }>;
   technicalSheetUrl?: string;
   pairingImage?: string;
-  heroBackground?: string;
+  experienceBackground?: string;
   isActive: boolean;
   order: number;
 }
@@ -186,7 +186,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         {/* Background image con effetto "vedo non vedo" */}
         <div className="absolute inset-0">
           <img
-            src={wine.heroBackground || "/foto/villa-cialdini-ombre.jpg"}
+            src="/foto/villa-cialdini-ombre.jpg"
             alt="Villa Cialdini"
             className="w-full h-full object-cover opacity-30"
             style={{
@@ -466,7 +466,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/villa-cialdini-cielo.jpg"
+            src={wine.experienceBackground || "/foto/villa-cialdini-cielo.jpg"}
             alt="Villa Cialdini"
             className="w-full h-full object-cover"
           />
