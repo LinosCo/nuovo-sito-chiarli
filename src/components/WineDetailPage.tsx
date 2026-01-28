@@ -53,6 +53,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
   const [wineData, setWineData] = useState<WineData | null>(null);
   const [loading, setLoading] = useState(true);
   const [relatedWines, setRelatedWines] = useState<WineData[]>([]);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  const [isHeritageExpanded, setIsHeritageExpanded] = useState(false);
 
   useEffect(() => {
     const loadWineData = async () => {
@@ -313,13 +315,25 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                 {wine.denomination}
               </p>
 
-              <p
-                className={`font-serif text-base md:text-lg text-white/70 leading-relaxed mb-6 md:mb-8 transition-all duration-700 delay-700 ${
+              <div
+                className={`transition-all duration-700 delay-700 mb-6 md:mb-8 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
               >
-                {wine.description}
-              </p>
+                <p className="font-serif text-base md:text-lg text-white/70 leading-relaxed">
+                  {wine.description && wine.description.length > 200 && !isDescriptionExpanded
+                    ? `${wine.description.substring(0, 200)}...`
+                    : wine.description}
+                </p>
+                {wine.description && wine.description.length > 200 && (
+                  <button
+                    onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                    className="mt-3 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-wine-light hover:text-white transition-colors"
+                  >
+                    {isDescriptionExpanded ? 'Leggi meno' : 'Leggi di più'}
+                  </button>
+                )}
+              </div>
 
               {/* Elegant info lines */}
               <div
@@ -686,8 +700,18 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
               {wine.heritage ? (
                 <div className="mb-6 md:mb-8">
                   <p className="font-serif text-base md:text-lg text-chiarli-text/70 leading-relaxed">
-                    {wine.heritage}
+                    {wine.heritage.length > 250 && !isHeritageExpanded
+                      ? `${wine.heritage.substring(0, 250)}...`
+                      : wine.heritage}
                   </p>
+                  {wine.heritage.length > 250 && (
+                    <button
+                      onClick={() => setIsHeritageExpanded(!isHeritageExpanded)}
+                      className="mt-3 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-wine hover:text-chiarli-text transition-colors"
+                    >
+                      {isHeritageExpanded ? 'Leggi meno' : 'Leggi di più'}
+                    </button>
+                  )}
                 </div>
               ) : (
                 <>

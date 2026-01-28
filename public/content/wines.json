@@ -662,7 +662,7 @@
       "family": "Metodo Charmat",
       "collection": "Metodo Classico",
       "grape": "Grasparossa",
-      "description": "Spuma vivace, colore rosa ribes, bollicine fini ed abbondanti. Profumo intenso e fruttato, sapore ben composto con tipici sentori di frutti di sottobosco.",
+      "description": "Il Rosé Brut di Villa Cialdini è un invito alla leggerezza consapevole. Nasce da uve Grasparossa coltivate intorno alla storica tenuta e interpreta il lato più luminoso e conviviale del Lambrusco. È un vino pensato per i momenti spontanei, per le tavole che si aprono senza formalità, per chi cerca freschezza e carattere in equilibrio naturale. Il suo stile è diretto, autentico, profondamente legato al territorio, ma con uno sguardo contemporaneo.\nNel bicchiere si distingue per il colore rosa vivo e la spuma dinamica, che anticipano un sorso agile e piacevole. È uno spumante che accompagna senza sovrastare, capace di rendere speciale anche l'occasione più semplice. Un classico quotidiano, elegante senza ostentazione.",
       "image": "/foto/villa-cialdini-rose-de-noir.png",
       "format": "0.75L",
       "tags": [
@@ -682,78 +682,17 @@
         "Macedonie di frutta",
         "Dessert alla frutta"
       ],
-      "heritage": "CHIARLI è il più antico produttore di Vini Tipici dell'Emilia-Romagna. La sua fondazione risale al 1860. L'Azienda 'Cleto Chiarli Tenute Agricole' firma vini di alta qualità ottenuti dalla selezione delle migliori uve provenienti da oltre 100 ettari di vigneti di proprietà e dalle più vocate zone di produzione dei vini DOC dell'Emilia-Romagna.",
-      "awards": [
-        {
-          "year": "2024",
-          "name": "Merano WineFestival",
-          "score": "The WineHunter Rosso"
-        },
-        {
-          "year": "2024",
-          "name": "Gambero Rosso",
-          "score": "1 Bicchiere"
-        },
-        {
-          "year": "2024",
-          "name": "Vitae AIS",
-          "score": "3 Viti"
-        },
-        {
-          "year": "2024",
-          "name": "Veronelli",
-          "score": "84/100"
-        },
-        {
-          "year": "2023",
-          "name": "Merano WineFestival",
-          "score": "The WineHunter Rosso"
-        },
-        {
-          "year": "2023",
-          "name": "Bibenda",
-          "score": "4 Grappoli"
-        },
-        {
-          "year": "2023",
-          "name": "Vitae AIS",
-          "score": "3 Viti"
-        },
-        {
-          "year": "2023",
-          "name": "Luca Maroni",
-          "score": "94/100"
-        },
-        {
-          "year": "2022",
-          "name": "Gambero Rosso",
-          "score": "1 Bicchiere"
-        },
-        {
-          "year": "2022",
-          "name": "Bibenda",
-          "score": "4 Grappoli"
-        },
-        {
-          "year": "2022",
-          "name": "Vitae AIS",
-          "score": "3 Viti"
-        },
-        {
-          "year": "2022",
-          "name": "Veronelli",
-          "score": "85/100"
-        }
-      ],
+      "heritage": "La \"Collezione Classica di Villa Cialdini nasce dove tutto è più vicino: la terra, la famiglia, i gesti quotidiani. È l'espressione più domestica e autentica dello stile Cleto Chiarli, legata alle uve coltivate intorno alla storica tenuta e a una tradizione che non ha bisogno di essere celebrata per essere riconosciuta. Ciascun spumante racconta il \"classico\" come continuità, equilibrio e appartenenza: vini pensati per la tavola, per il territorio, per chi conosce il valore delle cose fatte bene.",
+      "awards": [],
       "tastingNotes": {
         "aspetto": "Spuma vivace, colore rosa ribes, bollicine fini ed abbondanti.",
         "profumo": "Profumo intenso e fruttato, con tipici sentori di frutti di sottobosco.",
         "gusto": "Sapore ben composto con tipici sentori di frutti di sottobosco."
       },
       "experienceSections": {
-        "degusta": "Lasciati guidare dal colore, dal bouquet e dal perlage: è qui che inizia il piacere. Le bollicine raccontano la vitalità del vino, la luce ne rivela il carattere. Degustare diventa un gesto spontaneo, un invito alla freschezza e alla leggerezza che accompagna ogni sorso.",
-        "abbina": "Dalla freschezza di un ingrediente di stagione alla creatività di un piatto contemporaneo, l'abbinamento è un dialogo aperto. Versatilità e curiosità guidano l'incontro tra sapori, texture e emozioni.",
-        "scopri": "Sperimenta nuove armonie, segui la tua curiosità. Ogni vino rivela una storia diversa, un modo inedito di vivere la tavola e il piacere della convivialità — con leggerezza, eleganza e spirito di scoperta."
+        "degusta": "Fresco e immediato, con una bollicina fine che accompagna profumi di piccoli frutti rossi e una chiusura asciutta e armoniosa. Un sorso scorrevole, pensato per essere condiviso con naturalezza.",
+        "abbina": "Perfetto come aperitivo, si abbina con facilità a piatti leggeri, verdure, formaggi freschi e preparazioni delicate. Ideale anche a tutto pasto quando si cerca freschezza e versatilità.",
+        "scopri": "Un Rosé Brut che racconta il lato più spontaneo di Villa Cialdini: uve di proprietà, stile essenziale e un legame profondo con la convivialità emiliana."
       },
       "technicalSpecs": [
         {
