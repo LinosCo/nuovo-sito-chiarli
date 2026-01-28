@@ -127,7 +127,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden order-1 lg:order-1">
             <img
-              src="/foto/DSC04010.jpg"
+              src="/foto/processo-vinificazione.jpg"
               alt="Processo di vinificazione"
               className="w-full h-full object-cover"
             />
@@ -206,7 +206,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/1.jpg"
+              src="/foto/unicita-metodo-chiarli.jpg"
               alt="L'unicità del metodo Chiarli"
               className="w-full h-full object-cover"
             />
