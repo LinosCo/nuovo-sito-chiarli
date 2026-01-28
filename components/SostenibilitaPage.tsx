@@ -184,7 +184,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
           {/* Right: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/a001-scaled.jpg"
+              src="/foto/sostenibilita-agricoltura40.jpg"
               alt="Tecnologia nei vigneti"
               className="w-full h-full object-cover"
             />

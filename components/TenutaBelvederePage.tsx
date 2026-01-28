@@ -211,7 +211,7 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
           {/* Image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
             <img
-              src="/foto/close-up-87-scaled.jpeg"
+              src="/foto/belvedere-grasparossa.jpg"
               alt="Lambrusco Grasparossa"
               className="w-full h-full object-cover"
             />

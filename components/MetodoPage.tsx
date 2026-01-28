@@ -9,6 +9,20 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState<number | null>(null);
+  const [currentFreschezzaSlide, setCurrentFreschezzaSlide] = useState(0);
+
+  const freschezzaImages = [
+    "/foto/freschezza-1.jpg",
+    "/foto/freschezza-2.jpg",
+    "/foto/freschezza-3.jpg"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentFreschezzaSlide((prev) => (prev + 1) % freschezzaImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [freschezzaImages.length]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -34,7 +48,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/sozzigalli-29.jpg"
+            src="/foto/portainnesti.jpg"
             alt="Il metodo Chiarli"
             className="w-full h-full object-cover"
           />
@@ -61,12 +75,6 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
             Il metodo Charmat: l'evoluzione del Lambrusco
           </p>
 
-          {/* Scroll indicator */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-            <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-              <div className="w-1 h-3 bg-white/70 rounded-full animate-pulse" />
-            </div>
-          </div>
         </div>
 
         <style>{`
@@ -104,7 +112,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           {/* Right: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/a001-scaled.jpg"
+              src="/foto/innovazione-anni50.jpg"
               alt="Innovazione anni '50"
               className="w-full h-full object-cover"
             />
@@ -175,13 +183,18 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
             </div>
           </div>
 
-          {/* Right: Full height image */}
+          {/* Right: Slider images */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
-            <img
-              src="/foto/2.jpg"
-              alt="Freschezza e autenticità"
-              className="w-full h-full object-cover"
-            />
+            {freschezzaImages.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`Freschezza e autenticità ${index + 1}`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                  index === currentFreschezzaSlide ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            ))}
             <div className="absolute inset-0 bg-gradient-to-r from-chiarli-text/20 to-transparent lg:bg-gradient-to-l lg:from-transparent lg:to-chiarli-text/20" />
           </div>
         </div>
