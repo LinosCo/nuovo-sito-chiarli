@@ -599,6 +599,38 @@ app.post('/api/history/rollback', requireAuth, async (req, res) => {
 // ============================================
 
 /**
+ * GET /status
+ * Endpoint per Business Tuner connection test
+ * Usa X-BT-API-Key header per autenticazione
+ */
+app.get('/status', (req, res) => {
+  const apiKey = req.headers['x-bt-api-key'];
+  const expectedKey = process.env.BUSINESS_TUNER_API_KEY;
+
+  if (!expectedKey) {
+    console.error('[Status] BUSINESS_TUNER_API_KEY non configurata');
+    return res.status(500).json({
+      error: 'Configuration Error',
+      message: 'Server not properly configured'
+    });
+  }
+
+  if (!apiKey || apiKey !== expectedKey) {
+    return res.status(401).json({
+      error: 'Unauthorized',
+      message: 'Invalid or missing API key'
+    });
+  }
+
+  res.json({
+    status: 'ok',
+    version: '1.0.0',
+    capabilities: ['suggestions', 'content-sync', 'webhooks'],
+    timestamp: new Date().toISOString()
+  });
+});
+
+/**
  * GET /api/status
  * Stato del CMS
  */
