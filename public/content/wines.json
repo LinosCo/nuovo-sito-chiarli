@@ -710,6 +710,105 @@
       ],
       "isActive": true,
       "order": 0
+    },
+    {
+      "id": 13,
+      "slug": "vigneto-cialdini-grasparossa",
+      "name": "Vigneto Cialdini",
+      "subtitle": "Lambrusco Grasparossa di Castelvetro DOC",
+      "denomination": "Lambrusco Grasparossa di Castelvetro DOC Spumante Rosso Brut",
+      "family": "Premium",
+      "collection": "Cru",
+      "grape": "Lambrusco Grasparossa di Castelvetro",
+      "description": "Il Vigneto Cialdini rappresenta l'anima più intensa e profonda del Lambrusco. Nasce dalle vigne che circondano la storica Villa Cialdini, dove il Grasparossa esprime tutta la sua forza in equilibrio con eleganza e bevibilità. È un vino che parla di territorio, di stagioni, di una viticoltura attenta che privilegia maturità e carattere.\nA differenza delle interpretazioni più immediate, Vigneto Cialdini racconta un Lambrusco strutturato ma misurato, pensato per la tavola e per chi cerca un sorso autentico, capace di accompagnare la cucina emiliana senza perdere dinamismo.",
+      "image": "/foto/vigneto-cialdini-grasparossa.png",
+      "format": "0.75L",
+      "tags": [
+        "Grasparossa",
+        "DOC",
+        "Brut",
+        "Cru"
+      ],
+      "price": null,
+      "year": null,
+      "alcohol": "11% vol.",
+      "servingTemp": "Temperatura di cantina (14-16°C)",
+      "vinification": "Pressatura tradizionale con macerazione di 36 ore a 10-12°C. Sgrondatura e refrigerazione. Fermentazione lenta 'prise de mousse' in cuve close.",
+      "pairings": [
+        "Pasta",
+        "Salumi",
+        "Piatti tipici emiliani",
+        "Carni",
+        "Paste ripiene",
+        "Preparazioni saporite"
+      ],
+      "heritage": "Il Vigneto Cialdini si trova in una zona collinare particolarmente vocata, dove i suoli più compatti e le escursioni termiche favoriscono struttura e concentrazione aromatica. Qui il Grasparossa matura lentamente, sviluppando intensità e profondità senza perdere equilibrio. È un cru che racconta il lato più autentico e territoriale del Lambrusco, legato indissolubilmente alla storia della tenuta e della famiglia Chiarli.",
+      "awards": [
+        {
+          "name": "Slow Wine",
+          "score": "Vino Quotidiano"
+        },
+        {
+          "name": "Gambero Rosso",
+          "score": "Bere Bene Rapporto Qualità Prezzo"
+        },
+        {
+          "name": "Wine Enthusiast",
+          "score": "Top 100"
+        },
+        {
+          "name": "CSWW",
+          "score": "World Champion Sparkling Red"
+        },
+        {
+          "name": "Falstaff",
+          "score": "93 Points"
+        }
+      ],
+      "tastingNotes": {
+        "aspetto": "Colore rubino profondo con spuma vivace e persistente.",
+        "profumo": "Profumi di frutti rossi maturi e note più scure, intenso e complesso.",
+        "gusto": "Sorso pieno, avvolgente, sostenuto da una freschezza naturale. Secco e vinoso con corpo pronunciato."
+      },
+      "experienceSections": {
+        "degusta": "Colore rubino profondo, spuma vivace, profumi di frutti rossi maturi e note più scure. Il sorso è pieno, avvolgente, sostenuto da una freschezza naturale.",
+        "abbina": "Ideale con piatti della tradizione emiliana, carni, paste ripiene e preparazioni saporite. Un Lambrusco che ama la tavola e la convivialità.",
+        "scopri": "Un Grasparossa che nasce da un vigneto preciso, interpretato con rigore e rispetto per l'identità varietale."
+      },
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Lambrusco Grasparossa di Castelvetro DOC Spumante Rosso Brut"
+        },
+        {
+          "label": "Regione",
+          "value": "Emilia Romagna"
+        },
+        {
+          "label": "Vitigno",
+          "value": "Lambrusco Grasparossa di Castelvetro"
+        },
+        {
+          "label": "Gradazione",
+          "value": "11% vol."
+        },
+        {
+          "label": "Caratteristiche",
+          "value": "Colore intenso, gusto secco e vinoso, spuma fine ed evanescente, corpo pronunciato"
+        },
+        {
+          "label": "Vinificazione",
+          "value": "Pressatura tradizionale con macerazione di 36 ore a 10-12°C. Prise de mousse in cuve close"
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "Temperatura di cantina (14-16°C)"
+        }
+      ],
+      "pairingImage": "/foto/abbinamento-pasta-ragu.jpg",
+      "technicalSheetUrl": "/schede-tecniche/vigneto-cialdini-grasparossa.pdf",
+      "isActive": true,
+      "order": 2
     }
   ],
   "_meta": {
