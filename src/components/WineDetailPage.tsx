@@ -41,6 +41,7 @@ interface WineData {
   technicalSheetUrl?: string;
   pairingImage?: string;
   experienceBackground?: string;
+  heroBackground?: string;
   isActive: boolean;
   order: number;
 }
@@ -201,7 +202,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
         {/* Background image con effetto "vedo non vedo" */}
         <div className="absolute inset-0">
           <img
-            src="/foto/villa-cialdini-ombre.jpg"
+            src={wine.heroBackground || "/foto/villa-cialdini-ombre.jpg"}
             alt="Villa Cialdini"
             className="w-full h-full object-cover opacity-30"
             style={{
@@ -786,7 +787,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
               </h2>
 
               <p className="font-serif text-base md:text-lg text-white/70 leading-relaxed mb-8">
-                Ottimo come aperitivo, è ideale per le cene più raffinate; si sposa bene anche con desserts quali torta con fragole o macedonie di frutta.
+                {wine.experienceSections?.abbina || "Ottimo come aperitivo, è ideale per le cene più raffinate; si sposa bene anche con desserts quali torta con fragole o macedonie di frutta."}
               </p>
 
               {/* Pairings list */}
