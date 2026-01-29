@@ -659,8 +659,8 @@
       "name": "Villa Cialdini",
       "subtitle": "Rosè Brut",
       "denomination": "Vino Spumante Rosé Brut",
-      "family": "Metodo Charmat",
-      "collection": "Metodo Classico",
+      "family": "Premium",
+      "collection": "Collezione Classica",
       "grape": "Grasparossa",
       "description": "Il Rosé Brut di Villa Cialdini è un invito alla leggerezza consapevole. Nasce da uve Grasparossa coltivate intorno alla storica tenuta e interpreta il lato più luminoso e conviviale del Lambrusco. È un vino pensato per i momenti spontanei, per le tavole che si aprono senza formalità, per chi cerca freschezza e carattere in equilibrio naturale. Il suo stile è diretto, autentico, profondamente legato al territorio, ma con uno sguardo contemporaneo.\nNel bicchiere si distingue per il colore rosa vivo e la spuma dinamica, che anticipano un sorso agile e piacevole. È uno spumante che accompagna senza sovrastare, capace di rendere speciale anche l'occasione più semplice. Un classico quotidiano, elegante senza ostentazione.",
       "image": "/foto/villa-cialdini-rose-de-noir.png",
@@ -717,7 +717,7 @@
       "name": "Vigneto Cialdini",
       "subtitle": "Lambrusco Grasparossa di Castelvetro DOC",
       "denomination": "Lambrusco Grasparossa di Castelvetro DOC Spumante Rosso Brut",
-      "family": "Collezione Classica",
+      "family": "Premium",
       "collection": "Collezione Classica",
       "grape": "Grasparossa",
       "description": "Il Vigneto Cialdini rappresenta l'anima più intensa e profonda del Lambrusco. Nasce dalle vigne che circondano la storica Villa Cialdini, dove il Grasparossa esprime tutta la sua forza in equilibrio con eleganza e bevibilità. È un vino che parla di territorio, di stagioni, di una viticoltura attenta che privilegia maturità e carattere.\nA differenza delle interpretazioni più immediate, Vigneto Cialdini racconta un Lambrusco strutturato ma misurato, pensato per la tavola e per chi cerca un sorso autentico, capace di accompagnare la cucina emiliana senza perdere dinamismo.",
@@ -815,7 +815,7 @@
       "experienceBackground": "/foto/grasparossa-vigneto.jpg",
       "technicalSheetUrl": "/schede-tecniche/vigneto-cialdini-grasparossa.pdf",
       "isActive": true,
-      "order": 2
+      "order": 1
     }
   ],
   "_meta": {
