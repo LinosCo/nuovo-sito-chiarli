@@ -31,6 +31,7 @@ interface WineData {
     gusto: string | null;
   };
   heritage?: string;
+  heritageImage?: string;
   experienceSections?: {
     degusta?: string;
     abbina?: string;
@@ -55,6 +56,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
   const [relatedWines, setRelatedWines] = useState<WineData[]>([]);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isHeritageExpanded, setIsHeritageExpanded] = useState(false);
+  const [currentAwardIndex, setCurrentAwardIndex] = useState(0);
 
   useEffect(() => {
     const loadWineData = async () => {
@@ -119,6 +121,17 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+
+  // Rotating awards effect - change every 3 seconds
+  useEffect(() => {
+    if (!wineData?.awards || wineData.awards.length <= 2) return;
+
+    const interval = setInterval(() => {
+      setCurrentAwardIndex(prev => (prev + 2) % wineData.awards.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [wineData?.awards]);
 
   // Default fallback data for Metodo del Fondatore
   const defaultWine: WineData = {
@@ -388,10 +401,10 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           {wine.image && (
             <div className="hidden lg:flex w-1/2 items-center justify-start relative overflow-visible">
 
-              {/* Floating award badges - only show if wine has awards */}
-              {wine.awards && wine.awards.length > 0 && wine.awards[0] && (
+              {/* Floating award badges - rotate through all awards */}
+              {wine.awards && wine.awards.length > 0 && (
                 <div
-                  className={`absolute top-20 right-8 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 transition-all duration-300 cursor-default hover:border-chiarli-wine-light/50 hover:bg-white/15 hover:shadow-[0_0_25px_rgba(180,100,120,0.4)] ${
+                  className={`absolute top-20 right-8 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 transition-all duration-500 cursor-default hover:border-chiarli-wine-light/50 hover:bg-white/15 hover:shadow-[0_0_25px_rgba(180,100,120,0.4)] ${
                     isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
                   }`}
                   style={{
@@ -400,17 +413,21 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                 >
                   <div className="flex items-center gap-3">
                     <Award size={20} className="text-chiarli-wine-light" />
-                    <div>
-                      <p className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/60">{wine.awards[0].name}</p>
-                      <p className="font-serif text-sm text-white">{wine.awards[0].score}</p>
+                    <div className="min-w-[120px]">
+                      <p className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/60 transition-opacity duration-300">
+                        {wine.awards[currentAwardIndex % wine.awards.length]?.name}
+                      </p>
+                      <p className="font-serif text-sm text-white transition-opacity duration-300">
+                        {wine.awards[currentAwardIndex % wine.awards.length]?.score}
+                      </p>
                     </div>
                   </div>
                 </div>
               )}
 
-              {wine.awards && wine.awards.length > 1 && wine.awards[1] && (
+              {wine.awards && wine.awards.length > 1 && (
                 <div
-                  className={`absolute bottom-28 right-8 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 transition-all duration-300 cursor-default hover:border-chiarli-wine-light/50 hover:bg-white/15 hover:shadow-[0_0_25px_rgba(180,100,120,0.4)] ${
+                  className={`absolute bottom-28 right-8 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 transition-all duration-500 cursor-default hover:border-chiarli-wine-light/50 hover:bg-white/15 hover:shadow-[0_0_25px_rgba(180,100,120,0.4)] ${
                     isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                   style={{
@@ -419,9 +436,13 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                 >
                   <div className="flex items-center gap-3">
                     <Award size={20} className="text-chiarli-wine-light" />
-                    <div>
-                      <p className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/60">{wine.awards[1].name}</p>
-                      <p className="font-serif text-sm text-white">{wine.awards[1].score}</p>
+                    <div className="min-w-[120px]">
+                      <p className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/60 transition-opacity duration-300">
+                        {wine.awards[(currentAwardIndex + 1) % wine.awards.length]?.name}
+                      </p>
+                      <p className="font-serif text-sm text-white transition-opacity duration-300">
+                        {wine.awards[(currentAwardIndex + 1) % wine.awards.length]?.score}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -680,7 +701,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
           {/* Left - Image */}
           <div className="w-full lg:w-1/2 h-[40vh] md:h-[50vh] lg:h-[80vh] relative">
             <img
-              src="/foto/villa-cialdini-viale.jpg"
+              src={wine.heritageImage || "/foto/villa-cialdini-viale.jpg"}
               alt="Villa Cialdini"
               className="absolute inset-0 w-full h-full object-cover"
             />

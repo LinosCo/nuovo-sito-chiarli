@@ -743,6 +743,7 @@
         "Preparazioni saporite"
       ],
       "heritage": "Il Vigneto Cialdini si trova in una zona collinare particolarmente vocata, dove i suoli più compatti e le escursioni termiche favoriscono struttura e concentrazione aromatica. Qui il Grasparossa matura lentamente, sviluppando intensità e profondità senza perdere equilibrio. È un cru che racconta il lato più autentico e territoriale del Lambrusco, legato indissolubilmente alla storia della tenuta e della famiglia Chiarli.",
+      "heritageImage": "/foto/grasparossa-villa.jpg",
       "awards": [
         {
           "name": "Slow Wine",
@@ -750,7 +751,7 @@
         },
         {
           "name": "Gambero Rosso",
-          "score": "Bere Bene Rapporto Qualità Prezzo"
+          "score": "Bere Bene"
         },
         {
           "name": "Wine Enthusiast",
@@ -772,7 +773,7 @@
       },
       "experienceSections": {
         "degusta": "Colore rubino profondo, spuma vivace, profumi di frutti rossi maturi e note più scure. Il sorso è pieno, avvolgente, sostenuto da una freschezza naturale.",
-        "abbina": "Ideale con piatti della tradizione emiliana, carni, paste ripiene e preparazioni saporite. Un Lambrusco che ama la tavola e la convivialità.",
+        "abbina": "Dialoga con piatti dalla struttura decisa e dal profilo aromatico profondo: carni arrosto o alla griglia, paste condite con ragù intensi, verdure al forno o leggermente affumicate. La sua freschezza e la trama del sorso lo rendono adatto anche a cucine contemporanee, dove equilibrio e intensità sono centrali.",
         "scopri": "Un Grasparossa che nasce da un vigneto preciso, interpretato con rigore e rispetto per l'identità varietale."
       },
       "technicalSpecs": [
@@ -806,6 +807,7 @@
         }
       ],
       "pairingImage": "/foto/abbinamento-pasta-ragu.jpg",
+      "experienceBackground": "/foto/grasparossa-vigneto.jpg",
       "technicalSheetUrl": "/schede-tecniche/vigneto-cialdini-grasparossa.pdf",
       "isActive": true,
       "order": 2
