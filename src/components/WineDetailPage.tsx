@@ -697,20 +697,9 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
 
       {/* Heritage Section - Full width split */}
       <section className="relative bg-chiarli-text overflow-hidden">
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col-reverse lg:flex-row">
 
-          {/* Left - Image */}
-          <div className="w-full lg:w-1/2 h-[40vh] md:h-[50vh] lg:h-[80vh] relative">
-            <img
-              src={wine.heritageImage || "/foto/villa-cialdini-viale.jpg"}
-              alt="Villa Cialdini"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            {/* Gradient overlay for text readability on mobile */}
-            <div className="absolute inset-0 bg-gradient-to-t from-chiarli-text via-transparent to-transparent lg:hidden" />
-          </div>
-
-          {/* Right - Content */}
+          {/* Left - Content */}
           <div className="w-full lg:w-1/2 lg:h-[80vh] flex items-center relative bg-white">
 
             <div className="relative z-10 px-6 md:px-16 lg:px-20 py-12 md:py-16 lg:py-24">
@@ -756,6 +745,17 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({ slug = 'metodo-d
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Right - Image */}
+          <div className="w-full lg:w-1/2 h-[40vh] md:h-[50vh] lg:h-[80vh] relative order-first lg:order-last">
+            <img
+              src={wine.heritageImage || "/foto/villa-cialdini-viale.jpg"}
+              alt="Villa Cialdini"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            {/* Gradient overlay for text readability on mobile */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
           </div>
 
         </div>
