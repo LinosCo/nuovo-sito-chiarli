@@ -57,7 +57,7 @@ export function AccessDenied({ error, isLoading }: AccessDeniedProps) {
         )}
 
         <a
-          href={`${btUrl}/dashboard/cms`}
+          href={btUrl}
           className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors"
         >
           Accedi da Business Tuner
