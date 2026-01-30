@@ -16,11 +16,12 @@ interface BTValidationResult {
 
 /**
  * Valida un token JWT chiamando l'API di Business Tuner
+ * @param token - JWT token da validare
+ * @param connectionId - ID della connessione CMS (da query params o env var)
  */
-export async function validateBTToken(token: string): Promise<BTValidationResult> {
-  const btUrl = process.env.BUSINESS_TUNER_URL || 'https://app.businesstuner.io';
+export async function validateBTToken(token: string, connectionId: string): Promise<BTValidationResult> {
+  const btUrl = process.env.BUSINESS_TUNER_URL || 'https://businesstuner.voler.ai';
   const btApiKey = process.env.BUSINESS_TUNER_API_KEY;
-  const connectionId = process.env.BUSINESS_TUNER_CONNECTION_ID;
 
   if (!btApiKey) {
     console.error('BUSINESS_TUNER_API_KEY not configured');
@@ -28,8 +29,8 @@ export async function validateBTToken(token: string): Promise<BTValidationResult
   }
 
   if (!connectionId) {
-    console.error('BUSINESS_TUNER_CONNECTION_ID not configured');
-    return { valid: false, error: 'Server configuration error' };
+    console.error('Connection ID not provided');
+    return { valid: false, error: 'Missing connection ID' };
   }
 
   try {

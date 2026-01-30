@@ -6,7 +6,7 @@ interface AccessDeniedProps {
 }
 
 export function AccessDenied({ error, isLoading }: AccessDeniedProps) {
-  const btUrl = import.meta.env.VITE_BUSINESS_TUNER_URL || 'https://app.businesstuner.io';
+  const btUrl = import.meta.env.VITE_BUSINESS_TUNER_URL || 'https://businesstuner.voler.ai';
 
   if (isLoading) {
     return (

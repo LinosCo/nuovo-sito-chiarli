@@ -156,7 +156,7 @@ app.get('/', (req, res) => {
  */
 app.post('/api/auth/validate', async (req, res) => {
   try {
-    const { bt_token } = req.body;
+    const { bt_token, bt_connection } = req.body;
 
     if (!bt_token) {
       return res.status(400).json({
@@ -165,8 +165,18 @@ app.post('/api/auth/validate', async (req, res) => {
       });
     }
 
+    // Usa connectionId da request o da env var come fallback
+    const connectionId = bt_connection || process.env.BUSINESS_TUNER_CONNECTION_ID;
+
+    if (!connectionId) {
+      return res.status(400).json({
+        error: 'Missing connection ID',
+        code: 'MISSING_CONNECTION_ID'
+      });
+    }
+
     // Valida con Business Tuner
-    const validation = await validateBTToken(bt_token);
+    const validation = await validateBTToken(bt_token, connectionId);
 
     if (!validation.valid) {
       return res.status(401).json({

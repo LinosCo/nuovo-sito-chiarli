@@ -34,15 +34,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Check for BT token in URL (first access from Business Tuner)
       const params = new URLSearchParams(window.location.search);
       const btToken = params.get('bt_token');
+      const btConnection = params.get('bt_connection');
 
       if (btToken) {
         console.log('[Auth] Found bt_token in URL, validating...');
+        console.log('[Auth] Connection ID:', btConnection);
 
         // Validate token with backend
         const response = await fetch(`${API_URL}/api/auth/validate`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ bt_token: btToken }),
+          body: JSON.stringify({ bt_token: btToken, bt_connection: btConnection }),
           credentials: 'include'
         });
 
