@@ -39,8 +39,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       // Parse URL params
       const params = new URLSearchParams(window.location.search);
-      const btToken = params.get('bt_token');
-      const btConnection = params.get('bt_connection');
+      let btToken = params.get('bt_token');
+      let btConnection = params.get('bt_connection');
+
+      // FALLBACK: Controlla sessionStorage (i params potrebbero essere stati salvati dall'HTML)
+      if (!btToken) {
+        const savedToken = sessionStorage.getItem('sso_bt_token');
+        const savedConnection = sessionStorage.getItem('sso_bt_connection');
+        if (savedToken) {
+          console.log('[Auth] Found SSO params in sessionStorage (fallback)');
+          btToken = savedToken;
+          btConnection = savedConnection;
+          // Pulisci sessionStorage dopo averlo letto
+          sessionStorage.removeItem('sso_bt_token');
+          sessionStorage.removeItem('sso_bt_connection');
+        }
+      }
 
       console.log('[Auth] Parsed params:', {
         hasBtToken: !!btToken,

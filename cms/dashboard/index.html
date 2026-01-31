@@ -46,6 +46,20 @@
 
       console.log('🏁 [HTML] Documento caricato');
       console.log('📋 [HTML] User Agent:', navigator.userAgent);
+
+      // IMPORTANTE: Log URL PRIMA che React si carichi
+      console.log('🔗 [HTML] URL al caricamento:', window.location.href);
+      console.log('🔗 [HTML] Search params:', window.location.search);
+      console.log('🔗 [HTML] bt_token presente:', window.location.search.includes('bt_token'));
+
+      // Salva i params in sessionStorage SUBITO per non perderli
+      if (window.location.search.includes('bt_token')) {
+        console.log('💾 [HTML] Salvando SSO params in sessionStorage...');
+        const params = new URLSearchParams(window.location.search);
+        sessionStorage.setItem('sso_bt_token', params.get('bt_token') || '');
+        sessionStorage.setItem('sso_bt_connection', params.get('bt_connection') || '');
+        console.log('💾 [HTML] Params salvati!');
+      }
     </script>
     <script type="module" src="./index.tsx"></script>
   </body>
