@@ -30,51 +30,85 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     setError(null);
 
+    // Debug: log full URL info
+    console.log('[Auth] === INIT START ===');
+    console.log('[Auth] Full URL:', window.location.href);
+    console.log('[Auth] Search string:', window.location.search);
+    console.log('[Auth] API_URL:', API_URL);
+
     try {
-      // Check for BT token in URL (first access from Business Tuner)
+      // Parse URL params
       const params = new URLSearchParams(window.location.search);
       const btToken = params.get('bt_token');
       const btConnection = params.get('bt_connection');
 
+      console.log('[Auth] Parsed params:', {
+        hasBtToken: !!btToken,
+        btTokenLength: btToken?.length || 0,
+        btConnection: btConnection
+      });
+
+      // STEP 1: Se ci sono i params SSO, validali PRIMA di tutto
       if (btToken) {
-        console.log('[Auth] Found bt_token in URL, validating...');
-        console.log('[Auth] Connection ID:', btConnection);
+        console.log('[Auth] SSO params found, validating with backend...');
 
-        // Validate token with backend
-        const response = await fetch(`${API_URL}/api/auth/validate`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ bt_token: btToken, bt_connection: btConnection }),
-          credentials: 'include'
-        });
+        try {
+          const response = await fetch(`${API_URL}/api/auth/validate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ bt_token: btToken, bt_connection: btConnection }),
+            credentials: 'include'
+          });
 
-        const data = await response.json();
+          console.log('[Auth] Validation response status:', response.status);
 
-        if (response.ok && data.success) {
-          console.log('[Auth] Token validated successfully');
-          setUser(data.user);
+          const data = await response.json();
+          console.log('[Auth] Validation response data:', data);
 
-          // Store session token for API calls
-          localStorage.setItem('cms_session', data.sessionToken);
+          if (response.ok && data.success) {
+            console.log('[Auth] SSO validation successful!');
+            setUser(data.user);
 
-          // Remove token from URL (security)
-          const newUrl = new URL(window.location.href);
-          newUrl.searchParams.delete('bt_token');
-          newUrl.searchParams.delete('bt_connection');
-          window.history.replaceState({}, '', newUrl.toString());
-        } else {
-          console.error('[Auth] Token validation failed:', data.error);
-          setError(data.error || 'Authentication failed');
+            // Store session token for API calls
+            if (data.sessionToken) {
+              localStorage.setItem('cms_session', data.sessionToken);
+            }
+
+            // Remove tokens from URL (security)
+            window.history.replaceState({}, '', window.location.pathname);
+            console.log('[Auth] URL cleaned, user authenticated');
+            setIsLoading(false);
+            return; // IMPORTANTE: esci qui
+          } else {
+            console.error('[Auth] SSO validation failed:', data.error);
+            setError(data.error || 'Authentication failed');
+            // Pulisci URL anche in caso di errore
+            window.history.replaceState({}, '', window.location.pathname);
+            setIsLoading(false);
+            return;
+          }
+        } catch (fetchError: any) {
+          console.error('[Auth] SSO fetch error:', fetchError.message);
+          setError('Unable to validate session');
+          setIsLoading(false);
+          return;
         }
-      } else {
-        // Check existing session
-        console.log('[Auth] Checking existing session...');
+      }
 
+      // STEP 2: Solo se non c'erano params SSO, controlla sessione esistente
+      console.log('[Auth] No SSO params, checking existing session...');
+
+      const sessionToken = localStorage.getItem('cms_session');
+      console.log('[Auth] Local session token:', sessionToken ? 'present' : 'missing');
+
+      try {
         const response = await fetch(`${API_URL}/api/auth/session`, {
-          credentials: 'include'
+          credentials: 'include',
+          headers: sessionToken ? { 'Authorization': `Bearer ${sessionToken}` } : {}
         });
 
         const data = await response.json();
+        console.log('[Auth] Session check response:', data);
 
         if (data.authenticated) {
           console.log('[Auth] Existing session found');
@@ -82,12 +116,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         } else {
           console.log('[Auth] No active session');
         }
+      } catch (sessionError: any) {
+        console.error('[Auth] Session check error:', sessionError.message);
       }
     } catch (err: any) {
       console.error('[Auth] Initialization error:', err);
       setError('Unable to connect to server');
     } finally {
       setIsLoading(false);
+      console.log('[Auth] === INIT END ===');
     }
   }
 
