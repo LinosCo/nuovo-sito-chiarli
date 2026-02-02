@@ -688,14 +688,16 @@ Per favore, applica questo contenuto.`;
         title="Site Preview"
       />
 
-      {/* Floating bubble button */}
-      <button
-        onClick={() => setChatOpen(!chatOpen)}
-        className="fixed bottom-8 right-8 w-16 h-16 bg-amber-900 text-white rounded-full shadow-2xl hover:bg-amber-800 transition-all duration-300 flex items-center justify-center z-50 hover:scale-110"
-        title="Apri Chat CMS"
-      >
-        <MessageCircle size={28} />
-      </button>
+      {/* Floating bubble button - hidden when chat is open */}
+      {!chatOpen && (
+        <button
+          onClick={() => setChatOpen(true)}
+          className="fixed bottom-8 right-8 w-16 h-16 bg-amber-900 text-white rounded-full shadow-2xl hover:bg-amber-800 transition-all duration-300 flex items-center justify-center z-50 hover:scale-110"
+          title="Apri Chat CMS"
+        >
+          <MessageCircle size={28} />
+        </button>
+      )}
 
       {/* Chat drawer - slides from right */}
       <div
