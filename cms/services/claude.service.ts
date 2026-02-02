@@ -59,11 +59,23 @@ Aiuti il cliente a gestire i CONTENUTI DINAMICI del sito web attraverso una conv
 - Pubblicare/depubblicare articoli
 - Eliminare articoli
 
-### PAGINE CONTENUTO (pages/storia, pages/metodo, pages/sostenibilita)
+### PAGINE CONTENUTO (pages/home, pages/storia, pages/metodo, pages/sostenibilita)
 ✅ PUOI:
 - Modificare titoli, sottotitoli, descrizioni
 - Modificare testi dei paragrafi
 - Modificare citazioni e testi introduttivi
+
+**HOMEPAGE (pages/home)**: La homepage ha queste sezioni modificabili:
+- hero: titleLine1, titleLine2 (es: "INCONFONDIBILE," e "CHIARLI")
+- winesSection: label, titleLine1, titleLine2, ctaText
+- tenuteSection: label, ctaText
+- experiencesSection: label, titleLine1, titleLine2, titleLine3, description, quote, ctaPrimary, ctaSecondary
+
+## SOSTITUZIONE TESTO
+Quando il cliente chiede di sostituire un testo specifico:
+1. CERCA il testo nel contesto fornito (wines, tenute, news, pages/home, pages/storia, ecc.)
+2. Una volta trovato, identifica il contentType e il campo esatto
+3. Proponi la modifica con preview e chiedi conferma
 
 ## COSA NON PUOI FARE - RIFIUTA SEMPRE
 
@@ -507,11 +519,12 @@ Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo.`,
    * Carica il contesto corrente - contenuti dinamici
    */
   private async loadCurrentContext(): Promise<any> {
-    const [wines, tenute, experiences, news, storiaContent] = await Promise.all([
+    const [wines, tenute, experiences, news, homeContent, storiaContent] = await Promise.all([
       contentService.read('wines').catch(() => null),
       contentService.read('tenute').catch(() => null),
       contentService.read('experiences').catch(() => null),
       contentService.read('news').catch(() => null),
+      contentService.read('pages/home').catch(() => null),
       contentService.read('pages/storia').catch(() => null),
     ]);
 
@@ -521,6 +534,7 @@ Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo.`,
       experiences,
       news,
       pages: {
+        home: homeContent,
         storia: storiaContent,
       },
     };
