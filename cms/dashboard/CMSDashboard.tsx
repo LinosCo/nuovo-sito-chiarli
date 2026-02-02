@@ -128,7 +128,13 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
   // Carica storia
   const loadHistory = useCallback(async () => {
     try {
-      const res = await fetch(`${API_URL}/api/history`);
+      const sessionToken = localStorage.getItem('cms_session');
+      const res = await fetch(`${API_URL}/api/history`, {
+        headers: {
+          ...(sessionToken && { 'Authorization': `Bearer ${sessionToken}` })
+        },
+        credentials: 'include'
+      });
       const data = await res.json();
       setHistory(data);
     } catch (error) {
@@ -322,9 +328,14 @@ Per favore, applica questo contenuto.`;
     setIsLoading(true);
 
     try {
+      const sessionToken = localStorage.getItem('cms_session');
       const res = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(sessionToken && { 'Authorization': `Bearer ${sessionToken}` })
+        },
+        credentials: 'include',
         body: JSON.stringify({
           message: messageContent,
           image: imageData?.base64 || null, // Invia immagine se presente
@@ -389,9 +400,14 @@ Per favore, applica questo contenuto.`;
     setIsLoading(true);
 
     try {
+      const sessionToken = localStorage.getItem('cms_session');
       const res = await fetch(`${API_URL}/api/chat/confirm`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(sessionToken && { 'Authorization': `Bearer ${sessionToken}` })
+        },
+        credentials: 'include',
         body: JSON.stringify({ action: message.action }),
       });
 
@@ -507,11 +523,14 @@ Per favore, applica questo contenuto.`;
       // Leggi il file come ArrayBuffer
       const arrayBuffer = await file.arrayBuffer();
 
+      const sessionToken = localStorage.getItem('cms_session');
       const res = await fetch(`${API_URL}/api/upload/pdf`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/pdf',
+          ...(sessionToken && { 'Authorization': `Bearer ${sessionToken}` })
         },
+        credentials: 'include',
         body: arrayBuffer,
       });
 
@@ -532,9 +551,14 @@ Per favore, applica questo contenuto.`;
         // Invia i dati estratti a Claude e lascia che risponda
         try {
           setIsLoading(true);
+          const chatSessionToken = localStorage.getItem('cms_session');
           const chatRes = await fetch(`${API_URL}/api/chat`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+              'Content-Type': 'application/json',
+              ...(chatSessionToken && { 'Authorization': `Bearer ${chatSessionToken}` })
+            },
+            credentials: 'include',
             body: JSON.stringify({
               message: `Ho caricato una scheda tecnica PDF. Ecco i dati estratti:\n\n${JSON.stringify(data.extracted, null, 2)}\n\nMostra all'utente i dati estratti in modo chiaro e aspetta le sue istruzioni su cosa fare. NON creare automaticamente il vino, aspetta che l'utente lo richieda esplicitamente. Non usare emoji.`
             }),
@@ -607,9 +631,14 @@ Per favore, applica questo contenuto.`;
     }
 
     try {
+      const sessionToken = localStorage.getItem('cms_session');
       const res = await fetch(`${API_URL}/api/history/rollback`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(sessionToken && { 'Authorization': `Bearer ${sessionToken}` })
+        },
+        credentials: 'include',
         body: JSON.stringify({ commitHash: hash }),
       });
 
