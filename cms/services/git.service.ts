@@ -25,9 +25,9 @@ export class GitService {
   }
 
   /**
-   * Crea un commit automatico dopo una modifica
+   * Crea un commit automatico dopo una modifica e fa push
    */
-  async autoCommit(message: string, files: string[] = ['content/']): Promise<string | null> {
+  async autoCommit(message: string, files: string[] = ['public/content/']): Promise<string | null> {
     if (!this.isEnabled) {
       console.log('[Git] Auto-commit disabilitato');
       return null;
@@ -51,10 +51,39 @@ export class GitService {
       });
 
       console.log(`[Git] Commit creato: ${result.commit}`);
+
+      // Push automatico se configurato
+      if (process.env.GIT_AUTO_PUSH === 'true') {
+        await this.push();
+      }
+
       return result.commit;
     } catch (error: any) {
       console.error('[Git] Errore nel commit:', error.message);
       return null;
+    }
+  }
+
+  /**
+   * Fa push delle modifiche su GitHub
+   */
+  async push(): Promise<boolean> {
+    try {
+      // Se c'è un token GitHub, configura l'URL con autenticazione
+      const githubToken = process.env.GITHUB_TOKEN;
+      const githubRepo = process.env.GITHUB_REPO; // formato: owner/repo
+
+      if (githubToken && githubRepo) {
+        const remoteUrl = `https://${githubToken}@github.com/${githubRepo}.git`;
+        await this.git.remote(['set-url', 'origin', remoteUrl]);
+      }
+
+      await this.git.push('origin', 'main');
+      console.log('[Git] Push completato con successo');
+      return true;
+    } catch (error: any) {
+      console.error('[Git] Errore nel push:', error.message);
+      return false;
     }
   }
 
@@ -65,7 +94,7 @@ export class GitService {
     try {
       const log = await this.git.log({
         maxCount: limit,
-        file: 'content/',
+        file: 'public/content/',
       });
 
       return log.all.map((commit) => ({
@@ -99,11 +128,11 @@ export class GitService {
    */
   async restoreContent(commitHash: string): Promise<boolean> {
     try {
-      await this.git.checkout([commitHash, '--', 'content/']);
+      await this.git.checkout([commitHash, '--', 'public/content/']);
       console.log(`[Git] Contenuti ripristinati a ${commitHash}`);
 
       // Crea un commit di rollback
-      await this.autoCommit(`Rollback a versione ${commitHash}`, ['content/']);
+      await this.autoCommit(`Rollback a versione ${commitHash}`, ['public/content/']);
       return true;
     } catch (error: any) {
       console.error('[Git] Errore nel rollback:', error.message);
@@ -120,7 +149,7 @@ export class GitService {
       if (filePath) {
         args.push('--', filePath);
       } else {
-        args.push('--', 'content/');
+        args.push('--', 'public/content/');
       }
 
       const diff = await this.git.diff(args);
@@ -138,9 +167,9 @@ export class GitService {
     try {
       const status = await this.git.status();
       return {
-        modified: status.modified.filter((f) => f.startsWith('content/')),
-        staged: status.staged.filter((f) => f.startsWith('content/')),
-        untracked: status.not_added.filter((f) => f.startsWith('content/')),
+        modified: status.modified.filter((f) => f.startsWith('public/content/')),
+        staged: status.staged.filter((f) => f.startsWith('public/content/')),
+        untracked: status.not_added.filter((f) => f.startsWith('public/content/')),
       };
     } catch (error: any) {
       console.error('[Git] Errore nello status:', error.message);
