@@ -108,7 +108,7 @@ export const Hero: React.FC = () => {
                     isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
-                   Dal 1860, ridefiniamo l'identità del Lambrusco. Un dialogo costante tra l'eleganza del passato e la visione del futuro.
+                   {homeContent.hero.subtitle}
                 </p>
              </div>
           </div>
