@@ -26,7 +26,8 @@
     "backgroundImage": "/foto/WhatsApp-Image-2025-06-05-at-09.13.47.jpeg"
   },
   "_meta": {
-    "lastModified": "2026-02-02T15:39:33.725Z",
+    "lastModified": "2026-02-02T15:45:00.794Z",
     "modifiedBy": "cliente"
-  }
+  },
+  "fieldPath": "hero.subtitle"
 }
