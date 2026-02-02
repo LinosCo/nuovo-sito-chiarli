@@ -19,7 +19,9 @@ import {
 
 // Configurazione API - usa proxy di Vite in development
 const API_URL = import.meta.env.VITE_CMS_API_URL || '';
-const SITE_PREVIEW_URL = import.meta.env.VITE_SITE_URL || 'http://localhost:3000';
+const BASE_SITE_URL = import.meta.env.VITE_SITE_URL || 'http://localhost:3000';
+// Aggiungi cms_preview=true per caricare contenuti live dall'API
+const SITE_PREVIEW_URL = `${BASE_SITE_URL}?cms_preview=true`;
 
 console.log('🎯 [CMSDashboard] Componente caricato');
 console.log('🔧 [CMSDashboard] API_URL:', API_URL);
@@ -451,11 +453,19 @@ Per favore, applica questo contenuto.`;
           id: Date.now().toString(),
           role: 'assistant',
           content: data.success
-            ? 'Fatto! La modifica e stata applicata. Il sito si aggiornerà automaticamente.'
+            ? 'Fatto! La modifica e stata applicata. L\'anteprima si sta aggiornando...'
             : `Errore: ${data.error}`,
           timestamp: new Date(),
         },
       ]);
+
+      // Ricarica l'iframe per mostrare le modifiche
+      if (data.success) {
+        setTimeout(() => {
+          const timestamp = Date.now();
+          setPreviewUrl(`${BASE_SITE_URL}?cms_preview=true&t=${timestamp}`);
+        }, 300);
+      }
 
       // Se è stata creata/aggiornata una pagina vino, naviga alla preview
       if (data.success && message.action.contentType === 'wines') {
@@ -465,7 +475,7 @@ Per favore, applica questo contenuto.`;
           setTimeout(() => {
             // Aggiorna l'iframe per mostrare la nuova pagina del vino con timestamp per evitare cache
             const timestamp = Date.now();
-            setPreviewUrl(`${SITE_PREVIEW_URL}#/vino/${wineSlug}?t=${timestamp}`);
+            setPreviewUrl(`${BASE_SITE_URL}?cms_preview=true&t=${timestamp}#/vino/${wineSlug}`);
           }, 500);
 
           // Messaggio di conferma con link

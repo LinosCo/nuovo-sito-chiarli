@@ -12,12 +12,35 @@ import newsData from '../content/news.json';
 // Re-export dei tipi
 export type { Wine, Tenuta, Experience, NewsArticle } from '../content/types';
 
+// Controlla se siamo in modalità preview CMS
+const isCmsPreview = () => {
+  if (typeof window === 'undefined') return false;
+  const params = new URLSearchParams(window.location.search);
+  return params.get('cms_preview') === 'true';
+};
+
+// URL dell'API CMS
+const CMS_API_URL = import.meta.env.VITE_CMS_API_URL || 'https://nuovo-sito-chiarli-production.up.railway.app';
+
 /**
  * Hook per caricare i vini
  */
 export function useWines() {
   const [wines, setWines] = useState(winesData.wines);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isCmsPreview()) {
+      setLoading(true);
+      fetch(`${CMS_API_URL}/api/content/wines`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.wines) setWines(data.wines);
+        })
+        .catch(console.error)
+        .finally(() => setLoading(false));
+    }
+  }, []);
 
   return {
     wines: wines.filter(w => w.isActive).sort((a, b) => a.order - b.order),
@@ -33,6 +56,19 @@ export function useTenute() {
   const [tenute, setTenute] = useState(tenuteData.tenute);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (isCmsPreview()) {
+      setLoading(true);
+      fetch(`${CMS_API_URL}/api/content/tenute`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.tenute) setTenute(data.tenute);
+        })
+        .catch(console.error)
+        .finally(() => setLoading(false));
+    }
+  }, []);
+
   return {
     tenute: tenute.filter(t => t.isActive).sort((a, b) => a.order - b.order),
     loading,
@@ -45,6 +81,19 @@ export function useTenute() {
 export function useExperiences() {
   const [experiences, setExperiences] = useState(experiencesData.experiences);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isCmsPreview()) {
+      setLoading(true);
+      fetch(`${CMS_API_URL}/api/content/experiences`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.experiences) setExperiences(data.experiences);
+        })
+        .catch(console.error)
+        .finally(() => setLoading(false));
+    }
+  }, []);
 
   return {
     experiences: experiences.filter(e => e.isActive).sort((a, b) => a.order - b.order),
@@ -59,6 +108,19 @@ export function useNews() {
   const [news, setNews] = useState(newsData.news);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (isCmsPreview()) {
+      setLoading(true);
+      fetch(`${CMS_API_URL}/api/content/news`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.news) setNews(data.news);
+        })
+        .catch(console.error)
+        .finally(() => setLoading(false));
+    }
+  }, []);
+
   return {
     news: news.filter((n: any) => n.isPublished).sort((a: any, b: any) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
@@ -72,14 +134,40 @@ export function useNews() {
  * Hook per caricare i contenuti della homepage
  */
 export function useHomeContent() {
-  return homeData;
+  const [content, setContent] = useState(homeData);
+
+  useEffect(() => {
+    if (isCmsPreview()) {
+      fetch(`${CMS_API_URL}/api/content/pages/home`)
+        .then(res => res.json())
+        .then(data => {
+          if (data) setContent(data);
+        })
+        .catch(console.error);
+    }
+  }, []);
+
+  return content;
 }
 
 /**
  * Hook per caricare i contenuti della pagina storia
  */
 export function useStoriaContent() {
-  return storiaData;
+  const [content, setContent] = useState(storiaData);
+
+  useEffect(() => {
+    if (isCmsPreview()) {
+      fetch(`${CMS_API_URL}/api/content/pages/storia`)
+        .then(res => res.json())
+        .then(data => {
+          if (data) setContent(data);
+        })
+        .catch(console.error);
+    }
+  }, []);
+
+  return content;
 }
 
 /**
