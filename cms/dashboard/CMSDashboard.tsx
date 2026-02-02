@@ -680,25 +680,13 @@ Per favore, applica questo contenuto.`;
 
   return (
     <div className="relative h-screen overflow-hidden">
-      {/* Site preview placeholder - iframe disabled due to Vercel CSP restrictions */}
-      <div className="w-full h-full bg-gradient-to-br from-stone-100 to-stone-200 flex flex-col items-center justify-center">
-        <div className="text-center p-8">
-          <Wine size={64} className="mx-auto text-amber-900 mb-6" />
-          <h2 className="text-2xl font-bold text-stone-800 mb-2">CMS Chiarli</h2>
-          <p className="text-stone-600 mb-6">Gestisci i contenuti del sito tramite la chat</p>
-          <a
-            href={previewUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-amber-900 text-white px-6 py-3 rounded-xl hover:bg-amber-800 transition-colors"
-          >
-            Apri sito in nuova finestra
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </div>
-      </div>
+      {/* Iframe preview */}
+      <iframe
+        key={previewUrl}
+        src={previewUrl}
+        className="w-full h-full border-0"
+        title="Site Preview"
+      />
 
       {/* Floating bubble button */}
       <button

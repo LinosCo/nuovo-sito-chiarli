@@ -1,0 +1,17 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "ALLOW-FROM https://chiarlicmsdashboard.vercel.app"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self' https://chiarlicmsdashboard.vercel.app https://*.vercel.app"
+        }
+      ]
+    }
+  ]
+}
