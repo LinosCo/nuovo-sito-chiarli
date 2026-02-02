@@ -137,20 +137,19 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
           // Apri la chat se non è aperta
           setChatOpen(true);
 
-          // Costruisci un messaggio con il contesto
-          let locationInfo = '';
-          if (context.section) {
-            locationInfo = ` nella sezione "${context.section}"`;
-          }
-          if (context.contentType) {
-            locationInfo += ` (tipo: ${context.contentType})`;
-          }
-          if (page && page !== '/') {
-            locationInfo += ` - pagina: ${page}`;
+          // Costruisci un messaggio con il contesto strutturato per l'AI
+          // Il contesto viene passato in modo che l'AI sappia esattamente dove fare la modifica
+          let contextInfo = '';
+          if (context.section || context.contentType || (page && page !== '/')) {
+            const parts = [];
+            if (context.section) parts.push(`sezione: ${context.section}`);
+            if (context.contentType) parts.push(`tipo: ${context.contentType}`);
+            if (page && page !== '/') parts.push(`pagina: ${page}`);
+            contextInfo = ` [${parts.join(', ')}]`;
           }
 
           // Pre-compila l'input con il testo selezionato e il contesto
-          setInputValue(`Sostituisci "${selectedText}"${locationInfo} con: `);
+          setInputValue(`Sostituisci "${selectedText}"${contextInfo} con: `);
         }
       }
     };
