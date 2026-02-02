@@ -58,5 +58,32 @@
   <body class="antialiased selection:bg-chiarli-wine selection:text-white">
     <div id="root"></div>
   <script type="module" src="/src/index.tsx"></script>
+
+  <!-- CMS Text Selection Detection -->
+  <script>
+    (function() {
+      // Only run if we're in an iframe (inside CMS dashboard)
+      if (window.self === window.top) return;
+
+      let selectionTimeout;
+
+      document.addEventListener('mouseup', function(e) {
+        clearTimeout(selectionTimeout);
+
+        selectionTimeout = setTimeout(function() {
+          const selection = window.getSelection();
+          const selectedText = selection.toString().trim();
+
+          if (selectedText && selectedText.length > 2 && selectedText.length < 500) {
+            // Send selected text to parent (CMS dashboard)
+            window.parent.postMessage({
+              type: 'CMS_TEXT_SELECTED',
+              text: selectedText
+            }, '*');
+          }
+        }, 300);
+      });
+    })();
+  </script>
 </body>
 </html>

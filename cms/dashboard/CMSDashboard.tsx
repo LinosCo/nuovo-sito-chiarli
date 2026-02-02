@@ -122,6 +122,25 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Listener per selezione testo nell'iframe
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      // Verifica che il messaggio sia del tipo corretto
+      if (event.data && event.data.type === 'CMS_TEXT_SELECTED') {
+        const selectedText = event.data.text;
+        if (selectedText && selectedText.trim()) {
+          // Apri la chat se non è aperta
+          setChatOpen(true);
+          // Pre-compila l'input con il testo selezionato
+          setInputValue(`Voglio modificare questo testo: "${selectedText}"\n\nCon cosa lo sostituisco?`);
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
+
   // Carica storia
   const loadHistory = useCallback(async () => {
     try {
