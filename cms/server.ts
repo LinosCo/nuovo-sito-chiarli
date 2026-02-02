@@ -392,18 +392,19 @@ app.put('/api/content/pages/:page', requireAuth, async (req, res) => {
     const updates = req.body;
     const session = (req as any).session;
     const validPages = ['home', 'storia'];
+    const pageStr = Array.isArray(page) ? page[0] : page;
 
-    if (!validPages.includes(page)) {
+    if (!validPages.includes(pageStr)) {
       return res.status(400).json({ error: 'Pagina non valida' });
     }
 
-    console.log(`[Content/Pages] User ${session.userEmail} updating pages/${page}`);
+    console.log(`[Content/Pages] User ${session.userEmail} updating pages/${pageStr}`);
 
     // Leggi la pagina corrente
-    const currentData = await contentService.read(`pages/${page}` as any);
+    const currentData = await contentService.read(`pages/${pageStr}` as any) as Record<string, any>;
 
     // Merge degli aggiornamenti
-    const mergedData = { ...currentData, ...updates };
+    const mergedData: Record<string, any> = { ...currentData, ...updates };
 
     // Se ci sono aggiornamenti nested (es. hero.subtitle), gestiscili
     if (updates.fieldPath && updates.value !== undefined) {
@@ -419,11 +420,11 @@ app.put('/api/content/pages/:page', requireAuth, async (req, res) => {
     }
 
     // Scrivi i dati aggiornati
-    const result = await contentService.write(`pages/${page}` as any, mergedData, session.userEmail);
+    const result = await contentService.write(`pages/${pageStr}` as any, mergedData, session.userEmail);
 
     // Commit automatico
     if (process.env.GIT_AUTO_COMMIT === 'true') {
-      await gitService.autoCommit(`Aggiornata pagina ${page} [by ${session.userEmail}]`);
+      await gitService.autoCommit(`Aggiornata pagina ${pageStr} [by ${session.userEmail}]`);
     }
 
     res.json(result);
