@@ -14,9 +14,6 @@ import {
   Settings,
   ChevronRight,
   MessageCircle,
-  Zap,
-  CheckCircle2,
-  XCircle,
   Lightbulb,
 } from 'lucide-react';
 
@@ -706,124 +703,47 @@ Per favore, applica questo contenuto.`;
         }`}
       >
         <div className="flex h-full bg-stone-100">
-          {/* Sidebar Business Tuner */}
+          {/* Sidebar Suggerimenti */}
           {showBTPanel && (
-            <div className="w-96 bg-white border-r border-stone-200 flex flex-col">
+            <div className="w-80 bg-white border-r border-stone-200 flex flex-col">
+              {/* Header */}
               <div className="p-4 border-b border-stone-200">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Zap size={20} className="text-amber-600" />
-                    <h3 className="font-semibold text-stone-800">Business Tuner</h3>
-                  </div>
-                  <button onClick={() => setShowBTPanel(false)} className="text-stone-400 hover:text-stone-600">
-                    <X size={20} />
-                  </button>
-                </div>
-
-                {/* Connection Status */}
-                {loadingBT ? (
-                  <div className="flex items-center gap-2 text-stone-500">
-                    <Loader2 size={16} className="animate-spin" />
-                    <span className="text-sm">Connessione...</span>
-                  </div>
-                ) : btStatus ? (
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-green-600">
-                      <CheckCircle2 size={16} />
-                      <span className="text-sm font-medium">Connesso</span>
-                    </div>
-                    <div className="text-xs text-stone-500 space-y-1">
-                      <p>Versione: {btStatus.version}</p>
-                      <p>Ultimo sync: {new Date(btStatus.lastSync).toLocaleString('it-IT')}</p>
-                    </div>
-                    <div className="pt-2">
-                      <p className="text-xs font-medium text-stone-700 mb-2">Capabilities:</p>
-                      <div className="flex flex-wrap gap-1">
-                        {btStatus.capabilities.map((cap) => (
-                          <span
-                            key={cap}
-                            className="text-xs px-2 py-1 bg-amber-50 text-amber-700 rounded"
-                          >
-                            {cap.replace('_', ' ')}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2 text-red-600">
-                    <XCircle size={16} />
-                    <span className="text-sm font-medium">Non connesso</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Actions */}
-              <div className="p-4 border-b border-stone-200">
-                <h4 className="text-sm font-medium text-stone-700 mb-3">Azioni</h4>
-                <div className="space-y-2">
-                  <button
-                    onClick={testWebhook}
-                    disabled={loadingBT || !btStatus}
-                    className="w-full px-3 py-2 text-sm bg-amber-50 text-amber-700 rounded-lg hover:bg-amber-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
-                  >
-                    {loadingBT ? (
-                      <>
-                        <Loader2 size={16} className="animate-spin" />
-                        Test in corso...
-                      </>
-                    ) : (
-                      <>
-                        <Zap size={16} />
-                        Test Webhook
-                      </>
-                    )}
-                  </button>
-                  <button
-                    onClick={loadBTStatus}
-                    disabled={loadingBT}
-                    className="w-full px-3 py-2 text-sm bg-stone-100 text-stone-700 rounded-lg hover:bg-stone-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  >
-                    Ricarica Stato
-                  </button>
-                </div>
-              </div>
-
-              {/* Suggestions Section */}
-              <div className="flex-1 overflow-y-auto p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="text-sm font-medium text-stone-700 flex items-center gap-2">
-                    <Lightbulb size={16} />
-                    Suggerimenti
+                    <Lightbulb size={20} className="text-amber-600" />
+                    <h3 className="font-semibold text-stone-800">Suggerimenti</h3>
                     {btSuggestions.length > 0 && (
                       <span className="bg-amber-600 text-white text-xs px-2 py-0.5 rounded-full">
                         {btSuggestions.length}
                       </span>
                     )}
-                  </h4>
-                  <button
-                    onClick={loadSuggestions}
-                    className="text-xs text-stone-500 hover:text-stone-700"
-                  >
-                    Ricarica
+                  </div>
+                  <button onClick={() => setShowBTPanel(false)} className="text-stone-400 hover:text-stone-600">
+                    <X size={20} />
                   </button>
                 </div>
+              </div>
+
+              {/* Suggestions List */}
+              <div className="flex-1 overflow-y-auto p-4">
                 {btSuggestions.length === 0 ? (
-                  <div className="text-center py-8">
-                    <Lightbulb size={32} className="mx-auto text-stone-300 mb-2" />
-                    <p className="text-sm text-stone-500">Nessun suggerimento in attesa</p>
-                    <p className="text-xs text-stone-400 mt-1">I suggerimenti arrivano da Business Tuner</p>
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Lightbulb size={28} className="text-stone-400" />
+                    </div>
+                    <p className="text-stone-600 font-medium mb-1">Nessun suggerimento</p>
+                    <p className="text-sm text-stone-400">I suggerimenti di Business Tuner appariranno qui</p>
                   </div>
                 ) : (
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {btSuggestions.map((suggestion) => (
                       <div
                         key={suggestion.id}
-                        className="p-4 bg-white rounded-lg border border-stone-200 shadow-sm"
+                        className="p-4 bg-stone-50 rounded-xl border border-stone-200 hover:border-amber-300 transition-colors"
                       >
-                        <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-start justify-between mb-3">
                           <span
-                            className={`text-xs px-2 py-1 rounded font-medium ${
+                            className={`text-xs px-2.5 py-1 rounded-full font-medium ${
                               suggestion.priority === 'high'
                                 ? 'bg-red-100 text-red-700'
                                 : suggestion.priority === 'medium'
@@ -831,30 +751,34 @@ Per favore, applica questo contenuto.`;
                                 : 'bg-blue-100 text-blue-700'
                             }`}
                           >
-                            {suggestion.priority}
+                            {suggestion.priority === 'high' ? 'Urgente' : suggestion.priority === 'medium' ? 'Medio' : 'Basso'}
                           </span>
-                          <span className="text-xs text-stone-400">{suggestion.contentType}</span>
+                          <span className="text-xs text-stone-400 bg-white px-2 py-1 rounded">{suggestion.contentType}</span>
                         </div>
-                        <h5 className="font-medium text-stone-800 mb-1">{suggestion.title}</h5>
+                        <h5 className="font-semibold text-stone-800 mb-2">{suggestion.title}</h5>
                         {suggestion.targetPage && (
-                          <p className="text-xs text-stone-500 mb-2">Pagina: {suggestion.targetPage}</p>
+                          <p className="text-xs text-stone-500 mb-2 flex items-center gap-1">
+                            <FileText size={12} />
+                            {suggestion.targetPage}
+                          </p>
                         )}
-                        <p className="text-sm text-stone-600 line-clamp-3 mb-3">
+                        <p className="text-sm text-stone-600 mb-4 line-clamp-3">
                           {suggestion.content || suggestion.reasoning}
                         </p>
                         <div className="flex gap-2">
                           <button
                             onClick={() => applySuggestion(suggestion)}
-                            className="flex-1 text-xs px-3 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 font-medium transition-colors flex items-center justify-center gap-1"
+                            className="flex-1 text-sm px-4 py-2.5 bg-amber-600 text-white rounded-lg hover:bg-amber-700 font-medium transition-colors flex items-center justify-center gap-2"
                           >
-                            <Check size={14} />
+                            <Check size={16} />
                             Applica
                           </button>
                           <button
                             onClick={() => rejectSuggestion(suggestion.id)}
-                            className="text-xs px-3 py-2 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200 transition-colors"
+                            className="px-3 py-2.5 bg-stone-200 text-stone-600 rounded-lg hover:bg-stone-300 transition-colors"
+                            title="Ignora"
                           >
-                            <X size={14} />
+                            <X size={16} />
                           </button>
                         </div>
                       </div>
