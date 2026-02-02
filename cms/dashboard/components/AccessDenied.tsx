@@ -69,8 +69,8 @@ export function AccessDenied({ error, isLoading }: AccessDeniedProps) {
           </a>
         </div>
 
-        <div className="mt-6 pt-6 border-t border-stone-200">
-          <p className="text-xs text-stone-400 text-center">
+        <div className="mt-8 pt-6 border-t border-stone-200">
+          <p className="text-xs text-stone-400 text-center leading-relaxed">
             Il CMS Chiarli è integrato con Business Tuner per garantire
             la sicurezza dei tuoi contenuti. Solo gli utenti autorizzati
             possono accedere.
