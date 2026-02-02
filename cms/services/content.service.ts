@@ -5,6 +5,11 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CONTENT_PATH = process.env.CONTENT_PATH || path.join(__dirname, '../../public/content');
 
+// Log per debug
+console.log('[ContentService] __dirname:', __dirname);
+console.log('[ContentService] CONTENT_PATH:', CONTENT_PATH);
+console.log('[ContentService] env.CONTENT_PATH:', process.env.CONTENT_PATH);
+
 export type ContentType = 'wines' | 'tenute' | 'experiences' | 'news' | 'settings' | 'pages/home' | 'pages/storia';
 
 interface ContentMeta {
@@ -37,8 +42,14 @@ export class ContentService {
    */
   async read<T>(contentType: ContentType): Promise<T> {
     const filePath = this.getFilePath(contentType);
-    const content = await fs.readFile(filePath, 'utf-8');
-    return JSON.parse(content) as T;
+    console.log(`[ContentService] Reading ${contentType} from: ${filePath}`);
+    try {
+      const content = await fs.readFile(filePath, 'utf-8');
+      return JSON.parse(content) as T;
+    } catch (error: any) {
+      console.error(`[ContentService] Error reading ${contentType}:`, error.message);
+      throw error;
+    }
   }
 
   /**
