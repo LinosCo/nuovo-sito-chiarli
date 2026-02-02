@@ -1,7 +1,7 @@
 {
   "hero": {
-    "titleLine1": "INCONFONDIBILE,",
-    "titleLine2": "CHIARLI"
+    "titleLine1": "cleto chiarli",
+    "titleLine2": ""
   },
   "winesSection": {
     "label": "La Collezione",
@@ -25,7 +25,7 @@
     "backgroundImage": "/foto/WhatsApp-Image-2025-06-05-at-09.13.47.jpeg"
   },
   "_meta": {
-    "lastModified": "2025-12-18T15:05:29.082Z",
+    "lastModified": "2026-02-02T15:07:51.806Z",
     "modifiedBy": "cliente"
   }
 }
