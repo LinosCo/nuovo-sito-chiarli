@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs/promises';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const CONTENT_PATH = process.env.CONTENT_PATH || path.join(__dirname, '../../../public/content');
+const CONTENT_PATH = process.env.CONTENT_PATH || path.join(__dirname, '../../../src/content');
 
 interface CommitInfo {
   hash: string;
@@ -207,7 +207,7 @@ export class GitService {
       }
     };
 
-    await scanDir(CONTENT_PATH, 'public/content');
+    await scanDir(CONTENT_PATH, 'src/content');
     return files;
   }
 
@@ -221,7 +221,7 @@ export class GitService {
 
     try {
       const response = await fetch(
-        `https://api.github.com/repos/${this.githubRepo}/commits?path=public/content&per_page=${limit}`,
+        `https://api.github.com/repos/${this.githubRepo}/commits?path=src/content&per_page=${limit}`,
         {
           headers: {
             'Authorization': `Bearer ${this.githubToken}`,
