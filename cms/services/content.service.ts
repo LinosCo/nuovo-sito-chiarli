@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const CONTENT_PATH = process.env.CONTENT_PATH || path.join(__dirname, '../../content');
+const CONTENT_PATH = process.env.CONTENT_PATH || path.join(__dirname, '../../public/content');
 
 export type ContentType = 'wines' | 'tenute' | 'experiences' | 'news' | 'settings' | 'pages/home' | 'pages/storia';
 

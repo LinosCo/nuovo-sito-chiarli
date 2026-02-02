@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "titleLine1": "INCONFONDIBILE,",
+    "titleLine2": "CHIARLI"
+  },
+  "winesSection": {
+    "label": "La Collezione",
+    "titleLine1": "L'arte del vino emiliano,",
+    "titleLine2": "senza compromessi.",
+    "ctaText": "Visualizza tutti i vini"
+  },
+  "tenuteSection": {
+    "label": "Le Nostre Tenute",
+    "ctaText": "Scopri la tenuta"
+  },
+  "experiencesSection": {
+    "label": "Un'Esperienza Unica",
+    "titleLine1": "Dove il tempo",
+    "titleLine2": "si ferma",
+    "titleLine3": "nel bicchiere.",
+    "description": "Vieni a scoprire dove nasce il mito. Un viaggio attraverso generazioni di passione, tra vigneti secolari e cantine che custodiscono i segreti del Lambrusco più autentico.",
+    "quote": "Ogni visita è un'esperienza personalizzata, guidata dalla famiglia Chiarli.",
+    "ctaPrimary": "Prenota una visita",
+    "ctaSecondary": "Scopri le esperienze",
+    "backgroundImage": "/foto/WhatsApp-Image-2025-06-05-at-09.13.47.jpeg"
+  },
+  "_meta": {
+    "lastModified": "2025-12-18T15:05:29.082Z",
+    "modifiedBy": "cliente"
+  }
+}
