@@ -132,7 +132,7 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
           // Apri la chat se non è aperta
           setChatOpen(true);
           // Pre-compila l'input con il testo selezionato
-          setInputValue(`Voglio modificare questo testo: "${selectedText}"\n\nCon cosa lo sostituisco?`);
+          setInputValue(`Sostituisci "${selectedText}" con: `);
         }
       }
     };
