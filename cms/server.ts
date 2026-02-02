@@ -382,6 +382,58 @@ app.get('/api/content/pages/:page', async (req, res) => {
 });
 
 /**
+ * PUT /api/content/pages/:page
+ * Aggiorna una pagina intera o campi specifici
+ * RICHIEDE AUTENTICAZIONE
+ */
+app.put('/api/content/pages/:page', requireAuth, async (req, res) => {
+  try {
+    const { page } = req.params;
+    const updates = req.body;
+    const session = (req as any).session;
+    const validPages = ['home', 'storia'];
+
+    if (!validPages.includes(page)) {
+      return res.status(400).json({ error: 'Pagina non valida' });
+    }
+
+    console.log(`[Content/Pages] User ${session.userEmail} updating pages/${page}`);
+
+    // Leggi la pagina corrente
+    const currentData = await contentService.read(`pages/${page}` as any);
+
+    // Merge degli aggiornamenti
+    const mergedData = { ...currentData, ...updates };
+
+    // Se ci sono aggiornamenti nested (es. hero.subtitle), gestiscili
+    if (updates.fieldPath && updates.value !== undefined) {
+      const parts = updates.fieldPath.split('.');
+      let current: any = mergedData;
+      for (let i = 0; i < parts.length - 1; i++) {
+        if (!current[parts[i]]) current[parts[i]] = {};
+        current = current[parts[i]];
+      }
+      current[parts[parts.length - 1]] = updates.value;
+      delete mergedData.fieldPath;
+      delete mergedData.value;
+    }
+
+    // Scrivi i dati aggiornati
+    const result = await contentService.write(`pages/${page}` as any, mergedData, session.userEmail);
+
+    // Commit automatico
+    if (process.env.GIT_AUTO_COMMIT === 'true') {
+      await gitService.autoCommit(`Aggiornata pagina ${page} [by ${session.userEmail}]`);
+    }
+
+    res.json(result);
+  } catch (error: any) {
+    console.error('[Content/Pages] Errore aggiornamento:', error.message);
+    res.status(500).json({ error: 'Errore aggiornamento pagina' });
+  }
+});
+
+/**
  * PUT /api/content/:type/:id
  * Aggiorna un item specifico
  * RICHIEDE AUTENTICAZIONE
