@@ -37,7 +37,7 @@ export const BlogSectionLight: React.FC = () => {
   if (news.length === 0) return null;
 
   return (
-    <section ref={sectionRef} id="blog" className="py-24 md:py-32 bg-white relative overflow-hidden">
+    <section ref={sectionRef} id="blog" data-section="blog" data-content-type="news" className="py-24 md:py-32 bg-white relative overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none transition-all duration-700 ease-out"
         style={{

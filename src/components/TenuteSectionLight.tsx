@@ -215,7 +215,7 @@ export const TenuteSectionLight: React.FC = () => {
   };
 
   return (
-    <section ref={sectionRef} id="tenute" className="bg-chiarli-stone py-24 md:py-32 overflow-hidden">
+    <section ref={sectionRef} id="tenute" data-section="tenute" data-content-type="tenute" className="bg-chiarli-stone py-24 md:py-32 overflow-hidden">
 
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
 

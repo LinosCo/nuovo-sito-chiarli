@@ -128,11 +128,27 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
       // Verifica che il messaggio sia del tipo corretto
       if (event.data && event.data.type === 'CMS_TEXT_SELECTED') {
         const selectedText = event.data.text;
+        const page = event.data.page || '/';
+        const context = event.data.context || {};
+
         if (selectedText && selectedText.trim()) {
           // Apri la chat se non è aperta
           setChatOpen(true);
-          // Pre-compila l'input con il testo selezionato
-          setInputValue(`Sostituisci "${selectedText}" con: `);
+
+          // Costruisci un messaggio con il contesto
+          let locationInfo = '';
+          if (context.section) {
+            locationInfo = ` nella sezione "${context.section}"`;
+          }
+          if (context.contentType) {
+            locationInfo += ` (tipo: ${context.contentType})`;
+          }
+          if (page && page !== '/') {
+            locationInfo += ` - pagina: ${page}`;
+          }
+
+          // Pre-compila l'input con il testo selezionato e il contesto
+          setInputValue(`Sostituisci "${selectedText}"${locationInfo} con: `);
         }
       }
     };

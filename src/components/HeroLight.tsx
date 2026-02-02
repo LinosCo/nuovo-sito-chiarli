@@ -11,7 +11,7 @@ export const HeroLight: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full bg-chiarli-stone overflow-hidden">
+    <section data-section="hero" data-content-type="home" className="relative min-h-screen w-full bg-chiarli-stone overflow-hidden">
 
       {/* Editorial Grid Layout */}
       <div className="grid grid-cols-12 min-h-screen">

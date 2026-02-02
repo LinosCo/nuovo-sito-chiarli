@@ -126,7 +126,7 @@ export const BottleShowcaseLight: React.FC<BottleShowcaseLightProps> = ({ onWine
     : wines.filter(wine => wine.family === activeFilter);
 
   return (
-    <section ref={sectionRef} id="vini" className="py-24 md:py-32 bg-white relative overflow-hidden">
+    <section ref={sectionRef} id="vini" data-section="vini" data-content-type="wines" className="py-24 md:py-32 bg-white relative overflow-hidden">
 
       {/* Wine gradient that follows mouse */}
       <div

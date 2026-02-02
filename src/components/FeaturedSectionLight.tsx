@@ -111,7 +111,7 @@ export const FeaturedSectionLight: React.FC = () => {
   const activeExperience = experiences[activeIndex];
 
   return (
-    <section ref={sectionRef} id="esperienze" className="relative h-screen overflow-hidden">
+    <section ref={sectionRef} id="esperienze" data-section="esperienze" data-content-type="experiences" className="relative h-screen overflow-hidden">
 
       {/* Fullscreen Background Images */}
       {experiences.map((exp, index) => (

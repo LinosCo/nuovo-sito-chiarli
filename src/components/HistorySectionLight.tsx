@@ -23,7 +23,7 @@ export const HistorySectionLight: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="storia" className="bg-white">
+    <section ref={sectionRef} id="storia" data-section="storia" data-content-type="pages" className="bg-white">
 
       {/* Split Layout - Text Left, Image Right */}
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">

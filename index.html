@@ -67,6 +67,50 @@
 
       let selectionTimeout;
 
+      // Helper: trova il contesto dell'elemento selezionato
+      function getSelectionContext(element) {
+        if (!element) return {};
+
+        // Cerca data attributes utili risalendo il DOM
+        let current = element;
+        let context = {
+          tagName: element.tagName?.toLowerCase(),
+          className: element.className || '',
+          id: element.id || '',
+          section: null,
+          component: null,
+          contentType: null,
+          itemId: null
+        };
+
+        while (current && current !== document.body) {
+          // Cerca data-section, data-component, data-content-type, data-item-id
+          if (current.dataset) {
+            if (current.dataset.section && !context.section) {
+              context.section = current.dataset.section;
+            }
+            if (current.dataset.component && !context.component) {
+              context.component = current.dataset.component;
+            }
+            if (current.dataset.contentType && !context.contentType) {
+              context.contentType = current.dataset.contentType;
+            }
+            if (current.dataset.itemId && !context.itemId) {
+              context.itemId = current.dataset.itemId;
+            }
+          }
+
+          // Cerca section o main con id
+          if ((current.tagName === 'SECTION' || current.tagName === 'MAIN') && current.id && !context.section) {
+            context.section = current.id;
+          }
+
+          current = current.parentElement;
+        }
+
+        return context;
+      }
+
       document.addEventListener('mouseup', function(e) {
         clearTimeout(selectionTimeout);
 
@@ -75,10 +119,24 @@
           const selectedText = selection.toString().trim();
 
           if (selectedText && selectedText.length > 2 && selectedText.length < 500) {
-            // Send selected text to parent (CMS dashboard)
+            // Ottieni l'elemento che contiene la selezione
+            const anchorNode = selection.anchorNode;
+            const element = anchorNode?.nodeType === Node.TEXT_NODE
+              ? anchorNode.parentElement
+              : anchorNode;
+
+            // Raccogli contesto
+            const context = getSelectionContext(element);
+
+            // Ottieni la pagina corrente dal hash (React Router)
+            const currentPath = window.location.hash.replace('#', '') || '/';
+
+            // Send selected text to parent (CMS dashboard) con contesto
             window.parent.postMessage({
               type: 'CMS_TEXT_SELECTED',
-              text: selectedText
+              text: selectedText,
+              page: currentPath,
+              context: context
             }, '*');
           }
         }, 300);
