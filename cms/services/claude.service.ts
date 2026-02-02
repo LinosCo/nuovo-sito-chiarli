@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { contentService, ContentType } from './content.service.js';
 import { fileService } from './file.service.js';
+import { gitService } from './git.service.js';
 import fs from 'fs/promises';
 
 // Carica .env
@@ -414,6 +415,10 @@ export class ClaudeService {
               action.data,
               'cliente'
             );
+            // Git auto-commit
+            if (process.env.GIT_AUTO_COMMIT === 'true') {
+              await gitService.autoCommit(`Aggiornato ${action.contentType} #${action.itemId}`);
+            }
             return { success: true, data: updated };
           } else {
             // Aggiorna campi
@@ -424,16 +429,28 @@ export class ClaudeService {
               action.data[fieldPath],
               'cliente'
             );
+            // Git auto-commit
+            if (process.env.GIT_AUTO_COMMIT === 'true') {
+              await gitService.autoCommit(`Aggiornato campo ${fieldPath} in ${action.contentType}`);
+            }
             return { success: true, data: updated };
           }
 
         case 'create':
           const created = await contentService.addItem(action.contentType, action.data, 'cliente');
+          // Git auto-commit
+          if (process.env.GIT_AUTO_COMMIT === 'true') {
+            await gitService.autoCommit(`Creato nuovo ${action.contentType}`);
+          }
           return { success: true, data: created };
 
         case 'delete':
           if (action.itemId !== null) {
             const deleted = await contentService.removeItem(action.contentType, action.itemId, 'cliente');
+            // Git auto-commit
+            if (process.env.GIT_AUTO_COMMIT === 'true' && deleted) {
+              await gitService.autoCommit(`Eliminato ${action.contentType} #${action.itemId}`);
+            }
             return { success: deleted };
           }
           return { success: false, error: 'ID non specificato per eliminazione' };
