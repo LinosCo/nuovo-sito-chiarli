@@ -2,7 +2,7 @@
   "hero": {
     "titleLine1": "INCONFONDIBILMENTE,",
     "titleLine2": "CHIARLI",
-    "subtitle": "Dal 1860, ridefiniamo l'identità del Lambrusco. Un dialogo costante tra l'eleganza del passato e la visione del futuro."
+    "subtitle": "Dal 1760, ridefiniamo l'identità del Lambrusco. Un dialogo costante tra l'eleganza del passato e la visione del futuro."
   },
   "winesSection": {
     "label": "La Collezione",
@@ -26,7 +26,7 @@
     "backgroundImage": "/foto/WhatsApp-Image-2025-06-05-at-09.13.47.jpeg"
   },
   "_meta": {
-    "lastModified": "2026-02-02T15:45:00.794Z",
+    "lastModified": "2026-02-02T15:52:38.982Z",
     "modifiedBy": "cliente"
   },
   "fieldPath": "hero.subtitle"
