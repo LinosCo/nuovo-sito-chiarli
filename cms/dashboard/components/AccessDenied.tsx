@@ -56,7 +56,7 @@ export function AccessDenied({ error, isLoading }: AccessDeniedProps) {
           </div>
         )}
 
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-8">
           <a
             href={btUrl}
             className="inline-flex bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-6 rounded-xl items-center justify-center gap-2 transition-colors"
@@ -69,7 +69,7 @@ export function AccessDenied({ error, isLoading }: AccessDeniedProps) {
           </a>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-stone-200">
+        <div className="pt-6 border-t border-stone-200">
           <p className="text-xs text-stone-400 text-center leading-relaxed">
             Il CMS Chiarli è integrato con Business Tuner per garantire
             la sicurezza dei tuoi contenuti. Solo gli utenti autorizzati
