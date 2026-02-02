@@ -864,9 +864,9 @@ Per favore, applica questo contenuto.`;
                   className={`p-2 rounded-lg transition-colors ${
                     showBTPanel ? 'bg-amber-100 text-amber-700' : 'hover:bg-stone-100 text-stone-600'
                   }`}
-                  title="Business Tuner"
+                  title="Suggerimenti"
                 >
-                  <Zap size={20} />
+                  <Lightbulb size={20} />
                 </button>
                 <button
                   onClick={() => {
