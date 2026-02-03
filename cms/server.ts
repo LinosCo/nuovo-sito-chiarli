@@ -36,6 +36,7 @@ app.use(cors({
     'http://localhost:3002', // Dashboard CMS locale
     'https://chiarlicmsdashboard.vercel.app', // Dashboard CMS Vercel
     'https://cletochiarli.cms.voler.ai', // Sito preview nel CMS
+    'https://cletochiarlisito.vercel.app', // Sito principale Vercel
     /\.vercel\.app$/, // Tutti i deployment preview Vercel
   ],
   credentials: true,

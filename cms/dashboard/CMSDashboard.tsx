@@ -520,12 +520,12 @@ Per favore, applica questo contenuto.`;
         },
       ]);
 
-      // Ricarica l'iframe per mostrare le modifiche (Vite dev server fa hot reload)
+      // Ricarica l'iframe per mostrare le modifiche
       if (data.success) {
         setHasUnpublishedChanges(true);
         setTimeout(() => {
           const timestamp = Date.now();
-          setPreviewUrl(`${PREVIEW_URL}?t=${timestamp}`);
+          setPreviewUrl(`${PREVIEW_URL}&t=${timestamp}`);
         }, 300);
       }
 
@@ -537,7 +537,7 @@ Per favore, applica questo contenuto.`;
           setTimeout(() => {
             // Aggiorna l'iframe per mostrare la nuova pagina del vino con timestamp per evitare cache
             const timestamp = Date.now();
-            setPreviewUrl(`${PREVIEW_URL}?t=${timestamp}#/vino/${wineSlug}`);
+            setPreviewUrl(`${PREVIEW_URL}&t=${timestamp}#/vino/${wineSlug}`);
           }, 500);
 
           // Messaggio di conferma con link
