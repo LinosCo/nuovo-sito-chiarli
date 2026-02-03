@@ -135,9 +135,14 @@ if (process.env.ENABLE_VITE_PREVIEW === 'true') {
     changeOrigin: true,
     pathRewrite: { '^/preview': '' },
     ws: true, // Supporto WebSocket per HMR
-    onError: (err, req, res) => {
-      console.error('[Proxy] Errore:', err.message);
-      (res as any).status(502).json({ error: 'Vite dev server non disponibile' });
+    on: {
+      error: (err: Error, req: any, res: any) => {
+        console.error('[Proxy] Errore:', err.message);
+        if (res.writeHead) {
+          res.writeHead(502, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Vite dev server non disponibile' }));
+        }
+      }
     }
   }));
 }
