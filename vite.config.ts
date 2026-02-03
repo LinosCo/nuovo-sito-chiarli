@@ -4,11 +4,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
-    // Se siamo in modalità preview su Railway, usa /preview come base
-    const isRailwayPreview = process.env.ENABLE_VITE_PREVIEW === 'true';
 
     return {
-      base: isRailwayPreview ? '/preview/' : '/',
       server: {
         port: 5173,
         host: '0.0.0.0',
@@ -16,12 +13,6 @@ export default defineConfig(({ mode }) => {
         watch: {
           usePolling: true, // Necessario per Railway/Docker
           ignored: ['**/cms/dashboard/**', '**/node_modules/**']
-        },
-        hmr: {
-          // HMR attraverso proxy Railway
-          clientPort: 443,
-          protocol: 'wss',
-          path: '/preview/'
         }
       },
       plugins: [react()],
