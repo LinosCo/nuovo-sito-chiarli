@@ -434,21 +434,18 @@ Per favore, applica questo contenuto.`;
     try {
       const sessionToken = localStorage.getItem('cms_session');
 
-      // Aggiungi contesto della pagina corrente al messaggio
-      let contextualMessage = messageContent;
-      if (currentPage && currentPage !== '/' && !messageContent.includes('[pagina:')) {
-        // Mappa le route alle pagine contenuto
-        const pageMap: Record<string, string> = {
-          '/': 'home',
-          '/storia': 'storia',
-          '/esperienze': 'esperienze',
-          '/blog': 'blog',
-          '/tutti-i-vini': 'vini',
-          '/tenute': 'tenute',
-        };
-        const pageName = pageMap[currentPage] || currentPage;
-        contextualMessage = `[L'utente sta visualizzando la pagina: ${pageName}] ${messageContent}`;
-      }
+      // Aggiungi SEMPRE contesto della pagina corrente al messaggio
+      // Mappa le route alle pagine contenuto
+      const pageMap: Record<string, string> = {
+        '/': 'home',
+        '/storia': 'storia',
+        '/esperienze': 'esperienze',
+        '/blog': 'blog',
+        '/tutti-i-vini': 'vini',
+        '/tenute': 'tenute',
+      };
+      const pageName = pageMap[currentPage] || currentPage || 'home';
+      const contextualMessage = `[L'utente sta visualizzando la pagina: ${pageName}] ${messageContent}`;
 
       const res = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
