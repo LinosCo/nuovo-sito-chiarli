@@ -126,12 +126,32 @@ const pdfUpload = multer({
 // PROXY - VITE DEV SERVER PREVIEW
 // ============================================
 
-// Proxy tutte le richieste /preview/* al Vite dev server (porta 5173)
-// Questo permette di avere preview live senza esporre una seconda porta
+// Proxy per Vite dev server - gestisce sia /preview che le risorse statiche
 if (process.env.ENABLE_VITE_PREVIEW === 'true') {
-  console.log('[Proxy] Abilitato proxy per Vite dev server su /preview/*');
+  console.log('[Proxy] Abilitato proxy per Vite dev server');
 
-  // Proxy /preview/* verso Vite, rimuovendo /preview dal path
+  const viteProxy = createProxyMiddleware({
+    target: 'http://127.0.0.1:5173',
+    changeOrigin: true,
+    ws: true,
+    on: {
+      error: (err: Error, req: any, res: any) => {
+        console.error('[Proxy] Errore:', err.message);
+        if (res.writeHead) {
+          res.writeHead(502, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Vite dev server non disponibile' }));
+        }
+      }
+    }
+  });
+
+  // Proxy per risorse Vite (HMR, assets)
+  app.use('/@vite', viteProxy);
+  app.use('/@react-refresh', viteProxy);
+  app.use('/src', viteProxy);
+  app.use('/node_modules', viteProxy);
+
+  // Proxy per /preview - entry point principale
   app.use('/preview', createProxyMiddleware({
     target: 'http://127.0.0.1:5173',
     changeOrigin: true,
