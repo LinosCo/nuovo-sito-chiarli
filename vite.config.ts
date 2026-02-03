@@ -4,14 +4,17 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
+    const isPreview = process.env.ENABLE_VITE_PREVIEW === 'true';
 
     return {
+      // In preview mode, tutti gli asset devono avere /preview/ come prefisso
+      base: isPreview ? '/preview/' : '/',
       server: {
         port: 5173,
         host: '0.0.0.0',
         cors: true,
         watch: {
-          usePolling: true, // Necessario per Railway/Docker
+          usePolling: true,
           ignored: ['**/cms/dashboard/**', '**/node_modules/**']
         }
       },
