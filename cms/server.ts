@@ -5,7 +5,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import { createProxyMiddleware } from 'http-proxy-middleware';
 
 // Carica variabili d'ambiente
 dotenv.config();
@@ -126,26 +125,8 @@ const pdfUpload = multer({
 // PROXY - VITE DEV SERVER PREVIEW
 // ============================================
 
-// Proxy /preview/* verso Vite dev server
-// Vite è configurato con base: '/preview/' quindi non serve pathRewrite
-if (process.env.ENABLE_VITE_PREVIEW === 'true') {
-  console.log('[Proxy] Abilitato proxy per Vite dev server su /preview');
-
-  app.use('/preview', createProxyMiddleware({
-    target: 'http://127.0.0.1:5173',
-    changeOrigin: true,
-    ws: true,
-    on: {
-      error: (err: Error, req: any, res: any) => {
-        console.error('[Proxy] Errore:', err.message);
-        if (res.writeHead) {
-          res.writeHead(502, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: 'Vite dev server non disponibile' }));
-        }
-      }
-    }
-  }));
-}
+// Proxy Vite dev server disabilitato - usiamo il sito Vercel con ?cms_preview=true
+// che carica i contenuti dall'API CMS invece dei file statici
 
 // ============================================
 // ROUTES - HOME
