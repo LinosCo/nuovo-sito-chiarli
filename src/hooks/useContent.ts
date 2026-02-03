@@ -135,15 +135,29 @@ export function useNews() {
  */
 export function useHomeContent() {
   const [content, setContent] = useState(homeData);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (isCmsPreview()) {
+    const preview = isCmsPreview();
+    console.log('[useHomeContent] cms_preview:', preview, 'CMS_API_URL:', CMS_API_URL);
+
+    if (preview) {
+      setLoading(true);
+      console.log('[useHomeContent] Fetching from:', `${CMS_API_URL}/api/content/pages/home`);
+
       fetch(`${CMS_API_URL}/api/content/pages/home`)
-        .then(res => res.json())
+        .then(res => {
+          console.log('[useHomeContent] Response status:', res.status);
+          return res.json();
+        })
         .then(data => {
+          console.log('[useHomeContent] Data received:', data?.hero?.subtitle);
           if (data) setContent(data);
         })
-        .catch(console.error);
+        .catch(err => {
+          console.error('[useHomeContent] Error:', err);
+        })
+        .finally(() => setLoading(false));
     }
   }, []);
 
