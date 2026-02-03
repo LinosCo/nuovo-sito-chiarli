@@ -120,23 +120,32 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
   const [loadingBT, setLoadingBT] = useState(false);
   const [publishing, setPublishing] = useState(false);
   const [hasUnpublishedChanges, setHasUnpublishedChanges] = useState(false);
+  const [currentPage, setCurrentPage] = useState('/');
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pdfInputRef = useRef<HTMLInputElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // Scroll automatico
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Listener per selezione testo nell'iframe
+  // Listener per messaggi dall'iframe (selezione testo e navigazione)
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      // Verifica che il messaggio sia del tipo corretto
-      if (event.data && event.data.type === 'CMS_TEXT_SELECTED') {
+      if (!event.data) return;
+
+      // Traccia la pagina corrente
+      if (event.data.type === 'CMS_PAGE_CHANGE') {
+        setCurrentPage(event.data.page || '/');
+      }
+
+      // Gestisci selezione testo
+      if (event.data.type === 'CMS_TEXT_SELECTED') {
         const selectedText = event.data.text;
-        const page = event.data.page || '/';
+        const page = event.data.page || currentPage || '/';
         const context = event.data.context || {};
 
         if (selectedText && selectedText.trim()) {
@@ -162,7 +171,7 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, []);
+  }, [currentPage]);
 
   // Pubblica le modifiche su Vercel (git push)
   const handlePublish = useCallback(async () => {
@@ -424,6 +433,23 @@ Per favore, applica questo contenuto.`;
 
     try {
       const sessionToken = localStorage.getItem('cms_session');
+
+      // Aggiungi contesto della pagina corrente al messaggio
+      let contextualMessage = messageContent;
+      if (currentPage && currentPage !== '/' && !messageContent.includes('[pagina:')) {
+        // Mappa le route alle pagine contenuto
+        const pageMap: Record<string, string> = {
+          '/': 'home',
+          '/storia': 'storia',
+          '/esperienze': 'esperienze',
+          '/blog': 'blog',
+          '/tutti-i-vini': 'vini',
+          '/tenute': 'tenute',
+        };
+        const pageName = pageMap[currentPage] || currentPage;
+        contextualMessage = `[L'utente sta visualizzando la pagina: ${pageName}] ${messageContent}`;
+      }
+
       const res = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: {
@@ -432,7 +458,7 @@ Per favore, applica questo contenuto.`;
         },
         credentials: 'include',
         body: JSON.stringify({
-          message: messageContent,
+          message: contextualMessage,
           image: imageData?.base64 || null, // Invia immagine se presente
         }),
       });
@@ -805,7 +831,7 @@ Per favore, applica questo contenuto.`;
 
       {/* Chat drawer - slides from right */}
       <div
-        className={`fixed inset-y-0 right-0 w-full md:w-[700px] transform transition-transform duration-500 ease-in-out z-40 shadow-2xl ${
+        className={`fixed inset-y-0 right-0 w-full md:w-[500px] bg-white transform transition-transform duration-500 ease-in-out z-40 shadow-2xl ${
           chatOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -1044,14 +1070,14 @@ Per favore, applica questo contenuto.`;
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-6">
-              <div className="max-w-3xl mx-auto space-y-6">
+              <div className="space-y-4 px-2">
                 {messages.map((message) => (
                   <div
                     key={message.id}
                     className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[80%] rounded-2xl px-5 py-3 ${
+                      className={`max-w-[90%] rounded-2xl px-4 py-3 ${
                         message.role === 'user'
                           ? 'bg-amber-900 text-white'
                           : message.role === 'system'
@@ -1136,7 +1162,7 @@ Per favore, applica questo contenuto.`;
 
             {/* Input */}
             <div className="bg-white border-t border-stone-200 px-6 py-4">
-              <div className="max-w-3xl mx-auto">
+              <div>
                 <div className="flex items-end gap-3">
                   {/* Upload image button */}
                   <input
