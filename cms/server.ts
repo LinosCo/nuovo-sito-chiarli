@@ -131,7 +131,7 @@ if (process.env.ENABLE_VITE_PREVIEW === 'true') {
   console.log('[Proxy] Abilitato proxy per Vite dev server su /preview/*');
 
   app.use('/preview', createProxyMiddleware({
-    target: 'http://localhost:5173',
+    target: 'http://127.0.0.1:5173',
     changeOrigin: true,
     pathRewrite: { '^/preview': '' },
     ws: true, // Supporto WebSocket per HMR
