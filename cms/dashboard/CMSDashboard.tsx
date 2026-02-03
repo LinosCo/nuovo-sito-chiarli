@@ -1187,7 +1187,6 @@ Per favore, applica questo contenuto.`;
                     {action}
                   </button>
                 ))}
-                </div>
               </div>
             </div>
           </div>
