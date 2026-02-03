@@ -28,6 +28,7 @@ import { validateBTToken } from './services/btAuth.service.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 3001;
+// Force rebuild: vite base path update
 
 // Middleware
 app.use(cors({
