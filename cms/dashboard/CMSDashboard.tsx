@@ -831,7 +831,7 @@ Per favore, applica questo contenuto.`;
 
       {/* Chat drawer - slides from right */}
       <div
-        className={`fixed inset-y-0 right-0 w-full md:w-[500px] bg-white transform transition-transform duration-500 ease-in-out z-40 shadow-2xl ${
+        className={`fixed inset-y-0 right-0 w-[420px] bg-white transform transition-transform duration-500 ease-in-out z-40 shadow-2xl ${
           chatOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -960,110 +960,53 @@ Per favore, applica questo contenuto.`;
           )}
 
           {/* Main Chat */}
-          <div className="flex-1 flex flex-col">
-            {/* Header */}
-            <header className="bg-white border-b border-stone-200 px-6 py-4 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-amber-900 rounded-lg flex items-center justify-center">
-                  <Wine className="text-white" size={20} />
-                </div>
-                <div>
-                  <h1 className="font-semibold text-stone-800">CMS Chiarli</h1>
-                  <p className="text-xs text-stone-500">Gestione contenuti</p>
-                </div>
-              </div>
+          <div className="flex-1 flex flex-col min-w-0">
+            {/* Header - compact */}
+            <header className="bg-white border-b border-stone-200 px-3 py-2 flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-2">
-                {/* User info */}
-                {user && (
-                  <div className="hidden sm:flex items-center gap-2 mr-2 px-3 py-1.5 bg-stone-100 rounded-lg">
-                    <div className="w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center text-white text-xs font-medium">
-                      {user.email.charAt(0).toUpperCase()}
-                    </div>
-                    <span className="text-xs text-stone-600 max-w-[150px] truncate">{user.email}</span>
-                  </div>
-                )}
+                <div className="w-8 h-8 bg-amber-900 rounded-lg flex items-center justify-center">
+                  <Wine className="text-white" size={16} />
+                </div>
+                <span className="font-semibold text-stone-800 text-sm">CMS</span>
+              </div>
+              <div className="flex items-center gap-1">
                 {/* Bottone Pubblica */}
                 <button
                   onClick={handlePublish}
                   disabled={publishing || !hasUnpublishedChanges}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+                  className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-medium transition-all ${
                     hasUnpublishedChanges
                       ? 'bg-green-600 text-white hover:bg-green-700'
                       : 'bg-stone-200 text-stone-400 cursor-not-allowed'
                   }`}
-                  title={hasUnpublishedChanges ? 'Pubblica le modifiche su Vercel' : 'Nessuna modifica da pubblicare'}
+                  title={hasUnpublishedChanges ? 'Pubblica le modifiche' : 'Nessuna modifica'}
                 >
-                  {publishing ? (
-                    <Loader2 size={16} className="animate-spin" />
-                  ) : (
-                    <Upload size={16} />
-                  )}
-                  <span className="hidden sm:inline">
-                    {publishing ? 'Pubblicando...' : 'Pubblica'}
-                  </span>
-                  {hasUnpublishedChanges && !publishing && (
-                    <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                  )}
+                  {publishing ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14} />}
+                  <span>Pubblica</span>
                 </button>
-                {/* Link al sito live */}
                 <a
                   href={PRODUCTION_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg hover:bg-stone-100 text-stone-600 transition-colors"
-                  title="Apri sito live"
+                  className="p-1.5 rounded-lg hover:bg-stone-100 text-stone-500 transition-colors"
+                  title="Apri sito"
                 >
-                  <ExternalLink size={20} />
+                  <ExternalLink size={16} />
                 </a>
                 <button
-                  onClick={() => setPreviewUrl(PREVIEW_URL)}
-                  className="p-2 rounded-lg hover:bg-stone-100 text-stone-600 transition-colors"
-                  title="Torna alla home del sito"
+                  onClick={() => { setShowHistory(!showHistory); setShowBTPanel(false); }}
+                  className={`p-1.5 rounded-lg transition-colors ${showHistory ? 'bg-amber-100 text-amber-700' : 'hover:bg-stone-100 text-stone-500'}`}
+                  title="Cronologia"
                 >
-                  <ChevronRight size={20} className="rotate-180" />
+                  <History size={16} />
                 </button>
-                <button
-                  onClick={() => {
-                    setShowBTPanel(!showBTPanel);
-                    setShowHistory(false);
-                  }}
-                  className={`p-2 rounded-lg transition-colors ${
-                    showBTPanel ? 'bg-amber-100 text-amber-700' : 'hover:bg-stone-100 text-stone-600'
-                  }`}
-                  title="Suggerimenti"
-                >
-                  <Lightbulb size={20} />
-                </button>
-                <button
-                  onClick={() => {
-                    setShowHistory(!showHistory);
-                    setShowBTPanel(false);
-                  }}
-                  className={`p-2 rounded-lg transition-colors ${
-                    showHistory ? 'bg-amber-100 text-amber-700' : 'hover:bg-stone-100 text-stone-600'
-                  }`}
-                  title="Cronologia modifiche"
-                >
-                  <History size={20} />
-                </button>
-                {/* Logout button */}
                 {onLogout && (
-                  <button
-                    onClick={onLogout}
-                    className="p-2 rounded-lg hover:bg-red-100 text-stone-600 hover:text-red-600 transition-colors"
-                    title="Esci"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                    </svg>
+                  <button onClick={onLogout} className="p-1.5 rounded-lg hover:bg-red-100 text-stone-500 hover:text-red-600 transition-colors" title="Esci">
+                    <X size={16} />
                   </button>
                 )}
-                <button
-                  onClick={() => setChatOpen(false)}
-                  className="p-2 rounded-lg hover:bg-stone-100 text-stone-600 transition-colors"
-                  title="Chiudi chat"
-                >
-                  <X size={20} />
+                <button onClick={() => setChatOpen(false)} className="p-1.5 rounded-lg hover:bg-stone-100 text-stone-500 transition-colors" title="Chiudi">
+                  <ChevronRight size={16} />
                 </button>
               </div>
             </header>
@@ -1161,97 +1104,89 @@ Per favore, applica questo contenuto.`;
             </div>
 
             {/* Input */}
-            <div className="bg-white border-t border-stone-200 px-6 py-4">
-              <div>
-                <div className="flex items-end gap-3">
-                  {/* Upload image button */}
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className="hidden"
-                  />
-                  <button
-                    onClick={() => fileInputRef.current?.click()}
-                    disabled={uploadingImage}
-                    className="p-3 text-stone-400 hover:text-amber-900 hover:bg-stone-100 rounded-xl transition-colors"
-                    title="Carica immagine"
-                  >
-                    {uploadingImage ? <Loader2 className="animate-spin" size={20} /> : <Image size={20} />}
-                  </button>
+            <div className="bg-white border-t border-stone-200 p-3">
+              {/* Hidden file inputs */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="hidden"
+              />
+              <input
+                ref={pdfInputRef}
+                type="file"
+                accept="application/pdf"
+                onChange={handlePdfUpload}
+                className="hidden"
+              />
 
-                  {/* Upload PDF button */}
-                  <input
-                    ref={pdfInputRef}
-                    type="file"
-                    accept="application/pdf"
-                    onChange={handlePdfUpload}
-                    className="hidden"
-                  />
+              {/* Preview immagine allegata */}
+              {attachedImage && (
+                <div className="mb-2 p-2 bg-amber-50 border border-amber-200 rounded-lg flex items-center gap-2">
+                  <Image size={14} className="text-amber-900 flex-shrink-0" />
+                  <span className="text-xs text-amber-900 truncate flex-1">{attachedImage.name}</span>
                   <button
-                    onClick={() => pdfInputRef.current?.click()}
-                    disabled={uploadingPdf}
-                    className="p-3 text-stone-400 hover:text-amber-900 hover:bg-stone-100 rounded-xl transition-colors"
-                    title="Carica scheda tecnica PDF"
+                    onClick={() => setAttachedImage(null)}
+                    className="p-1 hover:bg-amber-100 rounded transition-colors flex-shrink-0"
                   >
-                    {uploadingPdf ? <Loader2 className="animate-spin" size={20} /> : <FileText size={20} />}
-                  </button>
-
-                  {/* Input text */}
-                  <div className="flex-1 relative">
-                    {/* Preview immagine allegata */}
-                    {attachedImage && (
-                      <div className="mb-2 p-2 bg-amber-50 border border-amber-200 rounded-lg flex items-center gap-2">
-                        <Image size={16} className="text-amber-900" />
-                        <span className="text-sm text-amber-900 flex-1">{attachedImage.name}</span>
-                        <button
-                          onClick={() => setAttachedImage(null)}
-                          className="p-1 hover:bg-amber-100 rounded transition-colors"
-                          title="Rimuovi screenshot"
-                        >
-                          <X size={16} className="text-amber-700" />
-                        </button>
-                      </div>
-                    )}
-                    <textarea
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !e.shiftKey) {
-                          e.preventDefault();
-                          sendMessage();
-                        }
-                      }}
-                      placeholder={attachedImage ? "Descrivi cosa vuoi modificare nello screenshot..." : "Scrivi un messaggio... (es: 'Aggiungi un nuovo vino', 'Cambia il titolo della homepage')"}
-                      className="w-full px-4 py-3 bg-stone-100 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-amber-900/20 max-h-32"
-                      rows={1}
-                    />
-                  </div>
-
-                  {/* Send button */}
-                  <button
-                    onClick={sendMessage}
-                    disabled={!inputValue.trim() || isLoading}
-                    className="p-3 bg-amber-900 text-white rounded-xl hover:bg-amber-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  >
-                    <Send size={20} />
+                    <X size={14} className="text-amber-700" />
                   </button>
                 </div>
+              )}
 
-                {/* Quick actions */}
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {['Mostra tutti i vini', 'Aggiungi una news', 'Modifica contatti', 'Vedi tenute'].map(
-                    (action) => (
-                      <button
-                        key={action}
-                        onClick={() => setInputValue(action)}
-                        className="px-3 py-1 text-xs bg-stone-100 text-stone-600 rounded-full hover:bg-stone-200 transition-colors"
-                      >
-                        {action}
-                      </button>
-                    )
-                  )}
+              {/* Input row */}
+              <div className="flex items-end gap-2">
+                <textarea
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      sendMessage();
+                    }
+                  }}
+                  placeholder="Scrivi un messaggio..."
+                  className="flex-1 px-3 py-2 bg-stone-100 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-amber-900/20 text-sm"
+                  rows={1}
+                />
+                <button
+                  onClick={sendMessage}
+                  disabled={!inputValue.trim() || isLoading}
+                  className="p-2 bg-amber-900 text-white rounded-lg hover:bg-amber-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+                >
+                  <Send size={18} />
+                </button>
+              </div>
+
+              {/* Action buttons row */}
+              <div className="flex items-center gap-2 mt-2">
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploadingImage}
+                  className="flex items-center gap-1 px-2 py-1 text-xs text-stone-500 hover:text-amber-900 hover:bg-stone-100 rounded transition-colors"
+                >
+                  {uploadingImage ? <Loader2 className="animate-spin" size={14} /> : <Image size={14} />}
+                  <span>Immagine</span>
+                </button>
+                <button
+                  onClick={() => pdfInputRef.current?.click()}
+                  disabled={uploadingPdf}
+                  className="flex items-center gap-1 px-2 py-1 text-xs text-stone-500 hover:text-amber-900 hover:bg-stone-100 rounded transition-colors"
+                >
+                  {uploadingPdf ? <Loader2 className="animate-spin" size={14} /> : <FileText size={14} />}
+                  <span>PDF</span>
+                </button>
+                <div className="flex-1" />
+                {['Vini', 'News', 'Tenute'].map((action) => (
+                  <button
+                    key={action}
+                    onClick={() => setInputValue(`Mostra ${action.toLowerCase()}`)}
+                    className="px-2 py-1 text-xs bg-stone-100 text-stone-500 rounded hover:bg-stone-200 transition-colors"
+                  >
+                    {action}
+                  </button>
+                ))}
                 </div>
               </div>
             </div>
