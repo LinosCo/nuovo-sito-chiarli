@@ -15,17 +15,21 @@ import {
   ChevronRight,
   MessageCircle,
   Lightbulb,
+  Upload,
+  ExternalLink,
 } from 'lucide-react';
 
-// Configurazione API - usa proxy di Vite in development
+// Configurazione API e Preview
 const API_URL = import.meta.env.VITE_CMS_API_URL || '';
-const BASE_SITE_URL = import.meta.env.VITE_SITE_URL || 'http://localhost:3000';
-// Aggiungi cms_preview=true per caricare contenuti live dall'API
-const SITE_PREVIEW_URL = `${BASE_SITE_URL}?cms_preview=true`;
+// URL per preview live (Vite dev server su Railway)
+const PREVIEW_URL = import.meta.env.VITE_PREVIEW_URL || 'http://localhost:5173';
+// URL sito produzione (Vercel)
+const PRODUCTION_URL = import.meta.env.VITE_SITE_URL || 'http://localhost:3000';
 
 console.log('🎯 [CMSDashboard] Componente caricato');
 console.log('🔧 [CMSDashboard] API_URL:', API_URL);
-console.log('🔧 [CMSDashboard] SITE_PREVIEW_URL:', SITE_PREVIEW_URL);
+console.log('🔧 [CMSDashboard] PREVIEW_URL:', PREVIEW_URL);
+console.log('🔧 [CMSDashboard] PRODUCTION_URL:', PRODUCTION_URL);
 
 // Tipi
 interface Message {
@@ -109,11 +113,13 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
   const [uploadingPdf, setUploadingPdf] = useState(false);
   const [attachedImage, setAttachedImage] = useState<{ base64: string; name: string } | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState(SITE_PREVIEW_URL);
+  const [previewUrl, setPreviewUrl] = useState(PREVIEW_URL);
   const [showBTPanel, setShowBTPanel] = useState(false);
   const [btStatus, setBtStatus] = useState<BTStatus | null>(null);
   const [btSuggestions, setBtSuggestions] = useState<BTSuggestion[]>([]);
   const [loadingBT, setLoadingBT] = useState(false);
+  const [publishing, setPublishing] = useState(false);
+  const [hasUnpublishedChanges, setHasUnpublishedChanges] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -157,6 +163,62 @@ export const CMSDashboard: React.FC<CMSDashboardProps> = ({ user, onLogout }) =>
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
   }, []);
+
+  // Pubblica le modifiche su Vercel (git push)
+  const handlePublish = useCallback(async () => {
+    if (publishing) return;
+
+    setPublishing(true);
+    try {
+      const sessionToken = localStorage.getItem('cms_session');
+      const res = await fetch(`${API_URL}/api/publish`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(sessionToken && { 'Authorization': `Bearer ${sessionToken}` })
+        },
+        credentials: 'include'
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setHasUnpublishedChanges(false);
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: Date.now().toString(),
+            role: 'assistant',
+            content: `Pubblicazione avviata! Il sito si aggiornerà in circa 1-2 minuti.\n\nCommit: ${data.commitHash || 'N/A'}`,
+            timestamp: new Date(),
+          },
+        ]);
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: Date.now().toString(),
+            role: 'assistant',
+            content: `Errore pubblicazione: ${data.error}`,
+            timestamp: new Date(),
+          },
+        ]);
+      }
+    } catch (error) {
+      console.error('Errore pubblicazione:', error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          role: 'assistant',
+          content: 'Errore durante la pubblicazione. Riprova più tardi.',
+          timestamp: new Date(),
+        },
+      ]);
+    } finally {
+      setPublishing(false);
+    }
+  }, [publishing]);
 
   // Carica storia
   const loadHistory = useCallback(async () => {
@@ -458,11 +520,12 @@ Per favore, applica questo contenuto.`;
         },
       ]);
 
-      // Ricarica l'iframe per mostrare le modifiche
+      // Ricarica l'iframe per mostrare le modifiche (Vite dev server fa hot reload)
       if (data.success) {
+        setHasUnpublishedChanges(true);
         setTimeout(() => {
           const timestamp = Date.now();
-          setPreviewUrl(`${BASE_SITE_URL}?cms_preview=true&t=${timestamp}`);
+          setPreviewUrl(`${PREVIEW_URL}?t=${timestamp}`);
         }, 300);
       }
 
@@ -474,7 +537,7 @@ Per favore, applica questo contenuto.`;
           setTimeout(() => {
             // Aggiorna l'iframe per mostrare la nuova pagina del vino con timestamp per evitare cache
             const timestamp = Date.now();
-            setPreviewUrl(`${BASE_SITE_URL}?cms_preview=true&t=${timestamp}#/vino/${wineSlug}`);
+            setPreviewUrl(`${PREVIEW_URL}?t=${timestamp}#/vino/${wineSlug}`);
           }, 500);
 
           // Messaggio di conferma con link
@@ -893,8 +956,41 @@ Per favore, applica questo contenuto.`;
                     <span className="text-xs text-stone-600 max-w-[150px] truncate">{user.email}</span>
                   </div>
                 )}
+                {/* Bottone Pubblica */}
                 <button
-                  onClick={() => setPreviewUrl(SITE_PREVIEW_URL)}
+                  onClick={handlePublish}
+                  disabled={publishing || !hasUnpublishedChanges}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+                    hasUnpublishedChanges
+                      ? 'bg-green-600 text-white hover:bg-green-700'
+                      : 'bg-stone-200 text-stone-400 cursor-not-allowed'
+                  }`}
+                  title={hasUnpublishedChanges ? 'Pubblica le modifiche su Vercel' : 'Nessuna modifica da pubblicare'}
+                >
+                  {publishing ? (
+                    <Loader2 size={16} className="animate-spin" />
+                  ) : (
+                    <Upload size={16} />
+                  )}
+                  <span className="hidden sm:inline">
+                    {publishing ? 'Pubblicando...' : 'Pubblica'}
+                  </span>
+                  {hasUnpublishedChanges && !publishing && (
+                    <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                  )}
+                </button>
+                {/* Link al sito live */}
+                <a
+                  href={PRODUCTION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg hover:bg-stone-100 text-stone-600 transition-colors"
+                  title="Apri sito live"
+                >
+                  <ExternalLink size={20} />
+                </a>
+                <button
+                  onClick={() => setPreviewUrl(PREVIEW_URL)}
                   className="p-2 rounded-lg hover:bg-stone-100 text-stone-600 transition-colors"
                   title="Torna alla home del sito"
                 >

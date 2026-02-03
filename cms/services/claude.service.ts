@@ -415,10 +415,7 @@ export class ClaudeService {
               action.data,
               'cliente'
             );
-            // Git auto-commit (asincrono, non blocca la risposta)
-            if (process.env.GIT_AUTO_COMMIT === 'true') {
-              gitService.autoCommit(`Aggiornato ${action.contentType} #${action.itemId}`).catch(console.error);
-            }
+            // Git commit sarà fatto dal bottone "Pubblica"
             return { success: true, data: updated };
           } else {
             // Aggiorna campi
@@ -429,28 +426,19 @@ export class ClaudeService {
               action.data[fieldPath],
               'cliente'
             );
-            // Git auto-commit (asincrono, non blocca la risposta)
-            if (process.env.GIT_AUTO_COMMIT === 'true') {
-              gitService.autoCommit(`Aggiornato campo ${fieldPath} in ${action.contentType}`).catch(console.error);
-            }
+            // Git commit sarà fatto dal bottone "Pubblica"
             return { success: true, data: updated };
           }
 
         case 'create':
           const created = await contentService.addItem(action.contentType, action.data, 'cliente');
-          // Git auto-commit (asincrono, non blocca la risposta)
-          if (process.env.GIT_AUTO_COMMIT === 'true') {
-            gitService.autoCommit(`Creato nuovo ${action.contentType}`).catch(console.error);
-          }
+          // Git commit sarà fatto dal bottone "Pubblica"
           return { success: true, data: created };
 
         case 'delete':
           if (action.itemId !== null) {
             const deleted = await contentService.removeItem(action.contentType, action.itemId, 'cliente');
-            // Git auto-commit (asincrono, non blocca la risposta)
-            if (process.env.GIT_AUTO_COMMIT === 'true' && deleted) {
-              gitService.autoCommit(`Eliminato ${action.contentType} #${action.itemId}`).catch(console.error);
-            }
+            // Git commit sarà fatto dal bottone "Pubblica"
             return { success: deleted };
           }
           return { success: false, error: 'ID non specificato per eliminazione' };

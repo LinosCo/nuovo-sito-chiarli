@@ -806,6 +806,35 @@ app.post('/api/suggestions/:id/reject', requireAuth, (req, res) => {
 });
 
 // ============================================
+// ROUTES - PUBLISH
+// ============================================
+
+/**
+ * POST /api/publish
+ * Pubblica le modifiche su Vercel (git push)
+ * RICHIEDE AUTENTICAZIONE
+ */
+app.post('/api/publish', requireAuth, async (req, res) => {
+  try {
+    const session = (req as any).session;
+    console.log(`[Publish] User ${session.userEmail} requesting publish...`);
+
+    const commitHash = await gitService.autoCommit(`[CMS] Pubblicazione manuale [by ${session.userEmail}]`);
+
+    if (commitHash) {
+      console.log(`[Publish] Success! Commit: ${commitHash}`);
+      res.json({ success: true, commitHash });
+    } else {
+      console.log('[Publish] No changes to publish or commit failed');
+      res.json({ success: true, message: 'Nessuna modifica da pubblicare' });
+    }
+  } catch (error: any) {
+    console.error('[Publish] Error:', error.message);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// ============================================
 // START SERVER
 // ============================================
 

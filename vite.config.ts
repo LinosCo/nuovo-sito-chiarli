@@ -6,10 +6,17 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
       server: {
-        port: 3000,
+        port: 5173,
         host: '0.0.0.0',
+        cors: true,
         watch: {
-          ignored: ['**/cms/dashboard/**']
+          usePolling: true, // Necessario per Railway/Docker
+          ignored: ['**/cms/dashboard/**', '**/node_modules/**']
+        },
+        hmr: {
+          // HMR attraverso proxy Railway
+          clientPort: 443,
+          protocol: 'wss'
         }
       },
       plugins: [react()],
