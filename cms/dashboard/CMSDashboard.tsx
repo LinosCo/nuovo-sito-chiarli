@@ -21,8 +21,9 @@ import {
 
 // Configurazione API e Preview
 const API_URL = import.meta.env.VITE_CMS_API_URL || '';
-// URL per preview live (Vite dev server su Railway)
-const PREVIEW_URL = import.meta.env.VITE_PREVIEW_URL || 'http://localhost:5173';
+// URL per preview live (proxy attraverso CMS server)
+// In produzione usa /preview sul server Railway, in dev usa porta 5173
+const PREVIEW_URL = import.meta.env.VITE_PREVIEW_URL || (API_URL ? `${API_URL}/preview` : 'http://localhost:5173');
 // URL sito produzione (Vercel)
 const PRODUCTION_URL = import.meta.env.VITE_SITE_URL || 'http://localhost:3000';
 

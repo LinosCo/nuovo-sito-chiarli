@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 // Carica variabili d'ambiente
 dotenv.config();
@@ -119,6 +120,27 @@ const pdfUpload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB per PDF
 });
+
+// ============================================
+// PROXY - VITE DEV SERVER PREVIEW
+// ============================================
+
+// Proxy tutte le richieste /preview/* al Vite dev server (porta 5173)
+// Questo permette di avere preview live senza esporre una seconda porta
+if (process.env.ENABLE_VITE_PREVIEW === 'true') {
+  console.log('[Proxy] Abilitato proxy per Vite dev server su /preview/*');
+
+  app.use('/preview', createProxyMiddleware({
+    target: 'http://localhost:5173',
+    changeOrigin: true,
+    pathRewrite: { '^/preview': '' },
+    ws: true, // Supporto WebSocket per HMR
+    onError: (err, req, res) => {
+      console.error('[Proxy] Errore:', err.message);
+      (res as any).status(502).json({ error: 'Vite dev server non disponibile' });
+    }
+  }));
+}
 
 // ============================================
 // ROUTES - HOME
