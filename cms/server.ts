@@ -131,10 +131,10 @@ const pdfUpload = multer({
 if (process.env.ENABLE_VITE_PREVIEW === 'true') {
   console.log('[Proxy] Abilitato proxy per Vite dev server su /preview/*');
 
+  // NON riscrivere il path - Vite si aspetta /preview/
   app.use('/preview', createProxyMiddleware({
     target: 'http://127.0.0.1:5173',
     changeOrigin: true,
-    pathRewrite: { '^/preview': '' },
     ws: true, // Supporto WebSocket per HMR
     on: {
       error: (err: Error, req: any, res: any) => {
