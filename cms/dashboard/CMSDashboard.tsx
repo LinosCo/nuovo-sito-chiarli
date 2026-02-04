@@ -17,6 +17,10 @@ import {
   Lightbulb,
   Upload,
   ExternalLink,
+  Plus,
+  Newspaper,
+  Home,
+  Sparkles,
 } from 'lucide-react';
 
 // Configurazione API e Preview
@@ -1158,8 +1162,50 @@ Per favore, applica questo contenuto.`;
                 </button>
               </div>
 
-              {/* Action buttons row */}
-              <div className="flex items-center gap-2 mt-2">
+              {/* Quick Actions */}
+              <div className="flex items-center gap-1.5 mt-2 mb-2 flex-wrap">
+                <span className="text-xs text-stone-400 mr-1">Azioni rapide:</span>
+                <button
+                  onClick={() => setInputValue('Voglio aggiungere una nuova news')}
+                  className="flex items-center gap-1 px-2 py-1 text-xs bg-amber-50 text-amber-800 rounded-full hover:bg-amber-100 transition-colors border border-amber-200"
+                >
+                  <Plus size={12} />
+                  <Newspaper size={12} />
+                  News
+                </button>
+                <button
+                  onClick={() => setInputValue('Voglio aggiungere un nuovo vino')}
+                  className="flex items-center gap-1 px-2 py-1 text-xs bg-purple-50 text-purple-800 rounded-full hover:bg-purple-100 transition-colors border border-purple-200"
+                >
+                  <Plus size={12} />
+                  <Wine size={12} />
+                  Vino
+                </button>
+                <button
+                  onClick={() => setInputValue('Modifica il titolo della hero in homepage')}
+                  className="flex items-center gap-1 px-2 py-1 text-xs bg-blue-50 text-blue-800 rounded-full hover:bg-blue-100 transition-colors border border-blue-200"
+                >
+                  <Home size={12} />
+                  Hero
+                </button>
+                <button
+                  onClick={() => setInputValue('Mostra tutti i vini disponibili')}
+                  className="flex items-center gap-1 px-2 py-1 text-xs bg-stone-100 text-stone-600 rounded-full hover:bg-stone-200 transition-colors"
+                >
+                  <Wine size={12} />
+                  Lista vini
+                </button>
+                <button
+                  onClick={() => setInputValue('Mostra tutte le news')}
+                  className="flex items-center gap-1 px-2 py-1 text-xs bg-stone-100 text-stone-600 rounded-full hover:bg-stone-200 transition-colors"
+                >
+                  <Newspaper size={12} />
+                  Lista news
+                </button>
+              </div>
+
+              {/* Upload buttons row */}
+              <div className="flex items-center gap-2">
                 <button
                   onClick={() => fileInputRef.current?.click()}
                   disabled={uploadingImage}
@@ -1176,16 +1222,6 @@ Per favore, applica questo contenuto.`;
                   {uploadingPdf ? <Loader2 className="animate-spin" size={14} /> : <FileText size={14} />}
                   <span>PDF</span>
                 </button>
-                <div className="flex-1" />
-                {['Vini', 'News', 'Tenute'].map((action) => (
-                  <button
-                    key={action}
-                    onClick={() => setInputValue(`Mostra ${action.toLowerCase()}`)}
-                    className="px-2 py-1 text-xs bg-stone-100 text-stone-500 rounded hover:bg-stone-200 transition-colors"
-                  >
-                    {action}
-                  </button>
-                ))}
               </div>
             </div>
           </div>
