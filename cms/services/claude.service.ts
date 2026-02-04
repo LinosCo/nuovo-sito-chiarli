@@ -408,14 +408,18 @@ export class ClaudeService {
       }
     }
 
-    return (
-      finalResponse || {
-        message: 'Errore nel processare la richiesta',
+    // Assicurati che la risposta abbia sempre un messaggio valido
+    if (!finalResponse || !finalResponse.message || finalResponse.message.trim() === '') {
+      console.error('[ClaudeService] Risposta senza messaggio valido:', finalResponse);
+      return {
+        message: 'Non ho capito la richiesta. Puoi riformularla in modo diverso?',
         preview: null,
         action: null,
         requiresConfirmation: false,
-      }
-    );
+      };
+    }
+
+    return finalResponse;
   }
 
   /**

@@ -466,7 +466,18 @@ Per favore, applica questo contenuto.`;
         }),
       });
 
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `Errore HTTP ${res.status}`);
+      }
+
       const data = await res.json();
+
+      // Verifica che la risposta contenga un messaggio valido
+      if (!data.message || data.message.trim() === '') {
+        console.error('Risposta API senza messaggio:', data);
+        throw new Error('La risposta del server non contiene un messaggio valido');
+      }
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -480,14 +491,14 @@ Per favore, applica questo contenuto.`;
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Errore:', error);
       setMessages((prev) => [
         ...prev,
         {
           id: (Date.now() + 1).toString(),
           role: 'system',
-          content: 'Errore di connessione. Riprova tra qualche istante.',
+          content: `Errore: ${error.message || 'Connessione fallita'}. Riprova tra qualche istante.`,
           timestamp: new Date(),
         },
       ]);
