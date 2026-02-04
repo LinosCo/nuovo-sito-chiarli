@@ -1,0 +1,52 @@
+{
+  "hero": {
+    "label": "Il Nostro Impegno",
+    "title": "Sostenibilità in Equilibrio",
+    "subtitle": "Per Cleto Chiarli, la sostenibilità è un percorso che si costruisce nel tempo, con attenzione, competenza e rispetto per il territorio."
+  },
+  "portainnesti": {
+    "label": "Adattamento",
+    "titleLine1": "Portainnesti",
+    "titleLine2": "Differenziati",
+    "description": "Nei vigneti sotto-collinari utilizziamo portainnesti scelti in funzione della resistenza alla siccità, adattando le piante alle condizioni specifiche del terreno.",
+    "quote": "Questa scelta agronomica permette alle viti di svilupparsi in armonia con l'ambiente, riducendo la necessità di interventi esterni e garantendo la massima espressione del terroir."
+  },
+  "agricoltura40": {
+    "label": "Tecnologia",
+    "titleLine1": "Agricoltura",
+    "titleLine2": "4.0",
+    "description": "Stazioni meteo e sensori guidano le nostre decisioni agronomiche, ottimizzando l'uso delle risorse e riducendo l'impatto ambientale.",
+    "quote": "La tecnologia al servizio della tradizione: raccogliamo dati in tempo reale su temperatura, umidità e composizione del suolo per intervenire solo quando necessario."
+  },
+  "biologico": {
+    "label": "Sperimentazione",
+    "titleLine1": "Coltivazione",
+    "titleLine2": "Biologica",
+    "description": "Palestre di coltivazione biologica a scala controllata, dove sperimentiamo e perfezioniamo pratiche sostenibili.",
+    "quote": "Ogni parcella diventa un laboratorio a cielo aperto dove testiamo nuove tecniche di gestione organica del vigneto."
+  },
+  "certificazione": {
+    "label": "Impegno Formale",
+    "titleLine1": "Certificazione",
+    "titleLine2": "Equalitas 2025",
+    "description": "Percorso di certificazione Equalitas nel 2025 per l'intero Gruppo Chiarli 1860, con focus su buone pratiche economiche, sociali e ambientali.",
+    "quote": "Un impegno formale che attesta la nostra dedizione verso la sostenibilità in tutte le sue dimensioni, dalla vigna alla bottiglia."
+  },
+  "filosofia": {
+    "label": "La Nostra Filosofia",
+    "title": "Un'immersione nella storia familiare",
+    "description1": "Dal 1860, la famiglia Chiarli coltiva la vite con dedizione e passione. Ogni generazione ha aggiunto il proprio contributo, innovando nel rispetto della tradizione e del territorio.",
+    "description2": "La sostenibilità non è per noi una moda, ma un impegno concreto che si traduce in scelte quotidiane, investimenti in ricerca e sviluppo, e una costante attenzione all'evoluzione delle migliori pratiche agricole.",
+    "ctaText": "Il Metodo Chiarli"
+  },
+  "stats": {
+    "anniStoria": 160,
+    "tenuteStoriche": 3,
+    "ettariVigneti": 195,
+    "annoCertificazione": 2025
+  },
+  "_meta": {
+    "lastModified": "2026-02-04T12:00:00.000Z",
+    "modifiedBy": "system"
+  }
+}

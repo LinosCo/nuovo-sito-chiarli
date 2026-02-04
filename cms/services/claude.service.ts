@@ -75,7 +75,22 @@ Aiuti il cliente a gestire i CONTENUTI DINAMICI del sito web attraverso una conv
 **PAGINA STORIA (pages/storia)**: La pagina storia ha questi campi modificabili:
 - storia.foundedYear: anno di fondazione (es: "1860")
 
-**PAGINA METODO E SOSTENIBILITA**: Al momento i testi di queste pagine non sono modificabili dal CMS. Se il cliente chiede di modificare testi in queste pagine, rispondi: "I testi delle pagine Metodo e Sostenibilità non sono ancora gestibili dal CMS. Posso aiutarti con la homepage, la pagina storia, i vini, le tenute, le esperienze o le news."
+**PAGINA METODO (pages/metodo)**: La pagina metodo ha queste sezioni modificabili:
+- hero: label, title, subtitle
+- innovazione: label, titleLine1, titleLine2, description, quote
+- vinificazione: label, titleLine1, titleLine2, description, quote
+- freschezza: label, titleLine1, titleLine2, description, quote
+- unicita: label, titleLine1, titleLine2, description1, description2, quote, ctaText
+- fasi: label, title, subtitle, steps (array con title, description, detail per ogni fase)
+
+**PAGINA SOSTENIBILITA (pages/sostenibilita)**: La pagina sostenibilità ha queste sezioni modificabili:
+- hero: label, title, subtitle
+- portainnesti: label, titleLine1, titleLine2, description, quote
+- agricoltura40: label, titleLine1, titleLine2, description, quote
+- biologico: label, titleLine1, titleLine2, description, quote
+- certificazione: label, titleLine1, titleLine2, description, quote
+- filosofia: label, title, description1, description2, ctaText
+- stats: anniStoria, tenuteStoriche, ettariVigneti, annoCertificazione
 
 ## SOSTITUZIONE TESTO CON CONTESTO
 
@@ -542,13 +557,15 @@ Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo.`,
    * Carica il contesto corrente - contenuti dinamici
    */
   private async loadCurrentContext(): Promise<any> {
-    const [wines, tenute, experiences, news, homeContent, storiaContent] = await Promise.all([
+    const [wines, tenute, experiences, news, homeContent, storiaContent, metodoContent, sostenibilitaContent] = await Promise.all([
       contentService.read('wines').catch(() => null),
       contentService.read('tenute').catch(() => null),
       contentService.read('experiences').catch(() => null),
       contentService.read('news').catch(() => null),
       contentService.read('pages/home').catch(() => null),
       contentService.read('pages/storia').catch(() => null),
+      contentService.read('pages/metodo').catch(() => null),
+      contentService.read('pages/sostenibilita').catch(() => null),
     ]);
 
     return {
@@ -559,6 +576,8 @@ Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo.`,
       pages: {
         home: homeContent,
         storia: storiaContent,
+        metodo: metodoContent,
+        sostenibilita: sostenibilitaContent,
       },
     };
   }

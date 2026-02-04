@@ -6,6 +6,8 @@ import tenuteData from '../content/tenute.json';
 import experiencesData from '../content/experiences.json';
 import homeData from '../content/pages/home.json';
 import storiaData from '../content/pages/storia.json';
+import metodoData from '../content/pages/metodo.json';
+import sostenibilitaData from '../content/pages/sostenibilita.json';
 import settingsData from '../content/settings.json';
 import newsData from '../content/news.json';
 
@@ -173,6 +175,46 @@ export function useStoriaContent() {
   useEffect(() => {
     if (isCmsPreview()) {
       fetch(`${CMS_API_URL}/api/content/pages/storia`)
+        .then(res => res.json())
+        .then(data => {
+          if (data) setContent(data);
+        })
+        .catch(console.error);
+    }
+  }, []);
+
+  return content;
+}
+
+/**
+ * Hook per caricare i contenuti della pagina metodo
+ */
+export function useMetodoContent() {
+  const [content, setContent] = useState(metodoData);
+
+  useEffect(() => {
+    if (isCmsPreview()) {
+      fetch(`${CMS_API_URL}/api/content/pages/metodo`)
+        .then(res => res.json())
+        .then(data => {
+          if (data) setContent(data);
+        })
+        .catch(console.error);
+    }
+  }, []);
+
+  return content;
+}
+
+/**
+ * Hook per caricare i contenuti della pagina sostenibilita
+ */
+export function useSostenibilitaContent() {
+  const [content, setContent] = useState(sostenibilitaData);
+
+  useEffect(() => {
+    if (isCmsPreview()) {
+      fetch(`${CMS_API_URL}/api/content/pages/sostenibilita`)
         .then(res => res.json())
         .then(data => {
           if (data) setContent(data);

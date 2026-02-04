@@ -10,7 +10,7 @@ console.log('[ContentService] __dirname:', __dirname);
 console.log('[ContentService] CONTENT_PATH:', CONTENT_PATH);
 console.log('[ContentService] env.CONTENT_PATH:', process.env.CONTENT_PATH);
 
-export type ContentType = 'wines' | 'tenute' | 'experiences' | 'news' | 'settings' | 'pages/home' | 'pages/storia';
+export type ContentType = 'wines' | 'tenute' | 'experiences' | 'news' | 'settings' | 'pages/home' | 'pages/storia' | 'pages/metodo' | 'pages/sostenibilita';
 
 interface ContentMeta {
   lastModified: string;
@@ -182,6 +182,8 @@ export class ContentService {
       'settings',
       'pages/home',
       'pages/storia',
+      'pages/metodo',
+      'pages/sostenibilita',
     ];
 
     const results = await Promise.all(

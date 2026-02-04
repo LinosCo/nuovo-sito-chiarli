@@ -1,0 +1,68 @@
+{
+  "hero": {
+    "label": "Il Nostro Metodo",
+    "title": "Preservare l'identità del Lambrusco",
+    "subtitle": "Il metodo Charmat: l'evoluzione del Lambrusco"
+  },
+  "innovazione": {
+    "label": "L'Innovazione",
+    "titleLine1": "L'Innovazione",
+    "titleLine2": "degli Anni '50",
+    "description": "Negli anni '50, la famiglia Chiarli ha rivoluzionato la produzione installando i primi autoclavi per il metodo Charmat, conferendo al Lambrusco una nuova identità.",
+    "quote": "I vini risultavano più freschi e puliti, con una scarsa attitudine all'invecchiamento dovuta ai pochi tannini naturali del Lambrusco, ma con un'espressione aromatica senza precedenti."
+  },
+  "vinificazione": {
+    "label": "La Vinificazione",
+    "titleLine1": "Il Processo di",
+    "titleLine2": "Vinificazione",
+    "description": "Il metodo Charmat prevede due fermentazioni: la prima alcolica dopo la pigiatura, seguita da conservazione fino alla presa di spuma.",
+    "quote": "Dopo un breve affinamento, il vino procede all'imbottigliamento, pronto per esprimere al meglio le caratteristiche del vitigno e del territorio."
+  },
+  "freschezza": {
+    "label": "L'Autenticità",
+    "titleLine1": "Freschezza e",
+    "titleLine2": "Autenticità",
+    "description": "I vini imbottigliati subito dopo la vendemmia restituivano l'identità più autentica del Lambrusco.",
+    "quote": "La famiglia Chiarli ha perfezionato la vinificazione per ottenere un vino che sembrasse appena fermentato durante tutto l'anno, estendendone conservabilità e apprezzamento mondiale."
+  },
+  "unicita": {
+    "label": "L'Unicità",
+    "titleLine1": "L'Unicità del",
+    "titleLine2": "Metodo Chiarli",
+    "description1": "Il metodo richiede grande competenza. Le uve vengono pressate e macerate brevemente a freddo sulle bucce.",
+    "description2": "Il mosto non fermentato viene raffreddato in serbatoi refrigerati preservando gli zuccheri naturali.",
+    "quote": "La presa di spuma avviene in autoclave utilizzando mosto fresco non fermentato, garantendo freschezza, profumi e ricchezza aromatica nel tempo.",
+    "ctaText": "Scopri i nostri vini"
+  },
+  "fasi": {
+    "label": "Il Processo",
+    "title": "Le Fasi del Metodo",
+    "subtitle": "Un processo studiato nei minimi dettagli per esaltare le caratteristiche del Lambrusco",
+    "steps": [
+      {
+        "title": "Pressatura",
+        "description": "Le uve vengono pressate e macerate brevemente a freddo sulle bucce",
+        "detail": "Questo passaggio fondamentale preserva i profumi naturali dell'uva e garantisce la massima espressione aromatica del Lambrusco."
+      },
+      {
+        "title": "Refrigerazione",
+        "description": "Il mosto viene raffreddato in serbatoi preservando gli zuccheri naturali",
+        "detail": "La refrigerazione controllata blocca la fermentazione naturale mantenendo intatti gli zuccheri e gli aromi del frutto."
+      },
+      {
+        "title": "Presa di Spuma",
+        "description": "Fermentazione in autoclave con mosto fresco non fermentato",
+        "detail": "Il cuore del metodo Charmat: la rifermentazione in autoclave crea le bollicine caratteristiche del Lambrusco."
+      },
+      {
+        "title": "Imbottigliamento",
+        "description": "Breve affinamento seguito dall'imbottigliamento per preservare la freschezza",
+        "detail": "L'imbottigliamento rapido cattura la freschezza e i profumi del vino, mantenendone intatte tutte le qualità."
+      }
+    ]
+  },
+  "_meta": {
+    "lastModified": "2026-02-04T12:00:00.000Z",
+    "modifiedBy": "system"
+  }
+}

@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Droplet } from 'lucide-react';
+import { useSostenibilitaContent } from '../hooks/useContent';
 
 interface SostenibilitaPageProps {
   onBack?: () => void;
 }
 
 export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) => {
+  const content = useSostenibilitaContent();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const [statsVisible, setStatsVisible] = useState(false);
   const statsRef = useRef<HTMLElement>(null);
   const [counters, setCounters] = useState({ years: 0, tenute: 0, ettari: 0, cert: 2000 });
+  const targetStats = content.stats;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,15 +50,20 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
             const progress = currentStep / steps;
 
             setCounters({
-              years: Math.floor(160 * progress),
-              tenute: Math.floor(3 * progress),
-              ettari: Math.floor(195 * progress),
-              cert: Math.floor(2000 + 25 * progress)
+              years: Math.floor(targetStats.anniStoria * progress),
+              tenute: Math.floor(targetStats.tenuteStoriche * progress),
+              ettari: Math.floor(targetStats.ettariVigneti * progress),
+              cert: Math.floor(2000 + (targetStats.annoCertificazione - 2000) * progress)
             });
 
             if (currentStep >= steps) {
               clearInterval(interval);
-              setCounters({ years: 160, tenute: 3, ettari: 195, cert: 2025 });
+              setCounters({
+                years: targetStats.anniStoria,
+                tenute: targetStats.tenuteStoriche,
+                ettari: targetStats.ettariVigneti,
+                cert: targetStats.annoCertificazione
+              });
             }
           }, stepDuration);
         }
@@ -91,17 +99,17 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-32 text-center">
           {/* Label */}
           <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white mb-6 block animate-fade-in" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
-            Il Nostro Impegno
+            {content.hero.label}
           </span>
 
           {/* Title with text shadow */}
           <h1 className="font-serif text-6xl md:text-8xl text-white mb-8 leading-none animate-fade-in-up" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)' }}>
-            Sostenibilità in <span className="italic text-chiarli-wine-light">Equilibrio</span>
+            {content.hero.title.split('Equilibrio')[0]}<span className="italic text-chiarli-wine-light">Equilibrio</span>
           </h1>
 
           {/* Subtitle */}
           <p className="font-sans text-xl md:text-2xl text-white max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '200ms', textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)' }}>
-            Per Cleto Chiarli, la sostenibilità è un percorso che si costruisce nel tempo, con attenzione, competenza e rispetto per il territorio.
+            {content.hero.subtitle}
           </p>
 
         </div>
@@ -130,20 +138,20 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
           <div className="flex items-center py-16 md:py-24 lg:py-0">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block">
-                Adattamento
+                {content.portainnesti.label}
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
-                <span className="block">Portainnesti</span>
-                <span className="italic text-chiarli-wine-light block">Differenziati</span>
+                <span className="block">{content.portainnesti.titleLine1}</span>
+                <span className="italic text-chiarli-wine-light block">{content.portainnesti.titleLine2}</span>
               </h2>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-                Nei vigneti sotto-collinari utilizziamo portainnesti scelti in funzione della resistenza alla siccità, adattando le piante alle condizioni specifiche del terreno.
+                {content.portainnesti.description}
               </p>
 
               <p className="font-serif italic text-xl text-white/70 border-l-2 border-white/30 pl-6 mb-10">
-                Questa scelta agronomica permette alle viti di svilupparsi in armonia con l'ambiente, riducendo la necessità di interventi esterni e garantendo la massima espressione del terroir.
+                {content.portainnesti.quote}
               </p>
             </div>
           </div>
@@ -157,20 +165,20 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
           <div className="flex items-center py-16 md:py-24 lg:py-0">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-6 block">
-                Tecnologia
+                {content.agricoltura40.label}
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                <span className="block">Agricoltura</span>
-                <span className="italic text-chiarli-wine block">4.0</span>
+                <span className="block">{content.agricoltura40.titleLine1}</span>
+                <span className="italic text-chiarli-wine block">{content.agricoltura40.titleLine2}</span>
               </h2>
 
               <p className="font-sans text-chiarli-text/70 text-lg leading-relaxed mb-8 max-w-lg">
-                Stazioni meteo e sensori guidano le nostre decisioni agronomiche, ottimizzando l'uso delle risorse e riducendo l'impatto ambientale.
+                {content.agricoltura40.description}
               </p>
 
               <p className="font-serif italic text-xl text-chiarli-text/70 border-l-2 border-chiarli-wine/30 pl-6 mb-10">
-                La tecnologia al servizio della tradizione: raccogliamo dati in tempo reale su temperatura, umidità e composizione del suolo per intervenire solo quando necessario.
+                {content.agricoltura40.quote}
               </p>
             </div>
           </div>
@@ -204,20 +212,20 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
           <div className="flex items-center py-16 md:py-24 lg:py-0">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block">
-                Sperimentazione
+                {content.biologico.label}
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
-                <span className="block">Coltivazione</span>
-                <span className="italic text-chiarli-wine-light block">Biologica</span>
+                <span className="block">{content.biologico.titleLine1}</span>
+                <span className="italic text-chiarli-wine-light block">{content.biologico.titleLine2}</span>
               </h2>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-                Palestre di coltivazione biologica a scala controllata, dove sperimentiamo e perfezioniamo pratiche sostenibili.
+                {content.biologico.description}
               </p>
 
               <p className="font-serif italic text-xl text-white/70 border-l-2 border-white/30 pl-6 mb-10">
-                Ogni parcella diventa un laboratorio a cielo aperto dove testiamo nuove tecniche di gestione organica del vigneto.
+                {content.biologico.quote}
               </p>
             </div>
           </div>
@@ -231,20 +239,20 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
           <div className="flex items-center py-16 md:py-24 lg:py-0">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-6 block">
-                Impegno Formale
+                {content.certificazione.label}
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                <span className="block">Certificazione</span>
-                <span className="italic text-chiarli-wine block">Equalitas 2025</span>
+                <span className="block">{content.certificazione.titleLine1}</span>
+                <span className="italic text-chiarli-wine block">{content.certificazione.titleLine2}</span>
               </h2>
 
               <p className="font-sans text-chiarli-text/70 text-lg leading-relaxed mb-8 max-w-lg">
-                Percorso di certificazione Equalitas nel 2025 per l'intero Gruppo Chiarli 1860, con focus su buone pratiche economiche, sociali e ambientali.
+                {content.certificazione.description}
               </p>
 
               <p className="font-serif italic text-xl text-chiarli-text/70 border-l-2 border-chiarli-wine/30 pl-6 mb-10">
-                Un impegno formale che attesta la nostra dedizione verso la sostenibilità in tutte le sue dimensioni, dalla vigna alla bottiglia.
+                {content.certificazione.quote}
               </p>
             </div>
           </div>
@@ -289,23 +297,23 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
             {/* Text */}
             <div className="order-1 lg:order-2">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block">
-                La Nostra Filosofia
+                {content.filosofia.label}
               </span>
 
               <h2 className="font-serif text-5xl md:text-6xl text-white mb-8 leading-tight">
-                Un'immersione nella <span className="italic text-chiarli-wine-light">storia familiare</span>
+                {content.filosofia.title.split('storia familiare')[0]}<span className="italic text-chiarli-wine-light">storia familiare</span>
               </h2>
 
               <p className="font-sans text-white/80 text-lg leading-relaxed mb-6">
-                Dal 1860, la famiglia Chiarli coltiva la vite con dedizione e passione. Ogni generazione ha aggiunto il proprio contributo, innovando nel rispetto della tradizione e del territorio.
+                {content.filosofia.description1}
               </p>
 
               <p className="font-sans text-white/80 text-lg leading-relaxed mb-8">
-                La sostenibilità non è per noi una moda, ma un impegno concreto che si traduce in scelte quotidiane, investimenti in ricerca e sviluppo, e una costante attenzione all'evoluzione delle migliori pratiche agricole.
+                {content.filosofia.description2}
               </p>
 
               <a href="#/metodo" className="inline-flex items-center gap-3 text-chiarli-wine-light font-sans text-sm font-bold uppercase tracking-widest group cursor-pointer hover:text-white transition-colors duration-300">
-                <span>Il Metodo Chiarli</span>
+                <span>{content.filosofia.ctaText}</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
               </a>
             </div>

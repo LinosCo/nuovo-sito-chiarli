@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Droplet, Snowflake, Sparkles, Wine } from 'lucide-react';
+import { useMetodoContent } from '../hooks/useContent';
 
 interface MetodoPageProps {
   onBack?: () => void;
 }
 
 export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
+  const content = useMetodoContent();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState<number | null>(null);
@@ -62,17 +64,17 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-32 text-center">
           {/* Label */}
           <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white mb-6 block animate-fade-in" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
-            Il Nostro Metodo
+            {content.hero.label}
           </span>
 
           {/* Title */}
           <h1 className="font-serif text-6xl md:text-8xl text-white mb-8 leading-none animate-fade-in-up" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)' }}>
-            Preservare l'identità del <span className="italic text-chiarli-wine-light">Lambrusco</span>
+            {content.hero.title.split('Lambrusco')[0]}<span className="italic text-chiarli-wine-light">Lambrusco</span>
           </h1>
 
           {/* Subtitle */}
           <p className="font-sans text-xl md:text-2xl text-white max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '200ms', textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)' }}>
-            Il metodo Charmat: l'evoluzione del Lambrusco
+            {content.hero.subtitle}
           </p>
 
         </div>
@@ -91,20 +93,20 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           <div className="flex items-center py-16 md:py-24 lg:py-0">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block">
-                L'Innovazione
+                {content.innovazione.label}
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
-                <span className="block">L'Innovazione</span>
-                <span className="italic text-chiarli-wine-light block">degli Anni '50</span>
+                <span className="block">{content.innovazione.titleLine1}</span>
+                <span className="italic text-chiarli-wine-light block">{content.innovazione.titleLine2}</span>
               </h2>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-                Negli anni '50, la famiglia Chiarli ha rivoluzionato la produzione installando i primi autoclavi per il metodo Charmat, conferendo al Lambrusco una nuova identità.
+                {content.innovazione.description}
               </p>
 
               <p className="font-serif italic text-xl text-white/70 border-l-2 border-white/30 pl-6 mb-10">
-                I vini risultavano più freschi e puliti, con una scarsa attitudine all'invecchiamento dovuta ai pochi tannini naturali del Lambrusco, ma con un'espressione aromatica senza precedenti.
+                {content.innovazione.quote}
               </p>
             </div>
           </div>
@@ -138,20 +140,20 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           <div className="flex items-center py-16 md:py-24 lg:py-0 order-2 lg:order-2">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-6 block">
-                La Vinificazione
+                {content.vinificazione.label}
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                <span className="block">Il Processo di</span>
-                <span className="italic text-chiarli-wine block">Vinificazione</span>
+                <span className="block">{content.vinificazione.titleLine1}</span>
+                <span className="italic text-chiarli-wine block">{content.vinificazione.titleLine2}</span>
               </h2>
 
               <p className="font-sans text-chiarli-text/70 text-lg leading-relaxed mb-8 max-w-lg">
-                Il metodo Charmat prevede due fermentazioni: la prima alcolica dopo la pigiatura, seguita da conservazione fino alla presa di spuma.
+                {content.vinificazione.description}
               </p>
 
               <p className="font-serif italic text-xl text-chiarli-text/70 border-l-2 border-chiarli-wine/30 pl-6 mb-10">
-                Dopo un breve affinamento, il vino procede all'imbottigliamento, pronto per esprimere al meglio le caratteristiche del vitigno e del territorio.
+                {content.vinificazione.quote}
               </p>
             </div>
           </div>
@@ -165,20 +167,20 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           <div className="flex items-center py-16 md:py-24 lg:py-0">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block">
-                L'Autenticità
+                {content.freschezza.label}
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
-                <span className="block">Freschezza e</span>
-                <span className="italic text-chiarli-wine-light block">Autenticità</span>
+                <span className="block">{content.freschezza.titleLine1}</span>
+                <span className="italic text-chiarli-wine-light block">{content.freschezza.titleLine2}</span>
               </h2>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-                I vini imbottigliati subito dopo la vendemmia restituivano l'identità più autentica del Lambrusco.
+                {content.freschezza.description}
               </p>
 
               <p className="font-serif italic text-xl text-white/70 border-l-2 border-white/30 pl-6 mb-10">
-                La famiglia Chiarli ha perfezionato la vinificazione per ottenere un vino che sembrasse appena fermentato durante tutto l'anno, estendendone conservabilità e apprezzamento mondiale.
+                {content.freschezza.quote}
               </p>
             </div>
           </div>
@@ -217,28 +219,28 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           <div className="flex items-center py-16 md:py-24 lg:py-0">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-6 block">
-                L'Unicità
+                {content.unicita.label}
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                <span className="block">L'Unicità del</span>
-                <span className="italic text-chiarli-wine block">Metodo Chiarli</span>
+                <span className="block">{content.unicita.titleLine1}</span>
+                <span className="italic text-chiarli-wine block">{content.unicita.titleLine2}</span>
               </h2>
 
               <p className="font-sans text-chiarli-text/70 text-lg leading-relaxed mb-8 max-w-lg">
-                Il metodo richiede grande competenza. Le uve vengono pressate e macerate brevemente a freddo sulle bucce.
+                {content.unicita.description1}
               </p>
 
               <p className="font-sans text-chiarli-text/70 text-lg leading-relaxed mb-8 max-w-lg">
-                Il mosto non fermentato viene raffreddato in serbatoi refrigerati preservando gli zuccheri naturali.
+                {content.unicita.description2}
               </p>
 
               <p className="font-serif italic text-xl text-chiarli-text/70 border-l-2 border-chiarli-wine/30 pl-6 mb-10">
-                La presa di spuma avviene in autoclave utilizzando mosto fresco non fermentato, garantendo <strong className="text-chiarli-wine">freschezza, profumi e ricchezza aromatica</strong> nel tempo.
+                {content.unicita.quote}
               </p>
 
               <a href="#vini" className="inline-flex items-center gap-3 text-chiarli-wine font-sans text-sm font-bold uppercase tracking-widest group">
-                <span>Scopri i nostri vini</span>
+                <span>{content.unicita.ctaText}</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
               </a>
             </div>
@@ -262,13 +264,13 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
 
           <div className="text-center mb-20">
             <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block">
-              Il Processo
+              {content.fasi.label}
             </span>
             <h2 className="font-serif text-5xl md:text-6xl text-white mb-6">
-              Le Fasi del <span className="italic text-chiarli-wine-light">Metodo</span>
+              {content.fasi.title.split('Metodo')[0]}<span className="italic text-chiarli-wine-light">Metodo</span>
             </h2>
             <p className="font-sans text-white/70 text-lg max-w-2xl mx-auto">
-              Un processo studiato nei minimi dettagli per esaltare le caratteristiche del Lambrusco
+              {content.fasi.subtitle}
             </p>
           </div>
 
@@ -333,13 +335,13 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                   </div>
 
                   <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
-                    Pressatura
+                    {content.fasi.steps[0].title}
                   </h3>
 
                   <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
                     activeStep === 1 ? 'text-white' : ''
                   }`}>
-                    Le uve vengono pressate e macerate brevemente a freddo sulle bucce
+                    {content.fasi.steps[0].description}
                   </p>
 
                   {/* Expanded Content */}
@@ -348,7 +350,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                   }`}>
                     <div className="pt-4 border-t border-white/20">
                       <p className="font-sans text-sm text-white/80 leading-relaxed">
-                        Questo passaggio fondamentale preserva i profumi naturali dell'uva e garantisce la massima espressione aromatica del Lambrusco.
+                        {content.fasi.steps[0].detail}
                       </p>
                     </div>
                   </div>
@@ -397,13 +399,13 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                   </div>
 
                   <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
-                    Refrigerazione
+                    {content.fasi.steps[1].title}
                   </h3>
 
                   <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
                     activeStep === 2 ? 'text-white' : ''
                   }`}>
-                    Il mosto viene raffreddato in serbatoi preservando gli zuccheri naturali
+                    {content.fasi.steps[1].description}
                   </p>
 
                   <div className={`relative overflow-hidden transition-all duration-500 ${
@@ -411,7 +413,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                   }`}>
                     <div className="pt-4 border-t border-white/20">
                       <p className="font-sans text-sm text-white/80 leading-relaxed">
-                        La refrigerazione controllata blocca la fermentazione naturale mantenendo intatti gli zuccheri e gli aromi del frutto.
+                        {content.fasi.steps[1].detail}
                       </p>
                     </div>
                   </div>
@@ -460,13 +462,13 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                   </div>
 
                   <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
-                    Presa di Spuma
+                    {content.fasi.steps[2].title}
                   </h3>
 
                   <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
                     activeStep === 3 ? 'text-white' : ''
                   }`}>
-                    Fermentazione in autoclave con mosto fresco non fermentato
+                    {content.fasi.steps[2].description}
                   </p>
 
                   <div className={`relative overflow-hidden transition-all duration-500 ${
@@ -474,7 +476,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                   }`}>
                     <div className="pt-4 border-t border-white/20">
                       <p className="font-sans text-sm text-white/80 leading-relaxed">
-                        Il cuore del metodo Charmat: la rifermentazione in autoclave crea le bollicine caratteristiche del Lambrusco.
+                        {content.fasi.steps[2].detail}
                       </p>
                     </div>
                   </div>
@@ -523,13 +525,13 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                   </div>
 
                   <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
-                    Imbottigliamento
+                    {content.fasi.steps[3].title}
                   </h3>
 
                   <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
                     activeStep === 4 ? 'text-white' : ''
                   }`}>
-                    Breve affinamento seguito dall'imbottigliamento per preservare la freschezza
+                    {content.fasi.steps[3].description}
                   </p>
 
                   <div className={`relative overflow-hidden transition-all duration-500 ${
@@ -537,7 +539,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                   }`}>
                     <div className="pt-4 border-t border-white/20">
                       <p className="font-sans text-sm text-white/80 leading-relaxed">
-                        L'imbottigliamento rapido cattura la freschezza e i profumi del vino, mantenendone intatte tutte le qualità.
+                        {content.fasi.steps[3].detail}
                       </p>
                     </div>
                   </div>
