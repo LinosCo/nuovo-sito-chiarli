@@ -444,12 +444,31 @@ export class ClaudeService {
             // Git commit sarà fatto dal bottone "Pubblica"
             return { success: true, data: updated };
           } else {
-            // Aggiorna campi
-            const fieldPath = Object.keys(action.data)[0];
+            // Aggiorna campi per pages
+            console.log('[ClaudeService] executeAction update data:', JSON.stringify(action.data));
+
+            // Supporta due formati:
+            // 1. { "hero.subtitle": "valore" } - formato con dot notation
+            // 2. { fieldPath: "hero.subtitle", value: "valore" } - formato esplicito
+            let fieldPath: string;
+            let value: any;
+
+            if (action.data.fieldPath && action.data.value !== undefined) {
+              // Formato esplicito
+              fieldPath = action.data.fieldPath;
+              value = action.data.value;
+            } else {
+              // Formato dot notation
+              fieldPath = Object.keys(action.data)[0];
+              value = action.data[fieldPath];
+            }
+
+            console.log(`[ClaudeService] Updating ${action.contentType} field "${fieldPath}" to:`, value);
+
             const updated = await contentService.updateFields(
               action.contentType,
               fieldPath,
-              action.data[fieldPath],
+              value,
               'cliente'
             );
             // Git commit sarà fatto dal bottone "Pubblica"
