@@ -439,6 +439,8 @@ Per favore, applica questo contenuto.`;
       const pageMap: Record<string, string> = {
         '/': 'home',
         '/storia': 'storia',
+        '/metodo': 'metodo',
+        '/sostenibilita': 'sostenibilita',
         '/esperienze': 'esperienze',
         '/blog': 'blog',
         '/tutti-i-vini': 'vini',
