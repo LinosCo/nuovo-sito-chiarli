@@ -9,10 +9,7 @@
       "description": "Il nostro cru più prestigioso. Eleganza e complessità uniche.",
       "image": "/foto/001-uai-720x1080.png",
       "format": "0.75L",
-      "tags": [
-        "Premium",
-        "DOC"
-      ],
+      "tags": ["Premium", "DOC"],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -31,26 +28,76 @@
       "id": 2,
       "slug": "vecchia-modena",
       "name": "Vecchia Modena",
+      "subtitle": "Premium",
       "denomination": "Lambrusco di Sorbara DOC",
-      "family": "Metodo Classico",
-      "description": "Fragranza e florealità tipiche del Sorbara. Un classico intramontabile.",
-      "image": "/foto/002-uai-720x1080.png",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "grape": "Sorbara da selezione massale",
+      "description": "Il Vecchia Modena Premium non è solo una bottiglia; è una rivoluzione. È stato il primo Sorbara a conquistare i tavoli dell'alta ristorazione, infrangendo il mito del Lambrusco come vino semplice e stucchevole. Rappresenta l'espressione secca, luminosa e profonda dell'eredità Chiarli: un ponte perfetto tra la tradizione del 1890 e il palato contemporaneo.",
+      "image": "/foto/vecchia-modena-premium.png",
       "format": "0.75L",
-      "tags": [
-        "Sorbara",
-        "DOC"
-      ],
+      "tags": ["Sorbara", "DOC", "Premium", "Secco"],
       "price": null,
       "year": null,
-      "alcohol": null,
-      "servingTemp": null,
-      "pairings": [],
-      "awards": [],
+      "alcohol": "11,5% Vol.",
+      "servingTemp": "8° - 10° C",
+      "vinification": "Vinificazione da solo mosto fiore, selezione massale dal vigneto Sozzigalli. Perlage fine e persistente.",
+      "pairings": [
+        "Piatti Tipici Emiliani",
+        "Tonno Nigiri",
+        "Pollo arrosto alle erbe con patate novelle",
+        "Cous cous alle verdure, erbe e agrumi",
+        "Cappelletti in brodo leggero",
+        "Salmone marinato con aneto, senape dolce"
+      ],
+      "awards": [
+        {
+          "name": "CSWW",
+          "score": "World Champion Sparkling Red 2023",
+          "year": "2024"
+        },
+        { "name": "Gambero Rosso", "score": "3 Bicchieri 2022" },
+        {
+          "name": "Wine Enthusiast",
+          "score": "91 Points 2024",
+          "year": "2023"
+        },
+        { "name": "Falstaff", "score": "92 Points 2024" },
+        { "name": "Bibenda", "score": "5 Grappoli 2023" },
+        { "name": "Vini Buoni d'Italia", "score": "Eccellenza Corona 2024" }
+      ],
       "tastingNotes": {
-        "aspetto": null,
-        "profumo": null,
-        "gusto": null
+        "aspetto": "Un rosa profondo e brillante, che rispecchia la naturale trasparenza ed eleganza dell'uva Sorbara.",
+        "profumo": "Immediato e definito. Le note di testa di fragola e ciliegia croccante evolvono in sentori di sottobosco, melograno e un tocco delicato di rosa canina. Un bouquet pulito, vibrante ed espressivo.",
+        "gusto": "Teso e dinamico. Il sorso è guidato da una freschezza netta e da una vena minerale che scandisce il ritmo della beva. La trama è sorprendentemente vellutata, con un finale asciutto ed elegante che torna su leggere note fruttate, invitando a un secondo calice."
       },
+      "heritage": "L'etichetta \"Vecchia Modena\" è la più antica testimonianza conosciuta di un Lambrusco imbottigliato (1890). Dopo aver definito la categoria per decenni, la versione Premium rinasce nei primi anni Duemila dalla visione della cantina Cleto Chiarli. Attraverso la valorizzazione del vigneto Sozzigalli e una rigorosa vinificazione da solo mosto fiore, abbiamo restituito al Sorbara la sua identità più autentica: freschezza, finezza e precisione.",
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Lambrusco di Sorbara DOC"
+        },
+        {
+          "label": "Vitigno",
+          "value": "Sorbara da selezione massale"
+        },
+        {
+          "label": "Gradazione",
+          "value": "11,5% Vol."
+        },
+        {
+          "label": "Caratteristiche",
+          "value": "Dry Secco | Perlage fine e persistente"
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "8° - 10° C"
+        },
+        {
+          "label": "Formato",
+          "value": "0,75L"
+        }
+      ],
       "isActive": true,
       "order": 2
     },
@@ -63,10 +110,7 @@
       "description": "Un Lambrusco moderno, secco e pulito. Perfetto con la gastronomia contemporanea.",
       "image": "/foto/003-uai-720x1080.png",
       "format": "0.75L",
-      "tags": [
-        "Dry",
-        "Moderno"
-      ],
+      "tags": ["Dry", "Moderno"],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -91,11 +135,7 @@
       "description": "Un patrimonio enologico che riflette il metodo ancestrale utilizzato da Cleto Chiarli dal 1860. La rifermentazione in bottiglia dona eleganza, freschezza e finezza uniche.",
       "image": "/foto/005-uai-720x1080.png",
       "format": "0.75L",
-      "tags": [
-        "Metodo Ancestrale",
-        "DOC",
-        "Rosé"
-      ],
+      "tags": ["Metodo Ancestrale", "DOC", "Rosé"],
       "price": null,
       "year": null,
       "alcohol": 12,
@@ -181,10 +221,7 @@
       "description": "Amabile. Il vino della tradizione modenese, morbido e avvolgente.",
       "image": "/foto/006-uai-720x1080.png",
       "format": "0.75L",
-      "tags": [
-        "Amabile",
-        "Storico"
-      ],
+      "tags": ["Amabile", "Storico"],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -209,11 +246,7 @@
       "description": "Un patrimonio enologico che riflette il metodo ancestrale utilizzato da Cleto Chiarli dal 1860. La rifermentazione in bottiglia dona eleganza, freschezza e finezza uniche.",
       "image": "/foto/rose-de-noir-main.png",
       "format": "0.75L",
-      "tags": [
-        "Metodo Ancestrale",
-        "DOC",
-        "Rosé"
-      ],
+      "tags": ["Metodo Ancestrale", "DOC", "Rosé"],
       "price": null,
       "year": null,
       "alcohol": "12% vol.",
@@ -310,10 +343,7 @@
       "description": "Vino Biologico. L'espressione naturale del territorio.",
       "image": "/foto/008-1-uai-720x1080.png",
       "format": "0.75L",
-      "tags": [
-        "Bio",
-        "Organic"
-      ],
+      "tags": ["Bio", "Organic"],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -337,10 +367,7 @@
       "description": "La nostra cuvée speciale. Un blend che esprime il meglio delle nostre uve.",
       "image": "/foto/PHOTO-2025-10-22-14-49-54-senza-sfondo-uai-720x1080.png",
       "format": "0.75L",
-      "tags": [
-        "Cuvée",
-        "Premium"
-      ],
+      "tags": ["Cuvée", "Premium"],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -363,11 +390,7 @@
       "description": "Un Pignoletto frizzante di grande eleganza dalla storica Tenuta Villa Cialdini. Fresco, vivace e perfetto per ogni occasione.",
       "image": null,
       "format": "0.75L",
-      "tags": [
-        "Pignoletto",
-        "DOC",
-        "Frizzante"
-      ],
+      "tags": ["Pignoletto", "DOC", "Frizzante"],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -391,11 +414,7 @@
       "description": "Un Pignoletto frizzante di grande eleganza dalla storica Tenuta Villa Cialdini. Fresco, vivace e perfetto per ogni occasione.",
       "image": "/uploads/gallery/Screenshot 2025-12-17 alle 10.30.18-3d84419f.webp",
       "format": "0.75L",
-      "tags": [
-        "Pignoletto",
-        "DOC",
-        "Frizzante"
-      ],
+      "tags": ["Pignoletto", "DOC", "Frizzante"],
       "price": null,
       "year": null,
       "alcohol": null,
@@ -423,12 +442,7 @@
       "description": "Gusto secco e sapido, piacevole bouquet, spuma fine ed evanescente, colore chiaro e vivace.",
       "image": "/foto/lambrusco-sorbara-doc.png",
       "format": "0.75L",
-      "tags": [
-        "Sorbara",
-        "DOC",
-        "Metodo Ancestrale",
-        "Brut"
-      ],
+      "tags": ["Sorbara", "DOC", "Metodo Ancestrale", "Brut"],
       "price": null,
       "year": null,
       "alcohol": "11,5% vol.",
@@ -665,11 +679,7 @@
       "description": "Il Rosé Brut di Villa Cialdini è un invito alla leggerezza consapevole. Nasce da uve Grasparossa coltivate intorno alla storica tenuta e interpreta il lato più luminoso e conviviale del Lambrusco. È un vino pensato per i momenti spontanei, per le tavole che si aprono senza formalità, per chi cerca freschezza e carattere in equilibrio naturale. Il suo stile è diretto, autentico, profondamente legato al territorio, ma con uno sguardo contemporaneo.\nNel bicchiere si distingue per il colore rosa vivo e la spuma dinamica, che anticipano un sorso agile e piacevole. È uno spumante che accompagna senza sovrastare, capace di rendere speciale anche l'occasione più semplice. Un classico quotidiano, elegante senza ostentazione.",
       "image": "/foto/villa-cialdini-rose-de-noir.png",
       "format": "0.75L",
-      "tags": [
-        "Rosé",
-        "DOC",
-        "Metodo Charmat"
-      ],
+      "tags": ["Rosé", "DOC", "Metodo Charmat"],
       "price": null,
       "year": null,
       "alcohol": "12% vol.",
@@ -723,12 +733,7 @@
       "description": "Il Vigneto Cialdini rappresenta l'anima più intensa e profonda del Lambrusco. Nasce dalle vigne che circondano la storica Villa Cialdini, dove il Grasparossa esprime tutta la sua forza in equilibrio con eleganza e bevibilità. È un vino che parla di territorio, di stagioni, di una viticoltura attenta che privilegia maturità e carattere.\nA differenza delle interpretazioni più immediate, Vigneto Cialdini racconta un Lambrusco strutturato ma misurato, pensato per la tavola e per chi cerca un sorso autentico, capace di accompagnare la cucina emiliana senza perdere dinamismo.",
       "image": "/foto/vigneto-cialdini-grasparossa.png",
       "format": "0.75L",
-      "tags": [
-        "Grasparossa",
-        "DOC",
-        "Brut",
-        "Collezione Classica"
-      ],
+      "tags": ["Grasparossa", "DOC", "Brut", "Collezione Classica"],
       "price": null,
       "year": null,
       "alcohol": "11% vol.",

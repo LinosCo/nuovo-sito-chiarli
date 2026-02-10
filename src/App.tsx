@@ -151,12 +151,11 @@ function AppContent() {
         {/* Logo and loading animation */}
         <div className="relative z-10 text-center">
           <div className="mb-8">
-            <h1 className="font-serif text-5xl md:text-6xl text-white mb-2">
-              <span className="italic text-chiarli-wine-light">Cleto</span> Chiarli
-            </h1>
-            <p className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-white/40">
-              Dal 1860
-            </p>
+            <img
+              src="/foto/cletochiarli-2-01.svg"
+              alt="Cleto Chiarli"
+              className="h-16 md:h-20 mx-auto"
+            />
           </div>
 
           {/* Loading bar */}

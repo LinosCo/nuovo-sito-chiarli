@@ -63,9 +63,9 @@ const EmiliaRomagnaMapLight: React.FC<{
   // Posizioni delle tenute sulla mappa aggiornata
   // La regione grande occupa la maggior parte dello spazio a destra
   const mapPositions = [
-    { x: 66, y: 52 },   // Castelvetro - poco più a sinistra di Spilamberto
-    { x: 73, y: 30 },   // Bomporto - più a destra di Modena e più alto
-    { x: 70, y: 46 },   // Spilamberto - leggermente a destra di Modena
+    { x: 74, y: 60 },   // Castelvetro - più in basso e a sinistra di Spilamberto
+    { x: 83, y: 18 },   // Bomporto - più a destra e più alto
+    { x: 80, y: 50 },   // Spilamberto - sotto Modena, un po' più a destra
   ];
 
   return (
@@ -78,11 +78,29 @@ const EmiliaRomagnaMapLight: React.FC<{
           className="w-full h-full object-contain opacity-70 scale-125"
         />
 
+        {/* River labels */}
+        <div
+          className="absolute whitespace-nowrap pointer-events-none"
+          style={{ left: '68%', top: '3%' }}
+        >
+          <span className="text-[11px] font-black tracking-widest uppercase" style={{ color: '#1e40af', textShadow: '1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)' }}>
+            Fiume Secchia
+          </span>
+        </div>
+        <div
+          className="absolute whitespace-nowrap pointer-events-none"
+          style={{ left: '65%', top: '75%' }}
+        >
+          <span className="text-[11px] font-black tracking-widest uppercase" style={{ color: '#1e40af', textShadow: '1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)' }}>
+            Fiume Panaro
+          </span>
+        </div>
+
         {/* Pin on regional map showing Modena city location */}
         <div
           className="absolute cursor-default transition-all duration-500"
           style={{
-            left: '67%',
+            left: '76%',
             top: '39%',
             transform: 'translate(-50%, -50%)',
             zIndex: 5,

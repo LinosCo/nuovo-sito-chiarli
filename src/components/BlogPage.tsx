@@ -81,12 +81,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
             Scopri le storie, le tradizioni e le novità dalla cantina Chiarli
           </p>
 
-          {/* Scroll indicator */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-            <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-              <div className="w-1 h-3 bg-white/70 rounded-full animate-pulse" />
-            </div>
-          </div>
         </div>
 
         <style>{`

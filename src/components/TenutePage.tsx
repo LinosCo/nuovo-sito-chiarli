@@ -15,9 +15,9 @@ const EmiliaRomagnaMapDark: React.FC<{
   onPinClick: (index: number) => void;
 }> = ({ tenute, activeIndex, hoveredIndex, onPinHover, onPinClick }) => {
   const mapPositions = [
-    { x: 66, y: 52, labelPosition: 'bottom' as const },
-    { x: 73, y: 30, labelPosition: 'top' as const },
-    { x: 70, y: 46, labelPosition: 'left' as const },
+    { x: 74, y: 60, labelPosition: 'bottom' as const },   // Castelvetro
+    { x: 83, y: 18, labelPosition: 'top' as const },      // Bomporto
+    { x: 80, y: 50, labelPosition: 'left' as const },     // Spilamberto
   ];
 
   const getLabelClasses = (position: 'top' | 'bottom' | 'left' | 'right') => {
@@ -42,11 +42,29 @@ const EmiliaRomagnaMapDark: React.FC<{
           className="w-full h-full object-contain opacity-60 scale-125"
         />
 
+        {/* River labels */}
+        <div
+          className="absolute whitespace-nowrap pointer-events-none"
+          style={{ left: '68%', top: '3%' }}
+        >
+          <span className="text-[11px] font-black tracking-widest uppercase" style={{ color: '#1e40af', textShadow: '1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)' }}>
+            Fiume Secchia
+          </span>
+        </div>
+        <div
+          className="absolute whitespace-nowrap pointer-events-none"
+          style={{ left: '65%', top: '75%' }}
+        >
+          <span className="text-[11px] font-black tracking-widest uppercase" style={{ color: '#1e40af', textShadow: '1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)' }}>
+            Fiume Panaro
+          </span>
+        </div>
+
         {/* Pin on regional map showing Modena city location */}
         <div
           className="absolute cursor-default transition-all duration-500"
           style={{
-            left: '67%',
+            left: '76%',
             top: '39%',
             transform: 'translate(-50%, -50%)',
             zIndex: 5,
@@ -74,8 +92,8 @@ const EmiliaRomagnaMapDark: React.FC<{
         <div
           className="absolute cursor-default transition-all duration-500"
           style={{
-            left: '8%',
-            top: '36%',
+            left: '14%',
+            top: '24%',
             transform: 'translate(-50%, -50%)',
             zIndex: 5,
           }}
@@ -93,7 +111,7 @@ const EmiliaRomagnaMapDark: React.FC<{
           {/* Label */}
           <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
             <span className="font-sans text-[10px] uppercase tracking-wider text-white/70 font-bold drop-shadow-lg">
-              Modena
+              Provincia di Modena
             </span>
           </div>
         </div>
@@ -247,11 +265,11 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-advance slides every 6 seconds
+  // Auto-advance slides every 12 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       goNext();
-    }, 6000);
+    }, 12000);
 
     return () => clearInterval(interval);
   }, [slideIndex, isAnimating]);
@@ -437,20 +455,6 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
 
         </div>
 
-        {/* Side Dots */}
-        <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-4">
-          {tenute.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === realIndex
-                  ? 'bg-chiarli-wine-light scale-125'
-                  : 'bg-white/30 hover:bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
 
         <style>{`
           @keyframes fade-in-up {

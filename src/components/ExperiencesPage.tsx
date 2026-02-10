@@ -106,13 +106,6 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
       className="relative bg-chiarli-text overflow-hidden"
       onMouseMove={handleMouseMove}
     >
-      {/* Subtle wine gradient following mouse */}
-      <div
-        className="absolute inset-0 pointer-events-none transition-all duration-1000 ease-out z-10"
-        style={{
-          background: `radial-gradient(circle 500px at ${mousePosition.x}% ${mousePosition.y}%, rgba(87,15,26,0.12) 0%, transparent 70%)`,
-        }}
-      />
 
       {/* Hero Section */}
       <div ref={heroRef} className="relative min-h-screen flex items-center">

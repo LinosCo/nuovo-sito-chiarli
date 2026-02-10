@@ -95,13 +95,6 @@ export const FeaturedSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
       </div>
 
-      {/* Subtle wine gradient following mouse */}
-      <div
-        className="absolute inset-0 pointer-events-none transition-all duration-1000 ease-out z-10"
-        style={{
-          background: `radial-gradient(circle 400px at ${mousePosition.x}% ${mousePosition.y}%, rgba(87,15,26,0.15) 0%, transparent 70%)`,
-        }}
-      />
 
       {/* Content */}
       <div className="relative z-20 min-h-screen flex items-center">
