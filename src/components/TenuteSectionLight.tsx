@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { MapPin, ArrowRight, ArrowLeft, Grape, Mountain } from 'lucide-react';
+import React, { useState, useEffect, useRef } from "react";
+import { MapPin, ArrowRight, ArrowLeft, Grape, Mountain } from "lucide-react";
 
 interface Tenuta {
   id: number;
@@ -19,38 +19,41 @@ const tenute: Tenuta[] = [
     id: 1,
     name: "Tenuta Cialdini",
     location: "Castelvetro di Modena",
-    description: "Nel cuore delle colline modenesi, dove il Lambrusco Grasparossa trova la sua massima espressione. Terreni argillosi e calcarei regalano struttura e complessità unica ai nostri vini più prestigiosi.",
-    image: "/foto/close-up-26-scaled.jpeg",
+    description:
+      "Nel cuore delle colline modenesi, dove il Lambrusco Grasparossa trova la sua massima espressione. Terreni argillosi e calcarei regalano struttura e complessità unica ai nostri vini più prestigiosi.",
+    image: "/foto/sito/close-up-26-scaled.webp",
     hectares: 45,
     altitude: "200-350m",
     grape: "Grasparossa",
     year: "1860",
-    mapPosition: { x: 52, y: 58 }
+    mapPosition: { x: 52, y: 58 },
   },
   {
     id: 2,
     name: "Tenuta Sorbara",
     location: "Bomporto",
-    description: "La pianura del Secchia, terra d'elezione del Lambrusco di Sorbara. Suoli sabbiosi e limosi per vini di straordinaria freschezza, fragranza e florealità.",
-    image: "/foto/close-up-78-scaled.jpeg",
+    description:
+      "La pianura del Secchia, terra d'elezione del Lambrusco di Sorbara. Suoli sabbiosi e limosi per vini di straordinaria freschezza, fragranza e florealità.",
+    image: "/foto/sito/close-up-78-scaled.webp",
     hectares: 60,
     altitude: "25-40m",
     grape: "Sorbara",
     year: "1920",
-    mapPosition: { x: 48, y: 42 }
+    mapPosition: { x: 48, y: 42 },
   },
   {
     id: 3,
     name: "Tenuta Modena",
     location: "Modena",
-    description: "Alle porte della città, dove tradizione e innovazione si incontrano. Vigneti storici che raccontano oltre 160 anni di passione per il Lambrusco.",
-    image: "/foto/DSC04010.jpg",
+    description:
+      "Alle porte della città, dove tradizione e innovazione si incontrano. Vigneti storici che raccontano oltre 160 anni di passione per il Lambrusco.",
+    image: "/foto/sito/DSC04010.webp",
     hectares: 35,
     altitude: "40-80m",
     grape: "Salamino",
     year: "1950",
-    mapPosition: { x: 50, y: 48 }
-  }
+    mapPosition: { x: 50, y: 48 },
+  },
 ];
 
 // Emilia-Romagna map component with interactive pins
@@ -63,9 +66,9 @@ const EmiliaRomagnaMapLight: React.FC<{
   // Posizioni delle tenute sulla mappa aggiornata
   // La regione grande occupa la maggior parte dello spazio a destra
   const mapPositions = [
-    { x: 74, y: 60 },   // Castelvetro - più in basso e a sinistra di Spilamberto
-    { x: 83, y: 18 },   // Bomporto - più a destra e più alto
-    { x: 80, y: 50 },   // Spilamberto - sotto Modena, un po' più a destra
+    { x: 74, y: 60 }, // Castelvetro - più in basso e a sinistra di Spilamberto
+    { x: 83, y: 18 }, // Bomporto - più a destra e più alto
+    { x: 80, y: 50 }, // Spilamberto - sotto Modena, un po' più a destra
   ];
 
   return (
@@ -81,17 +84,31 @@ const EmiliaRomagnaMapLight: React.FC<{
         {/* River labels */}
         <div
           className="absolute whitespace-nowrap pointer-events-none"
-          style={{ left: '68%', top: '3%' }}
+          style={{ left: "68%", top: "3%" }}
         >
-          <span className="text-[11px] font-black tracking-widest uppercase" style={{ color: '#1e40af', textShadow: '1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)' }}>
+          <span
+            className="text-[11px] font-black tracking-widest uppercase"
+            style={{
+              color: "#1e40af",
+              textShadow:
+                "1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)",
+            }}
+          >
             Fiume Secchia
           </span>
         </div>
         <div
           className="absolute whitespace-nowrap pointer-events-none"
-          style={{ left: '65%', top: '75%' }}
+          style={{ left: "65%", top: "75%" }}
         >
-          <span className="text-[11px] font-black tracking-widest uppercase" style={{ color: '#1e40af', textShadow: '1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)' }}>
+          <span
+            className="text-[11px] font-black tracking-widest uppercase"
+            style={{
+              color: "#1e40af",
+              textShadow:
+                "1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)",
+            }}
+          >
             Fiume Panaro
           </span>
         </div>
@@ -100,9 +117,9 @@ const EmiliaRomagnaMapLight: React.FC<{
         <div
           className="absolute cursor-default transition-all duration-500"
           style={{
-            left: '76%',
-            top: '39%',
-            transform: 'translate(-50%, -50%)',
+            left: "76%",
+            top: "39%",
+            transform: "translate(-50%, -50%)",
             zIndex: 5,
           }}
         >
@@ -126,60 +143,68 @@ const EmiliaRomagnaMapLight: React.FC<{
 
         {/* Pin markers with labels */}
         {mapPositions.map((pos, index) => {
-        const isActive = index === activeIndex;
-        const isHovered = index === hoveredIndex;
+          const isActive = index === activeIndex;
+          const isHovered = index === hoveredIndex;
 
-        return (
-          <div
-            key={index}
-            className="absolute cursor-pointer transition-all duration-500"
-            style={{
-              left: `${pos.x}%`,
-              top: `${pos.y}%`,
-              transform: 'translate(-50%, -50%)',
-              zIndex: isActive || isHovered ? 20 : 10,
-            }}
-            onMouseEnter={() => onPinHover(index)}
-            onMouseLeave={() => onPinHover(null)}
-            onClick={() => onPinClick(index)}
-          >
-            {/* Pulse ring - only on active/hovered */}
-            {(isActive || isHovered) && (
-              <div className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-chiarli-text/30 animate-ping" />
-            )}
-
-            {/* Outer glow */}
+          return (
             <div
-              className={`absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full transition-all duration-300 ${
-                isActive || isHovered ? 'bg-chiarli-text/30 scale-100' : 'bg-chiarli-text/15 scale-75'
-              }`}
-            />
-
-            {/* Inner circle */}
-            <div
-              className={`absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full transition-all duration-300 ${
-                isActive || isHovered ? 'bg-chiarli-text scale-100' : 'bg-chiarli-text/70 scale-75'
-              }`}
-            />
-
-            {/* Center dot */}
-            <div className="absolute w-2 h-2 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
-
-            {/* Location label */}
-            <div
-              className={`absolute left-1/2 -translate-x-1/2 top-full mt-3 whitespace-nowrap transition-all duration-300 ${
-                isActive || isHovered ? 'opacity-100' : 'opacity-70'
-              }`}
+              key={index}
+              className="absolute cursor-pointer transition-all duration-500"
+              style={{
+                left: `${pos.x}%`,
+                top: `${pos.y}%`,
+                transform: "translate(-50%, -50%)",
+                zIndex: isActive || isHovered ? 20 : 10,
+              }}
+              onMouseEnter={() => onPinHover(index)}
+              onMouseLeave={() => onPinHover(null)}
+              onClick={() => onPinClick(index)}
             >
-              <span className={`font-sans text-xs uppercase tracking-wider ${
-                isActive ? 'text-chiarli-text font-bold' : 'text-chiarli-text/60'
-              }`}>
-                {tenute[index].location}
-              </span>
+              {/* Pulse ring - only on active/hovered */}
+              {(isActive || isHovered) && (
+                <div className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-chiarli-text/30 animate-ping" />
+              )}
+
+              {/* Outer glow */}
+              <div
+                className={`absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full transition-all duration-300 ${
+                  isActive || isHovered
+                    ? "bg-chiarli-text/30 scale-100"
+                    : "bg-chiarli-text/15 scale-75"
+                }`}
+              />
+
+              {/* Inner circle */}
+              <div
+                className={`absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full transition-all duration-300 ${
+                  isActive || isHovered
+                    ? "bg-chiarli-text scale-100"
+                    : "bg-chiarli-text/70 scale-75"
+                }`}
+              />
+
+              {/* Center dot */}
+              <div className="absolute w-2 h-2 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
+
+              {/* Location label */}
+              <div
+                className={`absolute left-1/2 -translate-x-1/2 top-full mt-3 whitespace-nowrap transition-all duration-300 ${
+                  isActive || isHovered ? "opacity-100" : "opacity-70"
+                }`}
+              >
+                <span
+                  className={`font-sans text-xs uppercase tracking-wider ${
+                    isActive
+                      ? "text-chiarli-text font-bold"
+                      : "text-chiarli-text/60"
+                  }`}
+                >
+                  {tenute[index].location}
+                </span>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
       </div>
     </div>
   );
@@ -201,7 +226,7 @@ export const TenuteSectionLight: React.FC = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -221,28 +246,34 @@ export const TenuteSectionLight: React.FC = () => {
   const goNext = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setActiveIndex(prev => (prev + 1) % tenute.length);
+    setActiveIndex((prev) => (prev + 1) % tenute.length);
     setTimeout(() => setIsAnimating(false), 600);
   };
 
   const goPrev = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setActiveIndex(prev => (prev - 1 + tenute.length) % tenute.length);
+    setActiveIndex((prev) => (prev - 1 + tenute.length) % tenute.length);
     setTimeout(() => setIsAnimating(false), 600);
   };
 
   return (
-    <section ref={sectionRef} id="tenute" data-section="tenute" data-content-type="tenute" className="bg-chiarli-stone py-24 md:py-32 overflow-hidden">
-
+    <section
+      ref={sectionRef}
+      id="tenute"
+      data-section="tenute"
+      data-content-type="tenute"
+      className="bg-chiarli-stone py-24 md:py-32 overflow-hidden"
+    >
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
-
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <div className="max-w-xl">
             <span
               className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-4 block transition-all duration-700 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               Le Nostre Tenute
@@ -250,14 +281,18 @@ export const TenuteSectionLight: React.FC = () => {
             <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text leading-tight overflow-hidden">
               <span
                 className={`block transition-all duration-700 delay-100 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                 }`}
               >
                 Tre territori,
               </span>
               <span
                 className={`italic text-chiarli-wine block transition-all duration-700 delay-300 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                 }`}
               >
                 un'anima
@@ -266,7 +301,7 @@ export const TenuteSectionLight: React.FC = () => {
           </div>
           <p
             className={`font-sans text-base text-chiarli-text/60 leading-relaxed max-w-md mt-6 md:mt-0 transition-all duration-700 delay-400 ${
-              isVisible ? 'opacity-100' : 'opacity-0'
+              isVisible ? "opacity-100" : "opacity-0"
             }`}
           >
             Passa sopra i pin sulla mappa per scoprire le nostre tenute.
@@ -275,11 +310,12 @@ export const TenuteSectionLight: React.FC = () => {
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-
           {/* Left: Map */}
           <div
             className={`relative h-[500px] md:h-[650px] transition-all duration-700 delay-500 ml-8 md:ml-12 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-12"
             }`}
           >
             <EmiliaRomagnaMapLight
@@ -293,7 +329,9 @@ export const TenuteSectionLight: React.FC = () => {
           {/* Right: Tenuta Details */}
           <div
             className={`transition-all duration-700 delay-600 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-12"
             }`}
           >
             {/* Tenuta Name */}
@@ -308,17 +346,19 @@ export const TenuteSectionLight: React.FC = () => {
             <p
               key={`loc-${activeIndex}`}
               className="flex items-center gap-2 text-chiarli-text/60 mb-6 animate-fade-in-up"
-              style={{ animationDelay: '100ms' }}
+              style={{ animationDelay: "100ms" }}
             >
               <MapPin size={16} />
-              <span className="font-sans text-sm uppercase tracking-widest">{activeTenuta.location}</span>
+              <span className="font-sans text-sm uppercase tracking-widest">
+                {activeTenuta.location}
+              </span>
             </p>
 
             {/* Description */}
             <p
               key={`desc-${activeIndex}`}
               className="font-sans text-chiarli-text/70 text-lg leading-relaxed max-w-lg mb-10 animate-fade-in-up"
-              style={{ animationDelay: '200ms' }}
+              style={{ animationDelay: "200ms" }}
             >
               {activeTenuta.description}
             </p>
@@ -327,25 +367,37 @@ export const TenuteSectionLight: React.FC = () => {
             <div
               key={`stats-${activeIndex}`}
               className="grid grid-cols-3 gap-6 mb-10 animate-fade-in-up"
-              style={{ animationDelay: '300ms' }}
+              style={{ animationDelay: "300ms" }}
             >
               <div className="border-l-2 border-chiarli-text/20 pl-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Grape size={16} className="text-chiarli-text/50" />
-                  <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/40">Vitigno</span>
+                  <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/40">
+                    Vitigno
+                  </span>
                 </div>
-                <span className="font-serif text-xl text-chiarli-text">{activeTenuta.grape}</span>
+                <span className="font-serif text-xl text-chiarli-text">
+                  {activeTenuta.grape}
+                </span>
               </div>
               <div className="border-l-2 border-chiarli-text/20 pl-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Mountain size={16} className="text-chiarli-text/50" />
-                  <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/40">Altitudine</span>
+                  <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/40">
+                    Altitudine
+                  </span>
                 </div>
-                <span className="font-serif text-xl text-chiarli-text">{activeTenuta.altitude}</span>
+                <span className="font-serif text-xl text-chiarli-text">
+                  {activeTenuta.altitude}
+                </span>
               </div>
               <div className="border-l-2 border-chiarli-text/20 pl-4">
-                <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/40 block mb-2">Ettari</span>
-                <span className="font-serif text-xl text-chiarli-text">{activeTenuta.hectares}</span>
+                <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-text/40 block mb-2">
+                  Ettari
+                </span>
+                <span className="font-serif text-xl text-chiarli-text">
+                  {activeTenuta.hectares}
+                </span>
               </div>
             </div>
 
@@ -357,21 +409,24 @@ export const TenuteSectionLight: React.FC = () => {
                   onClick={goPrev}
                   className="w-12 h-12 flex items-center justify-center text-chiarli-text hover:text-chiarli-wine transition-all duration-300 group"
                 >
-                  <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+                  <ArrowLeft
+                    size={18}
+                    className="group-hover:-translate-x-1 transition-transform"
+                  />
                 </button>
                 <button
                   onClick={goNext}
                   className="w-12 h-12 flex items-center justify-center text-chiarli-text hover:text-chiarli-wine transition-all duration-300 group"
                 >
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight
+                    size={18}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </button>
               </div>
             </div>
-
           </div>
-
         </div>
-
       </div>
 
       {/* CSS for animations */}

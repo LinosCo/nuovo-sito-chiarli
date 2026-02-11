@@ -85,6 +85,8 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({
             src={wine.image}
             alt={wine.name}
             className="w-full h-80 md:h-96 object-contain transform transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
           />
         ) : (
           <div className="w-full h-80 md:h-96 flex items-center justify-center">
@@ -146,7 +148,7 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/hero-vini.jpeg"
+            src="/foto/sito/hero-vini.webp"
             alt="Tutti i Vini"
             className="w-full h-full object-cover"
           />

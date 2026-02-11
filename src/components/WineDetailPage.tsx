@@ -157,7 +157,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
     family: "Metodo Ancestrale",
     description:
       "Un omaggio alle origini. La tecnica ancestrale della rifermentazione in bottiglia che Cleto Chiarli utilizzava nel 1860, riscoperta per catturare l'essenza più pura del Sorbara.",
-    image: "/foto/003-uai-720x720.png",
+    image: "/foto/vini/003-uai-720x720.webp",
     format: "0.75L",
     tags: ["Sorbara", "DOC"],
     price: null,
@@ -238,7 +238,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
         {/* Background image con effetto "vedo non vedo" */}
         <div className="absolute inset-0">
           <img
-            src={wine.heroBackground || "/foto/villa-cialdini-ombre.jpg"}
+            src={wine.heroBackground || "/foto/sito/villa-cialdini-ombre.webp"}
             alt="Villa Cialdini"
             className="w-full h-full object-cover opacity-30"
             style={{
@@ -296,6 +296,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                   src={wine.image}
                   alt={wine.name}
                   className="relative z-10 h-[35vh] w-auto object-contain"
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     filter: `drop-shadow(0 10px 30px rgba(0,0,0,0.3))`,
                   }}
@@ -560,6 +562,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                     src={wine.image}
                     alt={wine.name}
                     className="relative z-10 h-[75vh] w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
                     style={{
                       filter: `drop-shadow(0 10px 30px rgba(0,0,0,0.3))`,
                     }}
@@ -591,9 +595,14 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src={wine.experienceBackground || "/foto/villa-cialdini-cielo.jpg"}
+            src={
+              wine.experienceBackground ||
+              "/foto/sito/villa-cialdini-cielo.webp"
+            }
             alt="Villa Cialdini"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -894,9 +903,11 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
           {/* Right - Image */}
           <div className="w-full lg:w-1/2 h-[40vh] md:h-[50vh] lg:h-[80vh] relative order-first lg:order-last">
             <img
-              src={wine.heritageImage || "/foto/villa-cialdini-viale.jpg"}
+              src={wine.heritageImage || "/foto/sito/villa-cialdini-viale.webp"}
               alt="Villa Cialdini"
               className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             {/* Gradient overlay for text readability on mobile */}
             <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
@@ -910,9 +921,11 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
           {/* Left - Single image */}
           <div className="w-full lg:w-1/2 relative">
             <img
-              src={wine.pairingImage || "/foto/abbinamento-2.jpg"}
+              src={wine.pairingImage || "/foto/sito/abbinamento-2.webp"}
               alt="Abbinamento gastronomico"
               className="w-full h-full object-cover absolute inset-0"
+              loading="lazy"
+              decoding="async"
             />
             <div className="lg:hidden aspect-square" />
           </div>
@@ -1063,6 +1076,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                         src={relatedWine.image}
                         alt={relatedWine.name}
                         className="w-full h-80 md:h-96 object-contain transform group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                        decoding="async"
                       />
                     ) : (
                       <div className="w-full h-80 md:h-96 flex items-center justify-center">

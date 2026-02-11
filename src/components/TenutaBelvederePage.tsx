@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { MapPin, ChevronDown } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { MapPin, ChevronDown } from "lucide-react";
 
 interface TenutaBelvederePageProps {
   onBack?: () => void;
@@ -19,15 +19,17 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
 
   const slides = [
     {
-      image: "/foto/belvedere-aerea.jpg",
+      image: "/foto/sito/belvedere-aerea.webp",
       title: "La Tenuta",
-      description: "25 ettari di vigneti su suoli alluvionali profondi alle pendici dell'Appennino modenese."
+      description:
+        "25 ettari di vigneti su suoli alluvionali profondi alle pendici dell'Appennino modenese.",
     },
     {
-      image: "/foto/belvedere-uva.jpg",
+      image: "/foto/sito/belvedere-uva.webp",
       title: "Il Territorio",
-      description: "Elevata densità di impianto e gestione rigorosa per un Lambrusco strutturato e di carattere."
-    }
+      description:
+        "Elevata densità di impianto e gestione rigorosa per un Lambrusco strutturato e di carattere.",
+    },
   ];
 
   useEffect(() => {
@@ -38,9 +40,9 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
   }, [slides.length]);
 
   const toggleSection = (section: keyof typeof expandedSections) => {
-    setExpandedSections(prev => ({
+    setExpandedSections((prev) => ({
       ...prev,
-      [section]: !prev[section]
+      [section]: !prev[section],
     }));
   };
 
@@ -50,7 +52,7 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
       <section className="relative min-h-screen bg-chiarli-text overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/foto/belvedere-aerea.jpg"
+            src="/foto/sito/belvedere-aerea.webp"
             alt="Vigneto Tenuta Belvedere"
             className="w-full h-full object-cover"
           />
@@ -62,7 +64,9 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
           <div className="max-w-3xl">
             <span
               className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-6 block transition-all duration-700 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               Le Nostre Tenute
@@ -70,7 +74,9 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
 
             <h1
               className={`font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight transition-all duration-700 delay-100 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
             >
               Tenuta Belvedere
@@ -78,16 +84,22 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
 
             <p
               className={`flex items-center gap-2 text-white/70 text-xl mb-8 transition-all duration-700 delay-200 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
               }`}
             >
               <MapPin size={20} />
-              <span className="font-sans uppercase tracking-widest">Spilamberto</span>
+              <span className="font-sans uppercase tracking-widest">
+                Spilamberto
+              </span>
             </p>
 
             <p
               className={`font-serif italic text-3xl text-chiarli-wine-light mb-8 transition-all duration-700 delay-300 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
               }`}
             >
               Un vigneto moderno, eclettico
@@ -95,10 +107,14 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
 
             <p
               className={`font-sans text-white/70 text-xl leading-relaxed transition-all duration-700 delay-400 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
               }`}
             >
-              25 ettari di vigneti su suoli alluvionali profondi alle pendici dell'Appennino modenese, fonte esclusiva del nostro Prunonero Grasparossa.
+              25 ettari di vigneti su suoli alluvionali profondi alle pendici
+              dell'Appennino modenese, fonte esclusiva del nostro Prunonero
+              Grasparossa.
             </p>
           </div>
         </div>
@@ -110,9 +126,11 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
           {/* Image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/belvedere-uva.jpg"
+              src="/foto/sito/belvedere-uva.webp"
               alt="Uva Grasparossa Tenuta Belvedere"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
           </div>
@@ -121,37 +139,53 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
           <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-white">
             <div className="w-full max-w-xl mx-auto px-8 md:px-12 lg:px-16">
               <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-8 leading-tight">
-                La Storia e il <span className="italic text-chiarli-wine">Territorio</span>
+                La Storia e il{" "}
+                <span className="italic text-chiarli-wine">Territorio</span>
               </h2>
 
               <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-8">
-                La Tenuta Belvedere si trova a Spilamberto, vicino alle prime colline dell'Appennino modenese. I suoi 25 ettari di vigneti si estendono su un terreno pianeggiante con suoli profondi e fertili di origine alluvionale, particolarmente adatti a una viticoltura vigorosa ma ben gestita.
+                La Tenuta Belvedere si trova a Spilamberto, vicino alle prime
+                colline dell'Appennino modenese. I suoi 25 ettari di vigneti si
+                estendono su un terreno pianeggiante con suoli profondi e
+                fertili di origine alluvionale, particolarmente adatti a una
+                viticoltura vigorosa ma ben gestita.
               </p>
 
-              <div className={`overflow-hidden transition-all duration-500 ${expandedSections.storia ? 'max-h-[2000px] opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
+              <div
+                className={`overflow-hidden transition-all duration-500 ${expandedSections.storia ? "max-h-[2000px] opacity-100 mb-8" : "max-h-0 opacity-0 mb-0"}`}
+              >
                 <p className="font-serif italic text-xl text-chiarli-text/80 border-l-4 border-chiarli-wine pl-6 mb-6">
-                  L'elevata densità di impianto, combinata con una potatura rigorosa e un'attenta gestione del verde, produce uve Grasparossa con rese naturalmente basse.
+                  L'elevata densità di impianto, combinata con una potatura
+                  rigorosa e un'attenta gestione del verde, produce uve
+                  Grasparossa con rese naturalmente basse.
                 </p>
 
                 <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
-                  Le uve presentano struttura tannica marcata e un'elevata concentrazione di antociani, caratteristiche ideali per la produzione di Lambrusco di alta qualità.
+                  Le uve presentano struttura tannica marcata e un'elevata
+                  concentrazione di antociani, caratteristiche ideali per la
+                  produzione di Lambrusco di alta qualità.
                 </p>
 
                 <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed">
-                  Questa tenuta è la fonte esclusiva del nostro Prunonero Grasparossa, prodotto sia in versione frizzante che spumante — due interpretazioni della varietà che condividono intensità, freschezza e profondità, esaltando al tempo stesso il potenziale del sito per un Lambrusco strutturato e di carattere.
+                  Questa tenuta è la fonte esclusiva del nostro Prunonero
+                  Grasparossa, prodotto sia in versione frizzante che spumante —
+                  due interpretazioni della varietà che condividono intensità,
+                  freschezza e profondità, esaltando al tempo stesso il
+                  potenziale del sito per un Lambrusco strutturato e di
+                  carattere.
                 </p>
               </div>
 
               <button
-                onClick={() => toggleSection('storia')}
+                onClick={() => toggleSection("storia")}
                 className="flex items-center gap-2 text-chiarli-wine hover:text-chiarli-wine/80 transition-colors group"
               >
                 <span className="font-sans text-sm uppercase tracking-widest">
-                  {expandedSections.storia ? 'Mostra meno' : 'Leggi di più'}
+                  {expandedSections.storia ? "Mostra meno" : "Leggi di più"}
                 </span>
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-300 ${expandedSections.storia ? 'rotate-180' : ''}`}
+                  className={`transition-transform duration-300 ${expandedSections.storia ? "rotate-180" : ""}`}
                 />
               </button>
             </div>
@@ -170,39 +204,52 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
               </h2>
 
               <p className="font-serif italic text-2xl text-white/80 mb-8 leading-relaxed">
-                Un vitigno di grande struttura e intensità, coltivato con rese naturalmente basse per esprimere tutto il suo potenziale.
+                Un vitigno di grande struttura e intensità, coltivato con rese
+                naturalmente basse per esprimere tutto il suo potenziale.
               </p>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8">
-                Grappoli con buccia spessa e ricca di antociani, che conferiscono al vino il suo colore intenso e la sua marcata struttura tannica.
+                Grappoli con buccia spessa e ricca di antociani, che
+                conferiscono al vino il suo colore intenso e la sua marcata
+                struttura tannica.
               </p>
 
-              <div className={`overflow-hidden transition-all duration-500 ${expandedSections.grasparossa ? 'max-h-[2000px] opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
+              <div
+                className={`overflow-hidden transition-all duration-500 ${expandedSections.grasparossa ? "max-h-[2000px] opacity-100 mb-8" : "max-h-0 opacity-0 mb-0"}`}
+              >
                 <div className="border-l-4 border-chiarli-wine-light pl-6 mb-6">
                   <p className="font-serif italic text-xl text-white/80">
-                    Il Prunonero Grasparossa nasce esclusivamente da queste uve, sia in versione frizzante che spumante.
+                    Il Prunonero Grasparossa nasce esclusivamente da queste uve,
+                    sia in versione frizzante che spumante.
                   </p>
                 </div>
 
                 <p className="font-sans text-white/70 text-lg leading-relaxed mb-6">
-                  Due interpretazioni della varietà che condividono intensità, freschezza e profondità. L'alta densità di impianto e la gestione rigorosa della chioma permettono di ottenere uve concentrate e ricche di estratto.
+                  Due interpretazioni della varietà che condividono intensità,
+                  freschezza e profondità. L'alta densità di impianto e la
+                  gestione rigorosa della chioma permettono di ottenere uve
+                  concentrate e ricche di estratto.
                 </p>
 
                 <p className="font-sans text-white/70 text-lg leading-relaxed">
-                  Il risultato è un Lambrusco strutturato e di carattere, che esalta il potenziale unico di questo sito viticolo alle pendici dell'Appennino.
+                  Il risultato è un Lambrusco strutturato e di carattere, che
+                  esalta il potenziale unico di questo sito viticolo alle
+                  pendici dell'Appennino.
                 </p>
               </div>
 
               <button
-                onClick={() => toggleSection('grasparossa')}
+                onClick={() => toggleSection("grasparossa")}
                 className="flex items-center gap-2 text-chiarli-wine-light hover:text-chiarli-wine-light/80 transition-colors group"
               >
                 <span className="font-sans text-sm uppercase tracking-widest">
-                  {expandedSections.grasparossa ? 'Mostra meno' : 'Leggi di più'}
+                  {expandedSections.grasparossa
+                    ? "Mostra meno"
+                    : "Leggi di più"}
                 </span>
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-300 ${expandedSections.grasparossa ? 'rotate-180' : ''}`}
+                  className={`transition-transform duration-300 ${expandedSections.grasparossa ? "rotate-180" : ""}`}
                 />
               </button>
             </div>
@@ -211,9 +258,11 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
           {/* Image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
             <img
-              src="/foto/belvedere-grasparossa.jpg"
+              src="/foto/sito/belvedere-grasparossa.webp"
               alt="Lambrusco Grasparossa"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-text/20 lg:bg-gradient-to-r lg:from-chiarli-text/20 lg:to-transparent" />
           </div>
@@ -227,7 +276,7 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
+              index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           >
             {/* Background Image */}
@@ -235,6 +284,8 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
               src={slide.image}
               alt={slide.title}
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
 
             {/* Overlay */}
@@ -244,7 +295,10 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center px-6 md:px-12 max-w-4xl">
                 <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
-                  {slide.title.split(' ')[0]} <span className="italic text-chiarli-wine-light">{slide.title.split(' ').slice(1).join(' ')}</span>
+                  {slide.title.split(" ")[0]}{" "}
+                  <span className="italic text-chiarli-wine-light">
+                    {slide.title.split(" ").slice(1).join(" ")}
+                  </span>
                 </h2>
                 <p className="font-serif italic text-xl md:text-2xl text-white/90 leading-relaxed">
                   {slide.description}
@@ -256,11 +310,18 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
 
         {/* Navigation Arrows */}
         <button
-          onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+          onClick={() =>
+            setCurrentSlide(
+              (prev) => (prev - 1 + slides.length) % slides.length,
+            )
+          }
           className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group"
           aria-label="Slide precedente"
         >
-          <ChevronDown size={24} className="text-white rotate-90 group-hover:scale-110 transition-transform" />
+          <ChevronDown
+            size={24}
+            className="text-white rotate-90 group-hover:scale-110 transition-transform"
+          />
         </button>
 
         <button
@@ -268,7 +329,10 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
           className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group"
           aria-label="Slide successiva"
         >
-          <ChevronDown size={24} className="text-white -rotate-90 group-hover:scale-110 transition-transform" />
+          <ChevronDown
+            size={24}
+            className="text-white -rotate-90 group-hover:scale-110 transition-transform"
+          />
         </button>
       </section>
 
@@ -292,7 +356,8 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
           </h2>
 
           <p className="font-serif text-base text-chiarli-text/50 mb-10 max-w-lg mx-auto">
-            Scopri in anteprima le novità, gli eventi e le storie dal mondo Chiarli.
+            Scopri in anteprima le novità, gli eventi e le storie dal mondo
+            Chiarli.
           </p>
 
           <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Calendar, ArrowRight } from 'lucide-react';
-import { useNews } from '../hooks/useContent';
+import React, { useState, useEffect, useRef } from "react";
+import { Calendar, ArrowRight } from "lucide-react";
+import { useNews } from "../hooks/useContent";
 
 export const BlogSectionLight: React.FC = () => {
   const { news } = useNews();
@@ -15,7 +15,7 @@ export const BlogSectionLight: React.FC = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -27,17 +27,23 @@ export const BlogSectionLight: React.FC = () => {
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('it-IT', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
+    return date.toLocaleDateString("it-IT", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     });
   };
 
   if (news.length === 0) return null;
 
   return (
-    <section ref={sectionRef} id="blog" data-section="blog" data-content-type="news" className="py-24 md:py-32 bg-white relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="blog"
+      data-section="blog"
+      data-content-type="news"
+      className="py-24 md:py-32 bg-white relative overflow-hidden"
+    >
       <div
         className="absolute inset-0 pointer-events-none transition-all duration-700 ease-out"
         style={{
@@ -53,8 +59,8 @@ export const BlogSectionLight: React.FC = () => {
             style={{
               width: `${3 + (i % 4) * 2}px`,
               height: `${3 + (i % 4) * 2}px`,
-              left: `${3 + (i * 3) % 94}%`,
-              top: `${5 + (i * 5) % 90}%`,
+              left: `${3 + ((i * 3) % 94)}%`,
+              top: `${5 + ((i * 5) % 90)}%`,
               background: `radial-gradient(circle at 30% 30%, rgba(87,15,26,${0.2 + (i % 4) * 0.08}), rgba(87,15,26,${0.1}))`,
               animation: `float ${15 + (i % 10) * 3}s ease-in-out infinite`,
               animationDelay: `${(i * 0.3) % 15}s`,
@@ -65,13 +71,19 @@ export const BlogSectionLight: React.FC = () => {
 
       <div className="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10">
         <div className="max-w-2xl mb-16">
-          <span className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-4 block transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <span
+            className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-text/60 mb-4 block transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          >
             Storie e Tradizione
           </span>
-          <h2 className={`font-serif text-4xl md:text-6xl lg:text-7xl text-chiarli-text leading-[1.1] mb-6 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h2
+            className={`font-serif text-4xl md:text-6xl lg:text-7xl text-chiarli-text leading-[1.1] mb-6 transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          >
             Il nostro <span className="italic text-chiarli-wine">Blog</span>
           </h2>
-          <p className={`text-chiarli-text/70 text-base md:text-lg leading-relaxed transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <p
+            className={`text-chiarli-text/70 text-base md:text-lg leading-relaxed transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          >
             Scopri le storie, le tradizioni e le novità dalla cantina Chiarli
           </p>
         </div>
@@ -81,17 +93,27 @@ export const BlogSectionLight: React.FC = () => {
             <a
               key={article.id}
               href="#/blog"
-              className={`group cursor-pointer transition-all duration-700 delay-${index * 100} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+              className={`group cursor-pointer transition-all duration-700 delay-${index * 100} ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
               onMouseEnter={() => setHoveredArticle(index)}
               onMouseLeave={() => setHoveredArticle(null)}
             >
               <div className="relative aspect-[4/3] mb-6 overflow-hidden rounded-lg bg-stone-100">
                 {article.image ? (
-                  <img src={article.image} alt={article.title} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
                     <div className="w-20 h-20 opacity-10">
-                      <svg viewBox="0 0 100 100" fill="currentColor" className="text-chiarli-text">
+                      <svg
+                        viewBox="0 0 100 100"
+                        fill="currentColor"
+                        className="text-chiarli-text"
+                      >
                         <circle cx="50" cy="50" r="40" />
                       </svg>
                     </div>
@@ -111,7 +133,10 @@ export const BlogSectionLight: React.FC = () => {
               </div>
 
               <div>
-                <div className="flex items-center gap-4 mb-3 text-sm" style={{ color: '#1C1917' }}>
+                <div
+                  className="flex items-center gap-4 mb-3 text-sm"
+                  style={{ color: "#1C1917" }}
+                >
                   <div className="flex items-center gap-1">
                     <Calendar size={14} />
                     <span>{formatDate(article.publishedAt)}</span>
@@ -120,17 +145,28 @@ export const BlogSectionLight: React.FC = () => {
                   <span>{article.author}</span>
                 </div>
 
-                <h3 className="font-serif text-2xl mb-3 leading-tight group-hover:text-chiarli-wine transition-colors duration-300" style={{ color: '#1C1917' }}>
+                <h3
+                  className="font-serif text-2xl mb-3 leading-tight group-hover:text-chiarli-wine transition-colors duration-300"
+                  style={{ color: "#1C1917" }}
+                >
                   {article.title}
                 </h3>
 
-                <p className="text-base mb-4 leading-relaxed line-clamp-2" style={{ color: '#1C1917' }}>
+                <p
+                  className="text-base mb-4 leading-relaxed line-clamp-2"
+                  style={{ color: "#1C1917" }}
+                >
                   {article.excerpt}
                 </p>
 
                 <div className="flex items-center gap-2 text-chiarli-wine group-hover:gap-3 transition-all duration-300">
-                  <span className="text-sm font-sans uppercase tracking-wider">Leggi di più</span>
-                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  <span className="text-sm font-sans uppercase tracking-wider">
+                    Leggi di più
+                  </span>
+                  <ArrowRight
+                    size={16}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
                 </div>
               </div>
             </a>

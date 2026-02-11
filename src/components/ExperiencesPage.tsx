@@ -21,7 +21,7 @@ const experienceCategories = [
     subtitle: "Visita alla culla del Lambrusco",
     description:
       "Tour guidati tra vigneti e cantine, degustazioni curate, visite esclusive alla Galleria Chiarli.",
-    image: "/foto/vasche-3.jpg",
+    image: "/foto/sito/visita_slider.webp",
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const experienceCategories = [
     subtitle: "Eventi aziendali e prenotazioni private",
     description:
       "Attività di team building, eventi riservati, lanci prodotto, cene di lavoro.",
-    image: "/foto/close-up-9-scaled.jpeg",
+    image: "/foto/sito/eventi_slider.webp",
   },
 ];
 
@@ -66,6 +66,13 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
   const [isGalleriaVisible, setIsGalleriaVisible] = useState(false);
   const [isCardsVisible, setIsCardsVisible] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [villaImageIndex, setVillaImageIndex] = useState(0);
+
+  const villaImages = [
+    "/foto/sito/esperienze-lambrusco-storia.webp",
+    "/foto/sito/esperienze-lambrusco-storia-2.webp",
+    "/foto/sito/esperienze-lambrusco-storia-3.webp",
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -110,6 +117,14 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
     return () => clearInterval(timer);
   }, [activeSlide]);
 
+  // Auto-play villa images
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setVillaImageIndex((prev) => (prev + 1) % villaImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [villaImageIndex, villaImages.length]);
+
   return (
     <section
       ref={sectionRef}
@@ -120,7 +135,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/1.jpg"
+            src="/foto/sito/chiarli.webp"
             alt="Esperienze Chiarli"
             className="w-full h-full object-cover"
           />
@@ -260,17 +275,24 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
         className="relative min-h-screen bg-chiarli-text overflow-hidden"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
-          {/* Right: Full height image */}
+          {/* Right: Image slider */}
           <div
             className={`relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden order-1 lg:order-2 transition-all duration-1000 ${
               isVillaVisible ? "opacity-100" : "opacity-0"
             }`}
           >
-            <img
-              src="/foto/DSC04010.jpg"
-              alt="Villa Cialdini"
-              className="w-full h-full object-cover"
-            />
+            {villaImages.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt="Villa Cialdini"
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                  i === villaImageIndex ? "opacity-100" : "opacity-0"
+                }`}
+                loading="lazy"
+                decoding="async"
+              />
+            ))}
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/20 lg:bg-gradient-to-r lg:from-chiarli-text/20 lg:to-transparent" />
           </div>
 
@@ -355,6 +377,8 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
                 className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[8s] ease-out ${
                   index === activeSlide ? "scale-110" : "scale-100"
                 }`}
+                loading="lazy"
+                decoding="async"
               />
 
               {/* Dark overlay */}
@@ -494,7 +518,22 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
         className="relative bg-chiarli-stone overflow-hidden"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Left: Content */}
+          {/* Left: Image */}
+          <div
+            className={`relative h-[50vh] lg:h-auto lg:min-h-[80vh] overflow-hidden transition-all duration-1000 ${
+              isGalleriaVisible ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <img
+              src="/foto/sito/close-up-9-scaled.webp"
+              alt="Galleria Chiarli"
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          {/* Right: Content */}
           <div className="flex items-center py-16 md:py-24 lg:py-0 lg:min-h-[80vh]">
             <div className="px-6 md:px-12 lg:px-16 xl:px-24 w-full">
               <span
@@ -552,19 +591,6 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
                 presente.
               </p>
             </div>
-          </div>
-
-          {/* Right: Image */}
-          <div
-            className={`relative h-[50vh] lg:h-auto lg:min-h-[80vh] overflow-hidden transition-all duration-1000 ${
-              isGalleriaVisible ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <img
-              src="/foto/galleria-chiarli-136.jpeg"
-              alt="Galleria Chiarli"
-              className="w-full h-full object-cover"
-            />
           </div>
         </div>
       </div>

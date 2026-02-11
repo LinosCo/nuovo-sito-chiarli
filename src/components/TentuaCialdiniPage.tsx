@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { MapPin, ChevronDown } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { MapPin, ChevronDown } from "lucide-react";
 
 interface TentuaCialdiniPageProps {
   onBack?: () => void;
@@ -20,15 +20,17 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
 
   const slides = [
     {
-      image: "/foto/villa-cialdini-viale.jpg",
+      image: "/foto/sito/hero-sostenibilita.webp",
       title: "La Tenuta",
-      description: "Oltre 140 anni di storia familiare nel cuore della zona di produzione del Lambrusco Grasparossa."
+      description:
+        "Oltre 140 anni di storia familiare nel cuore della zona di produzione del Lambrusco Grasparossa.",
     },
     {
-      image: "/foto/sozzigalli-29.jpg",
+      image: "/foto/sito/cialdini-slider.webp",
       title: "Il Territorio",
-      description: "50 ettari di vigneti alle pendici dell'Appennino, dove il microclima unico crea le condizioni ideali per una produzione premium."
-    }
+      description:
+        "50 ettari di vigneti alle pendici dell'Appennino, dove il microclima unico crea le condizioni ideali per una produzione premium.",
+    },
   ];
 
   useEffect(() => {
@@ -39,9 +41,9 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
   }, [slides.length]);
 
   const toggleSection = (section: keyof typeof expandedSections) => {
-    setExpandedSections(prev => ({
+    setExpandedSections((prev) => ({
       ...prev,
-      [section]: !prev[section]
+      [section]: !prev[section],
     }));
   };
 
@@ -51,7 +53,7 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
       <section className="relative min-h-screen bg-chiarli-text overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/foto/cialdini-tenuta.jpg"
+            src="/foto/sito/cialdini-tenuta.webp"
             alt="Vigneto Tenuta Cialdini"
             className="w-full h-full object-cover"
           />
@@ -63,7 +65,9 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           <div className="max-w-3xl">
             <span
               className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-6 block transition-all duration-700 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               Le Nostre Tenute
@@ -71,7 +75,9 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
 
             <h1
               className={`font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight transition-all duration-700 delay-100 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
             >
               Tenuta Cialdini
@@ -79,16 +85,22 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
 
             <p
               className={`flex items-center gap-2 text-white/70 text-xl mb-8 transition-all duration-700 delay-200 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
               }`}
             >
               <MapPin size={20} />
-              <span className="font-sans uppercase tracking-widest">Castelvetro di Modena</span>
+              <span className="font-sans uppercase tracking-widest">
+                Castelvetro di Modena
+              </span>
             </p>
 
             <p
               className={`font-serif italic text-3xl text-chiarli-wine-light mb-8 transition-all duration-700 delay-300 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
               }`}
             >
               La culla di Grasparossa, la salvaguardia di Pignoletto
@@ -96,10 +108,13 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
 
             <p
               className={`font-sans text-white/70 text-xl leading-relaxed transition-all duration-700 delay-400 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
               }`}
             >
-              Di proprietà della famiglia da oltre 140 anni, nel cuore della zona di produzione del Lambrusco Grasparossa.
+              Di proprietà della famiglia da oltre 140 anni, nel cuore della
+              zona di produzione del Lambrusco Grasparossa.
             </p>
           </div>
         </div>
@@ -111,9 +126,11 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           {/* Image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/2.jpg"
+              src="/foto/sito/hero-metodo.webp"
               alt="Territorio"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
           </div>
@@ -122,37 +139,53 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-white">
             <div className="w-full max-w-xl mx-auto px-8 md:px-12 lg:px-16">
               <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-8 leading-tight">
-                La Storia e il <span className="italic text-chiarli-wine">Territorio</span>
+                La Storia e il{" "}
+                <span className="italic text-chiarli-wine">Territorio</span>
               </h2>
 
               <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-8">
-                Di proprietà della famiglia da oltre 140 anni, la Tenuta si trova nel cuore della zona di produzione del Lambrusco Grasparossa, nel comune di Castelvetro. I suoi oltre 50 ettari di vigneti si estendono fino alle prime colline appenniniche, dove i depositi alluvionali dell'antico fiume Guerro hanno modellato i terreni.
+                Di proprietà della famiglia da oltre 140 anni, la Tenuta si
+                trova nel cuore della zona di produzione del Lambrusco
+                Grasparossa, nel comune di Castelvetro. I suoi oltre 50 ettari
+                di vigneti si estendono fino alle prime colline appenniniche,
+                dove i depositi alluvionali dell'antico fiume Guerro hanno
+                modellato i terreni.
               </p>
 
-              <div className={`overflow-hidden transition-all duration-500 ${expandedSections.storia ? 'max-h-[2000px] opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
+              <div
+                className={`overflow-hidden transition-all duration-500 ${expandedSections.storia ? "max-h-[2000px] opacity-100 mb-8" : "max-h-0 opacity-0 mb-0"}`}
+              >
                 <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
-                  Il paesaggio dolcemente ondulato è il risultato del naturale alternarsi di erosione e sedimentazione, e il suolo superficiale — profondo fino a 50–60 cm — presenta una tessitura limosa con tracce di ghiaia.
+                  Il paesaggio dolcemente ondulato è il risultato del naturale
+                  alternarsi di erosione e sedimentazione, e il suolo
+                  superficiale — profondo fino a 50–60 cm — presenta una
+                  tessitura limosa con tracce di ghiaia.
                 </p>
 
                 <p className="font-serif italic text-xl text-chiarli-text/80 border-l-4 border-chiarli-wine pl-6 mb-6">
-                  Al centro della tenuta si trova il rinomato vigneto Cialdini, da cui nasce il Grasparossa "Vigneto Cialdini" — un vero cru di Lambrusco, riconoscibile per il suo carattere unico e la sua complessità.
+                  Al centro della tenuta si trova il rinomato vigneto Cialdini,
+                  da cui nasce il Grasparossa "Vigneto Cialdini" — un vero cru
+                  di Lambrusco, riconoscibile per il suo carattere unico e la
+                  sua complessità.
                 </p>
 
                 <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed">
-                  Un microclima unico, ventilazione costante e forti escursioni termiche rendono questo luogo la culla perfetta per un grande Grasparossa.
+                  Un microclima unico, ventilazione costante e forti escursioni
+                  termiche rendono questo luogo la culla perfetta per un grande
+                  Grasparossa.
                 </p>
               </div>
 
               <button
-                onClick={() => toggleSection('storia')}
+                onClick={() => toggleSection("storia")}
                 className="flex items-center gap-2 text-chiarli-wine hover:text-chiarli-wine/80 transition-colors group"
               >
                 <span className="font-sans text-sm uppercase tracking-widest">
-                  {expandedSections.storia ? 'Mostra meno' : 'Leggi di più'}
+                  {expandedSections.storia ? "Mostra meno" : "Leggi di più"}
                 </span>
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-300 ${expandedSections.storia ? 'rotate-180' : ''}`}
+                  className={`transition-transform duration-300 ${expandedSections.storia ? "rotate-180" : ""}`}
                 />
               </button>
             </div>
@@ -171,39 +204,67 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
               </h2>
 
               <p className="font-serif italic text-2xl text-white/80 mb-8 leading-relaxed">
-                Il più classico dei Lambruschi di Modena, da scoprire la sua ricchezza aromatica che ne fa un grande vino.
+                Il più classico dei Lambruschi di Modena, da scoprire la sua
+                ricchezza aromatica che ne fa un grande vino.
               </p>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8">
-                Il Grasparossa è un vitigno di antichissime origini coltivato nella zona che si estende attorno al paese di Castelvetro a Sud di Modena dove si incontrano le prime colline dell'Appennino.
+                Il Grasparossa è un vitigno di antichissime origini coltivato
+                nella zona che si estende attorno al paese di Castelvetro a Sud
+                di Modena dove si incontrano le prime colline dell'Appennino.
               </p>
 
-              <div className={`overflow-hidden transition-all duration-500 ${expandedSections.grasparossa ? 'max-h-[2000px] opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
+              <div
+                className={`overflow-hidden transition-all duration-500 ${expandedSections.grasparossa ? "max-h-[2000px] opacity-100 mb-8" : "max-h-0 opacity-0 mb-0"}`}
+              >
                 <p className="font-sans text-white/70 text-lg leading-relaxed mb-6">
-                  I terreni si sviluppano su antichi depositi alluvionali del torrente Guerro misti a ghiaie talora affioranti. Le uve, di un colore rosso intenso e con elevata presenza di tannini, danno vita a un vino di forte struttura, ricco e polposo. Prodotto storicamente con il metodo ancestrale risultava spesso ruvido e causa anche l'elevata presenza di 'fondo' veniva relegato a un consumo prettamente locale. L'avvento del Metodo Charmat ha fatto scoprire le migliori caratteristiche del Grasparossa rendendo evidente la sua freschezza, i piacevoli aromi e l'armonia del suo frutto.
+                  I terreni si sviluppano su antichi depositi alluvionali del
+                  torrente Guerro misti a ghiaie talora affioranti. Le uve, di
+                  un colore rosso intenso e con elevata presenza di tannini,
+                  danno vita a un vino di forte struttura, ricco e polposo.
+                  Prodotto storicamente con il metodo ancestrale risultava
+                  spesso ruvido e causa anche l'elevata presenza di 'fondo'
+                  veniva relegato a un consumo prettamente locale. L'avvento del
+                  Metodo Charmat ha fatto scoprire le migliori caratteristiche
+                  del Grasparossa rendendo evidente la sua freschezza, i
+                  piacevoli aromi e l'armonia del suo frutto.
                 </p>
 
                 <div className="border-l-4 border-chiarli-wine-light pl-6 mb-6">
                   <p className="font-serif italic text-xl text-white/80">
-                    Un grande vino rosso, Equilibrio e Versatilità per un vino veramente "polposo"
+                    Un grande vino rosso, Equilibrio e Versatilità per un vino
+                    veramente "polposo"
                   </p>
                 </div>
 
                 <p className="font-sans text-white/70 text-lg leading-relaxed">
-                  Inoltre il giusto equilibrio tra una importante acidità e un naturale residuo zuccherino lo rendono un Lambrusco dal gusto trasversale. In breve, grazie alla sua nuova personalità, ha ottenuto importantissimi apprezzamenti dal mercato tanto che oggi il Grasparossa, a buon diritto, è entrato a far parte dell'aristocrazia del vino italiano. Il Grasparossa è vino fondamentale per la Cleto Chiarli: è proprio all'interno della Tenuta Villa Cialdini che si trova un antico vigneto costituito da cloni originari di "Graspa Rossa" in grado di darci uve straordinarie che ci consentono di ottenere il famoso Lambrusco "Vigneto Cialdini" riconosciuto e apprezzato dalla migliore clientela italiana ed estera.
+                  Inoltre il giusto equilibrio tra una importante acidità e un
+                  naturale residuo zuccherino lo rendono un Lambrusco dal gusto
+                  trasversale. In breve, grazie alla sua nuova personalità, ha
+                  ottenuto importantissimi apprezzamenti dal mercato tanto che
+                  oggi il Grasparossa, a buon diritto, è entrato a far parte
+                  dell'aristocrazia del vino italiano. Il Grasparossa è vino
+                  fondamentale per la Cleto Chiarli: è proprio all'interno della
+                  Tenuta Villa Cialdini che si trova un antico vigneto
+                  costituito da cloni originari di "Graspa Rossa" in grado di
+                  darci uve straordinarie che ci consentono di ottenere il
+                  famoso Lambrusco "Vigneto Cialdini" riconosciuto e apprezzato
+                  dalla migliore clientela italiana ed estera.
                 </p>
               </div>
 
               <button
-                onClick={() => toggleSection('grasparossa')}
+                onClick={() => toggleSection("grasparossa")}
                 className="flex items-center gap-2 text-chiarli-wine-light hover:text-chiarli-wine-light/80 transition-colors group"
               >
                 <span className="font-sans text-sm uppercase tracking-widest">
-                  {expandedSections.grasparossa ? 'Mostra meno' : 'Leggi di più'}
+                  {expandedSections.grasparossa
+                    ? "Mostra meno"
+                    : "Leggi di più"}
                 </span>
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-300 ${expandedSections.grasparossa ? 'rotate-180' : ''}`}
+                  className={`transition-transform duration-300 ${expandedSections.grasparossa ? "rotate-180" : ""}`}
                 />
               </button>
             </div>
@@ -212,9 +273,11 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           {/* Image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
             <img
-              src="/foto/cialdini-grasparossa.jpg"
+              src="/foto/sito/cialdini-grasparossa.webp"
               alt="Lambrusco Grasparossa"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-text/20 lg:bg-gradient-to-r lg:from-chiarli-text/20 lg:to-transparent" />
           </div>
@@ -228,7 +291,7 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
+              index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           >
             {/* Background Image */}
@@ -236,6 +299,8 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
               src={slide.image}
               alt={slide.title}
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
 
             {/* Overlay */}
@@ -245,7 +310,10 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center px-6 md:px-12 max-w-4xl">
                 <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
-                  {slide.title.split(' ')[0]} <span className="italic text-chiarli-wine-light">{slide.title.split(' ').slice(1).join(' ')}</span>
+                  {slide.title.split(" ")[0]}{" "}
+                  <span className="italic text-chiarli-wine-light">
+                    {slide.title.split(" ").slice(1).join(" ")}
+                  </span>
                 </h2>
                 <p className="font-serif italic text-xl md:text-2xl text-white/90 leading-relaxed">
                   {slide.description}
@@ -257,11 +325,18 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
 
         {/* Navigation Arrows */}
         <button
-          onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+          onClick={() =>
+            setCurrentSlide(
+              (prev) => (prev - 1 + slides.length) % slides.length,
+            )
+          }
           className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group"
           aria-label="Slide precedente"
         >
-          <ChevronDown size={24} className="text-white rotate-90 group-hover:scale-110 transition-transform" />
+          <ChevronDown
+            size={24}
+            className="text-white rotate-90 group-hover:scale-110 transition-transform"
+          />
         </button>
 
         <button
@@ -269,7 +344,10 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group"
           aria-label="Slide successiva"
         >
-          <ChevronDown size={24} className="text-white -rotate-90 group-hover:scale-110 transition-transform" />
+          <ChevronDown
+            size={24}
+            className="text-white -rotate-90 group-hover:scale-110 transition-transform"
+          />
         </button>
       </section>
 
@@ -279,9 +357,11 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           {/* Image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/cialdini-pignoletto.jpg"
+              src="/foto/sito/cialdini-pignoletto.webp"
               alt="Pignoletto"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
           </div>
@@ -294,16 +374,27 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
               </h2>
 
               <p className="font-serif italic text-2xl text-chiarli-text/70 mb-8 leading-relaxed">
-                Un vitigno versatile e completo, dalle radici antiche del Grechetto Gentile.
+                Un vitigno versatile e completo, dalle radici antiche del
+                Grechetto Gentile.
               </p>
 
               <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-8">
-                Come dice il nome, la Grecia è il paese d'origine di questo vitigno, che verrà coltivato in molte parti dell'Italia centro-meridionale. In Emilia, prendendo il nome di Pignoletto troverà un habitat perfetto nella fascia collinare e pedecollinare tra Modena e Bologna, tanto che se ne hanno notizie certe fin dal 1600.
+                Come dice il nome, la Grecia è il paese d'origine di questo
+                vitigno, che verrà coltivato in molte parti dell'Italia
+                centro-meridionale. In Emilia, prendendo il nome di Pignoletto
+                troverà un habitat perfetto nella fascia collinare e
+                pedecollinare tra Modena e Bologna, tanto che se ne hanno
+                notizie certe fin dal 1600.
               </p>
 
-              <div className={`overflow-hidden transition-all duration-500 ${expandedSections.pignoletto ? 'max-h-[2000px] opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
+              <div
+                className={`overflow-hidden transition-all duration-500 ${expandedSections.pignoletto ? "max-h-[2000px] opacity-100 mb-8" : "max-h-0 opacity-0 mb-0"}`}
+              >
                 <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
-                  Però del Pignoletto ci interessa soprattutto la versatilità, poche uve possono, sullo stesso territorio, dare vini frizzanti di pronta beva, ma anche vini bianchi fermi di bella struttura e longevità, per passare poi ad importanti passiti.
+                  Però del Pignoletto ci interessa soprattutto la versatilità,
+                  poche uve possono, sullo stesso territorio, dare vini
+                  frizzanti di pronta beva, ma anche vini bianchi fermi di bella
+                  struttura e longevità, per passare poi ad importanti passiti.
                 </p>
 
                 <div className="border-l-4 border-chiarli-wine pl-6 mb-6">
@@ -313,20 +404,30 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
                 </div>
 
                 <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed">
-                  Questo perché ci troviamo in presenza di un vitigno che riesce a coniugare una bella parte aromatica, tanto che in passato lo si riteneva derivante dal Riesling o dal Pinot Bianco, con una componente tannica e polifenolica da grande vino. Tutto questo lo ritroviamo nel nostro Pignoletto spumante Modén e in parte anche nel Blanc de Blanc, dove il terroir particolare della zona di Castelvetro, tra pianura e collina, esalta la vena fresca e fruttata, che invita al sorso, mantiene sempre la tensione e rende il vino veramente appagante, nonché aperto a molti abbinamenti che sarebbero difficili per altri spumanti aromatici.
+                  Questo perché ci troviamo in presenza di un vitigno che riesce
+                  a coniugare una bella parte aromatica, tanto che in passato lo
+                  si riteneva derivante dal Riesling o dal Pinot Bianco, con una
+                  componente tannica e polifenolica da grande vino. Tutto questo
+                  lo ritroviamo nel nostro Pignoletto spumante Modén e in parte
+                  anche nel Blanc de Blanc, dove il terroir particolare della
+                  zona di Castelvetro, tra pianura e collina, esalta la vena
+                  fresca e fruttata, che invita al sorso, mantiene sempre la
+                  tensione e rende il vino veramente appagante, nonché aperto a
+                  molti abbinamenti che sarebbero difficili per altri spumanti
+                  aromatici.
                 </p>
               </div>
 
               <button
-                onClick={() => toggleSection('pignoletto')}
+                onClick={() => toggleSection("pignoletto")}
                 className="flex items-center gap-2 text-chiarli-wine hover:text-chiarli-wine/80 transition-colors group"
               >
                 <span className="font-sans text-sm uppercase tracking-widest">
-                  {expandedSections.pignoletto ? 'Mostra meno' : 'Leggi di più'}
+                  {expandedSections.pignoletto ? "Mostra meno" : "Leggi di più"}
                 </span>
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-300 ${expandedSections.pignoletto ? 'rotate-180' : ''}`}
+                  className={`transition-transform duration-300 ${expandedSections.pignoletto ? "rotate-180" : ""}`}
                 />
               </button>
             </div>
@@ -354,7 +455,8 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
           </h2>
 
           <p className="font-serif text-base text-chiarli-text/50 mb-10 max-w-lg mx-auto">
-            Scopri in anteprima le novità, gli eventi e le storie dal mondo Chiarli.
+            Scopri in anteprima le novità, gli eventi e le storie dal mondo
+            Chiarli.
           </p>
 
           <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>

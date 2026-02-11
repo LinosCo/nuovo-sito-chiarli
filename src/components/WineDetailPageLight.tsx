@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, ArrowRight, Award, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect, useRef } from "react";
+import { ArrowLeft, ArrowRight, Award, ChevronDown } from "lucide-react";
 
 interface WineDetailPageLightProps {
   onBack?: () => void;
 }
 
-export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack }) => {
+export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({
+  onBack,
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const contentRef = useRef<HTMLElement>(null);
@@ -20,7 +22,7 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
           setContentVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (contentRef.current) {
@@ -31,9 +33,21 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
   }, []);
 
   const tastingNotes = [
-    { title: "Aspetto", description: "Colore chiaro e vivace, con riflessi rosati. Spuma fine ed evanescente che invita alla degustazione." },
-    { title: "Profumo", description: "Bouquet floreale con note di viola e rosa canina. Sentori di lievito e crosta di pane appena sfornato." },
-    { title: "Gusto", description: "Secco e sapido, freschezza vibrante che esplode al palato. Finale lungo e persistente, di grande eleganza." },
+    {
+      title: "Aspetto",
+      description:
+        "Colore chiaro e vivace, con riflessi rosati. Spuma fine ed evanescente che invita alla degustazione.",
+    },
+    {
+      title: "Profumo",
+      description:
+        "Bouquet floreale con note di viola e rosa canina. Sentori di lievito e crosta di pane appena sfornato.",
+    },
+    {
+      title: "Gusto",
+      description:
+        "Secco e sapido, freschezza vibrante che esplode al palato. Finale lungo e persistente, di grande eleganza.",
+    },
   ];
 
   const specs = [
@@ -64,24 +78,30 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
     "Parmigiano Reggiano",
     "Gnocco fritto",
     "Tigelle e crescentine",
-    "Cotechino"
+    "Cotechino",
   ];
 
   return (
     <div className="min-h-screen bg-white">
-
       {/* Hero - Editorial Style with asymmetric grid */}
       <section className="relative min-h-screen">
-
         <div className="grid grid-cols-12 min-h-screen">
-
           {/* Left: Bottle display */}
-          <div className="col-span-12 lg:col-span-5 relative h-[50vh] lg:h-auto order-1 lg:order-1 flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(165deg, #8B2332 0%, #6B1A26 50%, #4A0D15 100%)' }}>
-
+          <div
+            className="col-span-12 lg:col-span-5 relative h-[50vh] lg:h-auto order-1 lg:order-1 flex items-center justify-center overflow-hidden"
+            style={{
+              background:
+                "linear-gradient(165deg, #8B2332 0%, #6B1A26 50%, #4A0D15 100%)",
+            }}
+          >
             {/* Subtle radial glow effect */}
-            <div className="absolute inset-0 pointer-events-none" style={{
-              background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 60%)'
-            }} />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 60%)",
+              }}
+            />
 
             {/* Sparkling wine bubbles - brighter and more visible */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -92,10 +112,10 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
                   style={{
                     width: `${4 + (i % 3) * 2}px`,
                     height: `${4 + (i % 3) * 2}px`,
-                    left: `${5 + (i * 5) % 90}%`,
+                    left: `${5 + ((i * 5) % 90)}%`,
                     bottom: `-${8 + (i % 4) * 5}%`,
                     background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,${0.5 + (i % 3) * 0.15}), rgba(255,220,230,${0.3 + (i % 3) * 0.1}))`,
-                    boxShadow: `0 0 ${8 + i % 4}px rgba(255,255,255,0.4), inset 0 0 ${4 + i % 3}px rgba(255,255,255,0.3)`,
+                    boxShadow: `0 0 ${8 + (i % 4)}px rgba(255,255,255,0.4), inset 0 0 ${4 + (i % 3)}px rgba(255,255,255,0.3)`,
                     animation: `bubble-rise ${10 + (i % 5) * 2}s ease-in-out infinite`,
                     animationDelay: `${(i * 0.4) % 10}s`,
                   }}
@@ -104,15 +124,21 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
             </div>
 
             {/* Decorative circles - bright and visible on dark background */}
-            <div className="absolute w-[280px] h-[280px] lg:w-[500px] lg:h-[500px] rounded-full border-2 border-white/20" style={{ boxShadow: '0 0 30px rgba(255,255,255,0.1)' }} />
-            <div className="absolute w-[220px] h-[220px] lg:w-[400px] lg:h-[400px] rounded-full border-2 border-chiarli-wine-light/40" style={{ boxShadow: '0 0 20px rgba(214,69,80,0.2)' }} />
+            <div
+              className="absolute w-[280px] h-[280px] lg:w-[500px] lg:h-[500px] rounded-full border-2 border-white/20"
+              style={{ boxShadow: "0 0 30px rgba(255,255,255,0.1)" }}
+            />
+            <div
+              className="absolute w-[220px] h-[220px] lg:w-[400px] lg:h-[400px] rounded-full border-2 border-chiarli-wine-light/40"
+              style={{ boxShadow: "0 0 20px rgba(214,69,80,0.2)" }}
+            />
 
             {/* Bottle */}
             <img
-              src="/foto/003-uai-720x720.png"
+              src="/foto/vini/003-uai-720x720.webp"
               alt="Metodo del Fondatore"
               className={`relative z-10 h-[40vh] lg:h-[70vh] w-auto object-contain transition-all duration-1000 ${
-                isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
               }`}
             />
 
@@ -120,22 +146,26 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
             <button
               onClick={onBack}
               className={`absolute top-8 left-8 z-50 flex items-center gap-3 text-white/80 hover:text-white transition-all duration-300 group ${
-                isLoaded ? 'opacity-100' : 'opacity-0'
+                isLoaded ? "opacity-100" : "opacity-0"
               }`}
             >
-              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-              <span className="font-sans text-xs font-medium uppercase tracking-[0.2em]">Torna ai vini</span>
+              <ArrowLeft
+                size={20}
+                className="group-hover:-translate-x-1 transition-transform"
+              />
+              <span className="font-sans text-xs font-medium uppercase tracking-[0.2em]">
+                Torna ai vini
+              </span>
             </button>
           </div>
 
           {/* Right: Content on white */}
           <div className="col-span-12 lg:col-span-7 flex items-center order-2 lg:order-2 bg-white">
             <div className="px-8 md:px-16 lg:px-20 xl:px-32 py-16 lg:py-24 max-w-3xl">
-
               {/* Label */}
               <span
                 className={`font-sans text-[10px] font-medium uppercase tracking-[0.4em] text-chiarli-text/40 block mb-8 transition-all duration-1000 ${
-                  isLoaded ? 'opacity-100' : 'opacity-0'
+                  isLoaded ? "opacity-100" : "opacity-0"
                 }`}
               >
                 Metodo Ancestrale
@@ -144,7 +174,9 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
               {/* Title - Large editorial */}
               <h1
                 className={`mb-6 transition-all duration-1000 delay-100 ${
-                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  isLoaded
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                 }`}
               >
                 <span className="font-serif text-[10vw] lg:text-[5vw] text-chiarli-text block leading-[0.9]">
@@ -158,7 +190,7 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
               {/* Denomination */}
               <p
                 className={`font-sans text-xs font-medium uppercase tracking-[0.3em] text-chiarli-text/40 mb-8 transition-all duration-1000 delay-200 ${
-                  isLoaded ? 'opacity-100' : 'opacity-0'
+                  isLoaded ? "opacity-100" : "opacity-0"
                 }`}
               >
                 Lambrusco di Sorbara DOC
@@ -167,48 +199,57 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
               {/* Description */}
               <p
                 className={`font-sans text-base lg:text-lg text-chiarli-text/70 leading-relaxed mb-12 max-w-lg transition-all duration-1000 delay-300 ${
-                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  isLoaded
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                 }`}
               >
-                Un omaggio alle origini. La tecnica ancestrale della rifermentazione in bottiglia
-                che Cleto Chiarli utilizzava nel 1860, riscoperta per catturare l'essenza più pura del Sorbara.
+                Un omaggio alle origini. La tecnica ancestrale della
+                rifermentazione in bottiglia che Cleto Chiarli utilizzava nel
+                1860, riscoperta per catturare l'essenza più pura del Sorbara.
               </p>
 
               {/* CTA */}
               <div
                 className={`flex items-center gap-8 transition-all duration-1000 delay-500 ${
-                  isLoaded ? 'opacity-100' : 'opacity-0'
+                  isLoaded ? "opacity-100" : "opacity-0"
                 }`}
               >
                 <a
                   href="#"
                   className="group flex items-center gap-3 bg-chiarli-wine text-white px-8 py-4 hover:bg-chiarli-text transition-all duration-300"
                 >
-                  <span className="font-sans text-xs font-medium uppercase tracking-[0.2em]">Acquista Online</span>
-                  <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+                  <span className="font-sans text-xs font-medium uppercase tracking-[0.2em]">
+                    Acquista Online
+                  </span>
+                  <ArrowRight
+                    size={14}
+                    className="group-hover:translate-x-2 transition-transform"
+                  />
                 </a>
               </div>
-
             </div>
           </div>
-
         </div>
 
         {/* Scroll indicator */}
         <div
           className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-1000 delay-700 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
+            isLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
-          <span className="font-sans text-[10px] font-medium tracking-[0.3em] text-chiarli-text/40 uppercase">Scopri</span>
-          <ChevronDown size={16} className="text-chiarli-text/40 animate-bounce" />
+          <span className="font-sans text-[10px] font-medium tracking-[0.3em] text-chiarli-text/40 uppercase">
+            Scopri
+          </span>
+          <ChevronDown
+            size={16}
+            className="text-chiarli-text/40 animate-bounce"
+          />
         </div>
-
       </section>
 
       {/* Awards Section */}
       <section className="grid grid-cols-12">
-
         {/* Left: Awards */}
         <div className="col-span-12 lg:col-span-5 bg-white py-16 md:py-24 px-8 md:px-16 lg:px-20 flex items-center">
           <div>
@@ -226,7 +267,10 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
                   key={index}
                   className="group flex items-center gap-3 p-4 bg-chiarli-stone border border-chiarli-text/10 hover:border-chiarli-wine/30 transition-all duration-300"
                 >
-                  <Award size={24} className="text-chiarli-text/20 group-hover:text-chiarli-wine transition-colors" />
+                  <Award
+                    size={24}
+                    className="text-chiarli-text/20 group-hover:text-chiarli-wine transition-colors"
+                  />
                   <div>
                     <span className="font-serif text-base text-chiarli-text block group-hover:text-chiarli-wine transition-colors">
                       {award.name}
@@ -244,12 +288,13 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
         {/* Right: Image */}
         <div className="col-span-12 lg:col-span-7 h-[50vh] lg:h-auto relative">
           <img
-            src="/foto/close-up-78-scaled.jpeg"
+            src="/foto/sito/close-up-78-scaled.webp"
             alt="Vigneto Chiarli"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
-
       </section>
 
       {/* CAPITOLO 1: ESPERIENZA SENSORIALE */}
@@ -268,8 +313,10 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
       </section>
 
       {/* Tasting Notes - Editorial tabs */}
-      <section ref={contentRef} className="relative py-24 md:py-32 bg-chiarli-stone overflow-hidden">
-
+      <section
+        ref={contentRef}
+        className="relative py-24 md:py-32 bg-chiarli-stone overflow-hidden"
+      >
         {/* Floating bubbles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(20)].map((_, i) => (
@@ -279,10 +326,10 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
               style={{
                 width: `${3 + (i % 4) * 1.5}px`,
                 height: `${3 + (i % 4) * 1.5}px`,
-                left: `${5 + (i * 4.5) % 90}%`,
+                left: `${5 + ((i * 4.5) % 90)}%`,
                 bottom: `-${5 + (i % 4) * 3}%`,
                 background: `radial-gradient(circle at 30% 30%, rgba(180,60,80,${0.4 + (i % 3) * 0.1}), rgba(120,30,50,${0.25 + (i % 3) * 0.1}))`,
-                boxShadow: `0 0 ${4 + i % 3}px rgba(180,60,80,0.2)`,
+                boxShadow: `0 0 ${4 + (i % 3)}px rgba(180,60,80,0.2)`,
                 animation: `bubble-rise ${10 + (i % 4) * 2}s ease-in-out infinite`,
                 animationDelay: `${(i * 0.4) % 10}s`,
               }}
@@ -291,26 +338,27 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
         </div>
 
         <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20 relative z-10">
-
           <div className="grid grid-cols-12 gap-8 lg:gap-16">
-
             {/* Left: Section header */}
             <div className="col-span-12 lg:col-span-4 relative">
-
               <span
                 className={`font-sans text-[10px] font-medium uppercase tracking-[0.4em] text-chiarli-text/40 block mb-6 transition-all duration-1000 ${
-                  contentVisible ? 'opacity-100' : 'opacity-0'
+                  contentVisible ? "opacity-100" : "opacity-0"
                 }`}
               >
                 Note di Degustazione
               </span>
               <h2
                 className={`font-serif text-[8vw] lg:text-[3.5vw] text-chiarli-text leading-[0.9] mb-8 transition-all duration-1000 delay-100 ${
-                  contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  contentVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                 }`}
               >
                 Un viaggio
-                <span className="italic text-chiarli-wine block">sensoriale</span>
+                <span className="italic text-chiarli-wine block">
+                  sensoriale
+                </span>
               </h2>
 
               {/* Tabs */}
@@ -321,19 +369,27 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
                     onClick={() => setActiveTab(index)}
                     className={`w-full text-left py-5 border-l-3 pl-6 transition-all duration-500 group relative ${
                       activeTab === index
-                        ? 'border-chiarli-wine text-chiarli-text bg-white/30 shadow-[inset_0_0_30px_rgba(180,60,80,0.1)] scale-[1.02]'
-                        : 'border-chiarli-text/10 text-chiarli-text/40 hover:text-chiarli-text hover:border-chiarli-wine/50 hover:bg-white/20 hover:pl-8 hover:scale-[1.01]'
+                        ? "border-chiarli-wine text-chiarli-text bg-white/30 shadow-[inset_0_0_30px_rgba(180,60,80,0.1)] scale-[1.02]"
+                        : "border-chiarli-text/10 text-chiarli-text/40 hover:text-chiarli-text hover:border-chiarli-wine/50 hover:bg-white/20 hover:pl-8 hover:scale-[1.01]"
                     }`}
                   >
-                    <span className={`font-sans text-xs font-medium uppercase tracking-[0.2em] transition-all duration-500 ${
-                      activeTab === index ? 'text-chiarli-wine' : 'group-hover:text-chiarli-wine/80'
-                    }`}>
+                    <span
+                      className={`font-sans text-xs font-medium uppercase tracking-[0.2em] transition-all duration-500 ${
+                        activeTab === index
+                          ? "text-chiarli-wine"
+                          : "group-hover:text-chiarli-wine/80"
+                      }`}
+                    >
                       {note.title}
                     </span>
                     {/* Indicator line on hover */}
-                    <div className={`absolute left-0 top-0 bottom-0 w-1 bg-chiarli-wine transition-all duration-500 ${
-                      activeTab === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-70'
-                    }`} />
+                    <div
+                      className={`absolute left-0 top-0 bottom-0 w-1 bg-chiarli-wine transition-all duration-500 ${
+                        activeTab === index
+                          ? "opacity-100"
+                          : "opacity-0 group-hover:opacity-70"
+                      }`}
+                    />
                   </button>
                 ))}
               </div>
@@ -343,7 +399,9 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
             <div className="col-span-12 lg:col-span-8 flex items-center">
               <div
                 className={`transition-all duration-1000 delay-200 ${
-                  contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  contentVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
                 }`}
               >
                 <p
@@ -354,62 +412,65 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
                 </p>
               </div>
             </div>
-
           </div>
-
         </div>
       </section>
 
       {/* Food Pairing - Split layout */}
       <section className="grid grid-cols-1 lg:grid-cols-2">
-
         {/* Image */}
         <div className="h-[45vh] lg:h-[70vh] relative">
           <img
-            src="/foto/ravioli-2063535_1280-uai-540x810.jpg"
+            src="/foto/sito/ravioli-2063535_1280-uai-540x810.webp"
             alt="Abbinamento gastronomico"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
         {/* Content */}
         <div className="flex items-center bg-chiarli-stone">
           <div className="px-8 md:px-16 lg:px-20 py-16 lg:py-24">
-
             <span className="font-sans text-[10px] font-medium uppercase tracking-[0.4em] text-chiarli-text/40 block mb-6">
               Abbinamenti
             </span>
 
             <h2 className="font-serif text-[8vw] lg:text-[3vw] text-chiarli-text leading-[0.9] mb-8">
               Perfetto con la
-              <span className="italic text-chiarli-wine block">cucina emiliana</span>
+              <span className="italic text-chiarli-wine block">
+                cucina emiliana
+              </span>
             </h2>
 
             <p className="font-sans text-base text-chiarli-text/60 leading-relaxed mb-10 max-w-lg">
-              La freschezza e la sapidità di questo Lambrusco lo rendono il compagno ideale per i piatti della tradizione.
+              La freschezza e la sapidità di questo Lambrusco lo rendono il
+              compagno ideale per i piatti della tradizione.
             </p>
 
             <div className="grid grid-cols-2 gap-4">
               {pairings.map((item, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-chiarli-wine" />
-                  <span className="font-sans text-sm text-chiarli-text/70">{item}</span>
+                  <span className="font-sans text-sm text-chiarli-text/70">
+                    {item}
+                  </span>
                 </div>
               ))}
             </div>
-
           </div>
         </div>
-
       </section>
 
       {/* Heritage - Full width image with overlay */}
       <section className="relative min-h-[80vh]">
         <div className="absolute inset-0">
           <img
-            src="/foto/chiarli.jpg"
+            src="/foto/sito/chiarli.webp"
             alt="Villa Chiarli"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-transparent" />
         </div>
@@ -417,7 +478,6 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
         <div className="relative z-10 min-h-[80vh] flex items-center">
           <div className="w-full px-8 md:px-16 lg:px-20 py-24">
             <div className="max-w-2xl">
-
               <span className="font-sans text-[10px] font-medium uppercase tracking-[0.4em] text-white/50 block mb-8">
                 La Storia
               </span>
@@ -429,19 +489,24 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
               </h2>
 
               <p className="font-sans text-base lg:text-lg text-white/80 leading-relaxed mb-8 max-w-lg text-left">
-                Nel 1860, quando Cleto Chiarli iniziò la sua avventura nel mondo del vino,
-                il Lambrusco veniva prodotto esclusivamente con la rifermentazione in bottiglia.
-                Abbiamo riscoperto questa tecnica ancestrale per offrire un Lambrusco autentico.
+                Nel 1860, quando Cleto Chiarli iniziò la sua avventura nel mondo
+                del vino, il Lambrusco veniva prodotto esclusivamente con la
+                rifermentazione in bottiglia. Abbiamo riscoperto questa tecnica
+                ancestrale per offrire un Lambrusco autentico.
               </p>
 
               <a
                 href="#"
                 className="group inline-flex items-center gap-3 text-white hover:text-chiarli-wine transition-colors"
               >
-                <span className="font-sans text-xs font-medium uppercase tracking-[0.2em]">Scopri la nostra storia</span>
-                <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+                <span className="font-sans text-xs font-medium uppercase tracking-[0.2em]">
+                  Scopri la nostra storia
+                </span>
+                <ArrowRight
+                  size={14}
+                  className="group-hover:translate-x-2 transition-transform"
+                />
               </a>
-
             </div>
           </div>
         </div>
@@ -464,7 +529,6 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
 
       {/* Technical Specs - Clean editorial grid */}
       <section className="relative py-24 md:py-32 bg-white overflow-hidden">
-
         {/* Floating bubbles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(15)].map((_, i) => (
@@ -474,7 +538,7 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
               style={{
                 width: `${3 + (i % 3) * 1.5}px`,
                 height: `${3 + (i % 3) * 1.5}px`,
-                left: `${5 + (i * 6) % 90}%`,
+                left: `${5 + ((i * 6) % 90)}%`,
                 bottom: `-${5 + (i % 3) * 3}%`,
                 background: `radial-gradient(circle at 30% 30%, rgba(180,60,80,${0.25 + (i % 3) * 0.1}), rgba(120,30,50,${0.15}))`,
                 animation: `bubble-rise ${12 + (i % 4) * 3}s ease-in-out infinite`,
@@ -485,9 +549,7 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
         </div>
 
         <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20 relative z-10">
-
           <div className="grid grid-cols-12 gap-8 lg:gap-16">
-
             <div className="col-span-12 lg:col-span-4">
               <span className="font-sans text-[10px] font-medium uppercase tracking-[0.4em] text-chiarli-text/40 block mb-6">
                 Scheda Tecnica
@@ -497,7 +559,8 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
                 <span className="italic text-chiarli-wine block">tecniche</span>
               </h2>
               <p className="font-sans text-sm text-chiarli-text/60 leading-relaxed mt-6">
-                Tutti i dettagli di produzione e le caratteristiche enologiche del vino.
+                Tutti i dettagli di produzione e le caratteristiche enologiche
+                del vino.
               </p>
             </div>
 
@@ -518,29 +581,32 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
                 ))}
               </div>
             </div>
-
           </div>
-
         </div>
       </section>
 
       {/* CTA - Minimal */}
       <section className="py-24 md:py-32 bg-white border-t border-chiarli-text/10">
         <div className="max-w-[1800px] mx-auto px-8 md:px-16 lg:px-20 text-center">
-
           <h2 className="font-serif text-[8vw] lg:text-[4vw] text-chiarli-text leading-[0.9] mb-8">
             Pronto a scoprire il
-            <span className="italic text-chiarli-wine block">Metodo del Fondatore?</span>
+            <span className="italic text-chiarli-wine block">
+              Metodo del Fondatore?
+            </span>
           </h2>
 
           <a
             href="#"
             className="group inline-flex items-center gap-3 bg-chiarli-wine text-white px-10 py-4 hover:bg-chiarli-text transition-all duration-300"
           >
-            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em]">Acquista Online</span>
-            <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+            <span className="font-sans text-xs font-medium uppercase tracking-[0.2em]">
+              Acquista Online
+            </span>
+            <ArrowRight
+              size={14}
+              className="group-hover:translate-x-2 transition-transform"
+            />
           </a>
-
         </div>
       </section>
 
@@ -567,7 +633,6 @@ export const WineDetailPageLight: React.FC<WineDetailPageLightProps> = ({ onBack
           }
         }
       `}</style>
-
     </div>
   );
 };

@@ -14,9 +14,9 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
   const [currentFreschezzaSlide, setCurrentFreschezzaSlide] = useState(0);
 
   const freschezzaImages = [
-    "/foto/freschezza-1.jpg",
-    "/foto/freschezza-2.jpg",
-    "/foto/freschezza-3.jpg",
+    "/foto/sito/freschezza-1.webp",
+    "/foto/sito/freschezza-2.webp",
+    "/foto/sito/freschezza-3.webp",
   ];
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/hero-metodo.jpeg"
+            src="/foto/sito/a021-scaled.webp"
             alt="Il metodo Chiarli"
             className="w-full h-full object-cover"
           />
@@ -132,9 +132,11 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           {/* Right: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/innovazione-anni50.jpg"
+              src="/foto/sito/innovazione-anni50.webp"
               alt="Innovazione anni '50"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-chiarli-text/20 to-transparent lg:bg-gradient-to-l lg:from-transparent lg:to-chiarli-text/20" />
           </div>
@@ -147,9 +149,11 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden order-1 lg:order-1">
             <img
-              src="/foto/processo-vinificazione.jpg"
+              src="/foto/sito/processo-vinificazione.webp"
               alt="Processo di vinificazione"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-white/20 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-white/20" />
           </div>
@@ -216,6 +220,8 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                 key={index}
                 src={img}
                 alt={`Freschezza e autenticità ${index + 1}`}
+                loading="lazy"
+                decoding="async"
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                   index === currentFreschezzaSlide ? "opacity-100" : "opacity-0"
                 }`}
@@ -232,9 +238,11 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/unicita-metodo-chiarli.jpg"
+              src="/foto/sito/unicita-metodo-chiarli.webp"
               alt="L'unicità del metodo Chiarli"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-white/20 lg:bg-gradient-to-r lg:from-transparent lg:to-white/20" />
           </div>
@@ -285,9 +293,11 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/sozzigalli-29.jpg"
+            src="/foto/sito/sozzigalli-29.webp"
             alt="Le Fasi del Metodo"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/60" />
         </div>

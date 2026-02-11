@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { MapPin, ChevronDown } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { MapPin, ChevronDown } from "lucide-react";
 
 interface TenutaSozzigalliPageProps {
   onBack?: () => void;
@@ -19,15 +19,17 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
 
   const slides = [
     {
-      image: "/foto/sozzigalli-aerea.jpg",
+      image: "/foto/sito/sozzigalli-aerea.webp",
       title: "La Tenuta",
-      description: "30 ettari di vigneto senza irrigazione, dove i fiumi Panaro e Secchia hanno creato terreni unici."
+      description:
+        "30 ettari di vigneto senza irrigazione, dove i fiumi Panaro e Secchia hanno creato terreni unici.",
     },
     {
-      image: "/foto/sozzigalli-filari.jpg",
+      image: "/foto/sito/sozzigalli-filari.webp",
       title: "Il Territorio",
-      description: "Suoli alluvionali che conservano cloni pre-fillossera, il palcoscenico ideale per il Lambrusco di Sorbara."
-    }
+      description:
+        "Suoli alluvionali che conservano cloni pre-fillossera, il palcoscenico ideale per il Lambrusco di Sorbara.",
+    },
   ];
 
   useEffect(() => {
@@ -38,9 +40,9 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
   }, [slides.length]);
 
   const toggleSection = (section: keyof typeof expandedSections) => {
-    setExpandedSections(prev => ({
+    setExpandedSections((prev) => ({
       ...prev,
-      [section]: !prev[section]
+      [section]: !prev[section],
     }));
   };
 
@@ -50,7 +52,7 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
       <section className="relative min-h-screen bg-chiarli-text overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/foto/sozzigalli-filari.jpg"
+            src="/foto/sito/sozzigalli-filari.webp"
             alt="Vigneto Tenuta Sozzigalli"
             className="w-full h-full object-cover"
           />
@@ -62,7 +64,9 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
           <div className="max-w-3xl">
             <span
               className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-6 block transition-all duration-700 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               Le Nostre Tenute
@@ -70,7 +74,9 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
 
             <h1
               className={`font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight transition-all duration-700 delay-100 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
             >
               Tenuta Sozzigalli
@@ -78,16 +84,22 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
 
             <p
               className={`flex items-center gap-2 text-white/70 text-xl mb-8 transition-all duration-700 delay-200 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
               }`}
             >
               <MapPin size={20} />
-              <span className="font-sans uppercase tracking-widest">Bomporto</span>
+              <span className="font-sans uppercase tracking-widest">
+                Bomporto
+              </span>
             </p>
 
             <p
               className={`font-serif italic text-3xl text-chiarli-wine-light mb-8 transition-all duration-700 delay-300 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
               }`}
             >
               Storica tenuta nel cuore dei suoli alluvionali di Sorbara
@@ -95,10 +107,14 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
 
             <p
               className={`font-sans text-white/70 text-xl leading-relaxed transition-all duration-700 delay-400 ${
-                isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                isHeroVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
               }`}
             >
-              30 ettari di vigneto senza irrigazione, dove i fiumi Panaro e Secchia hanno creato terreni unici ideali per il Lambrusco di Sorbara.
+              30 ettari di vigneto senza irrigazione, dove i fiumi Panaro e
+              Secchia hanno creato terreni unici ideali per il Lambrusco di
+              Sorbara.
             </p>
           </div>
         </div>
@@ -110,9 +126,11 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
           {/* Image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/sozzigalli-aerea.jpg"
+              src="/foto/sito/sozzigalli-aerea.webp"
               alt="Vista aerea Tenuta Sozzigalli"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 lg:bg-gradient-to-l lg:from-white/20 lg:to-transparent" />
           </div>
@@ -121,41 +139,62 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
           <div className="flex items-center justify-center py-20 md:py-32 lg:py-20 bg-white">
             <div className="w-full max-w-xl mx-auto px-8 md:px-12 lg:px-16">
               <h2 className="font-serif text-4xl md:text-5xl text-chiarli-text mb-8 leading-tight">
-                La Storia e il <span className="italic text-chiarli-wine">Territorio</span>
+                La Storia e il{" "}
+                <span className="italic text-chiarli-wine">Territorio</span>
               </h2>
 
               <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-8">
-                Nel corso di 10.000 anni, i cicli di piena dei fiumi Panaro e Secchia, insieme ai loro antichi affluenti, hanno depositato strati di limo fine, sabbia e sali nella pianura. Occasionali rotture degli argini artificiali hanno creato alcune sacche argillose, formando un mosaico di micro terroir.
+                Nel corso di 10.000 anni, i cicli di piena dei fiumi Panaro e
+                Secchia, insieme ai loro antichi affluenti, hanno depositato
+                strati di limo fine, sabbia e sali nella pianura. Occasionali
+                rotture degli argini artificiali hanno creato alcune sacche
+                argillose, formando un mosaico di micro terroir.
               </p>
 
-              <div className={`overflow-hidden transition-all duration-500 ${expandedSections.storia ? 'max-h-[2000px] opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
+              <div
+                className={`overflow-hidden transition-all duration-500 ${expandedSections.storia ? "max-h-[2000px] opacity-100 mb-8" : "max-h-0 opacity-0 mb-0"}`}
+              >
                 <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
-                  Le brezze notturne provenienti dai fiumi contribuiscono a un terreno fresco, ben drenante e al tempo stesso silenziosamente fertile — il palcoscenico ideale per far esprimere il Lambrusco di Sorbara nella sua versione più luminosa e aromatica.
+                  Le brezze notturne provenienti dai fiumi contribuiscono a un
+                  terreno fresco, ben drenante e al tempo stesso silenziosamente
+                  fertile — il palcoscenico ideale per far esprimere il
+                  Lambrusco di Sorbara nella sua versione più luminosa e
+                  aromatica.
                 </p>
 
                 <p className="font-serif italic text-xl text-chiarli-text/80 border-l-4 border-chiarli-wine pl-6 mb-6">
-                  La fine tessitura granulare del suolo fornisce un sistema capillare di umidità costante per le delicate viti di Sorbara, fondamentale per mantenere grappoli spargoli.
+                  La fine tessitura granulare del suolo fornisce un sistema
+                  capillare di umidità costante per le delicate viti di Sorbara,
+                  fondamentale per mantenere grappoli spargoli.
                 </p>
 
                 <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed mb-6">
-                  Il suolo sciolto incoraggia l'approfondimento delle radici, che consente di attingere umidità anche in periodi di siccità — infatti il vigneto di Sozzigalli non dispone di un sistema di irrigazione.
+                  Il suolo sciolto incoraggia l'approfondimento delle radici,
+                  che consente di attingere umidità anche in periodi di siccità
+                  — infatti il vigneto di Sozzigalli non dispone di un sistema
+                  di irrigazione.
                 </p>
 
                 <p className="font-sans text-chiarli-text/80 text-lg leading-relaxed">
-                  L'assenza di calcare attivo ha reso questo terreno l'ambiente ideale per la conservazione dei cloni pre-fillossera. La famiglia Chiarli, che vinificava separatamente ogni parcella di Sorbara, ha individuato i cloni più espressivi tra questi rari esemplari. Il risultato è una selezione massale proprietaria nel vigneto di 30 ettari.
+                  L'assenza di calcare attivo ha reso questo terreno l'ambiente
+                  ideale per la conservazione dei cloni pre-fillossera. La
+                  famiglia Chiarli, che vinificava separatamente ogni parcella
+                  di Sorbara, ha individuato i cloni più espressivi tra questi
+                  rari esemplari. Il risultato è una selezione massale
+                  proprietaria nel vigneto di 30 ettari.
                 </p>
               </div>
 
               <button
-                onClick={() => toggleSection('storia')}
+                onClick={() => toggleSection("storia")}
                 className="flex items-center gap-2 text-chiarli-wine hover:text-chiarli-wine/80 transition-colors group"
               >
                 <span className="font-sans text-sm uppercase tracking-widest">
-                  {expandedSections.storia ? 'Mostra meno' : 'Leggi di più'}
+                  {expandedSections.storia ? "Mostra meno" : "Leggi di più"}
                 </span>
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-300 ${expandedSections.storia ? 'rotate-180' : ''}`}
+                  className={`transition-transform duration-300 ${expandedSections.storia ? "rotate-180" : ""}`}
                 />
               </button>
             </div>
@@ -174,43 +213,61 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
               </h2>
 
               <p className="font-serif italic text-2xl text-white/80 mb-8 leading-relaxed">
-                Coltivato in una ristretta zona della pianura a Nord di Modena nei terreni alluvionali compresi tra il fiume Secchia e Panaro.
+                Coltivato in una ristretta zona della pianura a Nord di Modena
+                nei terreni alluvionali compresi tra il fiume Secchia e Panaro.
               </p>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8">
-                Un vitigno difficile, sicuramente tra i primi addomesticati dalla vite selvatica che noi Chiarli, nei suoi cloni più antichi, ancora oggi preserviamo e coltiviamo con la massima cura.
+                Un vitigno difficile, sicuramente tra i primi addomesticati
+                dalla vite selvatica che noi Chiarli, nei suoi cloni più
+                antichi, ancora oggi preserviamo e coltiviamo con la massima
+                cura.
               </p>
 
-              <div className={`overflow-hidden transition-all duration-500 ${expandedSections.sorbara ? 'max-h-[2000px] opacity-100 mb-8' : 'max-h-0 opacity-0 mb-0'}`}>
+              <div
+                className={`overflow-hidden transition-all duration-500 ${expandedSections.sorbara ? "max-h-[2000px] opacity-100 mb-8" : "max-h-0 opacity-0 mb-0"}`}
+              >
                 <p className="font-sans text-white/70 text-lg leading-relaxed mb-6">
-                  Alla vista il Sorbara si presenta senza rivelare le sue eccezionali caratteristiche: il grappolo è spargolo e gli acini sono di dimensione irregolare. La quantità di uva per ettaro è la più bassa tra i vitigni della famiglia Lambrusco.
+                  Alla vista il Sorbara si presenta senza rivelare le sue
+                  eccezionali caratteristiche: il grappolo è spargolo e gli
+                  acini sono di dimensione irregolare. La quantità di uva per
+                  ettaro è la più bassa tra i vitigni della famiglia Lambrusco.
                 </p>
 
                 <div className="border-l-4 border-chiarli-wine-light pl-6 mb-6">
                   <p className="font-serif italic text-xl text-white/80">
-                    Il Sorbara, con il suo colore unico tra rosso e rosa, il frutto scintillante e l'acidità senza compromessi, è perfetto per tutte le metodologie di spumantizzazione.
+                    Il Sorbara, con il suo colore unico tra rosso e rosa, il
+                    frutto scintillante e l'acidità senza compromessi, è
+                    perfetto per tutte le metodologie di spumantizzazione.
                   </p>
                 </div>
 
                 <p className="font-sans text-white/70 text-lg leading-relaxed mb-6">
-                  Solo grazie ad appassionati viticultori che da alcuni decenni si sono impegnati al miglioramento di questa varietà, vinificando le uve in purezza separandole dalla varietà Salamino, è stato possibile proporre un vino con caratteristiche così uniche da accendere subito l'interesse del mondo del vino.
+                  Solo grazie ad appassionati viticultori che da alcuni decenni
+                  si sono impegnati al miglioramento di questa varietà,
+                  vinificando le uve in purezza separandole dalla varietà
+                  Salamino, è stato possibile proporre un vino con
+                  caratteristiche così uniche da accendere subito l'interesse
+                  del mondo del vino.
                 </p>
 
                 <p className="font-sans text-white/70 text-lg leading-relaxed">
-                  Queste uve svolgono un ruolo cruciale nei nostri vini più noti, dal Fondatore e Premium fino al progetto più recente, Quinto Passo.
+                  Queste uve svolgono un ruolo cruciale nei nostri vini più
+                  noti, dal Fondatore e Premium fino al progetto più recente,
+                  Quinto Passo.
                 </p>
               </div>
 
               <button
-                onClick={() => toggleSection('sorbara')}
+                onClick={() => toggleSection("sorbara")}
                 className="flex items-center gap-2 text-chiarli-wine-light hover:text-chiarli-wine-light/80 transition-colors group"
               >
                 <span className="font-sans text-sm uppercase tracking-widest">
-                  {expandedSections.sorbara ? 'Mostra meno' : 'Leggi di più'}
+                  {expandedSections.sorbara ? "Mostra meno" : "Leggi di più"}
                 </span>
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-300 ${expandedSections.sorbara ? 'rotate-180' : ''}`}
+                  className={`transition-transform duration-300 ${expandedSections.sorbara ? "rotate-180" : ""}`}
                 />
               </button>
             </div>
@@ -219,9 +276,11 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
           {/* Image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden lg:order-2">
             <img
-              src="/foto/sozzigalli-uva.jpg"
+              src="/foto/sito/sozzigalli-uva.webp"
               alt="Lambrusco di Sorbara"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-text/20 lg:bg-gradient-to-r lg:from-chiarli-text/20 lg:to-transparent" />
           </div>
@@ -235,7 +294,7 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
+              index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           >
             {/* Background Image */}
@@ -243,6 +302,8 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
               src={slide.image}
               alt={slide.title}
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
 
             {/* Overlay */}
@@ -252,7 +313,10 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center px-6 md:px-12 max-w-4xl">
                 <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
-                  {slide.title.split(' ')[0]} <span className="italic text-chiarli-wine-light">{slide.title.split(' ').slice(1).join(' ')}</span>
+                  {slide.title.split(" ")[0]}{" "}
+                  <span className="italic text-chiarli-wine-light">
+                    {slide.title.split(" ").slice(1).join(" ")}
+                  </span>
                 </h2>
                 <p className="font-serif italic text-xl md:text-2xl text-white/90 leading-relaxed">
                   {slide.description}
@@ -264,11 +328,18 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
 
         {/* Navigation Arrows */}
         <button
-          onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+          onClick={() =>
+            setCurrentSlide(
+              (prev) => (prev - 1 + slides.length) % slides.length,
+            )
+          }
           className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group"
           aria-label="Slide precedente"
         >
-          <ChevronDown size={24} className="text-white rotate-90 group-hover:scale-110 transition-transform" />
+          <ChevronDown
+            size={24}
+            className="text-white rotate-90 group-hover:scale-110 transition-transform"
+          />
         </button>
 
         <button
@@ -276,7 +347,10 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
           className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group"
           aria-label="Slide successiva"
         >
-          <ChevronDown size={24} className="text-white -rotate-90 group-hover:scale-110 transition-transform" />
+          <ChevronDown
+            size={24}
+            className="text-white -rotate-90 group-hover:scale-110 transition-transform"
+          />
         </button>
       </section>
 
@@ -300,7 +374,8 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
           </h2>
 
           <p className="font-serif text-base text-chiarli-text/50 mb-10 max-w-lg mx-auto">
-            Scopri in anteprima le novità, gli eventi e le storie dal mondo Chiarli.
+            Scopri in anteprima le novità, gli eventi e le storie dal mondo
+            Chiarli.
           </p>
 
           <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>

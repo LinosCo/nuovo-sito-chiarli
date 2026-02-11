@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Wine } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { ArrowRight, Wine } from "lucide-react";
 
 interface CollezioneClassicaPageProps {
   onBack?: () => void;
@@ -19,7 +19,10 @@ interface WineData {
   order?: number;
 }
 
-export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ onBack, onWineClick }) => {
+export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({
+  onBack,
+  onWineClick,
+}) => {
   const [wines, setWines] = useState<WineData[]>([]);
   const [hoveredWine, setHoveredWine] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -27,14 +30,21 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
   useEffect(() => {
     const loadWines = async () => {
       try {
-        const response = await fetch('/content/wines.json');
+        const response = await fetch("/content/wines.json");
         const data = await response.json();
         const classicWines = data.wines
-          .filter((w: WineData) => (w.family === 'Metodo Classico' || w.collection === 'Metodo Classico') && w.isActive)
-          .sort((a: WineData, b: WineData) => (a.order ?? 99) - (b.order ?? 99));
+          .filter(
+            (w: WineData) =>
+              (w.family === "Metodo Classico" ||
+                w.collection === "Metodo Classico") &&
+              w.isActive,
+          )
+          .sort(
+            (a: WineData, b: WineData) => (a.order ?? 99) - (b.order ?? 99),
+          );
         setWines(classicWines);
       } catch (error) {
-        console.error('Error loading wines:', error);
+        console.error("Error loading wines:", error);
       }
     };
 
@@ -58,7 +68,7 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/close-up-87-scaled.jpeg"
+            src="/foto/sito/close-up-87-scaled.webp"
             alt="Collezione Classica"
             className="w-full h-full object-cover"
           />
@@ -69,7 +79,9 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-24 text-center">
           <span
             className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-6 block transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
             }`}
           >
             Metodo Classico
@@ -77,15 +89,20 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
 
           <h1
             className={`font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-none transition-all duration-700 delay-100 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
             }`}
           >
-            Collezione <span className="italic text-chiarli-wine-light">Classica</span>
+            Collezione{" "}
+            <span className="italic text-chiarli-wine-light">Classica</span>
           </h1>
 
           <p
             className={`font-sans text-lg md:text-xl text-white/80 mb-4 transition-all duration-700 delay-200 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
             }`}
           >
             Radicati nel territorio
@@ -93,10 +110,13 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
 
           <p
             className={`font-serif text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-300 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
             }`}
           >
-            Una collezione che cattura l'essenza della nostra terra - energia e anima.
+            Una collezione che cattura l'essenza della nostra terra - energia e
+            anima.
           </p>
         </div>
       </section>
@@ -104,14 +124,13 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
       {/* Wines Grid Section */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-
           {/* Section Header */}
           <div className="mb-12 text-center">
             <h2 className="font-serif text-3xl md:text-4xl text-chiarli-text mb-4">
               I nostri <span className="italic text-chiarli-wine">vini</span>
             </h2>
             <p className="font-sans text-sm text-chiarli-text/60 uppercase tracking-wider">
-              {wines.length} {wines.length === 1 ? 'vino' : 'vini'}
+              {wines.length} {wines.length === 1 ? "vino" : "vini"}
             </p>
           </div>
 
@@ -132,6 +151,8 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
                       src={wine.image}
                       alt={wine.name}
                       className="w-full h-80 md:h-96 object-contain transform transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <div className="w-full h-80 md:h-96 flex items-center justify-center">
@@ -140,9 +161,11 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
                   )}
 
                   {/* Hover Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-chiarli-wine/40 to-transparent transition-opacity duration-500 ${
-                    hoveredWine === wine.slug ? 'opacity-100' : 'opacity-0'
-                  }`} />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t from-chiarli-wine/40 to-transparent transition-opacity duration-500 ${
+                      hoveredWine === wine.slug ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
                 </div>
 
                 {/* Wine Info */}
@@ -160,9 +183,11 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
                   </p>
 
                   {/* Separator line */}
-                  <div className={`h-[1px] bg-chiarli-wine/30 mb-4 transition-all duration-500 ${
-                    hoveredWine === wine.slug ? 'w-20' : 'w-12'
-                  }`} />
+                  <div
+                    className={`h-[1px] bg-chiarli-wine/30 mb-4 transition-all duration-500 ${
+                      hoveredWine === wine.slug ? "w-20" : "w-12"
+                    }`}
+                  />
 
                   {/* CTA */}
                   <div className="flex items-center gap-2 text-chiarli-wine">
@@ -172,7 +197,7 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({ 
                     <ArrowRight
                       size={14}
                       className={`transition-transform duration-300 ${
-                        hoveredWine === wine.slug ? 'translate-x-1' : ''
+                        hoveredWine === wine.slug ? "translate-x-1" : ""
                       }`}
                     />
                   </div>

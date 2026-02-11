@@ -94,7 +94,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/hero-sostenibilita.jpeg"
+            src="/foto/sito/hero-sostenibilita.webp"
             alt="Sostenibilità Chiarli"
             className="w-full h-full object-cover"
           />
@@ -155,9 +155,11 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/portainnesti.jpg"
+              src="/foto/sito/portainnesti.webp"
               alt="Portainnesti differenziati"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-text/20 lg:bg-gradient-to-r lg:from-transparent lg:to-chiarli-text/20" />
           </div>
@@ -220,9 +222,11 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
           {/* Right: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/sostenibilita-agricoltura40.jpg"
+              src="/foto/sito/sostenibilita-agricoltura40.webp"
               alt="Tecnologia nei vigneti"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent lg:bg-gradient-to-l lg:from-transparent lg:to-white/20" />
           </div>
@@ -235,9 +239,11 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/sozzigalli-29.jpg"
+              src="/foto/sito/sozzigalli-29.webp"
               alt="Coltivazione biologica"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-text/20 lg:bg-gradient-to-r lg:from-transparent lg:to-chiarli-text/20" />
           </div>
@@ -300,9 +306,11 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
           {/* Right: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/2.jpg"
+              src="/foto/sito/sozzigalli-10.webp"
               alt="Certificazione Equalitas"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent lg:bg-gradient-to-l lg:from-transparent lg:to-white/20" />
           </div>
@@ -329,9 +337,11 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
             <div className="order-2 lg:order-1">
               <div className="relative">
                 <img
-                  src="/foto/a001-scaled.jpg"
+                  src="/foto/sito/a001-scaled.webp"
                   alt="Vigneti Chiarli"
                   className="w-full h-[500px] object-cover shadow-2xl"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 border-4 border-chiarli-wine-light/30 transform translate-x-6 translate-y-6 -z-10" />
               </div>
