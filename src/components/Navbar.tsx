@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,61 +10,70 @@ export const Navbar: React.FC = () => {
   // TEMPORANEO: Semplificato durante sviluppo dark-only
   const navItems = [
     {
-      label: 'Vini',
-      href: '#/tutti-i-vini',
+      label: "Vini",
+      href: "#/tutti-i-vini",
       submenu: [
-        { label: 'Collezione Classica', href: '#/collezione-classica' },
-        { label: 'Collezione Premium', href: '#/collezione-premium' }
-      ]
+        { label: "Collezione Classica", href: "#/collezione-classica" },
+        { label: "Collezione Premium", href: "#/collezione-premium" },
+      ],
     },
     {
-      label: 'Tenute',
-      href: '#/tenute',
+      label: "Tenute",
+      href: "#/tenute",
       submenu: [
-        { label: 'Tenuta Cialdini', href: '#/tenute/cialdini' },
-        { label: 'Tenuta Sozzigalli', href: '#/tenute/sozzigalli' },
-        { label: 'Tenuta Belvedere', href: '#/tenute/belvedere' }
-      ]
+        { label: "Tenuta Cialdini", href: "#/tenute/cialdini" },
+        { label: "Tenuta Sozzigalli", href: "#/tenute/sozzigalli" },
+        { label: "Tenuta Belvedere", href: "#/tenute/belvedere" },
+      ],
     },
-    { label: 'Esperienze', href: '#/esperienze' },
-    { label: 'Storia', href: '#/storia' },
-    { label: 'Metodo', href: '#/metodo' },
-    { label: 'Sostenibilità', href: '#/sostenibilita' },
-    { label: 'Blog', href: '#/blog' }
+    { label: "Esperienze", href: "#/esperienze" },
+    { label: "Storia", href: "#/storia" },
+    { label: "Metodo", href: "#/metodo" },
+    { label: "Sostenibilità", href: "#/sostenibilita" },
+    { label: "Blog", href: "#/blog" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-chiarli-stone/95 backdrop-blur-md py-4 shadow-sm text-chiarli-text'
-          : 'bg-transparent py-6 text-white'
+          ? "bg-chiarli-stone/95 backdrop-blur-md py-4 shadow-sm text-chiarli-text"
+          : "bg-transparent py-6 text-white"
       }`}
     >
       <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex items-center justify-between">
-
         {/* Logo Area */}
         <a href="" className="group">
           <img
             src="/foto/cletochiarli-2-01.svg"
             alt="Cleto Chiarli"
-            className={`h-10 md:h-12 w-auto transition-all ${isScrolled ? 'brightness-0' : 'brightness-0 invert'}`}
+            className={`h-10 md:h-12 w-auto transition-all ${isScrolled ? "brightness-0" : "brightness-0 invert"}`}
           />
         </a>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-12">
           {navItems.map((item) => {
-            const isOpen = item.label === 'Vini' ? isViniOpen : item.label === 'Tenute' ? isTenuteOpen : false;
-            const setIsOpen = item.label === 'Vini' ? setIsViniOpen : item.label === 'Tenute' ? setIsTenuteOpen : () => {};
+            const isOpen =
+              item.label === "Vini"
+                ? isViniOpen
+                : item.label === "Tenute"
+                  ? isTenuteOpen
+                  : false;
+            const setIsOpen =
+              item.label === "Vini"
+                ? setIsViniOpen
+                : item.label === "Tenute"
+                  ? setIsTenuteOpen
+                  : () => {};
 
             return (
               <div
@@ -135,7 +144,10 @@ export const Navbar: React.FC = () => {
             {isMenuOpen ? <X /> : <Menu />}
           </button>
 
-          <a href="#contatti" className="hidden md:block px-6 py-2 hover:text-chiarli-wine-light font-sans text-xs font-bold uppercase tracking-widest transition-all">
+          <a
+            href="#contatti"
+            className="hidden md:block px-6 py-2 hover:text-chiarli-wine-light font-sans text-xs font-bold uppercase tracking-widest transition-all"
+          >
             Contatti
           </a>
         </div>
@@ -151,11 +163,14 @@ export const Navbar: React.FC = () => {
             <X size={24} />
           </button>
           {navItems.map((item) => (
-            <div key={item.label} className="flex flex-col items-center space-y-4">
+            <div
+              key={item.label}
+              className="flex flex-col items-center space-y-4"
+            >
               <a
                 href={item.href}
                 onClick={() => !item.submenu && setIsMenuOpen(false)}
-                className="font-serif text-4xl italic"
+                className="font-serif text-2xl md:text-4xl italic"
               >
                 {item.label}
               </a>

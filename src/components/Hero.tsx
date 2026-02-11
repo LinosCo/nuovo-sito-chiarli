@@ -85,7 +85,7 @@ export const Hero: React.FC = () => {
           {/* Title */}
           <h1 className="flex flex-col leading-none text-white mb-8">
             <span
-              className={`font-sans font-light text-5xl md:text-7xl lg:text-8xl tracking-tight transition-all duration-1000 ${
+              className={`font-sans font-light text-4xl md:text-7xl lg:text-8xl tracking-tight transition-all duration-1000 ${
                 isLoaded
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-12"
@@ -94,7 +94,7 @@ export const Hero: React.FC = () => {
               {homeContent.hero.titleLine1}
             </span>
             <span
-              className={`font-serif italic text-5xl md:text-7xl lg:text-8xl ml-8 md:ml-16 transition-all duration-1000 delay-300 ${
+              className={`font-serif italic text-4xl md:text-7xl lg:text-8xl ml-8 md:ml-16 transition-all duration-1000 delay-300 ${
                 isLoaded
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-12"

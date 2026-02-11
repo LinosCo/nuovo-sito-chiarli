@@ -91,7 +91,7 @@ export const BlogSection: React.FC = () => {
             <a
               key={article.id}
               href="#/blog"
-              className={`group cursor-pointer transition-all duration-700 delay-${index * 100} ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+              className={`group cursor-pointer transition-all duration-700 active:scale-[0.98] delay-${index * 100} ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
               onMouseEnter={() => setHoveredArticle(index)}
               onMouseLeave={() => setHoveredArticle(null)}
             >

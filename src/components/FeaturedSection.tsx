@@ -170,7 +170,7 @@ export const FeaturedSection: React.FC = () => {
                   href="#/esperienze"
                   onMouseEnter={() => setHoveredCard(exp.id)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  className={`group bg-white/5 backdrop-blur-sm p-6 transition-all duration-500 cursor-pointer flex flex-col ${
+                  className={`group bg-white/5 backdrop-blur-sm p-6 transition-all duration-500 cursor-pointer flex flex-col active:scale-[0.98] ${
                     activeCard === exp.id
                       ? "bg-chiarli-wine-light/20 scale-[1.02] shadow-lg shadow-chiarli-wine/20"
                       : "hover:bg-white/10"

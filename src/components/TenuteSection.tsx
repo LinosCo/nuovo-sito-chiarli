@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { MapPin, ArrowRight, ArrowLeft, Grape, Mountain } from 'lucide-react';
-import { useTenute, useHomeContent } from '../hooks/useContent';
+import React, { useState, useEffect, useRef } from "react";
+import { MapPin, ArrowRight, ArrowLeft, Grape, Mountain } from "lucide-react";
+import { useTenute, useHomeContent } from "../hooks/useContent";
 
 // Emilia-Romagna map component with interactive pins - Dark version
 const EmiliaRomagnaMapDark: React.FC<{
@@ -14,21 +14,21 @@ const EmiliaRomagnaMapDark: React.FC<{
   // La regione grande occupa la maggior parte dello spazio a destra
   // Modena è nel centro-ovest della regione mostrata
   const mapPositions = [
-    { x: 74, y: 60, labelPosition: 'bottom' as const },   // Castelvetro - più in basso e a sinistra di Spilamberto
-    { x: 83, y: 18, labelPosition: 'top' as const },      // Bomporto - più a destra e più alto
-    { x: 80, y: 50, labelPosition: 'left' as const },     // Spilamberto - sotto Modena, un po' più a destra
+    { x: 74, y: 60, labelPosition: "bottom" as const }, // Castelvetro - più in basso e a sinistra di Spilamberto
+    { x: 83, y: 18, labelPosition: "top" as const }, // Bomporto - più a destra e più alto
+    { x: 80, y: 50, labelPosition: "left" as const }, // Spilamberto - sotto Modena, un po' più a destra
   ];
 
-  const getLabelClasses = (position: 'top' | 'bottom' | 'left' | 'right') => {
+  const getLabelClasses = (position: "top" | "bottom" | "left" | "right") => {
     switch (position) {
-      case 'top':
-        return 'left-1/2 -translate-x-1/2 bottom-full mb-3';
-      case 'bottom':
-        return 'left-1/2 -translate-x-1/2 top-full mt-3';
-      case 'left':
-        return 'right-full mr-3 top-1/2 -translate-y-1/2';
-      case 'right':
-        return 'left-full ml-3 top-1/2 -translate-y-1/2';
+      case "top":
+        return "left-1/2 -translate-x-1/2 bottom-full mb-3";
+      case "bottom":
+        return "left-1/2 -translate-x-1/2 top-full mt-3";
+      case "left":
+        return "right-full mr-3 top-1/2 -translate-y-1/2";
+      case "right":
+        return "left-full ml-3 top-1/2 -translate-y-1/2";
     }
   };
 
@@ -45,17 +45,31 @@ const EmiliaRomagnaMapDark: React.FC<{
         {/* River labels */}
         <div
           className="absolute whitespace-nowrap pointer-events-none"
-          style={{ left: '68%', top: '3%' }}
+          style={{ left: "68%", top: "3%" }}
         >
-          <span className="text-[11px] font-black tracking-widest uppercase" style={{ color: '#1e40af', textShadow: '1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)' }}>
+          <span
+            className="text-[11px] font-black tracking-widest uppercase"
+            style={{
+              color: "#1e40af",
+              textShadow:
+                "1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)",
+            }}
+          >
             Fiume Secchia
           </span>
         </div>
         <div
           className="absolute whitespace-nowrap pointer-events-none"
-          style={{ left: '65%', top: '75%' }}
+          style={{ left: "65%", top: "75%" }}
         >
-          <span className="text-[11px] font-black tracking-widest uppercase" style={{ color: '#1e40af', textShadow: '1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)' }}>
+          <span
+            className="text-[11px] font-black tracking-widest uppercase"
+            style={{
+              color: "#1e40af",
+              textShadow:
+                "1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 2px 2px 4px rgba(255,255,255,0.8)",
+            }}
+          >
             Fiume Panaro
           </span>
         </div>
@@ -64,9 +78,9 @@ const EmiliaRomagnaMapDark: React.FC<{
         <div
           className="absolute cursor-default transition-all duration-500"
           style={{
-            left: '76%',
-            top: '39%',
-            transform: 'translate(-50%, -50%)',
+            left: "76%",
+            top: "39%",
+            transform: "translate(-50%, -50%)",
             zIndex: 5,
           }}
         >
@@ -92,9 +106,9 @@ const EmiliaRomagnaMapDark: React.FC<{
         <div
           className="absolute cursor-default transition-all duration-500"
           style={{
-            left: '14%',
-            top: '24%',
-            transform: 'translate(-50%, -50%)',
+            left: "14%",
+            top: "24%",
+            transform: "translate(-50%, -50%)",
             zIndex: 5,
           }}
         >
@@ -118,60 +132,68 @@ const EmiliaRomagnaMapDark: React.FC<{
 
         {/* Pin markers with labels */}
         {mapPositions.map((pos, index) => {
-        const isActive = index === activeIndex;
-        const isHovered = index === hoveredIndex;
+          const isActive = index === activeIndex;
+          const isHovered = index === hoveredIndex;
 
-        return (
-          <div
-            key={index}
-            className="absolute cursor-pointer transition-all duration-500"
-            style={{
-              left: `${pos.x}%`,
-              top: `${pos.y}%`,
-              transform: 'translate(-50%, -50%)',
-              zIndex: isActive || isHovered ? 20 : 10,
-            }}
-            onMouseEnter={() => onPinHover(index)}
-            onMouseLeave={() => onPinHover(null)}
-            onClick={() => onPinClick(index)}
-          >
-            {/* Pulse ring - only on active/hovered */}
-            {(isActive || isHovered) && (
-              <div className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-chiarli-wine-light/50 animate-ping" />
-            )}
-
-            {/* Outer glow */}
+          return (
             <div
-              className={`absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full transition-all duration-300 ${
-                isActive || isHovered ? 'bg-chiarli-wine-light/40 scale-100' : 'bg-chiarli-wine-light/20 scale-75'
-              }`}
-            />
-
-            {/* Inner circle */}
-            <div
-              className={`absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full transition-all duration-300 ${
-                isActive || isHovered ? 'bg-chiarli-wine-light scale-100' : 'bg-chiarli-wine-light/60 scale-75'
-              }`}
-            />
-
-            {/* Center dot */}
-            <div className="absolute w-2 h-2 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
-
-            {/* Location label */}
-            <div
-              className={`absolute whitespace-nowrap transition-all duration-300 ${getLabelClasses(pos.labelPosition)} ${
-                isActive || isHovered ? 'opacity-100' : 'opacity-70'
-              }`}
+              key={index}
+              className="absolute cursor-pointer transition-all duration-500"
+              style={{
+                left: `${pos.x}%`,
+                top: `${pos.y}%`,
+                transform: "translate(-50%, -50%)",
+                zIndex: isActive || isHovered ? 20 : 10,
+              }}
+              onMouseEnter={() => onPinHover(index)}
+              onMouseLeave={() => onPinHover(null)}
+              onClick={() => onPinClick(index)}
             >
-              <span className={`font-sans text-xs uppercase tracking-wider ${
-                isActive ? 'text-chiarli-wine-light font-bold' : 'text-white/70'
-              }`}>
-                {tenute[index]?.location}
-              </span>
+              {/* Pulse ring - only on active/hovered */}
+              {(isActive || isHovered) && (
+                <div className="absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full border-2 border-chiarli-wine-light/50 animate-ping" />
+              )}
+
+              {/* Outer glow */}
+              <div
+                className={`absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full transition-all duration-300 ${
+                  isActive || isHovered
+                    ? "bg-chiarli-wine-light/40 scale-100"
+                    : "bg-chiarli-wine-light/20 scale-75"
+                }`}
+              />
+
+              {/* Inner circle */}
+              <div
+                className={`absolute w-5 h-5 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full transition-all duration-300 ${
+                  isActive || isHovered
+                    ? "bg-chiarli-wine-light scale-100"
+                    : "bg-chiarli-wine-light/60 scale-75"
+                }`}
+              />
+
+              {/* Center dot */}
+              <div className="absolute w-2 h-2 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-white" />
+
+              {/* Location label */}
+              <div
+                className={`absolute whitespace-nowrap transition-all duration-300 ${getLabelClasses(pos.labelPosition)} ${
+                  isActive || isHovered ? "opacity-100" : "opacity-70"
+                }`}
+              >
+                <span
+                  className={`font-sans text-xs uppercase tracking-wider ${
+                    isActive
+                      ? "text-chiarli-wine-light font-bold"
+                      : "text-white/70"
+                  }`}
+                >
+                  {tenute[index]?.location}
+                </span>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
       </div>
     </div>
   );
@@ -190,16 +212,18 @@ export const TenuteSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   // Creiamo array con slide duplicate: [ultima, ...originali, prima]
-  const extendedTenute = tenute.length > 0 ? [tenute[tenute.length - 1], ...tenute, tenute[0]] : [];
+  const extendedTenute =
+    tenute.length > 0 ? [tenute[tenute.length - 1], ...tenute, tenute[0]] : [];
 
   // L'indice reale per i dati (0, 1, 2)
-  const realIndex = tenute.length > 0
-    ? (slideIndex === 0
+  const realIndex =
+    tenute.length > 0
+      ? slideIndex === 0
         ? tenute.length - 1
         : slideIndex === extendedTenute.length - 1
           ? 0
-          : slideIndex - 1)
-    : 0;
+          : slideIndex - 1
+      : 0;
 
   const activeTenuta = tenute[realIndex];
 
@@ -215,7 +239,7 @@ export const TenuteSection: React.FC = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -255,7 +279,7 @@ export const TenuteSection: React.FC = () => {
     if (isAnimating) return;
     setIsAnimating(true);
     setTransitionEnabled(true);
-    setSlideIndex(prev => prev + 1);
+    setSlideIndex((prev) => prev + 1);
 
     setTimeout(() => {
       setIsAnimating(false);
@@ -271,7 +295,7 @@ export const TenuteSection: React.FC = () => {
     if (isAnimating) return;
     setIsAnimating(true);
     setTransitionEnabled(true);
-    setSlideIndex(prev => prev - 1);
+    setSlideIndex((prev) => prev - 1);
 
     setTimeout(() => {
       setIsAnimating(false);
@@ -284,12 +308,15 @@ export const TenuteSection: React.FC = () => {
   };
 
   return (
-    <section ref={sectionRef} id="tenute" className="relative min-h-screen bg-chiarli-text overflow-hidden">
-
+    <section
+      ref={sectionRef}
+      id="tenute"
+      className="relative min-h-screen bg-chiarli-text overflow-hidden"
+    >
       {/* Fullscreen Background Image - Horizontal Slide */}
       <div className="absolute inset-0 overflow-hidden">
         <div
-          className={`flex h-full ${transitionEnabled ? 'transition-transform duration-1000 ease-out' : ''}`}
+          className={`flex h-full ${transitionEnabled ? "transition-transform duration-1000 ease-out" : ""}`}
           style={{ transform: `translateX(-${slideIndex * 100}%)` }}
         >
           {extendedTenute.map((tenuta, idx) => (
@@ -313,15 +340,15 @@ export const TenuteSection: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col justify-center max-w-[1800px] mx-auto px-6 md:px-12 py-24">
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-
           {/* Left: Text Content */}
           <div className="order-2 lg:order-1">
             {/* Section Label */}
             <span
               className={`font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block transition-all duration-700 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               Le Nostre Tenute
@@ -339,17 +366,19 @@ export const TenuteSection: React.FC = () => {
             <p
               key={`loc-${realIndex}`}
               className="flex items-center gap-2 text-white/70 mb-8 animate-fade-in-up"
-              style={{ animationDelay: '100ms' }}
+              style={{ animationDelay: "100ms" }}
             >
               <MapPin size={16} />
-              <span className="font-sans text-sm uppercase tracking-widest">{activeTenuta.location}</span>
+              <span className="font-sans text-sm uppercase tracking-widest">
+                {activeTenuta.location}
+              </span>
             </p>
 
             {/* Description */}
             <p
               key={`desc-${realIndex}`}
               className="font-sans text-white/70 text-lg leading-relaxed max-w-lg mb-12 animate-fade-in-up"
-              style={{ animationDelay: '200ms' }}
+              style={{ animationDelay: "200ms" }}
             >
               {activeTenuta.description}
             </p>
@@ -358,25 +387,37 @@ export const TenuteSection: React.FC = () => {
             <div
               key={`stats-${realIndex}`}
               className="grid grid-cols-3 gap-8 mb-12 animate-fade-in-up"
-              style={{ animationDelay: '300ms' }}
+              style={{ animationDelay: "300ms" }}
             >
               <div className="border-l-2 border-white/30 pl-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Grape size={16} className="text-white/50" />
-                  <span className="font-sans text-[10px] uppercase tracking-widest text-white/40">Vitigno</span>
+                  <span className="font-sans text-[10px] uppercase tracking-widest text-white/40">
+                    Vitigno
+                  </span>
                 </div>
-                <span className="font-serif text-xl text-white">{activeTenuta.grape}</span>
+                <span className="font-serif text-xl text-white">
+                  {activeTenuta.grape}
+                </span>
               </div>
               <div className="border-l-2 border-white/30 pl-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Mountain size={16} className="text-white/50" />
-                  <span className="font-sans text-[10px] uppercase tracking-widest text-white/40">Altitudine</span>
+                  <span className="font-sans text-[10px] uppercase tracking-widest text-white/40">
+                    Altitudine
+                  </span>
                 </div>
-                <span className="font-serif text-xl text-white">{activeTenuta.altitude}</span>
+                <span className="font-serif text-xl text-white">
+                  {activeTenuta.altitude}
+                </span>
               </div>
               <div className="border-l-2 border-white/30 pl-4">
-                <span className="font-sans text-[10px] uppercase tracking-widest text-white/40 block mb-2">Ettari</span>
-                <span className="font-serif text-xl text-white">{activeTenuta.hectares}</span>
+                <span className="font-sans text-[10px] uppercase tracking-widest text-white/40 block mb-2">
+                  Ettari
+                </span>
+                <span className="font-serif text-xl text-white">
+                  {activeTenuta.hectares}
+                </span>
               </div>
             </div>
 
@@ -385,8 +426,13 @@ export const TenuteSection: React.FC = () => {
               href={`#/tenute/${activeTenuta.slug}`}
               className="group inline-flex items-center gap-4 bg-chiarli-wine text-white px-8 py-4 hover:bg-white hover:text-chiarli-text transition-all duration-500 mb-6"
             >
-              <span className="font-sans text-xs font-bold uppercase tracking-widest">Scopri la tenuta</span>
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              <span className="font-sans text-xs font-bold uppercase tracking-widest">
+                Scopri la tenuta
+              </span>
+              <ArrowRight
+                size={16}
+                className="group-hover:translate-x-1 transition-transform"
+              />
             </a>
 
             {/* Arrow Controls */}
@@ -395,26 +441,31 @@ export const TenuteSection: React.FC = () => {
                 onClick={goPrev}
                 className="w-14 h-14 flex items-center justify-center text-white hover:text-chiarli-wine-light transition-all duration-300 group"
               >
-                <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+                <ArrowLeft
+                  size={20}
+                  className="group-hover:-translate-x-1 transition-transform"
+                />
               </button>
               <button
                 onClick={goNext}
                 className="w-14 h-14 flex items-center justify-center text-white hover:text-chiarli-wine-light transition-all duration-300 group"
               >
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight
+                  size={20}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
               </button>
             </div>
           </div>
 
-          {/* Right: Empty column for balance */}
-          <div className="order-1 lg:order-2"></div>
-
+          {/* Right: Empty column for balance - hidden on mobile */}
+          <div className="hidden lg:block order-1 lg:order-2"></div>
         </div>
 
         {/* Interactive Map - Centered */}
         <div
           key={`map-${realIndex}`}
-          className="absolute bottom-1/2 translate-y-1/2 left-1/2 -translate-x-[15%] w-96 h-64 md:w-[700px] md:h-[400px] animate-fade-in"
+          className="hidden md:block absolute bottom-1/2 translate-y-1/2 left-1/2 -translate-x-[15%] md:w-[700px] md:h-[400px] animate-fade-in"
         >
           <EmiliaRomagnaMapDark
             tenute={tenute}
@@ -424,9 +475,7 @@ export const TenuteSection: React.FC = () => {
             onPinClick={goToSlide}
           />
         </div>
-
       </div>
-
 
       {/* CSS for animations */}
       <style>{`
