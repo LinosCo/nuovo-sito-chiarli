@@ -1,18 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Droplet } from 'lucide-react';
-import { useSostenibilitaContent } from '../hooks/useContent';
+import React, { useState, useEffect, useRef } from "react";
+import { ArrowRight, Droplet } from "lucide-react";
+import { useSostenibilitaContent } from "../hooks/useContent";
 
 interface SostenibilitaPageProps {
   onBack?: () => void;
 }
 
-export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) => {
+export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
+  onBack,
+}) => {
   const content = useSostenibilitaContent();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const [statsVisible, setStatsVisible] = useState(false);
   const statsRef = useRef<HTMLElement>(null);
-  const [counters, setCounters] = useState({ years: 0, tenute: 0, ettari: 0, cert: 2000 });
+  const [counters, setCounters] = useState({
+    years: 0,
+    tenute: 0,
+    ettari: 0,
+    cert: 2000,
+  });
   const targetStats = content.stats;
 
   useEffect(() => {
@@ -22,7 +29,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -53,7 +60,9 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
               years: Math.floor(targetStats.anniStoria * progress),
               tenute: Math.floor(targetStats.tenuteStoriche * progress),
               ettari: Math.floor(targetStats.ettariVigneti * progress),
-              cert: Math.floor(2000 + (targetStats.annoCertificazione - 2000) * progress)
+              cert: Math.floor(
+                2000 + (targetStats.annoCertificazione - 2000) * progress,
+              ),
             });
 
             if (currentStep >= steps) {
@@ -62,13 +71,13 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
                 years: targetStats.anniStoria,
                 tenute: targetStats.tenuteStoriche,
                 ettari: targetStats.ettariVigneti,
-                cert: targetStats.annoCertificazione
+                cert: targetStats.annoCertificazione,
               });
             }
           }, stepDuration);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     if (statsRef.current) {
@@ -85,7 +94,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/CHIARLI-1860_WEBSITE-IMAGES_03_09_257467_16x9-scaled.jpeg"
+            src="/foto/hero-sostenibilita.jpeg"
             alt="Sostenibilità Chiarli"
             className="w-full h-full object-cover"
           />
@@ -98,20 +107,36 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
         {/* Content */}
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-32 text-center">
           {/* Label */}
-          <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white mb-6 block animate-fade-in" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+          <span
+            className="font-sans text-[10px] font-bold uppercase tracking-widest text-white mb-6 block animate-fade-in"
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}
+          >
             {content.hero.label}
           </span>
 
           {/* Title with text shadow */}
-          <h1 className="font-serif text-6xl md:text-8xl text-white mb-8 leading-none animate-fade-in-up" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)' }}>
-            {content.hero.title.split('Equilibrio')[0]}<span className="italic text-chiarli-wine-light">Equilibrio</span>
+          <h1
+            className="font-serif text-6xl md:text-8xl text-white mb-8 leading-none animate-fade-in-up"
+            style={{
+              textShadow:
+                "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)",
+            }}
+          >
+            {content.hero.title.split("Equilibrio")[0]}
+            <span className="italic text-chiarli-wine-light">Equilibrio</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="font-sans text-xl md:text-2xl text-white max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '200ms', textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)' }}>
+          <p
+            className="font-sans text-xl md:text-2xl text-white max-w-3xl mx-auto leading-relaxed animate-fade-in-up"
+            style={{
+              animationDelay: "200ms",
+              textShadow:
+                "0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)",
+            }}
+          >
             {content.hero.subtitle}
           </p>
-
         </div>
 
         <style>{`
@@ -122,13 +147,16 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
       </section>
 
       {/* Section 1: Portainnesti - Image Left */}
-      <div ref={sectionRef} className="relative min-h-screen bg-chiarli-text overflow-hidden">
+      <div
+        ref={sectionRef}
+        className="relative min-h-screen bg-chiarli-text overflow-hidden"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
           {/* Left: Full height image */}
           <div className="relative h-[50vh] lg:h-auto lg:min-h-screen overflow-hidden">
             <img
-              src="/foto/DSC04010.jpg"
-              alt="Vigneti sotto-collinari"
+              src="/foto/portainnesti.jpg"
+              alt="Portainnesti differenziati"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-chiarli-text/20 lg:bg-gradient-to-r lg:from-transparent lg:to-chiarli-text/20" />
@@ -143,7 +171,9 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
                 <span className="block">{content.portainnesti.titleLine1}</span>
-                <span className="italic text-chiarli-wine-light block">{content.portainnesti.titleLine2}</span>
+                <span className="italic text-chiarli-wine-light block">
+                  {content.portainnesti.titleLine2}
+                </span>
               </h2>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
@@ -169,8 +199,12 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                <span className="block">{content.agricoltura40.titleLine1}</span>
-                <span className="italic text-chiarli-wine block">{content.agricoltura40.titleLine2}</span>
+                <span className="block">
+                  {content.agricoltura40.titleLine1}
+                </span>
+                <span className="italic text-chiarli-wine block">
+                  {content.agricoltura40.titleLine2}
+                </span>
               </h2>
 
               <p className="font-sans text-chiarli-text/70 text-lg leading-relaxed mb-8 max-w-lg">
@@ -217,7 +251,9 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
                 <span className="block">{content.biologico.titleLine1}</span>
-                <span className="italic text-chiarli-wine-light block">{content.biologico.titleLine2}</span>
+                <span className="italic text-chiarli-wine-light block">
+                  {content.biologico.titleLine2}
+                </span>
               </h2>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
@@ -243,8 +279,12 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                <span className="block">{content.certificazione.titleLine1}</span>
-                <span className="italic text-chiarli-wine block">{content.certificazione.titleLine2}</span>
+                <span className="block">
+                  {content.certificazione.titleLine1}
+                </span>
+                <span className="italic text-chiarli-wine block">
+                  {content.certificazione.titleLine2}
+                </span>
               </h2>
 
               <p className="font-sans text-chiarli-text/70 text-lg leading-relaxed mb-8 max-w-lg">
@@ -273,15 +313,18 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
       <section className="relative bg-chiarli-text py-24 md:py-32 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }} />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+              backgroundSize: "40px 40px",
+            }}
+          />
         </div>
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
             {/* Image */}
             <div className="order-2 lg:order-1">
               <div className="relative">
@@ -301,7 +344,10 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
               </span>
 
               <h2 className="font-serif text-5xl md:text-6xl text-white mb-8 leading-tight">
-                {content.filosofia.title.split('storia familiare')[0]}<span className="italic text-chiarli-wine-light">storia familiare</span>
+                {content.filosofia.title.split("storia familiare")[0]}
+                <span className="italic text-chiarli-wine-light">
+                  storia familiare
+                </span>
               </h2>
 
               <p className="font-sans text-white/80 text-lg leading-relaxed mb-6">
@@ -312,35 +358,48 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
                 {content.filosofia.description2}
               </p>
 
-              <a href="#/metodo" className="inline-flex items-center gap-3 text-chiarli-wine-light font-sans text-sm font-bold uppercase tracking-widest group cursor-pointer hover:text-white transition-colors duration-300">
+              <a
+                href="#/metodo"
+                className="inline-flex items-center gap-3 text-chiarli-wine-light font-sans text-sm font-bold uppercase tracking-widest group cursor-pointer hover:text-white transition-colors duration-300"
+              >
                 <span>{content.filosofia.ctaText}</span>
-                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
+                <ArrowRight
+                  size={16}
+                  className="group-hover:translate-x-2 transition-transform duration-300"
+                />
               </a>
             </div>
-
           </div>
         </div>
       </section>
 
       {/* Stats Section - INTERACTIVE */}
-      <section ref={statsRef} className="relative bg-chiarli-wine py-24 overflow-hidden">
+      <section
+        ref={statsRef}
+        className="relative bg-chiarli-wine py-24 overflow-hidden"
+      >
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }} />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+              backgroundSize: "40px 40px",
+            }}
+          />
         </div>
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-
             {/* Stat 1 - Anni di Storia */}
             <div
               className={`group relative transition-all duration-700 ${
-                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                statsVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
-              style={{ transitionDelay: '0ms' }}
+              style={{ transitionDelay: "0ms" }}
             >
               <div className="relative p-8 text-center transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
                 {/* Gradient Background */}
@@ -365,9 +424,11 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
             {/* Stat 2 - Tenute Storiche */}
             <div
               className={`group relative transition-all duration-700 ${
-                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                statsVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
-              style={{ transitionDelay: '150ms' }}
+              style={{ transitionDelay: "150ms" }}
             >
               <div className="relative p-8 text-center transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -387,9 +448,11 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
             {/* Stat 3 - Ettari di Vigneti */}
             <div
               className={`group relative transition-all duration-700 ${
-                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                statsVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
-              style={{ transitionDelay: '300ms' }}
+              style={{ transitionDelay: "300ms" }}
             >
               <div className="relative p-8 text-center transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -409,9 +472,11 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
             {/* Stat 4 - Certificazione */}
             <div
               className={`group relative transition-all duration-700 ${
-                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                statsVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
-              style={{ transitionDelay: '450ms' }}
+              style={{ transitionDelay: "450ms" }}
             >
               <div className="relative p-8 text-center transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -427,7 +492,6 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({ onBack }) 
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-white/50 group-hover:w-20 transition-all duration-500" />
               </div>
             </div>
-
           </div>
         </div>
       </section>

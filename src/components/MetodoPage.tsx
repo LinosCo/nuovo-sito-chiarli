@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Droplet, Snowflake, Sparkles, Wine } from 'lucide-react';
-import { useMetodoContent } from '../hooks/useContent';
+import React, { useState, useEffect, useRef } from "react";
+import { ArrowRight, Droplet, Snowflake, Sparkles, Wine } from "lucide-react";
+import { useMetodoContent } from "../hooks/useContent";
 
 interface MetodoPageProps {
   onBack?: () => void;
@@ -16,7 +16,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
   const freschezzaImages = [
     "/foto/freschezza-1.jpg",
     "/foto/freschezza-2.jpg",
-    "/foto/freschezza-3.jpg"
+    "/foto/freschezza-3.jpg",
   ];
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -50,7 +50,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/portainnesti.jpg"
+            src="/foto/hero-metodo.jpeg"
             alt="Il metodo Chiarli"
             className="w-full h-full object-cover"
           />
@@ -63,20 +63,36 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
         {/* Content */}
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-32 text-center">
           {/* Label */}
-          <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white mb-6 block animate-fade-in" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+          <span
+            className="font-sans text-[10px] font-bold uppercase tracking-widest text-white mb-6 block animate-fade-in"
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}
+          >
             {content.hero.label}
           </span>
 
           {/* Title */}
-          <h1 className="font-serif text-6xl md:text-8xl text-white mb-8 leading-none animate-fade-in-up" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)' }}>
-            {content.hero.title.split('Lambrusco')[0]}<span className="italic text-chiarli-wine-light">Lambrusco</span>
+          <h1
+            className="font-serif text-6xl md:text-8xl text-white mb-8 leading-none animate-fade-in-up"
+            style={{
+              textShadow:
+                "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)",
+            }}
+          >
+            {content.hero.title.split("Lambrusco")[0]}
+            <span className="italic text-chiarli-wine-light">Lambrusco</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="font-sans text-xl md:text-2xl text-white max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '200ms', textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)' }}>
+          <p
+            className="font-sans text-xl md:text-2xl text-white max-w-3xl mx-auto leading-relaxed animate-fade-in-up"
+            style={{
+              animationDelay: "200ms",
+              textShadow:
+                "0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)",
+            }}
+          >
             {content.hero.subtitle}
           </p>
-
         </div>
 
         <style>{`
@@ -98,7 +114,9 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
                 <span className="block">{content.innovazione.titleLine1}</span>
-                <span className="italic text-chiarli-wine-light block">{content.innovazione.titleLine2}</span>
+                <span className="italic text-chiarli-wine-light block">
+                  {content.innovazione.titleLine2}
+                </span>
               </h2>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
@@ -144,8 +162,12 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
               </span>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
-                <span className="block">{content.vinificazione.titleLine1}</span>
-                <span className="italic text-chiarli-wine block">{content.vinificazione.titleLine2}</span>
+                <span className="block">
+                  {content.vinificazione.titleLine1}
+                </span>
+                <span className="italic text-chiarli-wine block">
+                  {content.vinificazione.titleLine2}
+                </span>
               </h2>
 
               <p className="font-sans text-chiarli-text/70 text-lg leading-relaxed mb-8 max-w-lg">
@@ -172,7 +194,9 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
                 <span className="block">{content.freschezza.titleLine1}</span>
-                <span className="italic text-chiarli-wine-light block">{content.freschezza.titleLine2}</span>
+                <span className="italic text-chiarli-wine-light block">
+                  {content.freschezza.titleLine2}
+                </span>
               </h2>
 
               <p className="font-sans text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
@@ -193,7 +217,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                 src={img}
                 alt={`Freschezza e autenticità ${index + 1}`}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                  index === currentFreschezzaSlide ? 'opacity-100' : 'opacity-0'
+                  index === currentFreschezzaSlide ? "opacity-100" : "opacity-0"
                 }`}
               />
             ))}
@@ -224,7 +248,9 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 leading-tight">
                 <span className="block">{content.unicita.titleLine1}</span>
-                <span className="italic text-chiarli-wine block">{content.unicita.titleLine2}</span>
+                <span className="italic text-chiarli-wine block">
+                  {content.unicita.titleLine2}
+                </span>
               </h2>
 
               <p className="font-sans text-chiarli-text/70 text-lg leading-relaxed mb-8 max-w-lg">
@@ -239,9 +265,15 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                 {content.unicita.quote}
               </p>
 
-              <a href="#vini" className="inline-flex items-center gap-3 text-chiarli-wine font-sans text-sm font-bold uppercase tracking-widest group">
+              <a
+                href="#vini"
+                className="inline-flex items-center gap-3 text-chiarli-wine font-sans text-sm font-bold uppercase tracking-widest group"
+              >
                 <span>{content.unicita.ctaText}</span>
-                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
+                <ArrowRight
+                  size={16}
+                  className="group-hover:translate-x-2 transition-transform duration-300"
+                />
               </a>
             </div>
           </div>
@@ -261,13 +293,13 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 w-full">
-
           <div className="text-center mb-20">
             <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/60 mb-6 block">
               {content.fasi.label}
             </span>
             <h2 className="font-serif text-5xl md:text-6xl text-white mb-6">
-              {content.fasi.title.split('Metodo')[0]}<span className="italic text-chiarli-wine-light">Metodo</span>
+              {content.fasi.title.split("Metodo")[0]}
+              <span className="italic text-chiarli-wine-light">Metodo</span>
             </h2>
             <p className="font-sans text-white/70 text-lg max-w-2xl mx-auto">
               {content.fasi.subtitle}
@@ -276,52 +308,59 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
 
           {/* Interactive Steps with Timeline */}
           <div className="relative">
-
             {/* Horizontal Timeline - Hidden on mobile, visible on lg */}
             <div className="hidden lg:block absolute top-24 left-0 right-0 h-1 mx-24">
               <div className="absolute inset-0 bg-white/20" />
               <div
                 className="absolute inset-0 bg-gradient-to-r from-chiarli-wine-light to-chiarli-wine transition-all duration-1000"
                 style={{
-                  width: activeStep !== null ? `${(activeStep / 3) * 100}%` : '0%'
+                  width:
+                    activeStep !== null ? `${(activeStep / 3) * 100}%` : "0%",
                 }}
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-
               {/* Step 1 - Pressatura */}
               <div
                 className={`group relative cursor-pointer transition-all duration-500 ${
-                  activeStep === 1 ? 'scale-105' : ''
+                  activeStep === 1 ? "scale-105" : ""
                 }`}
                 onClick={() => setActiveStep(activeStep === 1 ? null : 1)}
                 onMouseEnter={() => activeStep === null && setActiveStep(1)}
-                style={{ animationDelay: '0ms' }}
+                style={{ animationDelay: "0ms" }}
               >
-                <div className={`
+                <div
+                  className={`
                   bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-8
                   border transition-all duration-500 relative overflow-hidden
-                  ${activeStep === 1
-                    ? 'border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15'
-                    : 'border-white/10 hover:border-white/30 hover:bg-white/10'
+                  ${
+                    activeStep === 1
+                      ? "border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15"
+                      : "border-white/10 hover:border-white/30 hover:bg-white/10"
                   }
-                `}>
-
+                `}
+                >
                   {/* Animated Background Gradient */}
-                  <div className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
-                    activeStep === 1 ? 'opacity-100' : ''
-                  }`} />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
+                      activeStep === 1 ? "opacity-100" : ""
+                    }`}
+                  />
 
                   {/* Icon Circle with animated icon */}
-                  <div className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
-                    activeStep === 1
-                      ? 'bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50'
-                      : 'bg-chiarli-wine-light/20'
-                  }`}>
+                  <div
+                    className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                      activeStep === 1
+                        ? "bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50"
+                        : "bg-chiarli-wine-light/20"
+                    }`}
+                  >
                     <Droplet
                       className={`transition-all duration-500 ${
-                        activeStep === 1 ? 'text-white scale-110' : 'text-chiarli-wine-light'
+                        activeStep === 1
+                          ? "text-white scale-110"
+                          : "text-chiarli-wine-light"
                       }`}
                       size={32}
                     />
@@ -329,25 +368,37 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
 
                   {/* Number Badge */}
                   <div className="absolute top-4 right-4">
-                    <span className={`font-serif text-5xl transition-all duration-300 ${
-                      activeStep === 1 ? 'text-chiarli-wine-light' : 'text-white/20'
-                    }`}>1</span>
+                    <span
+                      className={`font-serif text-5xl transition-all duration-300 ${
+                        activeStep === 1
+                          ? "text-chiarli-wine-light"
+                          : "text-white/20"
+                      }`}
+                    >
+                      1
+                    </span>
                   </div>
 
                   <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
                     {content.fasi.steps[0].title}
                   </h3>
 
-                  <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
-                    activeStep === 1 ? 'text-white' : ''
-                  }`}>
+                  <p
+                    className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
+                      activeStep === 1 ? "text-white" : ""
+                    }`}
+                  >
                     {content.fasi.steps[0].description}
                   </p>
 
                   {/* Expanded Content */}
-                  <div className={`relative overflow-hidden transition-all duration-500 ${
-                    activeStep === 1 ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'
-                  }`}>
+                  <div
+                    className={`relative overflow-hidden transition-all duration-500 ${
+                      activeStep === 1
+                        ? "max-h-40 opacity-100 mt-4"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
                     <div className="pt-4 border-t border-white/20">
                       <p className="font-sans text-sm text-white/80 leading-relaxed">
                         {content.fasi.steps[0].detail}
@@ -360,57 +411,77 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
               {/* Step 2 - Refrigerazione */}
               <div
                 className={`group relative cursor-pointer transition-all duration-500 ${
-                  activeStep === 2 ? 'scale-105' : ''
+                  activeStep === 2 ? "scale-105" : ""
                 }`}
                 onClick={() => setActiveStep(activeStep === 2 ? null : 2)}
                 onMouseEnter={() => activeStep === null && setActiveStep(2)}
-                style={{ animationDelay: '150ms' }}
+                style={{ animationDelay: "150ms" }}
               >
-                <div className={`
+                <div
+                  className={`
                   bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-8
                   border transition-all duration-500 relative overflow-hidden
-                  ${activeStep === 2
-                    ? 'border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15'
-                    : 'border-white/10 hover:border-white/30 hover:bg-white/10'
-                  }
-                `}>
-
-                  <div className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
-                    activeStep === 2 ? 'opacity-100' : ''
-                  }`} />
-
-                  <div className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                  ${
                     activeStep === 2
-                      ? 'bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50'
-                      : 'bg-chiarli-wine-light/20'
-                  }`}>
+                      ? "border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15"
+                      : "border-white/10 hover:border-white/30 hover:bg-white/10"
+                  }
+                `}
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
+                      activeStep === 2 ? "opacity-100" : ""
+                    }`}
+                  />
+
+                  <div
+                    className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                      activeStep === 2
+                        ? "bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50"
+                        : "bg-chiarli-wine-light/20"
+                    }`}
+                  >
                     <Snowflake
                       className={`transition-all duration-500 ${
-                        activeStep === 2 ? 'text-white scale-110 animate-spin-slow' : 'text-chiarli-wine-light'
+                        activeStep === 2
+                          ? "text-white scale-110 animate-spin-slow"
+                          : "text-chiarli-wine-light"
                       }`}
                       size={32}
                     />
                   </div>
 
                   <div className="absolute top-4 right-4">
-                    <span className={`font-serif text-5xl transition-all duration-300 ${
-                      activeStep === 2 ? 'text-chiarli-wine-light' : 'text-white/20'
-                    }`}>2</span>
+                    <span
+                      className={`font-serif text-5xl transition-all duration-300 ${
+                        activeStep === 2
+                          ? "text-chiarli-wine-light"
+                          : "text-white/20"
+                      }`}
+                    >
+                      2
+                    </span>
                   </div>
 
                   <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
                     {content.fasi.steps[1].title}
                   </h3>
 
-                  <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
-                    activeStep === 2 ? 'text-white' : ''
-                  }`}>
+                  <p
+                    className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
+                      activeStep === 2 ? "text-white" : ""
+                    }`}
+                  >
                     {content.fasi.steps[1].description}
                   </p>
 
-                  <div className={`relative overflow-hidden transition-all duration-500 ${
-                    activeStep === 2 ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'
-                  }`}>
+                  <div
+                    className={`relative overflow-hidden transition-all duration-500 ${
+                      activeStep === 2
+                        ? "max-h-40 opacity-100 mt-4"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
                     <div className="pt-4 border-t border-white/20">
                       <p className="font-sans text-sm text-white/80 leading-relaxed">
                         {content.fasi.steps[1].detail}
@@ -423,57 +494,77 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
               {/* Step 3 - Presa di Spuma */}
               <div
                 className={`group relative cursor-pointer transition-all duration-500 ${
-                  activeStep === 3 ? 'scale-105' : ''
+                  activeStep === 3 ? "scale-105" : ""
                 }`}
                 onClick={() => setActiveStep(activeStep === 3 ? null : 3)}
                 onMouseEnter={() => activeStep === null && setActiveStep(3)}
-                style={{ animationDelay: '300ms' }}
+                style={{ animationDelay: "300ms" }}
               >
-                <div className={`
+                <div
+                  className={`
                   bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-8
                   border transition-all duration-500 relative overflow-hidden
-                  ${activeStep === 3
-                    ? 'border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15'
-                    : 'border-white/10 hover:border-white/30 hover:bg-white/10'
-                  }
-                `}>
-
-                  <div className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
-                    activeStep === 3 ? 'opacity-100' : ''
-                  }`} />
-
-                  <div className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                  ${
                     activeStep === 3
-                      ? 'bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50'
-                      : 'bg-chiarli-wine-light/20'
-                  }`}>
+                      ? "border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15"
+                      : "border-white/10 hover:border-white/30 hover:bg-white/10"
+                  }
+                `}
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
+                      activeStep === 3 ? "opacity-100" : ""
+                    }`}
+                  />
+
+                  <div
+                    className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                      activeStep === 3
+                        ? "bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50"
+                        : "bg-chiarli-wine-light/20"
+                    }`}
+                  >
                     <Sparkles
                       className={`transition-all duration-500 ${
-                        activeStep === 3 ? 'text-white scale-110 animate-pulse' : 'text-chiarli-wine-light'
+                        activeStep === 3
+                          ? "text-white scale-110 animate-pulse"
+                          : "text-chiarli-wine-light"
                       }`}
                       size={32}
                     />
                   </div>
 
                   <div className="absolute top-4 right-4">
-                    <span className={`font-serif text-5xl transition-all duration-300 ${
-                      activeStep === 3 ? 'text-chiarli-wine-light' : 'text-white/20'
-                    }`}>3</span>
+                    <span
+                      className={`font-serif text-5xl transition-all duration-300 ${
+                        activeStep === 3
+                          ? "text-chiarli-wine-light"
+                          : "text-white/20"
+                      }`}
+                    >
+                      3
+                    </span>
                   </div>
 
                   <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
                     {content.fasi.steps[2].title}
                   </h3>
 
-                  <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
-                    activeStep === 3 ? 'text-white' : ''
-                  }`}>
+                  <p
+                    className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
+                      activeStep === 3 ? "text-white" : ""
+                    }`}
+                  >
                     {content.fasi.steps[2].description}
                   </p>
 
-                  <div className={`relative overflow-hidden transition-all duration-500 ${
-                    activeStep === 3 ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'
-                  }`}>
+                  <div
+                    className={`relative overflow-hidden transition-all duration-500 ${
+                      activeStep === 3
+                        ? "max-h-40 opacity-100 mt-4"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
                     <div className="pt-4 border-t border-white/20">
                       <p className="font-sans text-sm text-white/80 leading-relaxed">
                         {content.fasi.steps[2].detail}
@@ -486,57 +577,77 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
               {/* Step 4 - Imbottigliamento */}
               <div
                 className={`group relative cursor-pointer transition-all duration-500 ${
-                  activeStep === 4 ? 'scale-105' : ''
+                  activeStep === 4 ? "scale-105" : ""
                 }`}
                 onClick={() => setActiveStep(activeStep === 4 ? null : 4)}
                 onMouseEnter={() => activeStep === null && setActiveStep(4)}
-                style={{ animationDelay: '450ms' }}
+                style={{ animationDelay: "450ms" }}
               >
-                <div className={`
+                <div
+                  className={`
                   bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-8
                   border transition-all duration-500 relative overflow-hidden
-                  ${activeStep === 4
-                    ? 'border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15'
-                    : 'border-white/10 hover:border-white/30 hover:bg-white/10'
-                  }
-                `}>
-
-                  <div className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
-                    activeStep === 4 ? 'opacity-100' : ''
-                  }`} />
-
-                  <div className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                  ${
                     activeStep === 4
-                      ? 'bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50'
-                      : 'bg-chiarli-wine-light/20'
-                  }`}>
+                      ? "border-chiarli-wine-light shadow-2xl shadow-chiarli-wine-light/30 bg-white/15"
+                      : "border-white/10 hover:border-white/30 hover:bg-white/10"
+                  }
+                `}
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br from-chiarli-wine-light/20 to-transparent opacity-0 transition-opacity duration-500 ${
+                      activeStep === 4 ? "opacity-100" : ""
+                    }`}
+                  />
+
+                  <div
+                    className={`relative w-20 h-20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+                      activeStep === 4
+                        ? "bg-chiarli-wine-light shadow-lg shadow-chiarli-wine-light/50"
+                        : "bg-chiarli-wine-light/20"
+                    }`}
+                  >
                     <Wine
                       className={`transition-all duration-500 ${
-                        activeStep === 4 ? 'text-white scale-110' : 'text-chiarli-wine-light'
+                        activeStep === 4
+                          ? "text-white scale-110"
+                          : "text-chiarli-wine-light"
                       }`}
                       size={32}
                     />
                   </div>
 
                   <div className="absolute top-4 right-4">
-                    <span className={`font-serif text-5xl transition-all duration-300 ${
-                      activeStep === 4 ? 'text-chiarli-wine-light' : 'text-white/20'
-                    }`}>4</span>
+                    <span
+                      className={`font-serif text-5xl transition-all duration-300 ${
+                        activeStep === 4
+                          ? "text-chiarli-wine-light"
+                          : "text-white/20"
+                      }`}
+                    >
+                      4
+                    </span>
                   </div>
 
                   <h3 className="relative font-serif text-2xl text-white mb-4 transition-transform duration-300 group-hover:translate-x-1">
                     {content.fasi.steps[3].title}
                   </h3>
 
-                  <p className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
-                    activeStep === 4 ? 'text-white' : ''
-                  }`}>
+                  <p
+                    className={`relative font-sans text-white/70 leading-relaxed transition-all duration-500 ${
+                      activeStep === 4 ? "text-white" : ""
+                    }`}
+                  >
                     {content.fasi.steps[3].description}
                   </p>
 
-                  <div className={`relative overflow-hidden transition-all duration-500 ${
-                    activeStep === 4 ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'
-                  }`}>
+                  <div
+                    className={`relative overflow-hidden transition-all duration-500 ${
+                      activeStep === 4
+                        ? "max-h-40 opacity-100 mt-4"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
                     <div className="pt-4 border-t border-white/20">
                       <p className="font-sans text-sm text-white/80 leading-relaxed">
                         {content.fasi.steps[3].detail}
@@ -545,7 +656,6 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                   </div>
                 </div>
               </div>
-
             </div>
 
             {/* Instruction hint */}
@@ -554,9 +664,7 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                 Passa il mouse o clicca su ogni fase per scoprire i dettagli
               </p>
             </div>
-
           </div>
-
         </div>
       </section>
 
