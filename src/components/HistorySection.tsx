@@ -36,7 +36,7 @@ export const HistorySection: React.FC = () => {
           }`}
         >
           <img
-            src="/foto/sito/chiarli.webp"
+            src="/foto/sito/villa-cialdini-cielo.webp"
             alt="Villa Chiarli"
             className="w-full h-full object-cover"
             loading="lazy"

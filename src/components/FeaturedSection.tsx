@@ -73,7 +73,7 @@ export const FeaturedSection: React.FC = () => {
           }`}
         >
           <img
-            src="/foto/sito/1.webp"
+            src="/foto/sito/chiarli.webp"
             alt="Wine Experience"
             className="w-full h-full object-cover"
             loading="lazy"

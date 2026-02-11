@@ -34,3 +34,7 @@ public/Mappa_regione_emilia_romagna.jpg
 /foto/
 /foto_pagina_esempio/
 .vercel
+
+# Working materials (not production code)
+assets/
+docs/

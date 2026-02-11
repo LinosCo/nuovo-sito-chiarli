@@ -135,7 +135,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/foto/sito/chiarli.webp"
+            src="/foto/sito/hero_nuova_esperienze.webp"
             alt="Esperienze Chiarli"
             className="w-full h-full object-cover"
           />
