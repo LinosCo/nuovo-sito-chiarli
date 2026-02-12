@@ -232,7 +232,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                         "Il suo Lambrusco fatto in casa conquista rapidamente il favore locale, diventando uno dei punti di riferimento della città per gli amanti del buon vino.",
                       curiosity:
                         "La trattoria era frequentata da intellettuali, artigiani e commercianti modenesi che apprezzavano il Lambrusco genuino di Cleto.",
-                      image: "/foto/sito/1.webp",
+                      image: "/foto/sito/trattoria_artigliere.webp",
                     },
                     {
                       year: "1860",

@@ -3,10 +3,9 @@ import { ChevronDown } from "lucide-react";
 import { useHomeContent } from "../hooks/useContent";
 
 const heroImages = [
-  "/foto/sito/close-up-78-scaled.webp",
-  "/foto/sito/vasche-3.webp",
   "/foto/sito/a001-scaled.webp",
   "/foto/sito/galleria-chiarli-136.webp",
+  "/foto/sito/hero-metodo.webp",
 ];
 
 export const Hero: React.FC = () => {

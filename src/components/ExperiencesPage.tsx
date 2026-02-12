@@ -21,7 +21,7 @@ const experienceCategories = [
     subtitle: "Visita alla culla del Lambrusco",
     description:
       "Tour guidati tra vigneti e cantine, degustazioni curate, visite esclusive alla Galleria Chiarli.",
-    image: "/foto/sito/visita_slider.webp",
+    image: "/foto/sito/esperienze-hero-visita.webp",
   },
   {
     id: 2,
@@ -525,7 +525,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
             }`}
           >
             <img
-              src="/foto/sito/close-up-9-scaled.webp"
+              src="/foto/sito/galleria-chiarli-nuova.webp"
               alt="Galleria Chiarli"
               className="w-full h-full object-cover"
               loading="lazy"
