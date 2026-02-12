@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useWines, useHomeContent } from "../hooks/useContent";
 
-type FilterType = "all" | "Metodo Classico" | "Premium";
+type FilterType = "all" | "Classica" | "Premium";
 
 interface BottleShowcaseProps {
   onWineClick?: (slug: string) => void;
@@ -34,10 +34,22 @@ export const BottleShowcase: React.FC<BottleShowcaseProps> = ({
     return () => observer.disconnect();
   }, []);
 
+  const prioritySlugs: Record<string, string> = {
+    Classica: "villa-cialdini-rose-brut",
+    Premium: "vigneto-cialdini-grasparossa",
+  };
+
   const filteredWines =
     activeFilter === "all"
       ? wines.slice(0, 4)
-      : wines.filter((wine) => wine.family === activeFilter);
+      : wines
+          .filter((wine) => wine.family === activeFilter)
+          .sort((a, b) => {
+            const priority = prioritySlugs[activeFilter];
+            if (a.slug === priority) return -1;
+            if (b.slug === priority) return 1;
+            return 0;
+          });
 
   return (
     <section
@@ -115,14 +127,14 @@ export const BottleShowcase: React.FC<BottleShowcaseProps> = ({
           }`}
         >
           <button
-            onClick={() => setActiveFilter("Metodo Classico")}
+            onClick={() => setActiveFilter("Classica")}
             className={`font-sans text-xs font-bold uppercase tracking-widest transition-all duration-300 pb-4 -mb-4 border-b-2 hover:scale-105 active:scale-[0.98] ${
-              activeFilter === "Metodo Classico"
+              activeFilter === "Classica"
                 ? "text-chiarli-text border-chiarli-wine"
                 : "text-chiarli-text/40 border-transparent hover:text-chiarli-text"
             }`}
           >
-            Metodo Classico
+            Classica
           </button>
           <button
             onClick={() => setActiveFilter("Premium")}

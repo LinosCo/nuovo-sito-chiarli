@@ -137,13 +137,13 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
     };
   }, []);
 
-  // Rotating awards effect - change every 3 seconds
+  // Rotating awards effect - smooth crossfade
   useEffect(() => {
     if (!wineData?.awards || wineData.awards.length <= 2) return;
 
     const interval = setInterval(() => {
       setCurrentAwardIndex((prev) => (prev + 2) % wineData.awards.length);
-    }, 3000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [wineData?.awards]);
@@ -498,43 +498,50 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
           {/* Right side - Bottle more to the left */}
           {wine.image && (
             <div className="hidden lg:flex w-1/2 items-center justify-start relative overflow-visible">
-              {/* Floating award badges - all awards distributed vertically with rotation */}
+              {/* Floating award badges with smooth crossfade */}
               {wine.awards && wine.awards.length > 0 && (
-                <div className="absolute right-8 top-16 bottom-16 flex flex-col justify-between">
-                  {[0, 1, 2, 3].map((slotIndex) => {
-                    const awardIndex =
-                      (currentAwardIndex + slotIndex) % wine.awards.length;
-                    const award = wine.awards[awardIndex];
-                    return (
-                      <div
-                        key={slotIndex}
-                        className={`bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 transition-all duration-500 cursor-default hover:border-chiarli-wine-light/50 hover:bg-white/15 hover:shadow-[0_0_25px_rgba(180,100,120,0.4)] ${
-                          isLoaded
-                            ? "opacity-100 translate-x-0"
-                            : "opacity-0 translate-x-8"
-                        }`}
-                        style={{
-                          transitionDelay: `${slotIndex * 100}ms`,
-                          transform: `translateY(${Math.sin(scrollY * 0.01 + slotIndex) * 5}px)`,
-                        }}
-                      >
-                        <div className="flex items-center gap-3">
-                          <Award
-                            size={20}
-                            className="text-chiarli-wine-light"
-                          />
-                          <div className="min-w-[120px]">
-                            <p className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/60 transition-opacity duration-300">
-                              {award?.name}
-                            </p>
-                            <p className="font-serif text-sm text-white transition-opacity duration-300">
-                              {award?.score}
-                            </p>
+                <div className="absolute right-8 top-32 bottom-48">
+                  {[0, 1, 2, 3].map((slotIndex) => (
+                    <div
+                      key={slotIndex}
+                      className="absolute right-0"
+                      style={{
+                        top: `${slotIndex * 33.3}%`,
+                      }}
+                    >
+                      {wine.awards.map((award, awardIdx) => {
+                        const isVisible =
+                          (currentAwardIndex + slotIndex) %
+                            wine.awards.length ===
+                          awardIdx;
+                        return (
+                          <div
+                            key={awardIdx}
+                            className={`absolute right-0 top-0 px-4 py-3 cursor-default whitespace-pre-line transition-opacity duration-1000 ease-in-out ${
+                              isLoaded && isVisible
+                                ? "opacity-100"
+                                : "opacity-0 pointer-events-none"
+                            }`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <Award
+                                size={20}
+                                className="text-chiarli-wine-light"
+                              />
+                              <div className="min-w-[120px]">
+                                <p className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/60">
+                                  {award?.name}
+                                </p>
+                                <p className="font-serif text-sm text-white">
+                                  {award?.score}
+                                </p>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                        );
+                      })}
+                    </div>
+                  ))}
                 </div>
               )}
 
