@@ -35,7 +35,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
     const el = timelineRef.current;
     if (!el) return;
     el.scrollBy({
-      left: direction === "left" ? -420 : 420,
+      left: direction === "left" ? -500 : 500,
       behavior: "smooth",
     });
   };
@@ -256,7 +256,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
               >
                 <div className="relative min-w-max px-8">
                   {/* Horizontal Line */}
-                  <div className="absolute left-0 right-0 top-[40px] h-0.5 bg-chiarli-wine-light/30" />
+                  <div className="absolute left-0 right-0 top-[48px] h-0.5 bg-chiarli-wine-light/30" />
 
                   {/* Timeline Items */}
                   <div className="flex gap-0">
@@ -420,21 +420,21 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                       return (
                         <div
                           key={index}
-                          className="flex flex-col items-center w-[420px] flex-shrink-0 cursor-pointer group transition-transform duration-300 hover:scale-105 hover:z-10"
+                          className="flex flex-col items-center w-[500px] flex-shrink-0 cursor-pointer group transition-transform duration-300 hover:scale-[1.03] hover:z-10"
                           onClick={() =>
                             setExpandedCard(isExpanded ? null : index)
                           }
                         >
                           {/* Year Circle */}
                           <div
-                            className={`relative z-10 w-20 h-20 rounded-full bg-chiarli-text border-4 flex items-center justify-center transition-all duration-300 ${
+                            className={`relative z-10 w-24 h-24 rounded-full bg-chiarli-text border-4 flex items-center justify-center transition-all duration-300 ${
                               isExpanded
                                 ? "border-white scale-110"
                                 : "border-chiarli-wine-light group-hover:border-white group-hover:scale-105"
                             }`}
                           >
                             <span
-                              className={`font-serif text-lg font-bold transition-colors ${
+                              className={`font-serif text-xl font-bold transition-colors ${
                                 isExpanded
                                   ? "text-white"
                                   : "text-chiarli-wine-light"
@@ -456,7 +456,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                             } p-5`}
                           >
                             {/* Image */}
-                            <div className="relative overflow-hidden mb-5 h-56">
+                            <div className="relative overflow-hidden mb-5 h-72">
                               <img
                                 src={item.image}
                                 alt={item.title}

@@ -336,8 +336,8 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                 className={`group relative cursor-pointer transition-all duration-500 ${
                   activeStep === 1 ? "scale-105" : ""
                 }`}
-                onClick={() => setActiveStep(activeStep === 1 ? null : 1)}
-                onMouseEnter={() => activeStep === null && setActiveStep(1)}
+                onMouseEnter={() => setActiveStep(1)}
+                onMouseLeave={() => setActiveStep(null)}
                 style={{ animationDelay: "0ms" }}
               >
                 <div
@@ -423,8 +423,8 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                 className={`group relative cursor-pointer transition-all duration-500 ${
                   activeStep === 2 ? "scale-105" : ""
                 }`}
-                onClick={() => setActiveStep(activeStep === 2 ? null : 2)}
-                onMouseEnter={() => activeStep === null && setActiveStep(2)}
+                onMouseEnter={() => setActiveStep(2)}
+                onMouseLeave={() => setActiveStep(null)}
                 style={{ animationDelay: "150ms" }}
               >
                 <div
@@ -506,8 +506,8 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                 className={`group relative cursor-pointer transition-all duration-500 ${
                   activeStep === 3 ? "scale-105" : ""
                 }`}
-                onClick={() => setActiveStep(activeStep === 3 ? null : 3)}
-                onMouseEnter={() => activeStep === null && setActiveStep(3)}
+                onMouseEnter={() => setActiveStep(3)}
+                onMouseLeave={() => setActiveStep(null)}
                 style={{ animationDelay: "300ms" }}
               >
                 <div
@@ -589,8 +589,8 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                 className={`group relative cursor-pointer transition-all duration-500 ${
                   activeStep === 4 ? "scale-105" : ""
                 }`}
-                onClick={() => setActiveStep(activeStep === 4 ? null : 4)}
-                onMouseEnter={() => activeStep === null && setActiveStep(4)}
+                onMouseEnter={() => setActiveStep(4)}
+                onMouseLeave={() => setActiveStep(null)}
                 style={{ animationDelay: "450ms" }}
               >
                 <div
@@ -666,13 +666,6 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Instruction hint */}
-            <div className="text-center mt-12">
-              <p className="font-sans text-sm text-white/50 italic">
-                Passa il mouse o clicca su ogni fase per scoprire i dettagli
-              </p>
             </div>
           </div>
         </div>
