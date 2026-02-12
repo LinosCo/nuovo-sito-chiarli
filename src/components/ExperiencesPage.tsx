@@ -1,13 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  ArrowRight,
-  ArrowLeft,
-  Users,
-  Grape,
-  Home,
-  Calendar,
-  Eye,
-} from "lucide-react";
+import { ArrowRight, Users, Grape, Home } from "lucide-react";
 
 interface ExperiencesPageProps {
   onBack?: () => void;
@@ -16,7 +8,6 @@ interface ExperiencesPageProps {
 const experienceCategories = [
   {
     id: 1,
-    icon: Eye,
     title: "Visita",
     subtitle: "Visita alla culla del Lambrusco",
     description:
@@ -25,7 +16,6 @@ const experienceCategories = [
   },
   {
     id: 2,
-    icon: Calendar,
     title: "Eventi",
     subtitle: "Eventi aziendali e prenotazioni private",
     description:
@@ -362,7 +352,6 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
       <div ref={cardsRef} className="relative h-screen overflow-hidden">
         {/* Slides */}
         {experienceCategories.map((category, index) => {
-          const Icon = category.icon;
           return (
             <div
               key={category.id}
@@ -389,19 +378,6 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
               <div className="absolute inset-0 z-10 flex items-end">
                 <div className="w-full px-8 md:px-16 lg:px-24 pb-24 md:pb-32">
                   <div className="max-w-3xl">
-                    {/* Icon */}
-                    <div
-                      className={`mb-6 transition-all duration-700 delay-300 ${
-                        index === activeSlide
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 translate-y-6"
-                      }`}
-                    >
-                      <div className="w-14 h-14 flex items-center justify-center border border-white/30">
-                        <Icon size={24} className="text-white/80" />
-                      </div>
-                    </div>
-
                     {/* Subtitle */}
                     <span
                       className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light block mb-4 transition-all duration-700 delay-[400ms] ${
@@ -458,30 +434,6 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
             </div>
           );
         })}
-
-        {/* Navigation arrows */}
-        <div className="absolute bottom-24 md:bottom-32 right-8 md:right-16 lg:right-24 z-20 flex items-center gap-4">
-          <button
-            onClick={() =>
-              setActiveSlide((prev) =>
-                prev === 0 ? experienceCategories.length - 1 : prev - 1,
-              )
-            }
-            className="w-12 h-12 flex items-center justify-center border border-white/30 hover:border-white hover:bg-white/10 transition-all duration-300"
-          >
-            <ArrowLeft size={20} className="text-white" />
-          </button>
-          <button
-            onClick={() =>
-              setActiveSlide((prev) =>
-                prev === experienceCategories.length - 1 ? 0 : prev + 1,
-              )
-            }
-            className="w-12 h-12 flex items-center justify-center border border-white/30 hover:border-white hover:bg-white/10 transition-all duration-300"
-          >
-            <ArrowRight size={20} className="text-white" />
-          </button>
-        </div>
 
         {/* Slide indicator */}
         <div className="absolute bottom-10 left-8 md:left-16 lg:left-24 z-20 flex items-center gap-6">
