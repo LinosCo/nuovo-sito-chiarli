@@ -41,6 +41,24 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToContatti = () => {
+    setIsMenuOpen(false);
+    // If already on home, just scroll to footer
+    if (!window.location.hash || window.location.hash === "#") {
+      document
+        .getElementById("contatti")
+        ?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Navigate to home first, then scroll to footer after render
+      window.location.hash = "";
+      setTimeout(() => {
+        document
+          .getElementById("contatti")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  };
+
   return (
     <>
       <header
@@ -120,12 +138,12 @@ export const Navbar: React.FC = () => {
               {isMenuOpen ? <X /> : <Menu />}
             </button>
 
-            <a
-              href="#contatti"
+            <button
+              onClick={scrollToContatti}
               className="hidden md:block px-6 py-2 hover:text-chiarli-wine-light font-sans text-xs font-bold uppercase tracking-widest transition-all"
             >
               Contatti
-            </a>
+            </button>
           </div>
         </div>
       </header>
@@ -168,13 +186,12 @@ export const Navbar: React.FC = () => {
                 )}
               </div>
             ))}
-            <a
-              href="#contatti"
-              onClick={() => setIsMenuOpen(false)}
+            <button
+              onClick={scrollToContatti}
               className="font-serif text-2xl italic mt-2"
             >
               Contatti
-            </a>
+            </button>
           </div>
         </div>
       )}
