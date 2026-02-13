@@ -64,6 +64,11 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
     "/foto/sito/esperienze-lambrusco-storia-3.webp",
   ];
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
