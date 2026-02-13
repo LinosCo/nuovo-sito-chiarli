@@ -165,9 +165,11 @@ export const FeaturedSection: React.FC = () => {
             {/* Grid of Experience Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               {experiences.map((exp, index) => (
-                <a
+                <div
                   key={exp.id}
-                  href="#/esperienze"
+                  onClick={() => {
+                    window.location.hash = "#/esperienze";
+                  }}
                   onMouseEnter={() => setHoveredCard(exp.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                   className={`group bg-white/5 backdrop-blur-sm p-6 transition-all duration-500 cursor-pointer flex flex-col active:scale-[0.98] ${
@@ -197,7 +199,7 @@ export const FeaturedSection: React.FC = () => {
                   >
                     {exp.description}
                   </p>
-                </a>
+                </div>
               ))}
             </div>
 
