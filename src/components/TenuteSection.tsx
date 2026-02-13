@@ -313,8 +313,23 @@ export const TenuteSection: React.FC = () => {
       id="tenute"
       className="relative min-h-screen bg-chiarli-text overflow-hidden"
     >
-      {/* Fullscreen Background Image - Horizontal Slide */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Background Image - Mobile: crossfade, Desktop: horizontal slide */}
+      {/* Mobile crossfade */}
+      <div className="absolute inset-0 lg:hidden">
+        {tenute.map((tenuta, idx) => (
+          <img
+            key={`mobile-bg-${idx}`}
+            src={tenuta.image}
+            alt={tenuta.name}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              idx === realIndex ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Desktop horizontal slide */}
+      <div className="absolute inset-0 overflow-hidden hidden lg:block">
         <div
           className={`flex h-full ${transitionEnabled ? "transition-transform duration-1000 ease-out" : ""}`}
           style={{ transform: `translateX(-${slideIndex * 100}%)` }}
@@ -332,11 +347,11 @@ export const TenuteSection: React.FC = () => {
             </div>
           ))}
         </div>
-
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/35 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/25" />
       </div>
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/35 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/25" />
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col justify-center max-w-[1800px] mx-auto px-6 md:px-12 py-24">
