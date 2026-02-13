@@ -60,7 +60,7 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/25" />
         </div>
 
-        <div className="relative z-20 min-h-screen flex items-center max-w-[1800px] mx-auto px-6 md:px-12 py-24">
+        <div className="relative z-20 min-h-screen flex items-end md:items-center max-w-[1800px] mx-auto px-6 md:px-12 pb-20 pt-32 md:py-24">
           <div className="max-w-3xl">
             <span
               className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-6 block transition-all duration-700 ${
@@ -293,14 +293,14 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
 
             {/* Content */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center px-6 md:px-12 max-w-4xl">
+              <div className="text-center px-16 md:px-24 max-w-4xl">
                 <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-white mb-6 leading-tight">
                   {slide.title.split(" ")[0]}{" "}
                   <span className="italic text-chiarli-wine-light">
                     {slide.title.split(" ").slice(1).join(" ")}
                   </span>
                 </h2>
-                <p className="font-serif italic text-xl md:text-2xl text-white/90 leading-relaxed">
+                <p className="font-serif italic text-lg md:text-2xl text-white/90 leading-relaxed">
                   {slide.description}
                 </p>
               </div>
@@ -309,31 +309,35 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
         ))}
 
         {/* Navigation Arrows */}
-        <button
-          onClick={() =>
-            setCurrentSlide(
-              (prev) => (prev - 1 + slides.length) % slides.length,
-            )
-          }
-          className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group"
-          aria-label="Slide precedente"
-        >
-          <ChevronDown
-            size={24}
-            className="text-white rotate-90 group-hover:scale-110 transition-transform"
-          />
-        </button>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:left-0 md:right-0 md:translate-x-0 md:px-6 z-20 flex items-center gap-4 md:justify-between md:pointer-events-none">
+          <button
+            onClick={() =>
+              setCurrentSlide(
+                (prev) => (prev - 1 + slides.length) % slides.length,
+              )
+            }
+            className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group md:pointer-events-auto"
+            aria-label="Slide precedente"
+          >
+            <ChevronDown
+              size={24}
+              className="text-white rotate-90 group-hover:scale-110 transition-transform"
+            />
+          </button>
 
-        <button
-          onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-          className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group"
-          aria-label="Slide successiva"
-        >
-          <ChevronDown
-            size={24}
-            className="text-white -rotate-90 group-hover:scale-110 transition-transform"
-          />
-        </button>
+          <button
+            onClick={() =>
+              setCurrentSlide((prev) => (prev + 1) % slides.length)
+            }
+            className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-all group md:pointer-events-auto"
+            aria-label="Slide successiva"
+          >
+            <ChevronDown
+              size={24}
+              className="text-white -rotate-90 group-hover:scale-110 transition-transform"
+            />
+          </button>
+        </div>
       </section>
 
       {/* Newsletter Section */}
