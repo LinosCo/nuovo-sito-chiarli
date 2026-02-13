@@ -231,7 +231,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
             </p>
 
             {/* Highlights Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 pl-6 md:pl-0">
               {highlights.map((highlight, index) => {
                 return (
                   <div
@@ -244,7 +244,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
                     style={{ transitionDelay: `${300 + index * 100}ms` }}
                   >
                     {/* Large decorative number */}
-                    <span className="font-serif italic text-7xl md:text-9xl text-chiarli-wine/10 absolute -top-4 md:-top-8 -left-2 md:-left-4 leading-none select-none group-hover:text-chiarli-wine/20 transition-colors duration-500">
+                    <span className="font-serif italic text-7xl md:text-9xl text-chiarli-wine/10 absolute -top-4 md:-top-8 left-0 md:-left-4 leading-none select-none group-hover:text-chiarli-wine/20 transition-colors duration-500">
                       {index + 1}
                     </span>
 
