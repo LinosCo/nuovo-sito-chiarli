@@ -155,9 +155,9 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-chiarli-stone text-chiarli-text z-40 flex flex-col">
+        <div className="fixed inset-0 bg-chiarli-stone text-chiarli-text z-[999] flex flex-col">
           <button
-            className="absolute top-6 right-6 z-50"
+            className="absolute top-6 right-6 z-[1000]"
             onClick={() => setIsMenuOpen(false)}
           >
             <X size={24} />
