@@ -9,7 +9,7 @@
     "items": [
       { "label": "Vini", "href": "#vini" },
       { "label": "Tenute", "href": "#tenute" },
-      { "label": "Esperienze", "href": "#esperienze" },
+      { "label": "Esperienze", "href": "#sezione-esperienze" },
       { "label": "Storia", "href": "#storia" }
     ]
   },
@@ -30,7 +30,7 @@
       { "label": "I Vini", "href": "#vini" },
       { "label": "Le Tenute", "href": "#tenute" },
       { "label": "Storia", "href": "#storia" },
-      { "label": "Visite", "href": "#esperienze" }
+      { "label": "Visite", "href": "#sezione-esperienze" }
     ],
     "copyright": "© 2025 Cleto Chiarli Tenute Agricole",
     "privacyLink": "#",

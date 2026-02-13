@@ -60,7 +60,7 @@ export const FeaturedSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      id="esperienze"
+      id="sezione-esperienze"
       className="relative min-h-screen bg-chiarli-text overflow-hidden"
       onMouseMove={handleMouseMove}
       onTouchStart={() => setHoveredCard(null)}
