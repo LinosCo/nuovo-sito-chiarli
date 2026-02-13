@@ -71,6 +71,10 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
   const [currentAwardIndex, setCurrentAwardIndex] = useState(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const loadWineData = async () => {
       try {
         setLoading(true);

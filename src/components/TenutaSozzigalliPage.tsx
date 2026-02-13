@@ -14,6 +14,10 @@ export const TenutaSozzigalliPage: React.FC<TenutaSozzigalliPageProps> = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     setIsHeroVisible(true);
   }, []);
 

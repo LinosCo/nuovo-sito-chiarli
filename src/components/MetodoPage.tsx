@@ -20,6 +20,10 @@ export const MetodoPage: React.FC<MetodoPageProps> = ({ onBack }) => {
   ];
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const timer = setInterval(() => {
       setCurrentFreschezzaSlide((prev) => (prev + 1) % freschezzaImages.length);
     }, 4000);

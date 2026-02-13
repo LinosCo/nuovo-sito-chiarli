@@ -283,6 +283,10 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

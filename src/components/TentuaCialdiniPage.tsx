@@ -15,6 +15,10 @@ export const TentuaCialdiniPage: React.FC<TentuaCialdiniPageProps> = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     setIsHeroVisible(true);
   }, []);
 

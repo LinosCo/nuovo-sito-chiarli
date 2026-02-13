@@ -12,6 +12,11 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
   const content = useSostenibilitaContent();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {

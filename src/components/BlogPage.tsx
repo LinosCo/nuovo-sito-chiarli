@@ -14,6 +14,10 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

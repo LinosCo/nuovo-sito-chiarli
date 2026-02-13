@@ -29,6 +29,10 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const loadWines = async () => {
       try {
         const response = await fetch("/content/wines.json");

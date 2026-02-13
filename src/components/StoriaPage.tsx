@@ -41,6 +41,10 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
