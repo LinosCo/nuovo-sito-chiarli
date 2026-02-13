@@ -357,7 +357,7 @@ export const TenuteSection: React.FC = () => {
             {/* Tenuta Name */}
             <h2
               key={`name-${realIndex}`}
-              className="font-serif text-5xl md:text-7xl text-white mb-4 leading-none animate-fade-in-up"
+              className="font-serif text-4xl md:text-5xl lg:text-7xl text-white mb-4 leading-none animate-fade-in-up"
             >
               {activeTenuta.name}
             </h2>
@@ -386,7 +386,7 @@ export const TenuteSection: React.FC = () => {
             {/* Stats Grid */}
             <div
               key={`stats-${realIndex}`}
-              className="grid grid-cols-3 gap-8 mb-12 animate-fade-in-up"
+              className="grid grid-cols-3 gap-4 md:gap-8 mb-12 animate-fade-in-up"
               style={{ animationDelay: "300ms" }}
             >
               <div className="border-l-2 border-white/30 pl-4">
@@ -396,7 +396,7 @@ export const TenuteSection: React.FC = () => {
                     Vitigno
                   </span>
                 </div>
-                <span className="font-serif text-xl text-white">
+                <span className="font-serif text-base md:text-xl text-white">
                   {activeTenuta.grape}
                 </span>
               </div>
@@ -407,7 +407,7 @@ export const TenuteSection: React.FC = () => {
                     Altitudine
                   </span>
                 </div>
-                <span className="font-serif text-xl text-white">
+                <span className="font-serif text-base md:text-xl text-white">
                   {activeTenuta.altitude}
                 </span>
               </div>
@@ -415,7 +415,7 @@ export const TenuteSection: React.FC = () => {
                 <span className="font-sans text-[10px] uppercase tracking-widest text-white/40 block mb-2">
                   Ettari
                 </span>
-                <span className="font-serif text-xl text-white">
+                <span className="font-serif text-base md:text-xl text-white">
                   {activeTenuta.hectares}
                 </span>
               </div>

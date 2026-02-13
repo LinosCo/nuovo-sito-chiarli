@@ -73,7 +73,7 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
             </span>
 
             <h1
-              className={`font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight transition-all duration-700 delay-100 ${
+              className={`font-serif text-4xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight transition-all duration-700 delay-100 ${
                 isHeroVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -294,7 +294,7 @@ export const TenutaBelvederePage: React.FC<TenutaBelvederePageProps> = () => {
             {/* Content */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center px-6 md:px-12 max-w-4xl">
-                <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
+                <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-white mb-6 leading-tight">
                   {slide.title.split(" ")[0]}{" "}
                   <span className="italic text-chiarli-wine-light">
                     {slide.title.split(" ").slice(1).join(" ")}

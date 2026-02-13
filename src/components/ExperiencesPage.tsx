@@ -146,7 +146,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
               Il nostro invito
             </span>
 
-            <h1 className="font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight">
+            <h1 className="font-serif text-4xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight">
               <span
                 className={`block transition-all duration-700 delay-100 ${
                   isHeroVisible
@@ -203,7 +203,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
             </span>
 
             <h2
-              className={`font-serif text-5xl md:text-6xl text-chiarli-text mb-12 leading-tight transition-all duration-700 delay-100 ${
+              className={`font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 md:mb-12 leading-tight transition-all duration-700 delay-100 ${
                 isStoryVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -376,7 +376,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
 
               {/* Content */}
               <div className="absolute inset-0 z-10 flex items-end">
-                <div className="w-full px-8 md:px-16 lg:px-24 pb-24 md:pb-32">
+                <div className="w-full px-6 md:px-16 lg:px-24 pb-20 md:pb-32">
                   <div className="max-w-3xl">
                     {/* Subtitle */}
                     <span
@@ -391,7 +391,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
 
                     {/* Title */}
                     <h3
-                      className={`font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-none transition-all duration-700 delay-500 ${
+                      className={`font-serif text-4xl md:text-7xl lg:text-8xl text-white mb-6 leading-none transition-all duration-700 delay-500 ${
                         index === activeSlide
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-8"
@@ -436,7 +436,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
         })}
 
         {/* Slide indicator */}
-        <div className="absolute bottom-10 left-8 md:left-16 lg:left-24 z-20 flex items-center gap-6">
+        <div className="absolute bottom-6 md:bottom-10 left-6 md:left-16 lg:left-24 z-20 flex items-center gap-4 md:gap-6">
           {experienceCategories.map((_, index) => (
             <button
               key={index}

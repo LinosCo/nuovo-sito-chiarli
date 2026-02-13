@@ -155,51 +155,50 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-chiarli-stone text-chiarli-text z-40 flex flex-col items-center justify-center space-y-8">
+        <div className="fixed inset-0 bg-chiarli-stone text-chiarli-text z-40 flex flex-col">
           <button
-            className="absolute top-6 right-6"
+            className="absolute top-6 right-6 z-50"
             onClick={() => setIsMenuOpen(false)}
           >
             <X size={24} />
           </button>
-          {navItems.map((item) => (
-            <div
-              key={item.label}
-              className="flex flex-col items-center space-y-4"
-            >
-              <a
-                href={item.href}
-                onClick={() => !item.submenu && setIsMenuOpen(false)}
-                className="font-serif text-2xl md:text-4xl italic"
+          <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center space-y-6 py-20 px-6">
+            {navItems.map((item) => (
+              <div
+                key={item.label}
+                className="flex flex-col items-center space-y-3"
               >
-                {item.label}
-              </a>
-              {item.submenu && (
-                <div className="flex flex-col items-center space-y-3">
-                  {item.submenu.map((subitem) => (
-                    <a
-                      key={subitem.label}
-                      href={subitem.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="font-sans text-sm uppercase tracking-widest text-chiarli-text/70 hover:text-chiarli-wine"
-                    >
-                      {subitem.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-          {/* TEMPORANEO: Theme toggle nascosto durante sviluppo */}
-          {/* <button
-            onClick={toggleTheme}
-            className="flex items-center gap-3 mt-8 text-chiarli-text/70 outline-none focus:outline-none"
-          >
-            {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            <span className="font-sans text-sm uppercase tracking-widest">
-              {isDark ? 'Tema Chiaro' : 'Tema Scuro'}
-            </span>
-          </button> */}
+                <a
+                  href={item.href}
+                  onClick={() => !item.submenu && setIsMenuOpen(false)}
+                  className="font-serif text-2xl italic"
+                >
+                  {item.label}
+                </a>
+                {item.submenu && (
+                  <div className="flex flex-col items-center space-y-2">
+                    {item.submenu.map((subitem) => (
+                      <a
+                        key={subitem.label}
+                        href={subitem.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="font-sans text-sm uppercase tracking-widest text-chiarli-text/70 hover:text-chiarli-wine"
+                      >
+                        {subitem.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            <a
+              href="#contatti"
+              onClick={() => setIsMenuOpen(false)}
+              className="font-serif text-2xl italic mt-2"
+            >
+              Contatti
+            </a>
+          </div>
         </div>
       )}
     </header>

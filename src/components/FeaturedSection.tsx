@@ -117,7 +117,7 @@ export const FeaturedSection: React.FC = () => {
                 Un'Esperienza Unica
               </span>
 
-              <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white mb-8 leading-tight">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-white mb-8 leading-tight">
                 <span
                   className={`block transition-all duration-700 delay-100 ${
                     isVisible

@@ -168,7 +168,7 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({
           </span>
 
           <h1
-            className={`font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-none transition-all duration-700 delay-100 ${
+            className={`font-serif text-4xl md:text-7xl lg:text-8xl text-white mb-6 leading-none transition-all duration-700 delay-100 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"

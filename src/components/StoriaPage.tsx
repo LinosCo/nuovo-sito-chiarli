@@ -99,7 +99,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
             </span>
 
             <h1
-              className={`font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight transition-all duration-700 delay-100 ${
+              className={`font-serif text-4xl md:text-7xl lg:text-8xl text-white mb-6 md:mb-8 leading-tight transition-all duration-700 delay-100 ${
                 isHeroVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -110,7 +110,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
             </h1>
 
             <p
-              className={`font-serif italic text-4xl text-chiarli-wine-light mb-12 transition-all duration-700 delay-200 ${
+              className={`font-serif italic text-2xl md:text-4xl text-chiarli-wine-light mb-8 md:mb-12 transition-all duration-700 delay-200 ${
                 isHeroVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
@@ -120,7 +120,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
             </p>
 
             <p
-              className={`font-sans text-white/80 text-xl leading-relaxed max-w-2xl mx-auto transition-all duration-700 delay-300 ${
+              className={`font-sans text-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto transition-all duration-700 delay-300 ${
                 isHeroVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
@@ -139,7 +139,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Image Side */}
           <div
-            className={`h-[600px] lg:h-auto min-h-[600px] lg:min-h-screen transition-all duration-700 ${
+            className={`h-[50vh] md:h-[600px] lg:h-auto lg:min-h-screen transition-all duration-700 ${
               isSection1Visible
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 -translate-x-12"
@@ -155,10 +155,10 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
           </div>
 
           {/* Text Side */}
-          <div className="bg-chiarli-stone py-32 px-6 md:px-16 flex items-center">
+          <div className="bg-chiarli-stone py-16 md:py-32 px-6 md:px-16 flex items-center">
             <div>
               <h2
-                className={`font-serif text-5xl md:text-6xl text-chiarli-text mb-8 transition-all duration-700 delay-100 ${
+                className={`font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 transition-all duration-700 delay-100 ${
                   isSection1Visible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -223,7 +223,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
 
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-12">
           <h2
-            className={`font-serif text-5xl md:text-7xl text-center text-white mb-24 transition-all duration-700 ${
+            className={`font-serif text-4xl md:text-5xl lg:text-7xl text-center text-white mb-12 md:mb-24 transition-all duration-700 ${
               isSection2Visible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -420,7 +420,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                       return (
                         <div
                           key={index}
-                          className="flex flex-col items-center w-[500px] flex-shrink-0 cursor-pointer group transition-transform duration-300 hover:scale-[1.03] hover:z-10"
+                          className="flex flex-col items-center w-[85vw] md:w-[500px] flex-shrink-0 cursor-pointer group transition-transform duration-300 hover:scale-[1.03] hover:z-10"
                           onClick={() =>
                             setExpandedCard(isExpanded ? null : index)
                           }
@@ -552,10 +552,10 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
       <section ref={section3Ref} className="relative bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Text Side */}
-          <div className="bg-chiarli-stone py-32 px-6 md:px-16 flex items-center">
+          <div className="bg-chiarli-stone py-16 md:py-32 px-6 md:px-16 flex items-center">
             <div>
               <h2
-                className={`font-serif text-5xl md:text-6xl text-chiarli-text mb-12 transition-all duration-700 ${
+                className={`font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text mb-8 md:mb-12 transition-all duration-700 ${
                   isSection3Visible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -599,7 +599,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
 
           {/* Image Side */}
           <div
-            className={`h-[600px] lg:h-auto transition-all duration-700 delay-300 ${
+            className={`h-[50vh] md:h-[600px] lg:h-auto transition-all duration-700 delay-300 ${
               isSection3Visible
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 translate-x-12"

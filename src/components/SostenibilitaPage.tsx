@@ -58,7 +58,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
 
           {/* Title with text shadow */}
           <h1
-            className="font-serif text-6xl md:text-8xl text-white mb-8 leading-none animate-fade-in-up"
+            className="font-serif text-4xl md:text-6xl lg:text-8xl text-white mb-8 leading-none animate-fade-in-up"
             style={{
               textShadow:
                 "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)",
@@ -70,7 +70,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
 
           {/* Subtitle */}
           <p
-            className="font-sans text-xl md:text-2xl text-white max-w-3xl mx-auto leading-relaxed animate-fade-in-up"
+            className="font-sans text-lg md:text-xl lg:text-2xl text-white max-w-3xl mx-auto leading-relaxed animate-fade-in-up"
             style={{
               animationDelay: "200ms",
               textShadow:
@@ -295,7 +295,7 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
                 {content.filosofia.label}
               </span>
 
-              <h2 className="font-serif text-5xl md:text-6xl text-white mb-8 leading-tight">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 leading-tight">
                 {content.filosofia.title.split("storia familiare")[0]}
                 <span className="italic text-chiarli-wine-light">
                   storia familiare

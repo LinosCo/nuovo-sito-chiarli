@@ -934,7 +934,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
               loading="lazy"
               decoding="async"
             />
-            <div className="lg:hidden aspect-square" />
+            <div className="lg:hidden aspect-[4/3]" />
           </div>
 
           {/* Right - Content */}

@@ -403,7 +403,7 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
 
               <h2
                 key={`name-${realIndex}`}
-                className="font-serif text-5xl md:text-7xl text-white mb-4 leading-none animate-fade-in-up"
+                className="font-serif text-4xl md:text-5xl lg:text-7xl text-white mb-4 leading-none animate-fade-in-up"
               >
                 {activeTenuta.name}
               </h2>
@@ -430,7 +430,7 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
               {/* Stats Grid */}
               <div
                 key={`stats-${realIndex}`}
-                className="grid grid-cols-3 gap-8 mb-12 animate-fade-in-up"
+                className="grid grid-cols-3 gap-4 md:gap-8 mb-12 animate-fade-in-up"
                 style={{ animationDelay: "300ms" }}
               >
                 <div className="border-l-2 border-white/30 pl-4">

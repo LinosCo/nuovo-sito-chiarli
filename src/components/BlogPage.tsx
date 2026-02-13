@@ -76,7 +76,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
 
           {/* Title with text shadow */}
           <h1
-            className="font-serif text-6xl md:text-8xl text-white mb-8 leading-none animate-fade-in-up"
+            className="font-serif text-4xl md:text-6xl lg:text-8xl text-white mb-8 leading-none animate-fade-in-up"
             style={{
               textShadow:
                 "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.8)",
