@@ -199,7 +199,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
       {/* Section 2: 165 anni di storia - DARK */}
       <section
         ref={section2Ref}
-        className="relative bg-chiarli-text overflow-hidden py-32"
+        className="relative bg-chiarli-text overflow-hidden py-16 md:py-32"
       >
         {/* Animated Sparkling Bubbles - Red Rising */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -234,11 +234,11 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
           </h2>
 
           {/* Horizontal Timeline */}
-          <div className="relative flex items-center gap-4">
+          <div className="relative flex items-center gap-2 md:gap-4">
             {/* Left Arrow */}
             <button
               onClick={() => scrollTimeline("left")}
-              className={`flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 hover:border-chiarli-wine-light hover:bg-chiarli-wine/30 flex items-center justify-center transition-all duration-300 ${
+              className={`hidden md:flex flex-shrink-0 w-12 h-12 rounded-full border border-white/20 hover:border-chiarli-wine-light hover:bg-chiarli-wine/30 items-center justify-center transition-all duration-300 ${
                 canScrollLeft ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
               aria-label="Scorri a sinistra"
@@ -254,9 +254,9 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                 className="overflow-x-auto overflow-y-visible pb-8 pt-4 scrollbar-hide"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
               >
-                <div className="relative min-w-max px-8">
+                <div className="relative min-w-max px-4 md:px-8">
                   {/* Horizontal Line */}
-                  <div className="absolute left-0 right-0 top-[48px] h-0.5 bg-chiarli-wine-light/30" />
+                  <div className="absolute left-0 right-0 top-[32px] md:top-[48px] h-0.5 bg-chiarli-wine-light/30" />
 
                   {/* Timeline Items */}
                   <div className="flex gap-0">
@@ -420,21 +420,21 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                       return (
                         <div
                           key={index}
-                          className="flex flex-col items-center w-[85vw] md:w-[500px] flex-shrink-0 cursor-pointer group transition-transform duration-300 hover:scale-[1.03] hover:z-10"
+                          className="flex flex-col items-center w-[75vw] md:w-[500px] flex-shrink-0 cursor-pointer group transition-transform duration-300 hover:scale-[1.03] hover:z-10"
                           onClick={() =>
                             setExpandedCard(isExpanded ? null : index)
                           }
                         >
                           {/* Year Circle */}
                           <div
-                            className={`relative z-10 w-24 h-24 rounded-full bg-chiarli-text border-4 flex items-center justify-center transition-all duration-300 ${
+                            className={`relative z-10 w-16 h-16 md:w-24 md:h-24 rounded-full bg-chiarli-text border-[3px] md:border-4 flex items-center justify-center transition-all duration-300 ${
                               isExpanded
                                 ? "border-white scale-110"
                                 : "border-chiarli-wine-light group-hover:border-white group-hover:scale-105"
                             }`}
                           >
                             <span
-                              className={`font-serif text-xl font-bold transition-colors ${
+                              className={`font-serif text-sm md:text-xl font-bold transition-colors ${
                                 isExpanded
                                   ? "text-white"
                                   : "text-chiarli-wine-light"
@@ -445,7 +445,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                           </div>
 
                           {/* Connector line */}
-                          <div className="w-0.5 h-6 bg-chiarli-wine-light/30" />
+                          <div className="w-0.5 h-4 md:h-6 bg-chiarli-wine-light/30" />
 
                           {/* Card */}
                           <div
@@ -453,10 +453,10 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                               isExpanded
                                 ? "bg-white/5"
                                 : "group-hover:bg-white/5"
-                            } p-5`}
+                            } p-4 md:p-5`}
                           >
                             {/* Image */}
-                            <div className="relative overflow-hidden mb-5 h-72">
+                            <div className="relative overflow-hidden mb-4 md:mb-5 h-48 md:h-72">
                               <img
                                 src={item.image}
                                 alt={item.title}
@@ -472,7 +472,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                             </div>
 
                             <h3
-                              className={`font-serif text-2xl mb-3 transition-colors duration-300 ${
+                              className={`font-serif text-lg md:text-2xl mb-2 md:mb-3 transition-colors duration-300 ${
                                 isExpanded
                                   ? "text-white"
                                   : "text-white group-hover:text-chiarli-wine-light"
@@ -481,7 +481,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
                               {item.title}
                             </h3>
 
-                            <p className="font-sans text-white/60 text-base leading-relaxed mb-4">
+                            <p className="font-sans text-white/60 text-sm md:text-base leading-relaxed mb-3 md:mb-4">
                               {item.description}
                             </p>
 
@@ -537,7 +537,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
             {/* Right Arrow */}
             <button
               onClick={() => scrollTimeline("right")}
-              className={`flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 hover:border-chiarli-wine-light hover:bg-chiarli-wine/30 flex items-center justify-center transition-all duration-300 ${
+              className={`hidden md:flex flex-shrink-0 w-12 h-12 rounded-full border border-white/20 hover:border-chiarli-wine-light hover:bg-chiarli-wine/30 items-center justify-center transition-all duration-300 ${
                 canScrollRight ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
               aria-label="Scorri a destra"
