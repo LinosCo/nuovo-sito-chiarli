@@ -63,6 +63,7 @@ export const FeaturedSection: React.FC = () => {
       id="esperienze"
       className="relative min-h-screen bg-chiarli-text overflow-hidden"
       onMouseMove={handleMouseMove}
+      onTouchStart={() => setHoveredCard(null)}
     >
       {/* Background Images */}
       <div className="absolute inset-0">
@@ -169,9 +170,14 @@ export const FeaturedSection: React.FC = () => {
                   key={exp.id}
                   onClick={() => {
                     window.location.hash = "#/esperienze";
+                    window.scrollTo(0, 0);
                   }}
                   onMouseEnter={() => setHoveredCard(exp.id)}
                   onMouseLeave={() => setHoveredCard(null)}
+                  onTouchStart={(e) => {
+                    e.stopPropagation();
+                    setHoveredCard(exp.id);
+                  }}
                   className={`group bg-white/5 backdrop-blur-sm p-6 transition-all duration-500 cursor-pointer flex flex-col active:scale-[0.98] ${
                     activeCard === exp.id
                       ? "bg-chiarli-wine-light/20 scale-[1.02] shadow-lg shadow-chiarli-wine/20"
@@ -205,8 +211,11 @@ export const FeaturedSection: React.FC = () => {
 
             {/* CTA Button */}
             <div className="flex justify-center">
-              <a
-                href="#/esperienze"
+              <button
+                onClick={() => {
+                  window.location.hash = "#/esperienze";
+                  window.scrollTo(0, 0);
+                }}
                 className={`group inline-flex items-center gap-4 bg-chiarli-wine-light text-white px-8 py-4 hover:bg-white hover:text-chiarli-text transition-all duration-500 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
@@ -221,7 +230,7 @@ export const FeaturedSection: React.FC = () => {
                   size={16}
                   className="group-hover:translate-x-1 transition-transform"
                 />
-              </a>
+              </button>
             </div>
           </div>
         </div>

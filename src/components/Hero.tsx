@@ -53,24 +53,43 @@ export const Hero: React.FC = () => {
 
   return (
     <section className="relative h-screen min-h-[700px] w-full overflow-hidden bg-chiarli-text">
-      {/* Image Slider - Horizontal */}
+      {/* Image Slider */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div
-          className={`flex h-full ${transitionEnabled ? "transition-transform duration-1000 ease-out" : ""}`}
-          style={{ transform: `translateX(-${slideIndex * 100}%)` }}
-        >
-          {extendedImages.map((image, index) => (
-            <div
-              key={`hero-slide-${index}`}
-              className="min-w-full h-full flex-shrink-0"
-            >
-              <img
-                src={image}
-                alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
+        {/* Mobile: Crossfade */}
+        <div className="absolute inset-0 lg:hidden">
+          {heroImages.map((image, index) => (
+            <img
+              key={`hero-mobile-${index}`}
+              src={image}
+              alt={`Slide ${index + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                index === slideIndex % heroImages.length
+                  ? "opacity-100"
+                  : "opacity-0"
+              }`}
+            />
           ))}
+        </div>
+
+        {/* Desktop: Horizontal slide */}
+        <div className="absolute inset-0 hidden lg:block overflow-hidden">
+          <div
+            className={`flex h-full ${transitionEnabled ? "transition-transform duration-1000 ease-out" : ""}`}
+            style={{ transform: `translateX(-${slideIndex * 100}%)` }}
+          >
+            {extendedImages.map((image, index) => (
+              <div
+                key={`hero-slide-${index}`}
+                className="min-w-full h-full flex-shrink-0"
+              >
+                <img
+                  src={image}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Overlays */}
