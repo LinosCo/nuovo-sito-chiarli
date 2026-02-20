@@ -1,10 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 interface StoriaPageProps {
   onBack?: () => void;
@@ -19,7 +14,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
   const [isSection1Visible, setIsSection1Visible] = useState(false);
   const [isSection2Visible, setIsSection2Visible] = useState(false);
   const [isSection3Visible, setIsSection3Visible] = useState(false);
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [lightboxCard, setLightboxCard] = useState<number | null>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -72,6 +67,271 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
 
     return () => observer.disconnect();
   }, []);
+
+  const timelineItems = [
+    {
+      year: "1860",
+      title: "La Trattoria dell'Artigliere",
+      description:
+        "Cleto Chiarli si trasferisce con la moglie Lucia e i figli a Modena, dove apre una trattoria con camere e bottega nel centro storico.",
+      details:
+        "Qui il suo Lambrusco, prodotto nell'adiacente cantina, conquista rapidamente l'apprezzamento locale. È l'inizio di una storia che dura da oltre 165 anni.",
+      curiosity:
+        "La trattoria era un punto di ritrovo per artigiani, commercianti e intellettuali modenesi, dove il Lambrusco genuino di Cleto era la vera attrazione.",
+      image: "/foto-timeline/apertura-trattoria.webp",
+    },
+    {
+      year: "1860",
+      title: "La Cantina dell'Artigliere",
+      description:
+        "Cleto ottiene l'autorizzazione ufficiale per costruire una cantina a servizio della trattoria, così da rispondere alle crescenti richieste dei suoi vini.",
+      details:
+        "È l'inizio di Chiarli come produttore e della storia moderna del Lambrusco. Per conservare al meglio la vivacità del vino, Cleto introduce il tappo a fungo: una novità assoluta per i tempi.",
+      curiosity:
+        "Il tappo a fungo anticipa lo spirito spumeggiante del vino modenese — una tradizione ancora viva oggi.",
+      image: "/foto-timeline/apertura-cantina.webp",
+    },
+    {
+      year: "1860",
+      title: "Introduzione del Tappo a Fungo",
+      description:
+        "Per conservare al meglio la vivacità del Lambrusco, Cleto introduce il tappo a fungo, una novità assoluta per i tempi.",
+      details:
+        "Questa innovazione anticipa lo spirito spumeggiante del vino modenese e diventa un segno distintivo della produzione Chiarli.",
+      curiosity:
+        "Il tappo a fungo è una tradizione ancora viva oggi, simbolo dell'identità frizzante del Lambrusco.",
+      image: "/foto-timeline/tappo-a-fungo.webp",
+    },
+    {
+      year: "1880",
+      title: "Anselmo Chiarli, Seconda Generazione",
+      description:
+        "Con Anselmo, figlio di Cleto, l'azienda cresce e si struttura.",
+      details:
+        "È il periodo in cui la famiglia inizia a collaborare con le prime Cantine Sociali della provincia, contribuendo al tessuto vitivinicolo del territorio modenese.",
+      curiosity:
+        "Anselmo consolida le basi gettate dal padre, trasformando un'attività familiare in una vera impresa vinicola.",
+      image: "/foto-timeline/anselmo-chiarli-1.webp",
+    },
+    {
+      year: "1885",
+      title: "Prime Esportazioni",
+      description:
+        "Il Lambrusco Chiarli varca i confini italiani, accompagnando gli emigranti modenesi e italiani nel mondo.",
+      details:
+        "Il vino diventa simbolo dell'Emilia anche all'estero, portando un pezzo di casa a chi era lontano dalla propria terra.",
+      curiosity:
+        "Le prime bottiglie di Lambrusco Chiarli raggiungono l'America seguendo le rotte dell'emigrazione italiana.",
+      image: "/foto-timeline/prime-esportazioni.webp",
+    },
+    {
+      year: "1888",
+      title: "Cantina Via Poletti",
+      description:
+        "Per far fronte alla crescente domanda, Chiarli costruisce una nuova cantina, più ampia, in Via Poletti.",
+      details:
+        "Un passaggio che segna l'espansione e la modernizzazione dell'azienda, con una capacità produttiva notevolmente aumentata.",
+      curiosity:
+        "Via Poletti diventa il nuovo cuore produttivo di Chiarli, simbolo di una crescita inarrestabile.",
+      image: "/foto-timeline/famiglia-chiarli.webp",
+    },
+    {
+      year: "1898",
+      title: "Acquisizione di Villa Cialdini",
+      description:
+        "La famiglia Chiarli acquisisce Villa Cialdini, storica residenza del Generale Enrico Cialdini, figura centrale del Risorgimento italiano.",
+      details:
+        "Con i suoi terreni a Castelvetro, la villa pone le basi di una delle tenute più rappresentative del Grasparossa e del futuro progetto Cleto Chiarli Tenute Agricole.",
+      curiosity:
+        "Villa Cialdini, edificata nel Seicento, fu luogo natale del generale Enrico Cialdini nel 1811. La sua storia è intrecciata con quella del Risorgimento.",
+      image: "/foto-timeline/acquisizione-cialdini.webp",
+    },
+    {
+      year: "1900",
+      title: "Le Prime Macchine per il Tappo",
+      description:
+        "L'azienda si dota di tecnologie d'avanguardia per l'epoca, introducendo le prime macchine per la legatura dei tappi.",
+      details:
+        "Nasce una produzione più moderna e sicura, che permette di garantire la qualità del Lambrusco in ogni bottiglia.",
+      curiosity:
+        "L'introduzione delle macchine per la legatura segna il passaggio da produzione artigianale a industriale, mantenendo però l'anima familiare.",
+      image: "/foto-timeline/645.webp",
+    },
+    {
+      year: "1900",
+      title: '"Mention Honorable" a Parigi',
+      description:
+        'Chiarli viene premiata all\'Expo di Parigi con la "Mention Honorable" e la produzione annua supera le 100.000 bottiglie.',
+      details:
+        "Un riconoscimento che consacra il Lambrusco modenese sulla scena internazionale. Un traguardo straordinario per l'epoca, soprattutto per un vino delicato e complesso come il Lambrusco.",
+      curiosity:
+        "È proprio questo storico riconoscimento a ispirare, ancora oggi, Vecchia Modena Premium Mention Honorable — il vino iconico che porta nel nome l'ambizione e la visione di quella tappa fondamentale.",
+      image: "/foto-timeline/642.webp",
+    },
+    {
+      year: "1924",
+      title: "Cantina Via Manin",
+      description:
+        "A Modena, in Via Manin, viene inaugurato un nuovo stabilimento all'avanguardia.",
+      details:
+        "Destinato a rimanere sede e cuore produttivo dell'azienda per generazioni, attraversando momenti di gloria e di difficoltà.",
+      curiosity:
+        "La cantina di Via Manin fu progettata con criteri innovativi per l'epoca, includendo sistemi di refrigerazione avanzati.",
+      image: "/foto-timeline/img-20160725-wa0003.webp",
+    },
+    {
+      year: "1944",
+      title: "Il Bombardamento",
+      description:
+        "Durante la Seconda Guerra Mondiale, la cantina di Via Manin subisce gravi danni a causa dei bombardamenti.",
+      details:
+        "Alcuni giovani dipendenti partiti per il fronte non hanno fatto ritorno: un momento drammatico nella storia dell'azienda e della città.",
+      curiosity:
+        "Nonostante la devastazione, la famiglia salvaguardò i documenti storici e le ricette, non perdendo mai la speranza nella ricostruzione.",
+      image: "/foto/sito/DSC04010.webp",
+    },
+    {
+      year: "1946",
+      title: "Giovanni e Giorgio, Terza Generazione",
+      description:
+        "Nel dopoguerra, i fratelli Giovanni e Giorgio rilanciano l'azienda con coraggio e visione.",
+      details:
+        "Portano avanti la tradizione di famiglia e aprono la strada ai grandi numeri del boom economico, modernizzando processi e strutture.",
+      curiosity:
+        "Giovanni e Giorgio incarnano lo spirito della rinascita italiana: dalla devastazione della guerra alla costruzione di un futuro migliore.",
+      image: "/foto-timeline/dott-giorgio-famiglia.webp",
+    },
+    {
+      year: "1947",
+      title: "La Ricostruzione",
+      description:
+        "Lo stabilimento di Via Manin viene ricostruito e ammodernato, segnando una rinascita importante per Chiarli e per Modena.",
+      details:
+        "La ricostruzione fu completata grazie all'impegno di tutta la famiglia e dei dipendenti fedeli, diventando simbolo di resilienza.",
+      curiosity:
+        "Il nuovo stabilimento fu progettato per essere più efficiente e moderno dell'originale, trasformando la difficoltà in opportunità.",
+      image: "/foto-timeline/909.webp",
+    },
+    {
+      year: "1952",
+      title: "Le Prime Autoclavi",
+      description:
+        "Chiarli è la prima azienda a introdurre le autoclavi in Emilia-Romagna, adottando il Metodo Martinotti.",
+      details:
+        "È qui che inizia il perfezionamento del Metodo: un percorso di ricerca che porterà a una gestione sempre più precisa delle fermentazioni, dell'espressione aromatica e dell'equilibrio del Lambrusco.",
+      curiosity:
+        "Questo passaggio segna l'inizio di uno stile moderno, rigoroso e riconoscibile che distingue ancora oggi i vini Chiarli.",
+      image: "/foto-timeline/636.webp",
+    },
+    {
+      year: "1968",
+      title: "Mauro e Anselmo, Quarta Generazione",
+      description:
+        "Con la quarta generazione in azienda, si apre una fase di profondo rinnovamento.",
+      details:
+        "Viene avviata la selezione massale delle varietà di Lambrusco e si introducono nuove tecniche di gestione dei vigneti, guardando al futuro con rispetto per la tradizione.",
+      curiosity:
+        "Mauro e Anselmo combinano la sapienza familiare con un approccio scientifico alla viticoltura, una visione che trasformerà il Lambrusco.",
+      image: "/foto-timeline/mauro-e-anselmo-chiarli.webp",
+    },
+    {
+      year: "1970",
+      title: "Selezione Massale",
+      description:
+        "Inizia il lavoro di recupero e selezione dei cloni storici del Sorbara e del Grasparossa.",
+      details:
+        "Un investimento nel patrimonio genetico per preservare l'identità e la qualità autentica del Lambrusco, salvaguardando i vitigni storici.",
+      curiosity:
+        "Alcuni dei cloni studiati risalgono a prima della fillossera, rappresentando un tesoro genetico inestimabile per il territorio.",
+      image: "/foto-timeline/maurochiarli.webp",
+    },
+    {
+      year: "1972",
+      title: "Nuovi Impianti GDC",
+      description:
+        "Si adottano i moderni sistemi di allevamento a GDC (Geneva Double Curtain).",
+      details:
+        "Il sistema garantisce uve più sane e maturazioni più equilibrate nei vigneti emiliani, migliorando significativamente la qualità delle uve.",
+      curiosity:
+        "Il GDC, sviluppato alla Cornell University, trova nei vigneti Chiarli una delle prime applicazioni italiane su larga scala.",
+      image: "/foto-timeline/145.webp",
+    },
+    {
+      year: "1980",
+      title: "Vecchia Modena Brut",
+      description:
+        "Durante il Congresso Nazionale Assoenologi, viene presentato Vecchia Modena: un Lambrusco Sorbara Brut dallo stile raffinato e moderno.",
+      details:
+        "Questo Lambrusco Dry si posiziona nell'HORECA e sui migliori tavoli a livello internazionale. Segna l'inizio di un progetto che culminerà con la creazione del Vecchia Modena Premium nel 2002.",
+      curiosity:
+        "Vecchia Modena fu il primo Lambrusco Brut di alta qualità, simbolo di un nuovo corso per il Lambrusco e per l'intera denominazione.",
+      image: "/foto-timeline/65.webp",
+    },
+    {
+      year: "2002",
+      title: "Tenuta Cialdini",
+      description:
+        "La storica tenuta acquisita nel 1898 diventa sede di una nuova cantina dedicata alla produzione premium delle uve dalle tre tenute di proprietà.",
+      details:
+        "I vini vengono presentati con il nuovo marchio Cleto Chiarli, omaggio al fondatore. Nasce un progetto dedicato al mondo della ristorazione, dei bar e degli hotel.",
+      curiosity:
+        "La cantina separata a Castelvetro permette di vinificare le uve delle tenute con una cura artigianale, esaltando il terroir del Grasparossa.",
+      image: "/foto-timeline/chiarli-2011-113.webp",
+    },
+    {
+      year: "2014",
+      title: "Quintopasso Metodo Classico",
+      description:
+        "Quintopasso debutta con il Rosé Brut, 100% Sorbara con lunga sosta sui lieviti.",
+      details:
+        "Un Metodo Classico che dimostra quanto anche il Lambrusco possa essere nobile, elegante e sorprendente. L'espressione più alta del Sorbara.",
+      curiosity:
+        "Quintopasso richiede almeno 36 mesi di affinamento sui lieviti, come i migliori Champagne — una sperimentazione coraggiosa nata dieci anni prima.",
+      image: "/foto/sito/sozzigalli-29.webp",
+    },
+    {
+      year: "2017",
+      title: "Tommaso Chiarli, Quinta Generazione",
+      description:
+        "La quinta generazione porta avanti il sogno di famiglia. Tommaso Chiarli entra come direttore Comunicazione e Marketing di Cleto Chiarli.",
+      details:
+        "Ambasciatore del brand in Italia e all'estero, Tommaso rappresenta il futuro dell'azienda, unendo tradizione e visione contemporanea.",
+      curiosity:
+        "Con Tommaso, Chiarli abbraccia una comunicazione moderna e internazionale, portando il Lambrusco nelle capitali del gusto mondiale.",
+      image: "/foto-timeline/chiarli-108.webp",
+    },
+    {
+      year: "2025",
+      title: "Archivio e Galleria Chiarli",
+      description:
+        "A Villa Cialdini apre la Galleria Chiarli, nuovo spazio espositivo che ospita una selezione curata dello storico Archivio Chiarli.",
+      details:
+        "L'Archivio è riconosciuto di rilevanza storica nazionale e raccoglie documenti, etichette e fotografie di oltre 165 anni di storia familiare.",
+      curiosity:
+        "L'archivio custodisce etichette originali del 1860, fotografie d'epoca e testimonianze uniche della storia del Lambrusco modenese.",
+      image: "/foto-timeline/458.webp",
+    },
+  ];
+
+  // Lock body scroll & handle Escape when lightbox is open
+  useEffect(() => {
+    if (lightboxCard !== null) {
+      document.body.style.overflow = "hidden";
+      const handleKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setLightboxCard(null);
+        if (e.key === "ArrowLeft" && lightboxCard > 0)
+          setLightboxCard(lightboxCard - 1);
+        if (e.key === "ArrowRight" && lightboxCard < timelineItems.length - 1)
+          setLightboxCard(lightboxCard + 1);
+      };
+      window.addEventListener("keydown", handleKey);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKey);
+      };
+    }
+    document.body.style.overflow = "";
+  }, [lightboxCard, timelineItems.length]);
 
   return (
     <div>
@@ -264,275 +524,46 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
 
                   {/* Timeline Items */}
                   <div className="flex gap-0">
-                    {[
-                      {
-                        year: "1850",
-                        title: "La Trattoria dell'Artigliere",
-                        description:
-                          "Prima di diventare produttore di vino, Cleto Chiarli gestisce una popolare trattoria nel centro storico di Modena.",
-                        details:
-                          "Il suo Lambrusco fatto in casa conquista rapidamente il favore locale, diventando uno dei punti di riferimento della città per gli amanti del buon vino.",
-                        curiosity:
-                          "La trattoria era frequentata da intellettuali, artigiani e commercianti modenesi che apprezzavano il Lambrusco genuino di Cleto.",
-                        image: "/foto/sito/trattoria_artigliere.webp",
-                      },
-                      {
-                        year: "1860",
-                        title: "La Fondazione",
-                        description:
-                          "Cleto ottiene il permesso ufficiale per espandersi e costruisce la cantina accanto alla trattoria.",
-                        details:
-                          "Questo segna l'inizio di Chiarli come produttore di vino e la storia moderna del Lambrusco.",
-                        curiosity:
-                          "Chiarli è stata la prima cantina dell'Emilia-Romagna, pioniera nell'uso del tappo a fungo per i vini spumanti.",
-                        image: "/foto/sito/vasche-4.webp",
-                      },
-                      {
-                        year: "1885",
-                        title: "Prime Esportazioni",
-                        description:
-                          "Il Lambrusco Chiarli inizia a raggiungere i mercati internazionali, seguendo le rotte degli emigranti italiani.",
-                        details:
-                          "Anselmo Chiarli, seconda generazione, guida l'azienda verso una nuova fase rafforzando i legami con le cooperative viticole locali.",
-                        curiosity:
-                          "Il Lambrusco Chiarli diventa ambasciatore del vino modenese nel mondo, portando un pezzo di casa agli emigrati italiani.",
-                        image: "/foto/sito/galleria-chiarli-136.webp",
-                      },
-                      {
-                        year: "1888",
-                        title: "Cantina Via Poletti",
-                        description:
-                          "Per soddisfare la crescente domanda, Chiarli costruisce una nuova e più grande cantina in Via Poletti.",
-                        details:
-                          "Questo segnala l'espansione e la modernizzazione dell'azienda. La nuova struttura permette di triplicare la produzione.",
-                        curiosity:
-                          "Via Poletti diventa il nuovo cuore produttivo di Chiarli, simbolo di crescita e innovazione.",
-                        image: "/foto/sito/a001-scaled.webp",
-                      },
-                      {
-                        year: "1900",
-                        title: "Parigi e i 100.000",
-                        description:
-                          "Chiarli viene premiata con Menzione d'Onore all'Esposizione Universale di Parigi.",
-                        details:
-                          "La produzione annuale supera le 100.000 bottiglie – un record straordinario per l'epoca.",
-                        curiosity:
-                          "L'Expo di Parigi del 1900 attirò oltre 50 milioni di visitatori. Il premio fu un trionfo per il Lambrusco modenese.",
-                        image: "/foto/sito/sozzigalli-10.webp",
-                      },
-                      {
-                        year: "1924",
-                        title: "Cantina Via Manin",
-                        description:
-                          "Viene inaugurata una nuova struttura all'avanguardia in Via Manin a Modena.",
-                        details:
-                          "Questa sede rimarrà il quartier generale dell'azienda per generazioni, attraversando momenti di gloria e di difficoltà.",
-                        curiosity:
-                          "La cantina di Via Manin fu progettata con criteri innovativi per l'epoca, includendo sistemi di refrigerazione avanzati.",
-                        image: "/foto/sito/close-up-87-scaled.webp",
-                      },
-                      {
-                        year: "1944",
-                        title: "Il Bombardamento",
-                        description:
-                          "Durante la Seconda Guerra Mondiale, la cantina di Via Manin subisce gravi danni dai bombardamenti.",
-                        details:
-                          "Un momento buio nella storia dell'azienda. La famiglia Chiarli salvaguarda i documenti storici e le ricette segrete.",
-                        curiosity:
-                          "Nonostante i danni, la famiglia non perse mai la speranza e iniziò subito a pianificare la ricostruzione.",
-                        image: "/foto/sito/DSC04010.webp",
-                      },
-                      {
-                        year: "1947",
-                        title: "La Ricostruzione",
-                        description:
-                          "Giovanni e Giorgio Chiarli, terza generazione, guidano la ricostruzione della cantina di Via Manin.",
-                        details:
-                          "Il sito storico viene ricostruito e modernizzato dopo la guerra, segnando una potente rinascita per Chiarli.",
-                        curiosity:
-                          "La ricostruzione fu completata in tempo record grazie all'impegno di tutta la famiglia e dei dipendenti fedeli.",
-                        image: "/foto/sito/a001-scaled.webp",
-                      },
-                      {
-                        year: "1952",
-                        title: "Le Prime Autoclavi",
-                        description:
-                          "Chiarli è pioniera nell'uso delle autoclavi in Emilia-Romagna per la produzione di vini spumanti.",
-                        details:
-                          "Questa innovazione rivoluziona la fermentazione del Lambrusco, migliorando la qualità del prodotto finale.",
-                        curiosity:
-                          "Le autoclavi permettevano di produrre Lambrusco di qualità superiore in modo più efficiente e controllato.",
-                        image: "/foto/sito/vasche-4.webp",
-                      },
-                      {
-                        year: "1970",
-                        title: "Selezione Massale",
-                        description:
-                          "Chiarli investe nel patrimonio genetico, iniziando studi su cloni antichi.",
-                        details:
-                          "La ricerca sulla selezione massale mira a salvaguardare l'autenticità del Lambrusco, preservando i vitigni storici pre-fillossera.",
-                        curiosity:
-                          "Alcuni dei cloni studiati risalgono a prima della fillossera, rappresentando un tesoro genetico inestimabile.",
-                        image: "/foto/sito/close-up-41.webp",
-                      },
-                      {
-                        year: "1980",
-                        title: "Vecchia Modena",
-                        description:
-                          "Lancio del Vecchia Modena Lambrusco Sorbara Brut al Congresso Nazionale Assoenologi.",
-                        details:
-                          "Il vino diventa istantaneamente un punto di riferimento per i moderni vini rossi spumanti.",
-                        curiosity:
-                          "Vecchia Modena fu il primo Lambrusco Brut di alta qualità, cambiando per sempre la percezione del vitigno.",
-                        image: "/foto/sito/galleria-chiarli-136.webp",
-                      },
-                      {
-                        year: "2002",
-                        title: "Tenuta Cialdini",
-                        description:
-                          "Inaugurazione di Tenuta Cialdini a Castelvetro, una storica proprietà nel territorio del Grasparossa.",
-                        details:
-                          "Con 50 ettari di vigneti, Tenuta Cialdini diventa uno dei vigneti di punta di Cleto Chiarli.",
-                        curiosity:
-                          "Villa Cialdini è anche sede di eventi e visite guidate, accogliendo migliaia di appassionati ogni anno.",
-                        image: "/foto/sito/vasche-4.webp",
-                      },
-                      {
-                        year: "2014",
-                        title: "Quintopasso Metodo Classico",
-                        description:
-                          "Viene rilasciato il primo Quintopasso Rosé – un Metodo Classico da 100% Sorbara.",
-                        details:
-                          "Questo vino ridefinisce il prestigio del Lambrusco, competendo con i grandi spumanti metodo classico.",
-                        curiosity:
-                          "Quintopasso richiede almeno 36 mesi di affinamento sui lieviti, come i migliori Champagne.",
-                        image: "/foto/sito/sozzigalli-29.webp",
-                      },
-                      {
-                        year: "2025",
-                        title: "Archivio e Galleria Chiarli",
-                        description:
-                          "Apertura dell'Archivio e Galleria Chiarli, nuovo spazio culturale a Modena.",
-                        details:
-                          "Il museo ospita documenti storici, etichette e opere d'arte di oltre 165 anni di eredità Chiarli.",
-                        curiosity:
-                          "L'archivio custodisce etichette originali del 1860, fotografie d'epoca e ricette segrete tramandate di generazione in generazione.",
-                        image: "/foto/sito/sozzigalli-10.webp",
-                      },
-                    ].map((item, index) => {
-                      const isExpanded = expandedCard === index;
-                      return (
-                        <div
-                          key={index}
-                          className="flex flex-col items-center w-[75vw] md:w-[500px] flex-shrink-0 cursor-pointer group transition-transform duration-300 hover:scale-[1.03] hover:z-10"
-                          onClick={() =>
-                            setExpandedCard(isExpanded ? null : index)
-                          }
-                        >
-                          {/* Year Circle */}
-                          <div
-                            className={`relative z-10 w-16 h-16 md:w-24 md:h-24 rounded-full bg-chiarli-text border-[3px] md:border-4 flex items-center justify-center transition-all duration-300 ${
-                              isExpanded
-                                ? "border-white scale-110"
-                                : "border-chiarli-wine-light group-hover:border-white group-hover:scale-105"
-                            }`}
-                          >
-                            <span
-                              className={`font-serif text-sm md:text-xl font-bold transition-colors ${
-                                isExpanded
-                                  ? "text-white"
-                                  : "text-chiarli-wine-light"
-                              }`}
-                            >
-                              {item.year}
-                            </span>
-                          </div>
-
-                          {/* Connector line */}
-                          <div className="w-0.5 h-4 md:h-6 bg-chiarli-wine-light/30" />
-
-                          {/* Card */}
-                          <div
-                            className={`w-full transition-all duration-500 ${
-                              isExpanded
-                                ? "bg-white/5"
-                                : "group-hover:bg-white/5"
-                            } p-4 md:p-5`}
-                          >
-                            {/* Image */}
-                            <div className="relative overflow-hidden mb-4 md:mb-5 h-48 md:h-72">
-                              <img
-                                src={item.image}
-                                alt={item.title}
-                                loading="lazy"
-                                decoding="async"
-                                className={`w-full h-full object-cover transition-transform duration-700 ${
-                                  isExpanded
-                                    ? "scale-105"
-                                    : "group-hover:scale-110"
-                                }`}
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                            </div>
-
-                            <h3
-                              className={`font-serif text-lg md:text-2xl mb-2 md:mb-3 transition-colors duration-300 ${
-                                isExpanded
-                                  ? "text-white"
-                                  : "text-white group-hover:text-chiarli-wine-light"
-                              }`}
-                            >
-                              {item.title}
-                            </h3>
-
-                            <p className="font-sans text-white/60 text-sm md:text-base leading-relaxed mb-3 md:mb-4">
-                              {item.description}
-                            </p>
-
-                            {/* Expanded Content */}
-                            <div
-                              className={`overflow-hidden transition-all duration-500 ${
-                                isExpanded
-                                  ? "max-h-[400px] opacity-100"
-                                  : "max-h-0 opacity-0"
-                              }`}
-                            >
-                              <div className="pt-3 border-t border-chiarli-wine-light/30 space-y-3">
-                                <p className="font-sans text-white/80 text-sm leading-relaxed">
-                                  {item.details}
-                                </p>
-                                <div className="bg-chiarli-wine/20 p-3 rounded">
-                                  <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-wine-light block mb-1">
-                                    Curiosità
-                                  </span>
-                                  <p className="font-serif italic text-white/70 text-sm">
-                                    {item.curiosity}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Expand indicator */}
-                            <div
-                              className={`mt-3 flex items-center gap-1.5 text-xs font-sans uppercase tracking-wider transition-colors ${
-                                isExpanded
-                                  ? "text-white"
-                                  : "text-chiarli-wine-light group-hover:text-white"
-                              }`}
-                            >
-                              <span>
-                                {isExpanded ? "Chiudi" : "Scopri di più"}
-                              </span>
-                              {isExpanded ? (
-                                <ChevronUp size={14} />
-                              ) : (
-                                <ChevronDown size={14} />
-                              )}
-                            </div>
-                          </div>
+                    {timelineItems.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col items-center w-[80vw] md:w-[550px] flex-shrink-0 cursor-pointer group transition-transform duration-300 hover:scale-[1.03] hover:z-10"
+                        onClick={() => setLightboxCard(index)}
+                      >
+                        {/* Year Circle */}
+                        <div className="relative z-10 w-16 h-16 md:w-24 md:h-24 rounded-full bg-chiarli-text border-[3px] md:border-4 border-chiarli-wine-light group-hover:border-white group-hover:scale-105 flex items-center justify-center transition-all duration-300">
+                          <span className="font-serif text-sm md:text-xl font-bold text-chiarli-wine-light">
+                            {item.year}
+                          </span>
                         </div>
-                      );
-                    })}
+
+                        {/* Connector line */}
+                        <div className="w-0.5 h-4 md:h-6 bg-chiarli-wine-light/30" />
+
+                        {/* Card */}
+                        <div className="w-full group-hover:bg-white/5 transition-all duration-500 p-4 md:p-5">
+                          {/* Image */}
+                          <div className="relative overflow-hidden mb-4 md:mb-5 h-64 md:h-96">
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                          </div>
+
+                          <h3 className="font-serif text-lg md:text-2xl mb-2 md:mb-3 text-white group-hover:text-chiarli-wine-light transition-colors duration-300">
+                            {item.title}
+                          </h3>
+
+                          <p className="font-sans text-white/60 text-sm md:text-base leading-relaxed">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -619,6 +650,90 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
           </div>
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      {lightboxCard !== null && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 md:p-8"
+          onClick={() => setLightboxCard(null)}
+        >
+          <div
+            className="relative bg-chiarli-text max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setLightboxCard(null)}
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition-colors"
+              aria-label="Chiudi"
+            >
+              <X size={20} className="text-white" />
+            </button>
+
+            {/* Image */}
+            <div className="w-full">
+              <img
+                src={timelineItems[lightboxCard].image}
+                alt={timelineItems[lightboxCard].title}
+                className="w-full max-h-[50vh] object-contain bg-black/30"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="p-6 md:p-8 space-y-4">
+              <div className="flex items-center gap-4">
+                <span className="font-serif text-2xl md:text-3xl font-bold text-chiarli-wine-light">
+                  {timelineItems[lightboxCard].year}
+                </span>
+                <h3 className="font-serif text-xl md:text-2xl text-white">
+                  {timelineItems[lightboxCard].title}
+                </h3>
+              </div>
+
+              <p className="font-sans text-white/80 text-base md:text-lg leading-relaxed">
+                {timelineItems[lightboxCard].description}
+              </p>
+
+              <p className="font-sans text-white/70 text-sm md:text-base leading-relaxed">
+                {timelineItems[lightboxCard].details}
+              </p>
+
+              <div className="bg-chiarli-wine/20 p-4 rounded-lg">
+                <span className="font-sans text-[10px] uppercase tracking-widest text-chiarli-wine-light block mb-2">
+                  Curiosità
+                </span>
+                <p className="font-serif italic text-white/70 text-sm md:text-base">
+                  {timelineItems[lightboxCard].curiosity}
+                </p>
+              </div>
+            </div>
+
+            {/* Navigation arrows */}
+            <div className="flex justify-between px-6 pb-6">
+              <button
+                onClick={() => setLightboxCard(Math.max(0, lightboxCard - 1))}
+                disabled={lightboxCard === 0}
+                className="flex items-center gap-2 font-sans text-sm text-white/60 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              >
+                <ChevronLeft size={18} />
+                Precedente
+              </button>
+              <button
+                onClick={() =>
+                  setLightboxCard(
+                    Math.min(timelineItems.length - 1, lightboxCard + 1),
+                  )
+                }
+                disabled={lightboxCard === timelineItems.length - 1}
+                className="flex items-center gap-2 font-sans text-sm text-white/60 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              >
+                Successivo
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* CSS Animations */}
       <style>{`

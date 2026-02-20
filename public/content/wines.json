@@ -729,62 +729,60 @@
       "denomination": "Lambrusco Grasparossa di Castelvetro DOC Spumante Rosso Brut",
       "family": "Premium",
       "collection": "Collezione Classica",
-      "grape": "Grasparossa",
-      "description": "Il Vigneto Cialdini rappresenta l'anima più intensa e profonda del Lambrusco. Nasce dalle vigne che circondano la storica Villa Cialdini, dove il Grasparossa esprime tutta la sua forza in equilibrio con eleganza e bevibilità. È un vino che parla di territorio, di stagioni, di una viticoltura attenta che privilegia maturità e carattere.\nA differenza delle interpretazioni più immediate, Vigneto Cialdini racconta un Lambrusco strutturato ma misurato, pensato per la tavola e per chi cerca un sorso autentico, capace di accompagnare la cucina emiliana senza perdere dinamismo.",
+      "grape": "Grasparossa da selezione massale",
+      "description": "Il Vigneto Cialdini è un Cru che non passa inosservato. Nato da un'idea precisa di Mauro e Anselmo Chiarli, questo vino racconta il lato più profondo del Grasparossa: un carattere deciso fatto di intensità, struttura e complessità aromatica. È la dimostrazione che il Grasparossa, se coltivato con rigore in micro-parcelle vocate, può raggiungere vette qualitative pari ai grandi Sorbara.",
       "image": "/foto/vini/vigneto-cialdini-grasparossa.webp",
       "format": "0.75L",
       "tags": ["Grasparossa", "DOC", "Brut", "Collezione Classica"],
       "price": null,
       "year": null,
       "alcohol": "11% vol.",
-      "servingTemp": "Temperatura di cantina (14-16°C)",
+      "servingTemp": "Temperatura di servizio (14-16°C)",
       "vinification": "Pressatura tradizionale con macerazione di 36 ore a 10-12°C. Sgrondatura e refrigerazione. Fermentazione lenta 'prise de mousse' in cuve close.",
+      "pairingDescription": "Vigneto Cialdini dialoga con piatti dalla struttura decisa e cucine ricche di umami. La sua freschezza e la trama del sorso lo rendono adatto anche a cucine contemporanee, dove equilibrio e intensità sono centrali.",
       "pairings": [
-        "Pasta",
+        "Pasta asciutte con sughi",
+        "Piatti Tipici Emiliani",
+        "Paste Ripiene",
         "Salumi",
-        "Piatti tipici emiliani",
-        "Carni",
-        "Paste ripiene",
-        "Preparazioni saporite"
+        "Carni arrosto o alla griglia",
+        "Piatti Vegetariani Saporiti"
       ],
-      "heritage": "Il Vigneto Cialdini si trova in una zona collinare particolarmente vocata, dove i suoli più compatti e le escursioni termiche favoriscono struttura e concentrazione aromatica. Qui il Grasparossa matura lentamente, sviluppando intensità e profondità senza perdere equilibrio. È un cru che racconta il lato più autentico e territoriale del Lambrusco, legato indissolubilmente alla storia della tenuta e della famiglia Chiarli.",
+      "heritageTitle": "L'anima intensa dell'Emilia",
+      "heritage": "Situato in una zona sotto-collinare particolarmente vocata, il Vigneto Cialdini beneficia di terreni argillosi con strati di sassi che permettono al Grasparossa di maturare lentamente, sviluppando profondità senza perdere equilibrio. È un vino legato indissolubilmente alla storia della tenuta e della famiglia Chiarli, pensato per chi cerca un cru Lambrusco di carattere e gastronomico.",
+      "heritageQuote": "Il Cru di Lambrusco Grasparossa di Castelvetro",
       "heritageImage": "/foto/sito/grasparossa-villa.webp",
       "heroBackground": "/foto/sito/grasparossa-texture.webp",
       "awards": [
         {
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri"
+          "name": "CSWW",
+          "score": "World Champion Sparkling Red 2024"
         },
         {
           "name": "Slow Wine",
-          "score": "Vino Quotidiano"
+          "score": "Vino Quotidiano 2024"
         },
         {
           "name": "Gambero Rosso",
-          "score": "Bere Bene"
+          "score": "Bere Bene Rapporto Qualità Prezzo 2024"
         },
         {
           "name": "Wine Enthusiast",
-          "score": "Top 100"
+          "score": "Top 100 2023"
         },
         {
-          "name": "CSWW",
-          "score": "World Champion Sparkling Red"
+          "name": "Bibenda",
+          "score": "4 grappoli 2024"
         },
         {
-          "name": "Falstaff",
-          "score": "93 Points"
+          "name": "Vini Buoni d'Italia",
+          "score": "4 stelle 2024"
         }
       ],
       "tastingNotes": {
-        "aspetto": "Colore rubino profondo con spuma vivace e persistente.",
-        "profumo": "Profumi di frutti rossi maturi e note più scure, intenso e complesso.",
-        "gusto": "Sorso pieno, avvolgente, sostenuto da una freschezza naturale. Secco e vinoso con corpo pronunciato."
-      },
-      "experienceSections": {
-        "degusta": "Colore rubino profondo, spuma vivace, profumi di frutti rossi maturi e note più scure. Il sorso è pieno, avvolgente, sostenuto da una freschezza naturale.",
-        "abbina": "Dialoga con piatti dalla struttura decisa e dal profilo aromatico profondo: carni arrosto o alla griglia, paste condite con ragù intensi, verdure al forno o leggermente affumicate. La sua freschezza e la trama del sorso lo rendono adatto anche a cucine contemporanee, dove equilibrio e intensità sono centrali.",
-        "scopri": "Un Grasparossa che nasce da un vigneto preciso, interpretato con rigore e rispetto per l'identità varietale."
+        "aspetto": "Rosso rubino intenso con riflessi violacei accompagnato da una spuma generosa più chiara.",
+        "profumo": "Al naso emergono note di more, lamponi e ribes nero, impreziosite da sfumature terrose e sentori di sottobosco.",
+        "gusto": "Al sorso rivela la sua vera forza: è pieno, complesso, sostenuto da tannini morbidi e una freschezza ben integrata che ne allunga la persistenza. Un equilibrio perfetto tra potenza e slancio."
       },
       "technicalSpecs": [
         {
@@ -805,7 +803,7 @@
         },
         {
           "label": "Caratteristiche",
-          "value": "Colore intenso, gusto secco e vinoso, spuma fine ed evanescente, corpo pronunciato"
+          "value": "11% Vol. | Dry Secco | Frizzante"
         },
         {
           "label": "Vinificazione",

@@ -39,6 +39,8 @@ interface WineData {
     gusto: string | null;
   };
   heritage?: string;
+  heritageTitle?: string;
+  heritageQuote?: string;
   heritageImage?: string;
   experienceSections?: {
     degusta?: string;
@@ -47,6 +49,7 @@ interface WineData {
   };
   technicalSpecs?: Array<{ label: string; value: string }>;
   technicalSheetUrl?: string;
+  pairingDescription?: string;
   pairingImage?: string;
   experienceBackground?: string;
   heroBackground?: string;
@@ -864,10 +867,21 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
           <div className="w-full lg:w-1/2 lg:h-[80vh] flex items-center relative bg-white">
             <div className="relative z-10 px-6 md:px-16 lg:px-20 py-12 md:py-16 lg:py-24">
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-chiarli-text mb-6 md:mb-8 leading-tight">
-                Un patrimonio
-                <span className="italic text-chiarli-wine block">
-                  enologico
-                </span>
+                {wine.heritageTitle ? (
+                  <>
+                    {wine.heritageTitle.split(" ").slice(0, -1).join(" ")}
+                    <span className="italic text-chiarli-wine block">
+                      {wine.heritageTitle.split(" ").slice(-1)[0]}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    Un patrimonio
+                    <span className="italic text-chiarli-wine block">
+                      enologico
+                    </span>
+                  </>
+                )}
               </h2>
 
               {wine.heritage ? (
@@ -905,7 +919,9 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
 
               <div className="border-l-2 border-chiarli-text/30 pl-4 md:pl-6">
                 <p className="font-serif italic text-lg md:text-xl text-chiarli-text/70">
-                  "Un'eredità d'Eccellenza 1890 - Oggi"
+                  &ldquo;
+                  {wine.heritageQuote || "Un'eredità d'Eccellenza 1890 - Oggi"}
+                  &rdquo;
                 </p>
               </div>
             </div>
@@ -955,7 +971,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
               </h2>
 
               <p className="font-serif text-base md:text-lg text-white/70 leading-relaxed mb-8">
-                {wine.experienceSections?.abbina ||
+                {wine.pairingDescription ||
+                  wine.experienceSections?.abbina ||
                   "Versatilità Gastronomica / L'acidità spiccata e i tannini delicati del Sorbara lo rendono un compagno instancabile per piatti grassi, sapidi e complessi."}
               </p>
 
