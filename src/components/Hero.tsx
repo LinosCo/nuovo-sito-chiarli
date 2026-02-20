@@ -75,12 +75,21 @@ export const Hero: React.FC = () => {
         <div className="absolute inset-0 hidden lg:block overflow-hidden">
           <div
             className={`flex h-full ${transitionEnabled ? "transition-transform duration-1000 ease-out" : ""}`}
-            style={{ transform: `translateX(-${slideIndex * 100}%)` }}
+            style={{
+              transform: `translateX(-${slideIndex * 100}%)`,
+              WebkitBackfaceVisibility: "hidden",
+              backfaceVisibility: "hidden",
+              willChange: "transform",
+            }}
           >
             {extendedImages.map((image, index) => (
               <div
                 key={`hero-slide-${index}`}
                 className="min-w-full h-full flex-shrink-0"
+                style={{
+                  WebkitBackfaceVisibility: "hidden",
+                  backfaceVisibility: "hidden",
+                }}
               >
                 <img
                   src={image}

@@ -332,12 +332,21 @@ export const TenuteSection: React.FC = () => {
       <div className="absolute inset-0 overflow-hidden hidden lg:block">
         <div
           className={`flex h-full ${transitionEnabled ? "transition-transform duration-1000 ease-out" : ""}`}
-          style={{ transform: `translateX(-${slideIndex * 100}%)` }}
+          style={{
+            transform: `translateX(-${slideIndex * 100}%)`,
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden",
+            willChange: "transform",
+          }}
         >
           {extendedTenute.map((tenuta, idx) => (
             <div
               key={`slide-${idx}`}
               className="min-w-full h-full flex-shrink-0"
+              style={{
+                WebkitBackfaceVisibility: "hidden",
+                backfaceVisibility: "hidden",
+              }}
             >
               <img
                 src={tenuta.image}
