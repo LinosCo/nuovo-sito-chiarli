@@ -1,34 +1,11 @@
 {
   "wines": [
     {
-      "id": 1,
-      "slug": "vigneto-enrico-cialdini",
-      "name": "Vigneto Enrico Cialdini",
-      "denomination": "Lambrusco Grasparossa DOC",
-      "family": "Premium",
-      "description": "Il nostro cru più prestigioso. Eleganza e complessità uniche.",
-      "image": "/foto/vini/001-uai-720x1080.webp",
-      "format": "0.75L",
-      "tags": ["Premium", "DOC"],
-      "price": null,
-      "year": null,
-      "alcohol": null,
-      "servingTemp": null,
-      "pairings": [],
-      "awards": [],
-      "tastingNotes": {
-        "aspetto": null,
-        "profumo": null,
-        "gusto": null
-      },
-      "isActive": true,
-      "order": 1
-    },
-    {
       "id": 2,
       "slug": "vecchia-modena",
       "name": "Vecchia Modena",
-      "subtitle": "Premium",
+      "subtitle": "Il Vino che ha ridefinito Lambrusco",
+      "tagline": "Lambrusco di Sorbara DOC",
       "denomination": "Lambrusco di Sorbara DOC",
       "family": "Premium",
       "collection": "Collezione Premium",
@@ -37,11 +14,13 @@
       "image": "/foto/vini/vecchia-modena-premium.webp",
       "format": "0.75L",
       "tags": ["Sorbara", "DOC", "Premium", "Secco"],
+      "wineStyle": "Dry Secco | Perlage fine e persistente",
       "price": null,
       "year": null,
       "alcohol": "11,5% Vol.",
       "servingTemp": "8° - 10° C",
       "vinification": "Vinificazione da solo mosto fiore, selezione massale dal vigneto Sozzigalli. Perlage fine e persistente.",
+      "pairingImage": "/foto/vini/vecchia-modena-pairing.webp",
       "pairings": [
         "Piatti Tipici Emiliani",
         "Tonno Nigiri",
@@ -86,10 +65,6 @@
           "value": "11,5% Vol."
         },
         {
-          "label": "Caratteristiche",
-          "value": "Dry Secco | Perlage fine e persistente"
-        },
-        {
           "label": "Temperatura di servizio",
           "value": "8° - 10° C"
         },
@@ -102,632 +77,115 @@
       "order": 2
     },
     {
-      "id": 3,
-      "slug": "pruno-nero",
-      "name": "Pruno Nero",
-      "denomination": "Lambrusco Grasparossa DOC",
-      "family": "Metodo Classico",
-      "description": "Un Lambrusco moderno, secco e pulito. Perfetto con la gastronomia contemporanea.",
-      "image": "/foto/vini/003-uai-720x1080.webp",
-      "format": "0.75L",
-      "tags": ["Dry", "Moderno"],
-      "price": null,
-      "year": null,
-      "alcohol": null,
-      "servingTemp": null,
-      "pairings": [],
-      "awards": [],
-      "tastingNotes": {
-        "aspetto": null,
-        "profumo": null,
-        "gusto": null
-      },
-      "isActive": true,
-      "order": 3
-    },
-    {
-      "id": 4,
-      "slug": "villa-cialdini-rose-de-noir",
-      "name": "Villa Cialdini Rosé de Noir",
-      "denomination": "Lambrusco di Sorbara DOC - Fermentato in bottiglia",
-      "subtitle": "Metodo Ancestrale",
-      "family": "Premium",
-      "description": "Un patrimonio enologico che riflette il metodo ancestrale utilizzato da Cleto Chiarli dal 1860. La rifermentazione in bottiglia dona eleganza, freschezza e finezza uniche.",
-      "image": "/foto/vini/005-uai-720x1080.webp",
-      "format": "0.75L",
-      "tags": ["Metodo Ancestrale", "DOC", "Rosé"],
-      "price": null,
-      "year": null,
-      "alcohol": 12,
-      "servingTemp": "8-10°C",
-      "grape": "Grasparossa",
-      "vinification": "Pressatura soffice con uva integra o diraspata a temperatura controllata e aggiunta di lieviti selezionati. Presa di spuma in 'cuve close' a bassa temperatura.",
-      "pairings": [
-        "Antipasti di mare",
-        "Carpacci di pesce",
-        "Sushi e sashimi",
-        "Insalate di mare",
-        "Formaggi freschi",
-        "Primi piatti leggeri",
-        "Aperitivi eleganti"
-      ],
-      "awards": [
-        {
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri",
-          "years": "2019-2021"
-        },
-        {
-          "name": "Falstaff",
-          "score": "91-93/100",
-          "years": "2019-2022"
-        },
-        {
-          "name": "Touring Club",
-          "score": "Corona",
-          "years": "2020"
-        },
-        {
-          "name": "Vinitaly",
-          "score": "91/100",
-          "years": "2019"
-        }
-      ],
-      "tastingNotes": {
-        "aspetto": "Spuma vivace, colore rosa ribes con bollicine fini e abbondanti. Elegante e raffinato alla vista.",
-        "profumo": "Profumo intenso e fruttato, con tipici sentori di frutti di sottobosco. Note di fragola, lampone e ribes.",
-        "gusto": "Sapore ben composto con sentori di frutti di sottobosco. Fresco, sapido e di grande eleganza. Finale persistente e raffinato."
-      },
-      "heritage": "Il Rosé de Noir rappresenta un patrimonio enologico che riflette il metodo ancestrale della rifermentazione in bottiglia, utilizzato da Cleto Chiarli fin dal 1860. Questo metodo, sostituito negli anni '50 dal Metodo Charmat, viene oggi riscoperto per offrire un vino di straordinaria eleganza e complessità, che conserva le caratteristiche uniche conferite dai lieviti e dalla tradizione.",
-      "technicalSpecs": [
-        {
-          "label": "Vitigno",
-          "value": "Grasparossa 100%"
-        },
-        {
-          "label": "Metodo",
-          "value": "Fermentato in bottiglia - Presa di spuma in cuve close"
-        },
-        {
-          "label": "Gradazione",
-          "value": "12% vol."
-        },
-        {
-          "label": "Temperatura di servizio",
-          "value": "8-10°C (servire fresco)"
-        },
-        {
-          "label": "Formato",
-          "value": "0,75L"
-        },
-        {
-          "label": "Vinificazione",
-          "value": "Pressatura soffice a temperatura controllata"
-        },
-        {
-          "label": "Zona di produzione",
-          "value": "Castelvetro di Modena"
-        }
-      ],
-      "isActive": false,
-      "order": 4
-    },
-    {
-      "id": 5,
-      "slug": "centenario",
-      "name": "Centenario",
-      "denomination": "Lambrusco Grasparossa DOC",
-      "family": "Metodo Classico",
-      "description": "Amabile. Il vino della tradizione modenese, morbido e avvolgente.",
-      "image": "/foto/vini/006-uai-720x1080.webp",
-      "format": "0.75L",
-      "tags": ["Amabile", "Storico"],
-      "price": null,
-      "year": null,
-      "alcohol": null,
-      "servingTemp": null,
-      "pairings": [],
-      "awards": [],
-      "tastingNotes": {
-        "aspetto": null,
-        "profumo": null,
-        "gusto": null
-      },
-      "isActive": true,
-      "order": 5
-    },
-    {
-      "id": 6,
-      "slug": "rose-de-noir",
-      "name": "Villa Cialdini Rosé de Noir",
-      "denomination": "Lambrusco di Sorbara DOC - Fermentato in bottiglia",
-      "subtitle": "Metodo Ancestrale",
-      "family": "Premium",
-      "description": "Un patrimonio enologico che riflette il metodo ancestrale utilizzato da Cleto Chiarli dal 1860. La rifermentazione in bottiglia dona eleganza, freschezza e finezza uniche.",
-      "image": "/foto/vini/rose-de-noir-main.webp",
-      "format": "0.75L",
-      "tags": ["Metodo Ancestrale", "DOC", "Rosé"],
-      "price": null,
-      "year": null,
-      "alcohol": "12% vol.",
-      "servingTemp": "8-10°C",
-      "grape": "Grasparossa",
-      "vinification": "Pressatura soffice con uva integra o diraspata a temperatura controllata e aggiunta di lieviti selezionati. Presa di spuma in 'cuve close' a bassa temperatura.",
-      "pairings": [
-        "Antipasti di mare",
-        "Carpacci di pesce",
-        "Sushi e sashimi",
-        "Insalate di mare",
-        "Formaggi freschi",
-        "Primi piatti leggeri",
-        "Aperitivi eleganti"
-      ],
-      "awards": [
-        {
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri",
-          "year": "2021"
-        },
-        {
-          "name": "Falstaff",
-          "score": "93/100",
-          "year": "2021"
-        },
-        {
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri",
-          "year": "2020"
-        },
-        {
-          "name": "Touring Club",
-          "score": "Corona",
-          "year": "2020"
-        },
-        {
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri",
-          "year": "2019"
-        },
-        {
-          "name": "Vinitaly",
-          "score": "91/100",
-          "year": "2019"
-        },
-        {
-          "name": "Falstaff",
-          "score": "91/100",
-          "year": "2019"
-        }
-      ],
-      "tastingNotes": {
-        "aspetto": "Spuma vivace, colore rosa ribes con bollicine fini e abbondanti. Elegante e raffinato alla vista.",
-        "profumo": "Profumo intenso e fruttato, con tipici sentori di frutti di sottobosco. Note di fragola, lampone e ribes.",
-        "gusto": "Sapore ben composto con sentori di frutti di sottobosco. Fresco, sapido e di grande eleganza. Finale persistente e raffinato."
-      },
-      "heritage": "Il Rosé de Noir rappresenta un patrimonio enologico che riflette il metodo ancestrale della rifermentazione in bottiglia, utilizzato da Cleto Chiarli fin dal 1860. Questo metodo, sostituito negli anni '50 dal Metodo Charmat, viene oggi riscoperto per offrire un vino di straordinaria eleganza e complessità, che conserva le caratteristiche uniche conferite dai lieviti e dalla tradizione.",
-      "technicalSpecs": [
-        {
-          "label": "Vitigno",
-          "value": "Grasparossa 100%"
-        },
-        {
-          "label": "Metodo",
-          "value": "Fermentato in bottiglia - Presa di spuma in cuve close"
-        },
-        {
-          "label": "Gradazione",
-          "value": "12% vol."
-        },
-        {
-          "label": "Temperatura di servizio",
-          "value": "8-10°C (servire fresco)"
-        },
-        {
-          "label": "Formato",
-          "value": "0,75L"
-        },
-        {
-          "label": "Vinificazione",
-          "value": "Pressatura soffice a temperatura controllata"
-        }
-      ],
-      "isActive": false,
-      "order": 6
-    },
-    {
-      "id": 7,
-      "slug": "lambrusco-bio",
-      "name": "Lambrusco Bio",
-      "denomination": "Grasparossa di Castelvetro DOC",
-      "family": "Premium",
-      "description": "Vino Biologico. L'espressione naturale del territorio.",
-      "image": "/foto/vini/008-1-uai-720x1080.webp",
-      "format": "0.75L",
-      "tags": ["Bio", "Organic"],
-      "price": null,
-      "year": null,
-      "alcohol": null,
-      "servingTemp": null,
-      "pairings": [],
-      "awards": [],
-      "tastingNotes": {
-        "aspetto": null,
-        "profumo": null,
-        "gusto": null
-      },
-      "isActive": true,
-      "order": 7
-    },
-    {
-      "id": 8,
-      "slug": "villa-cialdini",
-      "name": "Villa Cialdini",
-      "denomination": "Lambrusco Modena DOC",
-      "family": "Premium",
-      "description": "La nostra cuvée speciale. Un blend che esprime il meglio delle nostre uve.",
-      "image": "/foto/vini/PHOTO-2025-10-22-14-49-54-senza-sfondo-uai-720x1080.webp",
-      "format": "0.75L",
-      "tags": ["Cuvée", "Premium"],
-      "price": null,
-      "year": null,
-      "alcohol": null,
-      "servingTemp": null,
-      "pairings": [],
-      "awards": [],
-      "tastingNotes": {
-        "aspetto": null,
-        "profumo": null,
-        "gusto": null
-      },
-      "isActive": true,
-      "order": 8
-    },
-    {
-      "slug": "tenuta-villa-cialdini-pignoletto-doc",
-      "name": "Tenuta Villa Cialdini Pignoletto",
-      "denomination": "Pignoletto DOC Modena Frizzante",
-      "family": "Premium",
-      "description": "Un Pignoletto frizzante di grande eleganza dalla storica Tenuta Villa Cialdini. Fresco, vivace e perfetto per ogni occasione.",
-      "image": null,
-      "format": "0.75L",
-      "tags": ["Pignoletto", "DOC", "Frizzante"],
-      "price": null,
-      "year": null,
-      "alcohol": null,
-      "servingTemp": null,
-      "pairings": [],
-      "awards": [],
-      "tastingNotes": {
-        "aspetto": null,
-        "profumo": null,
-        "gusto": null
-      },
-      "isActive": false,
-      "order": 9,
-      "id": 9
-    },
-    {
-      "slug": "tenuta-villa-cialdini-pignoletto-doc-2",
-      "name": "Tenuta Villa Cialdini Pignoletto",
-      "denomination": "Pignoletto DOC Modena Frizzante",
-      "family": "Premium",
-      "description": "Un Pignoletto frizzante di grande eleganza dalla storica Tenuta Villa Cialdini. Fresco, vivace e perfetto per ogni occasione.",
-      "image": "/uploads/gallery/Screenshot 2025-12-17 alle 10.30.18-3d84419f.webp",
-      "format": "0.75L",
-      "tags": ["Pignoletto", "DOC", "Frizzante"],
-      "price": null,
-      "year": null,
-      "alcohol": null,
-      "servingTemp": null,
-      "pairings": [],
-      "awards": [],
-      "tastingNotes": {
-        "aspetto": null,
-        "profumo": null,
-        "gusto": null
-      },
-      "isActive": false,
-      "order": 10,
-      "id": 10
-    },
-    {
       "id": 11,
       "slug": "metodo-del-fondatore",
       "name": "Metodo del Fondatore",
-      "subtitle": "Lambrusco di Sorbara DOC",
-      "denomination": "Lambrusco di Sorbara DOC Spumante Rosso Brut",
-      "family": "Metodo Ancestrale",
-      "collection": "Metodo Classico",
-      "grape": "Lambrusco Sorbara",
-      "description": "Gusto secco e sapido, piacevole bouquet, spuma fine ed evanescente, colore chiaro e vivace.",
-      "image": "/foto/vini/lambrusco-sorbara-doc.webp",
+      "subtitle": "Il meglio del tempo in una bottiglia",
+      "tagline": "Lambrusco di Sorbara DOC",
+      "denomination": "Lambrusco di Sorbara Doc",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "grape": "Sorbara da selezione massale",
+      "description": "Il Metodo del Fondatore è un vino d'avanguardia che affonda le radici nel 1860. Non è solo un Lambrusco, ma la continuità di un gesto artigiano: la rifermentazione in bottiglia con il suo fondo naturale di lieviti. È un omaggio alla visione pionieristica di Cleto Chiarli, un vino che non insegue le mode, ma racconta una storia in continua evoluzione.",
+      "image": "/foto/vini/metodo-del-fondatore.webp",
       "format": "0.75L",
-      "tags": ["Sorbara", "DOC", "Metodo Ancestrale", "Brut"],
+      "tags": ["Sorbara", "DOC", "Metodo Ancestrale", "Dry Secco"],
+      "wineStyle": "Dry Secco | Frizzante",
       "price": null,
       "year": null,
       "alcohol": "11,5% vol.",
-      "servingTemp": "Servire a temperatura di cantina (12 - 14° C.)",
-      "vinification": "Vinificazione tradizionale, presa di spuma attraverso fermentazione naturale in bottiglia cui segue stagionatura di sei mesi.",
-      "heritage": "CHIARLI è il più antico produttore di Vini Tipici dell'Emilia-Romagna. La sua fondazione risale al 1860. L'Azienda 'Cleto Chiarli Tenute Agricole' firma vini di alta qualità ottenuti dalla selezione delle migliori uve provenienti da oltre 100 ettari di vigneti di proprietà e dalle più vocate zone di produzione dei vini DOC dell'Emilia-Romagna.",
+      "servingTemp": "12° - 14° C",
+      "vinification": "Rifermentazione naturale in bottiglia con fondo di lieviti. Il segno concreto di un processo fedele alle origini.",
+      "heritageTitle": "Il meglio del tempo in una bottiglia",
+      "heritageQuote": "Il segno concreto di un processo fedele alle origini.",
+      "heritage": "Fino all'avvento delle moderne tecnologie negli anni Cinquanta, il Lambrusco nasceva così: i lieviti naturali trasformavano gli zuccheri residui durante il primo tepore primaverile, creando la spuma sotto la luna calante di marzo. Cleto Chiarli non ha mai rinunciato a questa pratica affascinante. Oggi, grazie all'esperienza maturata in oltre un secolo e mezzo, questo vino si è evoluto — esprime ancora di più la purezza di Sorbara e la complessità di una vinificazione che sfida il tempo.",
+      "pairingImage": "/foto/vini/metodo-del-fondatore-pairing.webp",
+      "pairingDescription": "Il Metodo del Fondatore richiede abbinamenti sinceri e non convenzionali, capaci di reggere la sua spiccata acidità e struttura salina.",
       "pairings": [
-        "Paste asciutte",
-        "Tortellini",
-        "Carni bollite",
-        "Piatti tipici della cucina emiliana"
+        "Salumi d'Eccellenza con il gnocco fritto",
+        "Tortellini in brodo",
+        "Fritture di pesce",
+        "Piatti casalinghi ricchi di sapori",
+        "Formaggi Stagionati",
+        "Ostriche"
       ],
       "awards": [
         {
           "year": "2024",
+          "name": "Vinous",
+          "score": "92 Points"
+        },
+        {
+          "year": "2024",
+          "name": "The Wine Hunter",
+          "score": "Gold Medal"
+        },
+        {
+          "year": "2024",
+          "name": "Il Golosario",
+          "score": "Top 100"
+        },
+        {
+          "year": "2024",
           "name": "Bibenda",
-          "score": "5 Grappoli"
-        },
-        {
-          "year": "2024",
-          "name": "Slow Wine",
-          "score": "Eccellenza"
-        },
-        {
-          "year": "2024",
-          "name": "Merano WineFestival",
-          "score": "The WineHunter Gold"
-        },
-        {
-          "year": "2024",
-          "name": "Gambero Rosso",
-          "score": "2 Bicchieri"
-        },
-        {
-          "year": "2024",
-          "name": "Vitae AIS",
-          "score": "4 Viti"
-        },
-        {
-          "year": "2024",
-          "name": "Veronelli",
-          "score": "86/100"
-        },
-        {
-          "year": "2023",
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri"
-        },
-        {
-          "year": "2023",
-          "name": "Bibenda",
-          "score": "5 Grappoli"
-        },
-        {
-          "year": "2023",
-          "name": "Merano WineFestival",
-          "score": "The WineHunter Gold"
+          "score": "Vino d'Eccellenza"
         },
         {
           "year": "2023",
           "name": "Slow Wine",
-          "score": "Eccellenza"
+          "score": "Vino Quotidiano"
         },
         {
           "year": "2023",
-          "name": "Vitae AIS",
-          "score": "3 Viti"
+          "name": "Wine Enthusiast",
+          "score": "90 Points Best Buy"
         },
         {
           "year": "2023",
-          "name": "Luca Maroni",
-          "score": "90/100"
-        },
-        {
-          "year": "2022",
-          "name": "Vinibuoni d'Italia",
-          "score": "Corona"
-        },
-        {
-          "year": "2022",
-          "name": "Merano WineFestival",
-          "score": "The WineHunter Gold"
-        },
-        {
-          "year": "2022",
-          "name": "Vitae AIS",
-          "score": "3 Viti"
-        },
-        {
-          "year": "2021",
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri"
-        },
-        {
-          "year": "2021",
-          "name": "Vinibuoni d'Italia",
-          "score": "Corona"
-        },
-        {
-          "year": "2021",
-          "name": "Bibenda",
-          "score": "5 Grappoli"
-        },
-        {
-          "year": "2021",
-          "name": "Slow Wine",
-          "score": "Selezione"
-        },
-        {
-          "year": "2021",
-          "name": "Luca Maroni",
-          "score": "90/100"
-        },
-        {
-          "year": "2020",
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri"
-        },
-        {
-          "year": "2020",
-          "name": "Vinibuoni d'Italia",
-          "score": "Corona"
-        },
-        {
-          "year": "2020",
-          "name": "Merano WineFestival",
-          "score": "The WineHunter Rosso"
-        },
-        {
-          "year": "2020",
-          "name": "Luca Maroni",
-          "score": "90/100"
-        },
-        {
-          "year": "2020",
-          "name": "Slow Wine",
-          "score": "Selezione"
-        },
-        {
-          "year": "2019",
-          "name": "Wine Spectator",
-          "score": "TOP 100"
-        },
-        {
-          "year": "2019",
-          "name": "Gambero Rosso",
-          "score": "Tre Bicchieri"
-        },
-        {
-          "year": "2019",
-          "name": "Slow Wine",
-          "score": "Eccellenza"
-        },
-        {
-          "year": "2019",
-          "name": "Bibenda",
-          "score": "5 Grappoli"
-        },
-        {
-          "year": "2019",
-          "name": "Merano WineFestival",
-          "score": "The WineHunter Rosso"
-        },
-        {
-          "year": "2019",
-          "name": "Luca Maroni",
-          "score": "89/100"
-        },
-        {
-          "year": "2019",
-          "name": "L'Espresso",
-          "score": "Selezione"
+          "name": "Civiltà del Bere",
+          "score": "Oro"
         }
       ],
       "tastingNotes": {
-        "aspetto": "Colore chiaro e vivace con spuma fine ed evanescente.",
-        "profumo": "Piacevole bouquet con note floreali e sentori di lievito.",
-        "gusto": "Gusto secco e sapido, freschezza vibrante caratteristica del territorio Sorbara."
-      },
-      "experienceSections": {
-        "degusta": "Lasciati guidare dal colore, dal bouquet e dal perlage: è qui che inizia il piacere. Le bollicine raccontano la vitalità del vino, la luce ne rivela il carattere. Degustare diventa un gesto spontaneo, un invito alla freschezza e alla leggerezza che accompagna ogni sorso.",
-        "abbina": "Dalla freschezza di un ingrediente di stagione alla creatività di un piatto contemporaneo, l'abbinamento è un dialogo aperto. Versatilità e curiosità guidano l'incontro tra sapori, texture e emozioni.",
-        "scopri": "Sperimenta nuove armonie, segui la tua curiosità. Ogni vino rivela una storia diversa, un modo inedito di vivere la tavola e il piacere della convivialità — con leggerezza, eleganza e spirito di scoperta."
+        "aspetto": "Un vino vivo, dal colore rosa intensa tipico del Sorbara, caratterizzato da una naturale torbidità dovuta alla presenza dei lieviti in bottiglia.",
+        "profumo": "Un bouquet complesso che si intreccia e cresce nel bicchiere. La purezza del frutto si sposa con note fragranti di crosta di pane e lievito, frutto di un riposo lento che segue il ritmo della natura.",
+        "gusto": "Il sorso è secco, vibrante e teso. Una freschezza naturale e tagliente avvolge il palato, offrendo una storia viva che muta ad ogni assaggio. È un vino da osservare, assaggiare e riscoprire nel tempo."
       },
       "technicalSpecs": [
         {
           "label": "Denominazione",
-          "value": "Lambrusco di Sorbara DOC Spumante Rosso Brut"
-        },
-        {
-          "label": "Regione",
-          "value": "Emilia Romagna"
+          "value": "Lambrusco di Sorbara Doc"
         },
         {
           "label": "Vitigno",
-          "value": "Lambrusco Sorbara"
+          "value": "Sorbara da selezione massale"
         },
         {
-          "label": "Gradazione",
-          "value": "11,5% vol."
-        },
-        {
-          "label": "Caratteristiche",
-          "value": "Gusto secco e sapido, piacevole bouquet, spuma fine ed evanescente, colore chiaro e vivace"
-        },
-        {
-          "label": "Vinificazione",
-          "value": "Vinificazione tradizionale, presa di spuma attraverso fermentazione naturale in bottiglia cui segue stagionatura di sei mesi"
+          "label": "Analisi",
+          "value": "11,5% Vol. | Dry Secco | Frizzante"
         },
         {
           "label": "Temperatura di servizio",
-          "value": "Servire a temperatura di cantina (12 - 14° C.)"
+          "value": "12° - 14° C"
         },
         {
-          "label": "Avvertenza",
-          "value": "Stappare e mescere con cura per non rimuovere dal fondo il leggero e tipico residuo della fermentazione"
+          "label": "Vinificazione",
+          "value": "Rifermentazione naturale in bottiglia con fondo di lieviti"
         }
       ],
-      "technicalSheetUrl": "https://cletochiarli2.linosandco.com/wp-content/uploads/2025/11/Lambrusco-di-Sorbara-DOC-.pdf",
-      "pairingImage": "/foto/sito/ravioli-2063535_1280-uai-540x810.webp",
+      "technicalSheetUrl": null,
       "experienceBackground": "/foto/sito/a001-scaled.webp",
       "isActive": true,
       "order": 1
     },
     {
-      "id": 12,
-      "slug": "villa-cialdini-rose-brut",
-      "name": "Villa Cialdini",
-      "subtitle": "Rosè Brut",
-      "denomination": "Vino Spumante Rosé Brut",
-      "family": "Premium",
-      "collection": "Collezione Classica",
-      "grape": "Grasparossa",
-      "description": "Il Rosé Brut di Villa Cialdini è un invito alla leggerezza consapevole. Nasce da uve Grasparossa coltivate intorno alla storica tenuta e interpreta il lato più luminoso e conviviale del Lambrusco. È un vino pensato per i momenti spontanei, per le tavole che si aprono senza formalità, per chi cerca freschezza e carattere in equilibrio naturale. Il suo stile è diretto, autentico, profondamente legato al territorio, ma con uno sguardo contemporaneo.\nNel bicchiere si distingue per il colore rosa vivo e la spuma dinamica, che anticipano un sorso agile e piacevole. È uno spumante che accompagna senza sovrastare, capace di rendere speciale anche l'occasione più semplice. Un classico quotidiano, elegante senza ostentazione.",
-      "image": "/foto/vini/rose-de-noir-main.webp",
-      "format": "0.75L",
-      "tags": ["Rosé", "DOC", "Metodo Charmat"],
-      "price": null,
-      "year": null,
-      "alcohol": "12% vol.",
-      "servingTemp": "Servire fresco (8 – 10° C.)",
-      "vinification": "Pressatura soffice con uva integra o diraspata a temperatura controllata e aggiunta di lieviti selezionati. Presa di spuma in \"cuve close\" a bassa temperatura.",
-      "pairings": [
-        "Aperitivo",
-        "Cene raffinate",
-        "Torta con fragole",
-        "Macedonie di frutta",
-        "Dessert alla frutta"
-      ],
-      "heritage": "La \"Collezione Classica di Villa Cialdini nasce dove tutto è più vicino: la terra, la famiglia, i gesti quotidiani. È l'espressione più domestica e autentica dello stile Cleto Chiarli, legata alle uve coltivate intorno alla storica tenuta e a una tradizione che non ha bisogno di essere celebrata per essere riconosciuta. Ciascun spumante racconta il \"classico\" come continuità, equilibrio e appartenenza: vini pensati per la tavola, per il territorio, per chi conosce il valore delle cose fatte bene.",
-      "awards": [],
-      "tastingNotes": {
-        "aspetto": "Spuma vivace, colore rosa ribes, bollicine fini ed abbondanti.",
-        "profumo": "Profumo intenso e fruttato, con tipici sentori di frutti di sottobosco.",
-        "gusto": "Sapore ben composto con tipici sentori di frutti di sottobosco."
-      },
-      "experienceSections": {
-        "degusta": "Fresco e immediato, con una bollicina fine che accompagna profumi di piccoli frutti rossi e una chiusura asciutta e armoniosa. Un sorso scorrevole, pensato per essere condiviso con naturalezza.",
-        "abbina": "Perfetto come aperitivo, si abbina con facilità a piatti leggeri, verdure, formaggi freschi e preparazioni delicate. Ideale anche a tutto pasto quando si cerca freschezza e versatilità.",
-        "scopri": "Un Rosé Brut che racconta il lato più spontaneo di Villa Cialdini: uve di proprietà, stile essenziale e un legame profondo con la convivialità emiliana."
-      },
-      "technicalSpecs": [
-        {
-          "label": "Vitigno",
-          "value": "Grasparossa"
-        },
-        {
-          "label": "Gradazione",
-          "value": "12% vol."
-        },
-        {
-          "label": "Temperatura di servizio",
-          "value": "Servire fresco (8 – 10° C.)"
-        }
-      ],
-      "isActive": true,
-      "order": 0
-    },
-    {
       "id": 13,
       "slug": "vigneto-cialdini-grasparossa",
       "name": "Vigneto Cialdini",
-      "subtitle": "Lambrusco Grasparossa di Castelvetro DOC",
+      "subtitle": "L'Anima Intensa e Territoriale dell'Emilia",
+      "tagline": "Lambrusco Grasparossa di Castelvetro DOC",
       "denomination": "Lambrusco Grasparossa di Castelvetro DOC Spumante Rosso Brut",
-      "family": "Premium",
+      "family": "Classica",
       "collection": "Collezione Classica",
       "grape": "Grasparossa da selezione massale",
       "description": "Il Vigneto Cialdini è un Cru che non passa inosservato. Nato da un'idea precisa di Mauro e Anselmo Chiarli, questo vino racconta il lato più profondo del Grasparossa: un carattere deciso fatto di intensità, struttura e complessità aromatica. È la dimostrazione che il Grasparossa, se coltivato con rigore in micro-parcelle vocate, può raggiungere vette qualitative pari ai grandi Sorbara.",
@@ -819,6 +277,246 @@
       "technicalSheetUrl": "/schede-tecniche/vigneto-cialdini-grasparossa.pdf",
       "isActive": true,
       "order": 1
+    },
+    {
+      "id": 14,
+      "slug": "pruno-nero-dry-vs",
+      "name": "Pruno Nero Dry VS",
+      "subtitle": "L'Intensità che Conquista al Primo Sorso",
+      "tagline": "Lambrusco di Modena D.O.C. Spumante Dry",
+      "denomination": "Lambrusco di Modena D.O.C. Spumante Dry",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "grape": "Grasparossa e Salamino",
+      "description": "Il Pruno Nero Dry è il volto contemporaneo del Lambrusco: giovane, moderno e orgogliosamente fuori dagli schemi. Nato dai vigneti della Tenuta Belvedere, è un rosso spumante che unisce la struttura del Grasparossa alla freschezza del Salamino in un equilibrio perfetto. È il vino della convivialità spontanea, pensato per chi cerca piacere, bevibilità e carattere in ogni occasione.",
+      "image": "/foto/vini/pruno-nero-dry-vs.webp",
+      "format": "0.75L",
+      "tags": ["Grasparossa", "Salamino", "DOC", "Dry Secco", "Frizzante"],
+      "wineStyle": "Dry Secco | Frizzante",
+      "price": null,
+      "year": null,
+      "alcohol": "11% vol.",
+      "servingTemp": "10° - 12° C",
+      "heritageTitle": "Dove Nasce L'Energia",
+      "heritageQuote": "Lo Spumante Rosso Moderno e Versatile",
+      "heritage": "Alla base di Pruno Nero Dry c'è Tenuta Belvedere, una terra eclettica per natura, dove il suolo offre condizioni ideali per uve vitali e sorprendenti. Qui, Grasparossa, in blend all'uva Salamino vendemmiata tra i filari di Sorbara a Sozzigalli, trovano un equilibrio spontaneo, dando origine a un frutto gioioso, fresco, immediato. L'obiettivo in cantina è preservare questa energia naturale, creando un vino fedele alle origini ma aperto alle interpretazioni più attuali della mixology e del lifestyle globale.",
+      "pairingImage": "/foto/vini/pruno-nero-dry-vs-pairing.webp",
+      "pairingDescription": "Nato per l'aperitivo, Pruno Nero Dry è il compagno ideale per la cucina informale e internazionale.",
+      "pairings": [
+        "Tapas e finger food",
+        "Mixology",
+        "Barbecue",
+        "Piatti fusion saporiti",
+        "Hamburger Gourmet",
+        "Street food asiatico"
+      ],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Un rosso intenso e polposo, con una spuma abbondante e vivace che invita subito al brindisi.",
+        "profumo": "Un'esplosione di frutta. Il profumo fruttato è spiccato, immediato e accattivante, dominato da note di frutti rossi maturi.",
+        "gusto": "Morbido e vellutato. Il sorso è pieno e intrigante, capace di avvolgere il palato senza appesantirlo, lasciando una sensazione di freschezza e agilità che invita al sorso successivo."
+      },
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Lambrusco di Modena D.O.C. Spumante Dry"
+        },
+        {
+          "label": "Vitigno",
+          "value": "Grasparossa e Salamino"
+        },
+        {
+          "label": "Analisi",
+          "value": "11% Vol. | Dry Secco | Frizzante"
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "10° - 12° C"
+        }
+      ],
+      "technicalSheetUrl": null,
+      "isActive": true,
+      "order": 4
+    },
+    {
+      "id": 15,
+      "slug": "pruno-nero-abboccato",
+      "name": "Pruno Nero",
+      "subtitle": "Il Piacere Rotondo della Tradizione",
+      "tagline": "Lambrusco Grasparossa di Castelvetro DOC Abboccato",
+      "denomination": "Lambrusco Grasparossa di Castelvetro DOC Abboccato",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "grape": "Grasparossa",
+      "description": "Il Pruno Nero Abboccato punta dritto al cuore del piacere. È un Lambrusco Grasparossa che interpreta il vitigno nella sua veste più ricca e conviviale, dove l'intensità naturale dell'uva incontra una morbidezza vellutata. Uno stile che valorizza il carattere del Grasparossa, rendendo il sorso immediato, senza mai rinunciare a quella freschezza vitale che lo rende incredibilmente versatile a tavola.",
+      "image": "/foto/vini/pruno_nero_normale.webp",
+      "format": "0.75L",
+      "tags": ["Grasparossa", "DOC", "Abboccato", "Frizzante"],
+      "wineStyle": "Amabile | Frizzante",
+      "price": null,
+      "year": null,
+      "alcohol": "10% vol.",
+      "servingTemp": "10° - 12° C",
+      "heritageTitle": "Dove Nasce L'Energia",
+      "heritageQuote": "L'Anima del Grasparossa: Forza e Dolcezza",
+      "heritage": "A differenza delle versioni più asciutte, il Pruno Nero Abboccato celebra la polpa del frutto. Grazie all'esperienza della famiglia Chiarli, la vinificazione è orientata a preservare la purezza del vitigno, sfidando il tempo con una tecnica che esalta la morbidezza senza perdere la spina dorsale acida. È un vino pensato per i momenti informali e per le occasioni in cui il gusto condiviso è il vero protagonista.",
+      "pairingImage": "/foto/vini/pruno-nero-abboccato-pairing.webp",
+      "pairingDescription": "La sua naturale morbidezza lo rende il partner ideale per piatti sapidi o speziati, dove il contrasto dolce-salato esalta il sapore.",
+      "pairings": [
+        "Stuzzichini saporiti",
+        "Cous cous di agnello e verdure",
+        "Carni grigliate con salsa barbecue",
+        "Piatti leggermente piccanti e agrodolci",
+        "Costine di maiale glassate al forno",
+        "Crostata di prugne o frutti rossi"
+      ],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Rosso rubino profondo, impreziosito da intensi riflessi violacei che ne anticipano la struttura.",
+        "profumo": "Al naso emergono note avvolgenti di prugna matura, mora e ciliegia sotto spirito. Un bouquet caldo e fruttato che evoca la ricchezza della terra emiliana.",
+        "gusto": "Il sorso è morbido e rotondo, con una dolcezza ben integrata che si fonde armoniosamente con la freschezza. Il risultato è un vino equilibrato, scorrevole e profondamente appagante."
+      },
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Lambrusco Grasparossa di Castelvetro DOC Abboccato"
+        },
+        {
+          "label": "Vitigno",
+          "value": "Grasparossa"
+        },
+        {
+          "label": "Analisi",
+          "value": "10% Vol. | Amabile | Frizzante"
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "10° - 12° C"
+        }
+      ],
+      "technicalSheetUrl": null,
+      "isActive": true,
+      "order": 5
+    },
+    {
+      "id": 16,
+      "slug": "nivola",
+      "name": "Nivola",
+      "subtitle": "L'eleganza della morbidezza",
+      "tagline": "Lambrusco Grasparossa di Castelvetro DOC Abboccato",
+      "denomination": "Lambrusco Grasparossa di Castelvetro DOC Abboccato",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "grape": "Grasparossa",
+      "description": "Nivola interpreta il Lambrusco Grasparossa in una chiave elegante e misurata. È un vino dove la morbidezza tipica dello stile abboccato incontra un profondo senso di equilibrio. Avvolgente ma armonico, Nivola è dedicato a chi cerca un linguaggio raffinato, capace di accompagnare il pasto con discrezione e carattere.",
+      "image": "/foto/vini/nivola.webp",
+      "format": "0.75L",
+      "tags": ["Grasparossa", "DOC", "Abboccato", "Frizzante"],
+      "wineStyle": "Abboccato | Frizzante",
+      "price": null,
+      "year": null,
+      "alcohol": "10% vol.",
+      "servingTemp": "12° - 14° C",
+      "heritageTitle": "Morbidezza con Stile",
+      "heritageQuote": "La prova dell'eleganza",
+      "heritage": "Nivola è un Lambrusco che richiama uno stile più classico, dove la morbidezza è parte integrante dell'equilibrio e non un eccesso. È il risultato di una selezione attenta in vigna e di una lavorazione in cantina volta a smussare gli spigoli del Grasparossa, esaltandone la rotondità. Pensato per chi cerca armonia e una convivialità senza tempo, Nivola rappresenta la scelta sicura per nobilitare ogni occasione conviviale.",
+      "pairingImage": "/foto/vini/nivola-pairing.webp",
+      "pairingDescription": "Nivola si abbina con naturalezza a preparazioni che richiedono un vino capace di valorizzare i sapori senza sovrastarli.",
+      "pairings": [
+        "Lasagne alla bolognese",
+        "Salumi e Formaggi stagionati",
+        "Arrosti di Vitello o Pollo alle erbe",
+        "Cannelloni al Forno",
+        "Carne grigliata",
+        "Pasticceria secca"
+      ],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Colore rosso intenso e profondo, sormontato da una spuma abbondante e persistente che ne sottolinea la vivacità.",
+        "profumo": "Un bouquet di frutta fresca, matura e ben definita. Emergono sentori di ciliegia e frutti rossi che restano sempre in primo piano, senza eccessi.",
+        "gusto": "La dolcezza è presente ma calibrata, pensata per rendere il sorso scorrevole e mai pesante. La forte struttura del Grasparossa sostiene la morbidezza, creando un finale pulito e di grande piacevolezza."
+      },
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Lambrusco Grasparossa di Castelvetro DOC Abboccato"
+        },
+        {
+          "label": "Vitigno",
+          "value": "Grasparossa"
+        },
+        {
+          "label": "Analisi",
+          "value": "10% Vol. | Abboccato | Frizzante"
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "12° - 14° C"
+        }
+      ],
+      "technicalSheetUrl": null,
+      "isActive": true,
+      "order": 6
+    },
+    {
+      "id": 17,
+      "slug": "fondo-malatesta",
+      "name": "Fondo Malatesta",
+      "subtitle": "La purezza verticale della tradizione",
+      "tagline": "Lambrusco Sorbara DOC Secco",
+      "denomination": "Lambrusco Sorbara DOC Secco",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "grape": "Sorbara",
+      "description": "Il Fondo Malatesta è l'espressione più autentica e rigorosa del Lambrusco di Sorbara all'interno della nostra linea classica. Un vino che fa della pulizia e della sapidità la sua bandiera, figlio di una fermentazione naturale lenta che ne scolpisce il carattere vibrante. È il Sorbara che non scende a compromessi, pensato per chi cerca la spalla acida e l'eleganza di un grande spumante rosso secco.",
+      "image": "/foto/vini/fondo-malatesta.webp",
+      "format": "0.75L",
+      "tags": ["Sorbara", "DOC", "Secco", "Spumante"],
+      "wineStyle": "Dry Secco | Perlage fine e persistente",
+      "price": null,
+      "year": null,
+      "alcohol": "11% vol.",
+      "servingTemp": "10° - 12° C",
+      "heritageTitle": "Il rigore di una scelta autentica",
+      "heritageQuote": "Il Gusto di un vino vibrante",
+      "heritage": "Il carattere del Fondo Malatesta si forgia durante la fermentazione. Scegliere di prolungare questo processo significa rispettare l'uva Sorbara, permettendole di sviluppare quella complessità che solo il tempo sa dare. Il risultato è un vino di grande nitidezza, dove la tensione acida tipica del vitigno si sposa con una struttura sapida che ne allunga il ricordo al palato. Una scelta di stile che privilegia l'integrità del frutto e la naturalezza della spuma.",
+      "pairingImage": "/foto/vini/fondo-malatesta-pairing.webp",
+      "pairingDescription": "Il profilo teso e sapido del Fondo Malatesta lo rende un compagno formidabile per i sapori che richiedono freschezza e pulizia.",
+      "pairings": [
+        "Tartare di pesce e crostacei",
+        "Salumi del territorio",
+        "Tortellini in Brodo",
+        "Tempura di verdure",
+        "Frittura di Pesce",
+        "Paste ripiene con formaggio e verdure"
+      ],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Un colore rosso chiaro e brillante, con una spuma rosata e sottile che testimonia la cura della vinificazione.",
+        "profumo": "Il profumo è marcatamente fruttato, con note di violetta e piccoli frutti rossi che emergono con nitidezza, tipiche della migliore espressione del Sorbara.",
+        "gusto": "Al sorso rivela la sua vera natura: è secco, asciutto e attraversato da una sapidità minerale che ne definisce il profilo. La freschezza è protagonista, resa armonica da una bollicina sottile e persistente, frutto di un lento affinamento sui lieviti."
+      },
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Lambrusco Sorbara DOC Secco"
+        },
+        {
+          "label": "Vitigno",
+          "value": "Sorbara"
+        },
+        {
+          "label": "Analisi",
+          "value": "11% Vol. | Dry Secco | Perlage fine e persistente"
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "10° - 12° C"
+        }
+      ],
+      "technicalSheetUrl": null,
+      "isActive": true,
+      "order": 7
     }
   ],
   "_meta": {

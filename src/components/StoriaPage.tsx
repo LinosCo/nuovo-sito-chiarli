@@ -129,7 +129,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
         "La famiglia Chiarli acquisisce Villa Cialdini, storica residenza del Generale Enrico Cialdini — figura centrale del Risorgimento italiano — e i suoi terreni, ponendo le basi di una delle tenute più rappresentative del Grasparossa di Castelvetro e del futuro progetto Cleto Chiarli Tenute Agricole.",
       details: "",
       curiosity: "",
-      image: "/foto-timeline/acquisizione-cialdini.webp",
+      image: "/foto-timeline/famiglia-chiarli.webp",
     },
     {
       year: "1900",
@@ -167,7 +167,7 @@ export const StoriaPage: React.FC<StoriaPageProps> = ({ onBack }) => {
         "Si adottano i moderni sistemi di allevamento a GDC (Geneva Double Curtain), che garantiscono uve più sane e maturazioni più equilibrate nei vigneti emiliani.",
       details: "",
       curiosity: "",
-      image: "/foto-timeline/145.webp",
+      image: "/foto-timeline/sistema-gdc.webp",
     },
     {
       year: "1968–1975",

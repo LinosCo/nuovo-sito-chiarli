@@ -47,7 +47,9 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({
           .filter(
             (w: WineData) =>
               (w.family === "Metodo Classico" ||
-                w.collection === "Metodo Classico") &&
+                w.family === "Classica" ||
+                w.collection === "Metodo Classico" ||
+                w.collection === "Collezione Classica") &&
               w.isActive,
           )
           .sort(

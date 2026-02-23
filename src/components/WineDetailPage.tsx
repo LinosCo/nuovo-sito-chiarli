@@ -19,6 +19,8 @@ interface WineData {
   slug: string;
   name: string;
   subtitle?: string;
+  tagline?: string;
+  wineStyle?: string;
   denomination: string;
   family: string;
   description: string;
@@ -339,7 +341,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                       {wine.name}
                     </span>
                     <span
-                      className={`block italic text-chiarli-wine-light transition-all duration-700 delay-500 ${
+                      className={`block italic text-chiarli-wine-light text-xl md:text-3xl lg:text-4xl transition-all duration-700 delay-500 ${
                         isLoaded
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 translate-y-8"
@@ -389,7 +391,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                     : "opacity-0 translate-y-4"
                 }`}
               >
-                {wine.denomination}
+                {wine.tagline || wine.denomination}
               </p>
 
               <div
@@ -484,6 +486,14 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                       </span>
                     </div>
                   )}
+                  {wine.wineStyle && (
+                    <div className="flex items-center gap-2">
+                      <span className="font-sans text-xs text-white/40">|</span>
+                      <span className="font-sans text-xs text-white/70">
+                        {wine.wineStyle}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -502,9 +512,9 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
             </div>
           </div>
 
-          {/* Right side - Bottle more to the left */}
+          {/* Right side - Bottle centered */}
           {wine.image && (
-            <div className="hidden lg:flex w-1/2 items-center justify-start relative overflow-visible">
+            <div className="hidden lg:flex w-1/2 items-center justify-center relative overflow-visible">
               {/* Floating award badges with smooth crossfade */}
               {wine.awards && wine.awards.length > 0 && (
                 <div className="absolute right-8 top-32 bottom-48">
