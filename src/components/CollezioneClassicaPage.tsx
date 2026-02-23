@@ -149,12 +149,12 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({
                 onMouseLeave={() => setHoveredWine(null)}
               >
                 {/* Wine Image */}
-                <div className="relative mb-6 overflow-hidden">
+                <div className="relative mb-6">
                   {wine.image ? (
                     <img
                       src={wine.image}
                       alt={wine.name}
-                      className="w-full h-80 md:h-96 object-contain transform transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-80 md:h-96 object-contain p-4 transform transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                       decoding="async"
                     />
@@ -166,7 +166,7 @@ export const CollezioneClassicaPage: React.FC<CollezioneClassicaPageProps> = ({
 
                   {/* Hover Overlay */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-t from-chiarli-wine/40 to-transparent transition-opacity duration-500 ${
+                    className={`absolute inset-0 bg-gradient-to-t from-chiarli-wine/40 to-transparent transition-opacity duration-500 pointer-events-none ${
                       hoveredWine === wine.slug ? "opacity-100" : "opacity-0"
                     }`}
                   />

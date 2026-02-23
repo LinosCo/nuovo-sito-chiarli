@@ -163,13 +163,13 @@ export const BottleShowcase: React.FC<BottleShowcaseProps> = ({
               onClick={() => onWineClick?.(wine.slug)}
             >
               {/* Image Container */}
-              <div className="aspect-[3/4] mb-8 relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center p-4">
+              <div className="aspect-[3/4] mb-8 relative">
+                <div className="absolute inset-0 flex items-center justify-center p-6">
                   <img
                     src={wine.image}
                     alt={wine.name}
                     className={`h-full w-full object-contain drop-shadow-lg transition-all duration-700 ${
-                      hoveredBottle === index ? "scale-110 -translate-y-2" : ""
+                      hoveredBottle === index ? "scale-105 -translate-y-2" : ""
                     }`}
                     loading="lazy"
                   />
