@@ -299,12 +299,12 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
         <div className="w-full min-h-screen flex flex-col lg:flex-row relative z-10">
           {/* Mobile bottle - shown only on mobile at top */}
           {wine.image && (
-            <div className="lg:hidden w-full flex justify-center pt-24 pb-8">
+            <div className="lg:hidden w-full flex justify-center pt-20 pb-4">
               <div className="relative">
                 <img
                   src={wine.image}
                   alt={wine.name}
-                  className="relative z-10 h-[35vh] w-auto object-contain"
+                  className="relative z-10 h-[28vh] w-auto object-contain"
                   loading="lazy"
                   decoding="async"
                   style={{
@@ -316,7 +316,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
           )}
 
           {/* Left side - Content */}
-          <div className="w-full lg:w-1/2 flex items-center px-6 md:px-16 lg:px-20 py-8 lg:py-32">
+          <div className="w-full lg:w-1/2 flex items-center px-6 md:px-16 lg:px-20 py-4 lg:py-32">
             <div className="max-w-xl mx-auto lg:mx-0">
               <span
                 className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-4 block transition-all duration-700 delay-300 ${
@@ -385,7 +385,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
               </h1>
 
               <p
-                className={`font-sans text-[11px] font-bold uppercase tracking-widest text-white/40 mb-6 transition-all duration-700 delay-600 ${
+                className={`font-sans text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4 md:mb-6 transition-all duration-700 delay-600 ${
                   isLoaded
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-4"
@@ -395,7 +395,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
               </p>
 
               <div
-                className={`transition-all duration-700 delay-700 mb-6 md:mb-8 ${
+                className={`transition-all duration-700 delay-700 mb-4 md:mb-8 ${
                   isLoaded
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-6"
@@ -422,7 +422,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
 
               {/* Elegant info lines */}
               <div
-                className={`space-y-4 mb-8 transition-all duration-700 delay-800 ${
+                className={`space-y-3 md:space-y-4 mb-6 md:mb-8 transition-all duration-700 delay-800 ${
                   isLoaded
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-4"
@@ -461,7 +461,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                 )}
 
                 {/* Gradazione e Temperatura */}
-                <div className="flex items-center gap-6 pt-2">
+                <div className="flex flex-wrap items-center gap-4 md:gap-6 pt-2">
                   {wine.alcohol && (
                     <div className="flex items-center gap-2 group">
                       <Wine
@@ -499,7 +499,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
 
               {/* CTA */}
               <div
-                className={`flex flex-wrap gap-4 transition-all duration-700 delay-1000 ${
+                className={`flex flex-wrap gap-4 pb-8 md:pb-0 transition-all duration-700 delay-1000 ${
                   isLoaded
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-4"
@@ -598,9 +598,9 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
           )}
         </div>
 
-        {/* Scroll indicator - centered */}
+        {/* Scroll indicator - centered, hidden on mobile */}
         <div
-          className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-700 delay-1000 ${
+          className={`absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 transition-all duration-700 delay-1000 ${
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
