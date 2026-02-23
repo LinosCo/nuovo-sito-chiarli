@@ -22,8 +22,8 @@
       "wineStyle": "Brut | Spumante",
       "price": null,
       "year": null,
-      "alcohol": "11,5% Vol.",
-      "servingTemp": "8° - 10° C",
+      "alcohol": "11% Vol.",
+      "servingTemp": "10° - 12° C",
       "vinification": "Vinificazione da solo mosto fiore, selezione massale dal vigneto Sozzigalli. Perlage fine e persistente.",
       "pairingImage": "/foto/vini/vecchia-modena-pairing.webp",
       "pairings": [
@@ -79,7 +79,7 @@
         },
         {
           "label": "Gradazione",
-          "value": "11,5% Vol."
+          "value": "11% Vol."
         },
         {
           "label": "Tipologia",
@@ -91,7 +91,7 @@
         },
         {
           "label": "Temperatura di servizio",
-          "value": "8° - 10° C"
+          "value": "10° - 12° C"
         }
       ],
       "isActive": true,
@@ -116,7 +116,7 @@
         "Metodo Ancestrale",
         "Dry Secco"
       ],
-      "wineStyle": "Brut | Frizzante",
+      "wineStyle": "Brut | Spumante",
       "price": null,
       "year": null,
       "alcohol": "11,5% vol.",
@@ -192,7 +192,7 @@
         },
         {
           "label": "Tipologia",
-          "value": "Frizzante"
+          "value": "Spumante"
         },
         {
           "label": "Dolcezza",
@@ -403,7 +403,7 @@
         "Abboccato",
         "Frizzante"
       ],
-      "wineStyle": "Abboccato | Frizzante",
+      "wineStyle": "Amabile | Frizzante",
       "price": null,
       "year": null,
       "alcohol": "10% vol.",
@@ -446,7 +446,7 @@
         },
         {
           "label": "Dolcezza",
-          "value": "Abboccato"
+          "value": "Amabile"
         },
         {
           "label": "Temperatura di servizio",
@@ -549,7 +549,7 @@
         "Secco",
         "Spumante"
       ],
-      "wineStyle": "Brut | Spumante",
+      "wineStyle": "Brut | Frizzante",
       "price": null,
       "year": null,
       "alcohol": "11% vol.",
@@ -588,7 +588,7 @@
         },
         {
           "label": "Tipologia",
-          "value": "Spumante"
+          "value": "Frizzante"
         },
         {
           "label": "Dolcezza",
