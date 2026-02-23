@@ -796,7 +796,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                 </div>
 
                 {/* Download PDF button */}
-                {wine.technicalSheetUrl && (
+                {wine.technicalSheetUrl ? (
                   <a
                     href={wine.technicalSheetUrl}
                     target="_blank"
@@ -811,6 +811,44 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                       Scarica Scheda Tecnica
                     </span>
                   </a>
+                ) : (
+                  <button
+                    onClick={() => {
+                      const specs = [
+                        wine.denomination &&
+                          `Denominazione: ${wine.denomination}`,
+                        wine.grape && `Vitigno: ${wine.grape}`,
+                        wine.alcohol && `Gradazione: ${wine.alcohol}`,
+                        wine.servingTemp &&
+                          `Temperatura di servizio: ${wine.servingTemp}`,
+                        wine.wineStyle && `Stile: ${wine.wineStyle}`,
+                        wine.vinification &&
+                          `Vinificazione: ${wine.vinification}`,
+                        ...(wine.technicalSpecs?.map(
+                          (s) => `${s.label}: ${s.value}`,
+                        ) || []),
+                      ].filter(Boolean);
+                      const text = `SCHEDA TECNICA - ${wine.name}\n${"=".repeat(40)}\n\n${specs.join("\n")}\n\n${wine.tastingNotes ? `DEGUSTAZIONE\n${"-".repeat(20)}\nAspetto: ${wine.tastingNotes.aspetto}\nProfumo: ${wine.tastingNotes.profumo}\nGusto: ${wine.tastingNotes.gusto}` : ""}`;
+                      const blob = new Blob([text], {
+                        type: "text/plain;charset=utf-8",
+                      });
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = `scheda-tecnica-${wine.slug}.txt`;
+                      a.click();
+                      URL.revokeObjectURL(url);
+                    }}
+                    className="mt-8 inline-flex items-center gap-3 border border-white/20 px-6 py-3 text-white hover:bg-white/10 hover:border-chiarli-wine-light transition-all duration-300 group"
+                  >
+                    <Download
+                      size={16}
+                      className="text-chiarli-wine-light group-hover:scale-110 transition-transform"
+                    />
+                    <span className="font-sans text-xs font-bold uppercase tracking-widest">
+                      Scarica Scheda Tecnica
+                    </span>
+                  </button>
                 )}
               </div>
             </div>

@@ -11,6 +11,7 @@ interface WineData {
   slug: string;
   name: string;
   denomination: string;
+  tagline?: string;
   family: string;
   collection?: string;
   description: string;
@@ -85,12 +86,12 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({
       onMouseLeave={() => setHoveredWine(null)}
     >
       {/* Wine Image */}
-      <div className="relative mb-6 overflow-hidden">
+      <div className="relative mb-6">
         {wine.image ? (
           <img
             src={wine.image}
             alt={wine.name}
-            className="w-full h-80 md:h-96 object-contain transform transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-80 md:h-96 object-contain p-4 transform transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
             decoding="async"
           />
@@ -99,13 +100,6 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({
             <Wine size={80} className="text-chiarli-text/20" />
           </div>
         )}
-
-        {/* Hover Overlay */}
-        <div
-          className={`absolute inset-0 bg-gradient-to-t from-chiarli-wine/40 to-transparent transition-opacity duration-500 ${
-            hoveredWine === wine.slug ? "opacity-100" : "opacity-0"
-          }`}
-        />
       </div>
 
       {/* Wine Info */}
@@ -119,7 +113,7 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({
         </h3>
 
         <p className="font-sans text-xs uppercase tracking-wider text-chiarli-text/50 mb-4">
-          {wine.denomination}
+          {wine.tagline || wine.denomination}
         </p>
 
         {/* Separator line */}

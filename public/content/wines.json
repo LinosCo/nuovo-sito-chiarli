@@ -11,10 +11,15 @@
       "collection": "Collezione Premium",
       "grape": "Sorbara da selezione massale",
       "description": "Il Vecchia Modena Premium non è solo una bottiglia; è una rivoluzione. È stato il primo Sorbara a conquistare i tavoli dell'alta ristorazione, infrangendo il mito del Lambrusco come vino semplice e stucchevole. Rappresenta l'espressione secca, luminosa e profonda dell'eredità Chiarli: un ponte perfetto tra la tradizione del 1890 e il palato contemporaneo.",
-      "image": "/foto/vini/vecchia-modena-premium.webp",
+      "image": "/foto/vini/vecchia-modena.webp",
       "format": "0.75L",
-      "tags": ["Sorbara", "DOC", "Premium", "Secco"],
-      "wineStyle": "Dry Secco | Perlage fine e persistente",
+      "tags": [
+        "Sorbara",
+        "DOC",
+        "Premium",
+        "Secco"
+      ],
+      "wineStyle": "Brut | Spumante",
       "price": null,
       "year": null,
       "alcohol": "11,5% Vol.",
@@ -35,15 +40,27 @@
           "score": "World Champion Sparkling Red 2023",
           "year": "2024"
         },
-        { "name": "Gambero Rosso", "score": "3 Bicchieri 2022" },
+        {
+          "name": "Gambero Rosso",
+          "score": "3 Bicchieri 2022"
+        },
         {
           "name": "Wine Enthusiast",
           "score": "91 Points 2024",
           "year": "2023"
         },
-        { "name": "Falstaff", "score": "92 Points 2024" },
-        { "name": "Bibenda", "score": "5 Grappoli 2023" },
-        { "name": "Vini Buoni d'Italia", "score": "Eccellenza Corona 2024" }
+        {
+          "name": "Falstaff",
+          "score": "92 Points 2024"
+        },
+        {
+          "name": "Bibenda",
+          "score": "5 Grappoli 2023"
+        },
+        {
+          "name": "Vini Buoni d'Italia",
+          "score": "Eccellenza Corona 2024"
+        }
       ],
       "tastingNotes": {
         "aspetto": "Un rosa profondo e brillante, che rispecchia la naturale trasparenza ed eleganza dell'uva Sorbara.",
@@ -65,12 +82,16 @@
           "value": "11,5% Vol."
         },
         {
-          "label": "Temperatura di servizio",
-          "value": "8° - 10° C"
+          "label": "Tipologia",
+          "value": "Spumante"
         },
         {
-          "label": "Formato",
-          "value": "0,75L"
+          "label": "Dolcezza",
+          "value": "Brut"
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "8° - 10° C"
         }
       ],
       "isActive": true,
@@ -89,8 +110,13 @@
       "description": "Il Metodo del Fondatore è un vino d'avanguardia che affonda le radici nel 1860. Non è solo un Lambrusco, ma la continuità di un gesto artigiano: la rifermentazione in bottiglia con il suo fondo naturale di lieviti. È un omaggio alla visione pionieristica di Cleto Chiarli, un vino che non insegue le mode, ma racconta una storia in continua evoluzione.",
       "image": "/foto/vini/metodo-del-fondatore.webp",
       "format": "0.75L",
-      "tags": ["Sorbara", "DOC", "Metodo Ancestrale", "Dry Secco"],
-      "wineStyle": "Dry Secco | Frizzante",
+      "tags": [
+        "Sorbara",
+        "DOC",
+        "Metodo Ancestrale",
+        "Dry Secco"
+      ],
+      "wineStyle": "Brut | Frizzante",
       "price": null,
       "year": null,
       "alcohol": "11,5% vol.",
@@ -161,16 +187,20 @@
           "value": "Sorbara da selezione massale"
         },
         {
-          "label": "Analisi",
-          "value": "11,5% Vol. | Dry Secco | Frizzante"
+          "label": "Gradazione",
+          "value": "11,5% Vol."
+        },
+        {
+          "label": "Tipologia",
+          "value": "Frizzante"
+        },
+        {
+          "label": "Dolcezza",
+          "value": "Brut"
         },
         {
           "label": "Temperatura di servizio",
           "value": "12° - 14° C"
-        },
-        {
-          "label": "Vinificazione",
-          "value": "Rifermentazione naturale in bottiglia con fondo di lieviti"
         }
       ],
       "technicalSheetUrl": null,
@@ -191,7 +221,12 @@
       "description": "Il Vigneto Cialdini è un Cru che non passa inosservato. Nato da un'idea precisa di Mauro e Anselmo Chiarli, questo vino racconta il lato più profondo del Grasparossa: un carattere deciso fatto di intensità, struttura e complessità aromatica. È la dimostrazione che il Grasparossa, se coltivato con rigore in micro-parcelle vocate, può raggiungere vette qualitative pari ai grandi Sorbara.",
       "image": "/foto/vini/vigneto-cialdini-grasparossa.webp",
       "format": "0.75L",
-      "tags": ["Grasparossa", "DOC", "Brut", "Collezione Classica"],
+      "tags": [
+        "Grasparossa",
+        "DOC",
+        "Brut",
+        "Collezione Classica"
+      ],
       "price": null,
       "year": null,
       "alcohol": "11% vol.",
@@ -245,11 +280,7 @@
       "technicalSpecs": [
         {
           "label": "Denominazione",
-          "value": "Lambrusco Grasparossa di Castelvetro DOC Spumante Rosso Brut"
-        },
-        {
-          "label": "Regione",
-          "value": "Emilia Romagna"
+          "value": "Lambrusco Grasparossa di Castelvetro DOC"
         },
         {
           "label": "Vitigno",
@@ -257,26 +288,27 @@
         },
         {
           "label": "Gradazione",
-          "value": "11% vol."
+          "value": "11% Vol."
         },
         {
-          "label": "Caratteristiche",
-          "value": "11% Vol. | Dry Secco | Frizzante"
+          "label": "Tipologia",
+          "value": "Spumante"
         },
         {
-          "label": "Vinificazione",
-          "value": "Pressatura tradizionale con macerazione di 36 ore a 10-12°C. Prise de mousse in cuve close"
+          "label": "Dolcezza",
+          "value": "Brut"
         },
         {
           "label": "Temperatura di servizio",
-          "value": "Temperatura di cantina (14-16°C)"
+          "value": "14° - 16° C"
         }
       ],
       "pairingImage": "/foto/sito/abbinamento-pasta-ragu.webp",
       "experienceBackground": "/foto/sito/grasparossa-vigneto.webp",
       "technicalSheetUrl": "/schede-tecniche/vigneto-cialdini-grasparossa.pdf",
       "isActive": true,
-      "order": 1
+      "order": 1,
+      "wineStyle": "Brut | Spumante"
     },
     {
       "id": 14,
@@ -291,8 +323,14 @@
       "description": "Il Pruno Nero Dry è il volto contemporaneo del Lambrusco: giovane, moderno e orgogliosamente fuori dagli schemi. Nato dai vigneti della Tenuta Belvedere, è un rosso spumante che unisce la struttura del Grasparossa alla freschezza del Salamino in un equilibrio perfetto. È il vino della convivialità spontanea, pensato per chi cerca piacere, bevibilità e carattere in ogni occasione.",
       "image": "/foto/vini/pruno-nero-dry-vs.webp",
       "format": "0.75L",
-      "tags": ["Grasparossa", "Salamino", "DOC", "Dry Secco", "Frizzante"],
-      "wineStyle": "Dry Secco | Frizzante",
+      "tags": [
+        "Grasparossa",
+        "Salamino",
+        "DOC",
+        "Dry Secco",
+        "Frizzante"
+      ],
+      "wineStyle": "Brut | Spumante",
       "price": null,
       "year": null,
       "alcohol": "11% vol.",
@@ -319,15 +357,23 @@
       "technicalSpecs": [
         {
           "label": "Denominazione",
-          "value": "Lambrusco di Modena D.O.C. Spumante Dry"
+          "value": "Lambrusco di Modena D.O.C."
         },
         {
           "label": "Vitigno",
           "value": "Grasparossa e Salamino"
         },
         {
-          "label": "Analisi",
-          "value": "11% Vol. | Dry Secco | Frizzante"
+          "label": "Gradazione",
+          "value": "11% Vol."
+        },
+        {
+          "label": "Tipologia",
+          "value": "Spumante"
+        },
+        {
+          "label": "Dolcezza",
+          "value": "Brut"
         },
         {
           "label": "Temperatura di servizio",
@@ -349,10 +395,15 @@
       "collection": "Collezione Premium",
       "grape": "Grasparossa",
       "description": "Il Pruno Nero Abboccato punta dritto al cuore del piacere. È un Lambrusco Grasparossa che interpreta il vitigno nella sua veste più ricca e conviviale, dove l'intensità naturale dell'uva incontra una morbidezza vellutata. Uno stile che valorizza il carattere del Grasparossa, rendendo il sorso immediato, senza mai rinunciare a quella freschezza vitale che lo rende incredibilmente versatile a tavola.",
-      "image": "/foto/vini/pruno_nero_normale.webp",
+      "image": "/foto/vini/pruno-nero-abboccato.webp",
       "format": "0.75L",
-      "tags": ["Grasparossa", "DOC", "Abboccato", "Frizzante"],
-      "wineStyle": "Amabile | Frizzante",
+      "tags": [
+        "Grasparossa",
+        "DOC",
+        "Abboccato",
+        "Frizzante"
+      ],
+      "wineStyle": "Abboccato | Frizzante",
       "price": null,
       "year": null,
       "alcohol": "10% vol.",
@@ -379,15 +430,23 @@
       "technicalSpecs": [
         {
           "label": "Denominazione",
-          "value": "Lambrusco Grasparossa di Castelvetro DOC Abboccato"
+          "value": "Lambrusco Grasparossa di Castelvetro DOC"
         },
         {
           "label": "Vitigno",
           "value": "Grasparossa"
         },
         {
-          "label": "Analisi",
-          "value": "10% Vol. | Amabile | Frizzante"
+          "label": "Gradazione",
+          "value": "10% Vol."
+        },
+        {
+          "label": "Tipologia",
+          "value": "Frizzante"
+        },
+        {
+          "label": "Dolcezza",
+          "value": "Abboccato"
         },
         {
           "label": "Temperatura di servizio",
@@ -411,7 +470,12 @@
       "description": "Nivola interpreta il Lambrusco Grasparossa in una chiave elegante e misurata. È un vino dove la morbidezza tipica dello stile abboccato incontra un profondo senso di equilibrio. Avvolgente ma armonico, Nivola è dedicato a chi cerca un linguaggio raffinato, capace di accompagnare il pasto con discrezione e carattere.",
       "image": "/foto/vini/nivola.webp",
       "format": "0.75L",
-      "tags": ["Grasparossa", "DOC", "Abboccato", "Frizzante"],
+      "tags": [
+        "Grasparossa",
+        "DOC",
+        "Abboccato",
+        "Frizzante"
+      ],
       "wineStyle": "Abboccato | Frizzante",
       "price": null,
       "year": null,
@@ -439,15 +503,23 @@
       "technicalSpecs": [
         {
           "label": "Denominazione",
-          "value": "Lambrusco Grasparossa di Castelvetro DOC Abboccato"
+          "value": "Lambrusco Grasparossa di Castelvetro DOC"
         },
         {
           "label": "Vitigno",
           "value": "Grasparossa"
         },
         {
-          "label": "Analisi",
-          "value": "10% Vol. | Abboccato | Frizzante"
+          "label": "Gradazione",
+          "value": "10% Vol."
+        },
+        {
+          "label": "Tipologia",
+          "value": "Frizzante"
+        },
+        {
+          "label": "Dolcezza",
+          "value": "Abboccato"
         },
         {
           "label": "Temperatura di servizio",
@@ -471,8 +543,13 @@
       "description": "Il Fondo Malatesta è l'espressione più autentica e rigorosa del Lambrusco di Sorbara all'interno della nostra linea classica. Un vino che fa della pulizia e della sapidità la sua bandiera, figlio di una fermentazione naturale lenta che ne scolpisce il carattere vibrante. È il Sorbara che non scende a compromessi, pensato per chi cerca la spalla acida e l'eleganza di un grande spumante rosso secco.",
       "image": "/foto/vini/fondo-malatesta.webp",
       "format": "0.75L",
-      "tags": ["Sorbara", "DOC", "Secco", "Spumante"],
-      "wineStyle": "Dry Secco | Perlage fine e persistente",
+      "tags": [
+        "Sorbara",
+        "DOC",
+        "Secco",
+        "Spumante"
+      ],
+      "wineStyle": "Brut | Spumante",
       "price": null,
       "year": null,
       "alcohol": "11% vol.",
@@ -499,15 +576,23 @@
       "technicalSpecs": [
         {
           "label": "Denominazione",
-          "value": "Lambrusco Sorbara DOC Secco"
+          "value": "Lambrusco Sorbara DOC"
         },
         {
           "label": "Vitigno",
           "value": "Sorbara"
         },
         {
-          "label": "Analisi",
-          "value": "11% Vol. | Dry Secco | Perlage fine e persistente"
+          "label": "Gradazione",
+          "value": "11% Vol."
+        },
+        {
+          "label": "Tipologia",
+          "value": "Spumante"
+        },
+        {
+          "label": "Dolcezza",
+          "value": "Brut"
         },
         {
           "label": "Temperatura di servizio",
@@ -517,6 +602,79 @@
       "technicalSheetUrl": null,
       "isActive": true,
       "order": 7
+    },
+    {
+      "id": 18,
+      "slug": "centenario",
+      "name": "Centenario",
+      "subtitle": "L'omaggio alla Storia e alla Convivialità",
+      "tagline": "Lambrusco Grasparossa di Castelvetro DOC Amabile",
+      "denomination": "Lambrusco Grasparossa di Castelvetro DOC Amabile",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "grape": "Grasparossa",
+      "description": "Il Centenario Amabile nasce per celebrare il primo secolo della cantina Cleto Chiarli. È un vino che non richiede spiegazioni tecniche, ma invita all'ascolto dei sensi. Rappresenta il lato più immediato e generoso del Lambrusco, unendo una dolcezza misurata alla struttura intensa del Grasparossa di Castelvetro. Un classico intramontabile che trasforma ogni brindisi in un momento di festa.",
+      "image": "/foto/vini/centenario.webp",
+      "format": "0.75L",
+      "tags": [
+        "Grasparossa",
+        "DOC",
+        "Amabile",
+        "Frizzante"
+      ],
+      "wineStyle": "Amabile | Frizzante",
+      "price": null,
+      "year": null,
+      "alcohol": "8% vol.",
+      "servingTemp": "10° - 12° C",
+      "heritageTitle": "Cent'anni di generosità in un calice",
+      "heritageQuote": "La dimostrazione di contrasto e equilibrio",
+      "heritage": "Creato per celebrare il Centenario della cantina, questo Grasparossa è un tributo al ruolo storico del Lambrusco come vino della condivisione. La scelta del Grasparossa di Castelvetro, il più strutturato tra i Lambruschi modenesi, permette di ottenere un vino dal carattere pieno che non teme il confronto con la tavola. È un equilibrio tra dolcezza e struttura che riflette una tradizione profondamente radicata nel territorio.",
+      "pairingImage": "/foto/vini/centenario-pairing.webp",
+      "pairingDescription": "Il Centenario Amabile trova la sua massima espressione in momenti di relax e con piatti che amano il contrasto.",
+      "pairings": [
+        "Piatti saporiti della tradizione emiliana",
+        "La Pizza gastronomica",
+        "Piatti vegetariani saporiti",
+        "Caldarroste",
+        "Formaggi piccanti e erborinati",
+        "Crostate di Frutta"
+      ],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Colore rosso rubino vivace con una spuma ricca e persistente che invita subito al sorso.",
+        "profumo": "Un bouquet ampio dove i sentori di frutta rossa matura si intrecciano a delicate note speziate. Un profilo aromatico pulito che richiama la gioia della vendemmia.",
+        "gusto": "Morbido e avvolgente. La dolcezza è sostenuta da una freschezza naturale che mantiene il vino agile e mai stucchevole. Un equilibrio squisito che regala un'esperienza sensoriale completa e appagante."
+      },
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Lambrusco Grasparossa di Castelvetro DOC"
+        },
+        {
+          "label": "Vitigno",
+          "value": "Grasparossa"
+        },
+        {
+          "label": "Gradazione",
+          "value": "8% Vol."
+        },
+        {
+          "label": "Tipologia",
+          "value": "Frizzante"
+        },
+        {
+          "label": "Dolcezza",
+          "value": "Amabile"
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "10° - 12° C"
+        }
+      ],
+      "technicalSheetUrl": null,
+      "isActive": true,
+      "order": 8
     }
   ],
   "_meta": {
