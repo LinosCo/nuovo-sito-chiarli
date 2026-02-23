@@ -1119,7 +1119,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
 
       {/* Related Wines Section */}
       {relatedWines.length > 0 && (
-        <section className="py-16 md:py-20 lg:py-24 bg-chiarli-text relative overflow-hidden">
+        <section className="py-16 md:py-20 lg:py-24 bg-chiarli-text relative overflow-x-clip">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
             {/* Section Header */}
             <div className="mb-12 md:mb-16">
@@ -1146,12 +1146,12 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                   }}
                 >
                   {/* Wine Image */}
-                  <div className="relative mb-6 overflow-hidden">
+                  <div className="relative mb-6">
                     {relatedWine.image ? (
                       <img
                         src={relatedWine.image}
                         alt={relatedWine.name}
-                        className="w-full h-80 md:h-96 object-contain transform group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-80 md:h-96 object-contain p-4 transform group-hover:scale-105 transition-transform duration-700"
                         loading="lazy"
                         decoding="async"
                       />
