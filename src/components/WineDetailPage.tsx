@@ -249,15 +249,15 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
           <img
             src={wine.heroBackground || "/foto/sito/villa-cialdini-ombre.webp"}
             alt="Villa Cialdini"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-50"
             style={{
-              filter: "blur(5px)",
+              filter: "blur(2px)",
             }}
           />
         </div>
 
         {/* Dark overlay per mantenere leggibilità */}
-        <div className="absolute inset-0 bg-gradient-to-br from-chiarli-text/80 via-chiarli-text/75 to-chiarli-text/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-chiarli-text/70 via-chiarli-text/60 to-chiarli-text/70" />
 
         {/* Red wine bubbles floating up */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">

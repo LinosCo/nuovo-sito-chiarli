@@ -95,7 +95,10 @@
         }
       ],
       "isActive": true,
-      "order": 2
+      "order": 2,
+      "heroBackground": "/foto/vini/vecchia-modena-hero.webp",
+      "heritageImage": "/foto/vini/vecchia-modena-heritage.webp",
+      "experienceBackground": "/foto/vini/vecchia-modena-experience.webp"
     },
     {
       "id": 11,
@@ -459,7 +462,9 @@
       "technicalSheetUrl": null,
       "isActive": true,
       "order": 5,
-      "heritageImage": "/foto/vini/pruno-nero-abboccato-heritage.webp"
+      "heritageImage": "/foto/vini/pruno-nero-abboccato-heritage.webp",
+      "heroBackground": "/foto/sito/hero_pruno_nero.webp",
+      "experienceBackground": "/foto/vini/pruno-nero-abboccato-experience.webp"
     },
     {
       "id": 16,
@@ -532,7 +537,10 @@
       ],
       "technicalSheetUrl": null,
       "isActive": true,
-      "order": 6
+      "order": 6,
+      "heroBackground": "/foto/vini/nivola-hero.webp",
+      "heritageImage": "/foto/vini/nivola-heritage.webp",
+      "experienceBackground": "/foto/vini/nivola-experience.webp"
     },
     {
       "id": 17,
@@ -605,7 +613,10 @@
       ],
       "technicalSheetUrl": null,
       "isActive": true,
-      "order": 7
+      "order": 7,
+      "heroBackground": "/foto/vini/hero-fondo-malatesta.webp",
+      "heritageImage": "/foto/vini/heritage-fondo-malatesta.webp",
+      "experienceBackground": "/foto/vini/experience-fondo-malatesta.webp"
     },
     {
       "id": 18,
@@ -678,7 +689,10 @@
       ],
       "technicalSheetUrl": null,
       "isActive": true,
-      "order": 8
+      "order": 8,
+      "heroBackground": "/foto/vini/hero-centenario.webp",
+      "heritageImage": "/foto/vini/heritage-centenario.webp",
+      "experienceBackground": "/foto/vini/experience-centenario.webp"
     }
   ],
   "_meta": {
