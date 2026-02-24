@@ -24,7 +24,7 @@ export const Hero: React.FC = () => {
           preload="auto"
           className="w-full h-full object-cover"
         >
-          <source src="/foto/sito/hero-video.mp4" type="video/mp4" />
+          <source src="/foto/video/hero-video.mp4" type="video/mp4" />
         </video>
 
         {/* Overlays */}
