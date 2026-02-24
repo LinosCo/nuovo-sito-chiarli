@@ -2,98 +2,28 @@ import React, { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useHomeContent } from "../hooks/useContent";
 
-const heroImages = [
-  "/foto/sito/a001-scaled.webp",
-  "/foto/sito/galleria-chiarli-136.webp",
-  "/foto/sito/hero-metodo.webp",
-];
-
 export const Hero: React.FC = () => {
   const homeContent = useHomeContent();
-
-  // Per il loop infinito: array esteso con prima immagine duplicata alla fine
-  const [slideIndex, setSlideIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
-
-  // Array esteso: [...originali, prima] per loop seamless
-  const extendedImages = [...heroImages, heroImages[0]];
 
   useEffect(() => {
     setIsLoaded(true);
-
-    // Auto-advance slides every 5 seconds
-    const interval = setInterval(() => {
-      setTransitionEnabled(true);
-      setSlideIndex((prev) => prev + 1);
-    }, 5000);
-
-    return () => clearInterval(interval);
   }, []);
-
-  // Gestisce il salto quando arriviamo alla slide duplicata
-  useEffect(() => {
-    if (slideIndex === heroImages.length) {
-      // Siamo sulla slide duplicata, dopo la transizione saltiamo alla prima vera
-      const timer = setTimeout(() => {
-        setTransitionEnabled(false);
-        setSlideIndex(0);
-      }, 1000); // Aspetta che finisca la transizione
-      return () => clearTimeout(timer);
-    }
-  }, [slideIndex]);
-
-  // Riabilita la transizione dopo il salto istantaneo
-  useEffect(() => {
-    if (!transitionEnabled) {
-      const timer = setTimeout(() => setTransitionEnabled(true), 50);
-      return () => clearTimeout(timer);
-    }
-  }, [transitionEnabled]);
 
   return (
     <section className="relative h-screen min-h-[700px] w-full overflow-hidden bg-chiarli-text">
-      {/* Image Slider */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Mobile: Crossfade */}
-        <div className="absolute inset-0 lg:hidden">
-          {heroImages.map((image, index) => (
-            <img
-              key={`hero-mobile-${index}`}
-              src={image}
-              alt={`Slide ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                index === slideIndex % heroImages.length
-                  ? "opacity-100"
-                  : "opacity-0"
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Desktop: Horizontal slide */}
-        <div className="absolute inset-0 hidden lg:block overflow-hidden">
-          <div
-            className={`flex h-full ${transitionEnabled ? "transition-transform duration-1000 ease-out" : ""}`}
-            style={{
-              transform: `translate3d(-${slideIndex * 100}%, 0, 0)`,
-            }}
-          >
-            {extendedImages.map((image, index) => (
-              <div
-                key={`hero-slide-${index}`}
-                className="h-full flex-shrink-0"
-                style={{ width: "100.1%" }}
-              >
-                <img
-                  src={image}
-                  alt={`Slide ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover"
+        >
+          <source src="/foto/video/hero-video.mp4" type="video/mp4" />
+        </video>
 
         {/* Overlays */}
         <div className="absolute inset-0 bg-black/25 z-10"></div>
@@ -127,14 +57,14 @@ export const Hero: React.FC = () => {
 
           <div className="flex flex-col md:flex-row md:items-end gap-6 md:gap-12">
             <p
-              className={`font-serif text-base md:text-xl text-white/80 max-w-lg leading-relaxed border-l-2 border-chiarli-wine-light pl-6 transition-all duration-1000 delay-500 ${
+              className={`font-serif text-base md:text-xl text-white/80 max-w-lg leading-relaxed transition-all duration-1000 delay-500 ${
                 isLoaded
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
               }`}
             >
               {homeContent.hero.subtitle ||
-                "Dal 1860, ridefiniamo l'identità del Lambrusco. Un dialogo costante tra l'eleganza del passato e la visione del futuro."}
+                "Dal 1860, scriviamo il futuro del Lambrusco. Non preserviamo solo una storia; la stiamo ancora creando."}
             </p>
           </div>
         </div>
