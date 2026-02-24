@@ -96,9 +96,9 @@
       ],
       "isActive": true,
       "order": 2,
-      "heroBackground": "/foto/vini/vecchia-modena-hero.webp",
+      "heroBackground": "/foto/vini/vecchia-modena-experience.webp",
       "heritageImage": "/foto/vini/vecchia-modena-heritage.webp",
-      "experienceBackground": "/foto/vini/vecchia-modena-experience.webp"
+      "experienceBackground": "/foto/vini/vecchia-modena-hero.webp"
     },
     {
       "id": 11,
@@ -463,8 +463,8 @@
       "isActive": true,
       "order": 5,
       "heritageImage": "/foto/vini/pruno-nero-abboccato-heritage.webp",
-      "heroBackground": "/foto/sito/hero_pruno_nero.webp",
-      "experienceBackground": "/foto/vini/pruno-nero-abboccato-experience.webp"
+      "heroBackground": "/foto/vini/pruno-nero-abboccato-experience.webp",
+      "experienceBackground": "/foto/sito/hero_pruno_nero.webp"
     },
     {
       "id": 16,
@@ -614,9 +614,9 @@
       "technicalSheetUrl": null,
       "isActive": true,
       "order": 7,
-      "heroBackground": "/foto/vini/hero-fondo-malatesta.webp",
+      "heroBackground": "/foto/vini/experience-fondo-malatesta.webp",
       "heritageImage": "/foto/vini/heritage-fondo-malatesta.webp",
-      "experienceBackground": "/foto/vini/experience-fondo-malatesta.webp"
+      "experienceBackground": "/foto/vini/hero-fondo-malatesta.webp"
     },
     {
       "id": 18,
