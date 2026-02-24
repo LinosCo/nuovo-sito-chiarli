@@ -382,7 +382,10 @@
       ],
       "technicalSheetUrl": null,
       "isActive": true,
-      "order": 4
+      "order": 4,
+      "heritageImage": "/foto/vini/pruno-nero-dry-vs-heritage.webp",
+      "heroBackground": "/foto/vini/pruno-nero-dry-vs-hero.webp",
+      "experienceBackground": "/foto/vini/pruno-nero-dry-vs-experience.webp"
     },
     {
       "id": 15,
