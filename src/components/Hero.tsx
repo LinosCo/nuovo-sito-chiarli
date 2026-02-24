@@ -1,13 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useHomeContent } from "../hooks/useContent";
 
 export const Hero: React.FC = () => {
   const homeContent = useHomeContent();
   const [isLoaded, setIsLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setIsLoaded(true);
+
+    // Serve the right video based on screen width
+    const video = videoRef.current;
+    if (!video) return;
+    const isMobile = window.innerWidth < 768;
+    const src = isMobile
+      ? "/foto/video/hero-video-mobile.mp4"
+      : "/foto/video/hero-video.mp4";
+    video.src = src;
+    video.load();
   }, []);
 
   return (
@@ -15,15 +26,15 @@ export const Hero: React.FC = () => {
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
+          poster="/foto/video/hero-poster.webp"
           className="w-full h-full object-cover"
-        >
-          <source src="/foto/video/hero-video.mp4" type="video/mp4" />
-        </video>
+        />
 
         {/* Overlays */}
         <div className="absolute inset-0 bg-black/25 z-10"></div>
@@ -36,7 +47,7 @@ export const Hero: React.FC = () => {
           {/* Title */}
           <h1 className="flex flex-col leading-none text-white mb-8">
             <span
-              className={`font-sans font-light text-[28px] md:text-7xl lg:text-8xl tracking-tight transition-all duration-1000 ${
+              className={`font-sans font-light text-[22px] md:text-5xl lg:text-6xl tracking-tight transition-all duration-1000 ${
                 isLoaded
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-12"
