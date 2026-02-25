@@ -1,36 +1,43 @@
 {
   "news": [
     {
-      "id": 1,
-      "title": "Vendemmia 2024: Un Anno Eccezionale",
-      "excerpt": "La vendemmia 2024 si è conclusa con risultati straordinari. Il clima favorevole e la cura meticolosa dei nostri vigneti hanno portato a un'annata di grande qualità.",
-      "content": "Quest'anno la vendemmia è stata particolarmente generosa. Le condizioni climatiche ottimali, con un'estate calda ma non torrida e piogge ben distribuite, hanno permesso alle uve di maturare perfettamente. Il nostro team ha lavorato instancabilmente per raccogliere i grappoli al momento giusto, garantendo la massima qualità per i nostri Lambruschi.",
-      "image": "/foto/sito/1.webp",
+      "id": 4,
+      "title": "Chiarli torna a Parigi dopo 126 anni",
+      "excerpt": "A distanza di 126 anni dalla partecipazione all'Esposizione Universale del 1900, la storica cantina modenese torna nella capitale francese per la sua prima partecipazione a Wine Paris.",
+      "content": "A distanza di 126 anni dalla partecipazione all'Esposizione Universale del 1900, quando il Lambrusco di Sorbara Vecchia Modena Premium ottenne la Mention Honorable, la storica cantina modenese torna nella capitale francese per la sua prima partecipazione a Wine Paris.\n\nUn ritorno simbolico in una città che ha segnato una tappa decisiva nell'apertura internazionale dell'azienda, attiva dal 1860 e oggi punto di riferimento per il Lambrusco di Sorbara e Grasparossa, coltivati tra Modena e Reggio Emilia.\n\nIl legame con la Francia è documentato fin dal 1920 e si è consolidato dagli anni Cinquanta con una distribuzione capillare sul territorio. Oggi il mercato francese rappresenta tra le 400 e le 500 mila bottiglie annue, con una crescita del 10-15% negli ultimi cinque anni. La presenza si concentra nella ristorazione e nelle enoteche specializzate, in particolare nell'area parigina, oltre alla grande distribuzione con Carrefour e Leclerc.",
+      "image": "/foto-timeline/parigi.webp",
+      "secondaryImage": "/immagini-blog/chiarli-wine-paris.webp",
       "author": "Cleto Chiarli",
-      "publishedAt": "2024-10-15",
-      "tags": ["vendemmia", "vigneto"],
+      "publishedAt": "2026-02-10",
+      "tags": [
+        "News ed Eventi"
+      ],
       "isPublished": true
     },
     {
-      "id": 2,
-      "title": "Il Metodo Classico: Tradizione e Innovazione",
-      "excerpt": "Scopri come produciamo il nostro Lambrusco con il Metodo Classico, unendo la tradizione centenaria all'innovazione moderna.",
-      "content": "Il Metodo Classico richiede tempo, pazienza e maestria. Ogni bottiglia riposa in cantina per almeno 36 mesi, sviluppando complessità e finezza. Un processo che onora la nostra storia e guarda al futuro.",
-      "image": "/foto/sito/2.webp",
-      "author": "Mauro Chiarli",
-      "publishedAt": "2024-09-20",
-      "tags": ["metodo classico", "tradizione"],
+      "id": 5,
+      "title": "I Lambrusco Grasparossa firmati Cleto Chiarli conquistano Wine Enthusiast",
+      "excerpt": "Vecchia Modena Noir premiato con 93 punti (Best Buy) e Pruno Nero valutato 90 punti dalla prestigiosa rivista americana Wine Enthusiast.",
+      "content": "Il Lambrusco vive una nuova stagione di qualità grazie al lavoro in vigna e alla riscoperta dei cloni storici. \"Negli anni '80 abbiamo iniziato a recuperare i vecchi cloni nei nostri vigneti. Dopo la selezione massale abbiamo ripiantato i discendenti delle viti migliori, ottenendo vini più profondi e autentici,\" ha dichiarato Anselmo Chiarli, direttore generale di Chiarli e Cleto Chiarli, intervistato da Wine Enthusiast.\n\nLa rivista americana ha inserito tra i migliori Lambrusco Grasparossa due etichette Cleto Chiarli: Vecchia Modena Noir, premiato con 93 punti (Best Buy), e Pruno Nero Lambrusco di Modena, valutato 90 punti (Best Buy).",
+      "image": "/immagini-blog/chiarli-wine-enthusiast.webp",
+      "author": "Cleto Chiarli",
+      "publishedAt": "2026-01-20",
+      "tags": [
+        "Riconoscimenti"
+      ],
       "isPublished": true
     },
     {
-      "id": 3,
-      "title": "Visita alle Nostre Tenute",
-      "excerpt": "Vieni a scoprire i nostri vigneti in Emilia-Romagna. Organizziamo visite guidate e degustazioni per farti conoscere la terra del Lambrusco.",
-      "content": "Le nostre tenute aprono le porte ai visitatori per far scoprire il mondo del Lambrusco. Dalle colline modenesi alle pianure di Castelvetro, ogni vigneto ha una storia da raccontare.",
-      "image": "/foto/sito/vasche-4.webp",
+      "id": 6,
+      "title": "È Centenario, Lambrusco Grasparossa di Castelvetro DOC amabile, il vino giusto, oggi, per Wine Enthusiast",
+      "excerpt": "Jeff Porter di Wine Enthusiast racconta il nostro Centenario: un Lambrusco con forti radici storiche, capace di superare le aspettative del consumatore.",
+      "content": "Giusto, perché appartiene a quella fascia di vini, con forti radici storiche e regionali, con un prezzo vantaggioso e capaci, soprattutto, di superare le aspettative del consumatore.\nVini eccellenti, coltivati in vigneti di famiglia da più di un secolo e mezzo. Vini come nel caso del Centenario, Lambrusco Grasparossa di Castelvetro DOC amabile, prodotti con il metodo Charmat, molto prima che nel Modenese si iniziasse a utilizzare l'autoclave.\n\nEcco come Jeff Porter, giornalista di Wine Enthusiast racconta il nostro Lambrusco: \"Questo Lambrusco si apre con intensi aromi di prugna e ciliegia nera, che assumono una qualità più macerata e simile a marmellata man mano che il vino si sviluppa nel bicchiere. Un tocco di fiori selvatici ed erbe fresche aggiunge una dimensione in più al bouquet, mentre il palato è deliziosamente dolce. Nonostante la dolcezza, il vino mantiene un buon equilibrio, risultando un ottimo esempio dello stile, con un finale vivacizzato da una nota di acidità\".",
+      "image": "/immagini-blog/centenario-wine-enthusiast.webp",
       "author": "Cleto Chiarli",
-      "publishedAt": "2024-08-10",
-      "tags": ["eventi", "tenute"],
+      "publishedAt": "2025-12-15",
+      "tags": [
+        "Rassegna stampa"
+      ],
       "isPublished": true
     }
   ],

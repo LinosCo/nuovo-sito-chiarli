@@ -441,7 +441,12 @@ export const TenuteSection: React.FC = () => {
 
             {/* CTA */}
             <a
-              href={`#/tenute/${activeTenuta.slug}`}
+              href={`/tenute/${activeTenuta.slug}`}
+              onClick={(e: React.MouseEvent) => {
+                e.preventDefault();
+                history.pushState(null, "", `/tenute/${activeTenuta.slug}`);
+                window.dispatchEvent(new Event("pushstate"));
+              }}
               className="group inline-flex items-center gap-4 bg-chiarli-wine text-white px-8 py-4 hover:bg-white hover:text-chiarli-text transition-all duration-500 mb-6"
             >
               <span className="font-sans text-xs font-bold uppercase tracking-widest">

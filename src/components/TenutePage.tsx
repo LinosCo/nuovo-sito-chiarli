@@ -358,8 +358,8 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
   };
 
   const navigateToTenuta = (slug: string) => {
-    window.location.hash = `#/tenute/${slug}`;
-    window.scrollTo(0, 0);
+    history.pushState(null, "", `/tenute/${slug}`);
+    window.dispatchEvent(new Event("pushstate"));
   };
 
   return (
@@ -571,7 +571,12 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
               </p>
 
               <a
-                href="#/tenute/cialdini"
+                href="/tenute/cialdini"
+                onClick={(e: React.MouseEvent) => {
+                  e.preventDefault();
+                  history.pushState(null, "", "/tenute/cialdini");
+                  window.dispatchEvent(new Event("pushstate"));
+                }}
                 className="inline-flex items-center gap-3 bg-chiarli-wine hover:bg-chiarli-wine-light text-white font-sans text-sm font-bold uppercase tracking-widest px-8 py-4 transition-all duration-300 group"
               >
                 <span>Scopri la tenuta</span>
@@ -642,7 +647,12 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
               </p>
 
               <a
-                href="#/tenute/sozzigalli"
+                href="/tenute/sozzigalli"
+                onClick={(e: React.MouseEvent) => {
+                  e.preventDefault();
+                  history.pushState(null, "", "/tenute/sozzigalli");
+                  window.dispatchEvent(new Event("pushstate"));
+                }}
                 className="inline-flex items-center gap-3 bg-chiarli-wine hover:bg-chiarli-text text-white font-sans text-sm font-bold uppercase tracking-widest px-8 py-4 transition-all duration-300 group"
               >
                 <span>Scopri la tenuta</span>
@@ -688,7 +698,12 @@ export const TenutePage: React.FC<TenutePageProps> = ({ onBack }) => {
               </p>
 
               <a
-                href="#/tenute/belvedere"
+                href="/tenute/belvedere"
+                onClick={(e: React.MouseEvent) => {
+                  e.preventDefault();
+                  history.pushState(null, "", "/tenute/belvedere");
+                  window.dispatchEvent(new Event("pushstate"));
+                }}
                 className="inline-flex items-center gap-3 bg-chiarli-wine hover:bg-chiarli-wine-light text-white font-sans text-sm font-bold uppercase tracking-widest px-8 py-4 transition-all duration-300 group"
               >
                 <span>Scopri la tenuta</span>

@@ -316,7 +316,12 @@ export const SostenibilitaPage: React.FC<SostenibilitaPageProps> = ({
               </p>
 
               <a
-                href="#/metodo"
+                href="/metodo"
+                onClick={(e: React.MouseEvent) => {
+                  e.preventDefault();
+                  history.pushState(null, "", "/metodo");
+                  window.dispatchEvent(new Event("pushstate"));
+                }}
                 className="inline-flex items-center gap-3 text-chiarli-wine-light font-sans text-sm font-bold uppercase tracking-widest group cursor-pointer hover:text-white transition-colors duration-300"
               >
                 <span>{content.filosofia.ctaText}</span>

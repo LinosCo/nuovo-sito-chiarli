@@ -1141,7 +1141,8 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                   key={relatedWine.slug}
                   className="group cursor-pointer"
                   onClick={() => {
-                    window.location.hash = `#/vino/${relatedWine.slug}`;
+                    history.pushState(null, "", `/vino/${relatedWine.slug}`);
+                    window.dispatchEvent(new Event("pushstate"));
                     window.scrollTo(0, 0);
                   }}
                 >

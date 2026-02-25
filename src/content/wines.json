@@ -13,12 +13,7 @@
       "description": "Il Vecchia Modena Premium non è solo una bottiglia; è una rivoluzione. È stato il primo Sorbara a conquistare i tavoli dell'alta ristorazione, infrangendo il mito del Lambrusco come vino semplice e stucchevole. Rappresenta l'espressione secca, luminosa e profonda dell'eredità Chiarli: un ponte perfetto tra la tradizione del 1890 e il palato contemporaneo.",
       "image": "/foto/vini/vecchia-modena.webp",
       "format": "0.75L",
-      "tags": [
-        "Sorbara",
-        "DOC",
-        "Premium",
-        "Secco"
-      ],
+      "tags": ["Sorbara", "DOC", "Premium", "Secco"],
       "wineStyle": "Brut | Spumante",
       "price": null,
       "year": null,
@@ -113,12 +108,7 @@
       "description": "Il Metodo del Fondatore è un vino d'avanguardia che affonda le radici nel 1860. Non è solo un Lambrusco, ma la continuità di un gesto artigiano: la rifermentazione in bottiglia con il suo fondo naturale di lieviti. È un omaggio alla visione pionieristica di Cleto Chiarli, un vino che non insegue le mode, ma racconta una storia in continua evoluzione.",
       "image": "/foto/vini/metodo-del-fondatore.webp",
       "format": "0.75L",
-      "tags": [
-        "Sorbara",
-        "DOC",
-        "Metodo Ancestrale",
-        "Dry Secco"
-      ],
+      "tags": ["Sorbara", "DOC", "Metodo Ancestrale", "Dry Secco"],
       "wineStyle": "Brut | Spumante",
       "price": null,
       "year": null,
@@ -224,12 +214,7 @@
       "description": "Il Vigneto Cialdini è un Cru che non passa inosservato. Nato da un'idea precisa di Mauro e Anselmo Chiarli, questo vino racconta il lato più profondo del Grasparossa: un carattere deciso fatto di intensità, struttura e complessità aromatica. È la dimostrazione che il Grasparossa, se coltivato con rigore in micro-parcelle vocate, può raggiungere vette qualitative pari ai grandi Sorbara.",
       "image": "/foto/vini/vigneto-cialdini-grasparossa.webp",
       "format": "0.75L",
-      "tags": [
-        "Grasparossa",
-        "DOC",
-        "Brut",
-        "Collezione Classica"
-      ],
+      "tags": ["Grasparossa", "DOC", "Brut", "Collezione Classica"],
       "price": null,
       "year": null,
       "alcohol": "11% vol.",
@@ -326,13 +311,7 @@
       "description": "Il Pruno Nero Dry è il volto contemporaneo del Lambrusco: giovane, moderno e orgogliosamente fuori dagli schemi. Nato dai vigneti della Tenuta Belvedere, è un rosso spumante che unisce la struttura del Grasparossa alla freschezza del Salamino in un equilibrio perfetto. È il vino della convivialità spontanea, pensato per chi cerca piacere, bevibilità e carattere in ogni occasione.",
       "image": "/foto/vini/pruno-nero-dry-vs.webp",
       "format": "0.75L",
-      "tags": [
-        "Grasparossa",
-        "Salamino",
-        "DOC",
-        "Dry Secco",
-        "Frizzante"
-      ],
+      "tags": ["Grasparossa", "Salamino", "DOC", "Dry Secco", "Frizzante"],
       "wineStyle": "Brut | Spumante",
       "price": null,
       "year": null,
@@ -403,12 +382,7 @@
       "description": "Il Pruno Nero Abboccato punta dritto al cuore del piacere. È un Lambrusco Grasparossa che interpreta il vitigno nella sua veste più ricca e conviviale, dove l'intensità naturale dell'uva incontra una morbidezza vellutata. Uno stile che valorizza il carattere del Grasparossa, rendendo il sorso immediato, senza mai rinunciare a quella freschezza vitale che lo rende incredibilmente versatile a tavola.",
       "image": "/foto/vini/pruno-nero-abboccato.webp",
       "format": "0.75L",
-      "tags": [
-        "Grasparossa",
-        "DOC",
-        "Abboccato",
-        "Frizzante"
-      ],
+      "tags": ["Grasparossa", "DOC", "Abboccato", "Frizzante"],
       "wineStyle": "Amabile | Frizzante",
       "price": null,
       "year": null,
@@ -479,12 +453,7 @@
       "description": "Nivola interpreta il Lambrusco Grasparossa in una chiave elegante e misurata. È un vino dove la morbidezza tipica dello stile abboccato incontra un profondo senso di equilibrio. Avvolgente ma armonico, Nivola è dedicato a chi cerca un linguaggio raffinato, capace di accompagnare il pasto con discrezione e carattere.",
       "image": "/foto/vini/nivola.webp",
       "format": "0.75L",
-      "tags": [
-        "Grasparossa",
-        "DOC",
-        "Abboccato",
-        "Frizzante"
-      ],
+      "tags": ["Grasparossa", "DOC", "Abboccato", "Frizzante"],
       "wineStyle": "Abboccato | Frizzante",
       "price": null,
       "year": null,
@@ -555,12 +524,7 @@
       "description": "Il Fondo Malatesta è l'espressione più autentica e rigorosa del Lambrusco di Sorbara all'interno della nostra linea classica. Un vino che fa della pulizia e della sapidità la sua bandiera, figlio di una fermentazione naturale lenta che ne scolpisce il carattere vibrante. È il Sorbara che non scende a compromessi, pensato per chi cerca la spalla acida e l'eleganza di un grande spumante rosso secco.",
       "image": "/foto/vini/fondo-malatesta.webp",
       "format": "0.75L",
-      "tags": [
-        "Sorbara",
-        "DOC",
-        "Secco",
-        "Spumante"
-      ],
+      "tags": ["Sorbara", "DOC", "Secco", "Spumante"],
       "wineStyle": "Brut | Frizzante",
       "price": null,
       "year": null,
@@ -631,12 +595,7 @@
       "description": "Il Centenario Amabile nasce per celebrare il primo secolo della cantina Cleto Chiarli. È un vino che non richiede spiegazioni tecniche, ma invita all'ascolto dei sensi. Rappresenta il lato più immediato e generoso del Lambrusco, unendo una dolcezza misurata alla struttura intensa del Grasparossa di Castelvetro. Un classico intramontabile che trasforma ogni brindisi in un momento di festa.",
       "image": "/foto/vini/centenario.webp",
       "format": "0.75L",
-      "tags": [
-        "Grasparossa",
-        "DOC",
-        "Amabile",
-        "Frizzante"
-      ],
+      "tags": ["Grasparossa", "DOC", "Amabile", "Frizzante"],
       "wineStyle": "Amabile | Frizzante",
       "price": null,
       "year": null,
@@ -693,6 +652,74 @@
       "heroBackground": "/foto/vini/hero-centenario.webp",
       "heritageImage": "/foto/vini/heritage-centenario.webp",
       "experienceBackground": "/foto/vini/experience-centenario.webp"
+    },
+    {
+      "slug": "rose-de-noir",
+      "name": "Rosé de Noir",
+      "subtitle": "Brut",
+      "tagline": "L'Armonia dell'Equilibrio",
+      "wineStyle": "Brut | Spumante",
+      "denomination": "Spumante Brut",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "description": "Il Rosé de Noir Brut è un'interpretazione d'autore del rosato, un incontro perfetto tra la struttura vellutata del Lambrusco Grasparossa e l'eleganza aristocratica del Pinot Nero. Uno spumante di grande equilibrio che esprime freschezza, finezza e leggerezza, senza mai rinunciare a profondità e carattere. È una bollicina pensata per non imporre, ma per accompagnare, offrendo un'esperienza sensoriale pura, armoniosa e capace di adattarsi con naturalezza a contesti e sapori diversi.",
+      "image": "/foto/vini/rose-de-noir.webp",
+      "format": "750ml",
+      "tags": ["premium", "rosé", "spumante", "brut"],
+      "alcohol": "12% Vol.",
+      "servingTemp": "10° - 12°C",
+      "grape": "Grasparossa e Pinot Noir",
+      "vinification": "Metodo Charmat",
+      "pairingImage": "/foto/vini/pairing-rose-de-noir.webp",
+      "pairings": [
+        "Carpaccio di pesce",
+        "Insalate Gourmet",
+        "Primi delicati di primizie",
+        "Dolci fruttati",
+        "Piatti vegetariani leggeri",
+        "Formaggi erborinati"
+      ],
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Rosa tenue arricchito da eleganti riflessi ramati, luminoso e misurato nel suo perlage continuo.",
+        "profumo": "Un profilo pulito ed elegante che invita all'ascolto. Note delicate di frutti di bosco (ribes e lampone) si fondono con sentori di agrumi maturi e leggere sfumature floreali.",
+        "gusto": "Armonico e scorrevole. La freschezza dona slancio alla struttura vellutata ereditata dal Grasparossa, sostenuta dalla finezza aristocratica del Pinot Nero. Il finale è asciutto e preciso, con una persistenza discreta che invita a un nuovo assaggio senza fatica."
+      },
+      "heritage": "Il Rosé de Noir Brut non è una semplice somma di vitigni, ma una sintesi studiata in cantina per preservare freschezza e precisione aromatica. Il lavoro si concentra sull'estrazione controllata e sulla ricerca di un equilibrio sottile tra profondità e trasparenza. Il risultato è uno spumante espressivo ma mai dimostrativo, dove ogni elemento trova il suo spazio ideale senza prevaricare gli altri. Una bollicina che accompagna la conversazione con grazia, lasciando emergere una complessità fatta di sfumature e ritmo.",
+      "heritageTitle": "Dove Due Anime Diventano Una",
+      "heritageQuote": "Finezza e freschezza in rosa",
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Spumante Brut"
+        },
+        {
+          "label": "Vitigno",
+          "value": "Grasparossa e Pinot Noir"
+        },
+        {
+          "label": "Gradazione",
+          "value": "12% Vol."
+        },
+        {
+          "label": "Tipologia",
+          "value": "Spumante"
+        },
+        {
+          "label": "Dolcezza",
+          "value": "Brut"
+        },
+        {
+          "label": "Temperatura di servizio",
+          "value": "10° - 12°C"
+        }
+      ],
+      "isActive": true,
+      "order": 9,
+      "pairingDescription": "La sua freschezza e la struttura equilibrata rendono il Rosé de Noir ideale per cucine aromatiche e delicate.",
+      "heroBackground": "/foto/vini/hero-rose-de-noir.webp",
+      "heritageImage": "/foto/vini/heritage-rose-de-noir.webp",
+      "experienceBackground": "/foto/vini/experience-rose-de-noir.webp"
     }
   ],
   "_meta": {

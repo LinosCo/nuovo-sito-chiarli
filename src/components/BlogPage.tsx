@@ -1,6 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Calendar, ArrowRight, Tag } from "lucide-react";
+import { Calendar, ArrowRight, ArrowLeft } from "lucide-react";
 import { useNews } from "../hooks/useContent";
+
+interface NewsArticle {
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  secondaryImage?: string;
+  author: string;
+  publishedAt: string;
+  tags: string[];
+  isPublished: boolean;
+}
 
 interface BlogPageProps {
   onBack?: () => void;
@@ -11,11 +24,18 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredArticle, setHoveredArticle] = useState<number | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [openArticle, setOpenArticle] = useState<NewsArticle | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (openArticle) {
+      window.scrollTo(0, 0);
+    }
+  }, [openArticle]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,13 +63,87 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
     });
   };
 
-  // Raccogli tutti i tag unici
-  const allTags = Array.from(new Set(news.flatMap((article) => article.tags)));
+  // Categorie fisse del blog
+  const categories = ["News ed Eventi", "Riconoscimenti", "Rassegna stampa"];
 
-  // Filtra articoli per tag
+  // Filtra articoli per categoria
   const filteredNews = selectedTag
     ? news.filter((article) => article.tags.includes(selectedTag))
     : news;
+
+  // Article detail view
+  if (openArticle) {
+    return (
+      <div className="min-h-screen bg-white">
+        {/* Article Hero */}
+        <section className="relative h-[60vh] min-h-[400px] bg-chiarli-text overflow-hidden flex items-end">
+          <div className="absolute inset-0">
+            <img
+              src={openArticle.image}
+              alt={openArticle.title}
+              className="w-full h-full object-cover opacity-60"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-chiarli-text via-chiarli-text/50 to-transparent" />
+          </div>
+          <div className="relative z-10 max-w-[900px] mx-auto px-6 md:px-12 pb-16 w-full">
+            {openArticle.tags.length > 0 && (
+              <span className="inline-block bg-chiarli-wine-light/90 text-white text-xs font-sans uppercase tracking-wider px-3 py-1 rounded-full mb-6">
+                {openArticle.tags[0]}
+              </span>
+            )}
+            <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
+              {openArticle.title}
+            </h1>
+            <div className="flex items-center gap-4 text-sm text-white/60">
+              <div className="flex items-center gap-1">
+                <Calendar size={14} />
+                <span>{formatDate(openArticle.publishedAt)}</span>
+              </div>
+              <span>·</span>
+              <span>{openArticle.author}</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Article Content */}
+        <section className="py-16 md:py-24">
+          <div className="max-w-[900px] mx-auto px-6 md:px-12">
+            {openArticle.content.split("\n\n").map((paragraph, i) => (
+              <p
+                key={i}
+                className="font-serif text-lg md:text-xl text-chiarli-text/80 leading-relaxed mb-8"
+              >
+                {paragraph}
+              </p>
+            ))}
+
+            {/* Secondary image */}
+            {openArticle.secondaryImage && (
+              <div className="my-12 rounded-lg overflow-hidden">
+                <img
+                  src={openArticle.secondaryImage}
+                  alt={openArticle.title}
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+            )}
+
+            {/* Back button */}
+            <button
+              onClick={() => setOpenArticle(null)}
+              className="mt-8 flex items-center gap-2 text-chiarli-wine-light hover:gap-3 transition-all duration-300"
+            >
+              <ArrowLeft size={16} />
+              <span className="text-sm font-sans uppercase tracking-wider">
+                Torna al blog
+              </span>
+            </button>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
@@ -145,34 +239,32 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
         />
 
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10">
-          {/* Filter Tags */}
-          {allTags.length > 0 && (
-            <div className="flex flex-wrap gap-3 mb-16 justify-center">
+          {/* Filter Categories */}
+          <div className="flex flex-wrap gap-8 mb-16 justify-center">
+            <button
+              onClick={() => setSelectedTag(null)}
+              className={`font-sans text-base tracking-wide transition-all duration-300 pb-2 ${
+                selectedTag === null
+                  ? "text-white border-b-2 border-white"
+                  : "text-white/60 hover:text-white/80 border-b-2 border-transparent"
+              }`}
+            >
+              Tutti
+            </button>
+            {categories.map((cat) => (
               <button
-                onClick={() => setSelectedTag(null)}
-                className={`px-6 py-2 rounded-full font-sans text-sm uppercase tracking-wider transition-all duration-300 ${
-                  selectedTag === null
-                    ? "bg-chiarli-wine-light text-white"
-                    : "bg-white/10 text-white/70 hover:bg-white/20"
+                key={cat}
+                onClick={() => setSelectedTag(cat)}
+                className={`font-sans text-base tracking-wide transition-all duration-300 pb-2 ${
+                  selectedTag === cat
+                    ? "text-white border-b-2 border-white"
+                    : "text-white/60 hover:text-white/80 border-b-2 border-transparent"
                 }`}
               >
-                Tutti
+                {cat}
               </button>
-              {allTags.map((tag) => (
-                <button
-                  key={tag}
-                  onClick={() => setSelectedTag(tag)}
-                  className={`px-6 py-2 rounded-full font-sans text-sm uppercase tracking-wider transition-all duration-300 ${
-                    selectedTag === tag
-                      ? "bg-chiarli-wine-light text-white"
-                      : "bg-white/10 text-white/70 hover:bg-white/20"
-                  }`}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-          )}
+            ))}
+          </div>
 
           {/* Articles Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -183,6 +275,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                 style={{ transitionDelay: `${index * 100}ms` }}
                 onMouseEnter={() => setHoveredArticle(index)}
                 onMouseLeave={() => setHoveredArticle(null)}
+                onClick={() => setOpenArticle(article as NewsArticle)}
               >
                 <div className="relative aspect-[4/3] mb-6 overflow-hidden rounded-lg bg-white/5">
                   {article.image ? (
@@ -224,7 +317,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                       <Calendar size={14} />
                       <span>{formatDate(article.publishedAt)}</span>
                     </div>
-                    <span>•</span>
+                    <span>·</span>
                     <span>{article.author}</span>
                   </div>
 

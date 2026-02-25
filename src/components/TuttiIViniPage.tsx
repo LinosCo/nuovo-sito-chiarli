@@ -72,8 +72,8 @@ export const TuttiIViniPage: React.FC<TuttiIViniPageProps> = ({
     if (onWineClick) {
       onWineClick(slug);
     } else {
-      window.location.hash = `#/vino/${slug}`;
-      window.scrollTo(0, 0);
+      history.pushState(null, "", `/vino/${slug}`);
+      window.dispatchEvent(new Event("pushstate"));
     }
   };
 

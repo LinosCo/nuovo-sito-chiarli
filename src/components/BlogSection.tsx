@@ -90,7 +90,12 @@ export const BlogSection: React.FC = () => {
           {news.slice(0, 6).map((article, index) => (
             <a
               key={article.id}
-              href="#/blog"
+              href="/blog"
+              onClick={(e: React.MouseEvent) => {
+                e.preventDefault();
+                history.pushState(null, "", "/blog");
+                window.dispatchEvent(new Event("pushstate"));
+              }}
               className={`group cursor-pointer transition-all duration-700 active:scale-[0.98] delay-${index * 100} ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
               onMouseEnter={() => setHoveredArticle(index)}
               onMouseLeave={() => setHoveredArticle(null)}

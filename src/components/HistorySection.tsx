@@ -135,7 +135,12 @@ export const HistorySection: React.FC = () => {
             </div>
 
             <a
-              href="#/storia"
+              href="/storia"
+              onClick={(e) => {
+                e.preventDefault();
+                history.pushState(null, "", "/storia");
+                window.dispatchEvent(new Event("pushstate"));
+              }}
               className={`group inline-flex items-center gap-4 bg-chiarli-wine text-white px-8 py-4 hover:bg-chiarli-text transition-all duration-500 ${
                 isVisible
                   ? "opacity-100 translate-y-0"

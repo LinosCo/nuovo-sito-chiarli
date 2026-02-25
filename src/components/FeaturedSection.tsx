@@ -169,7 +169,8 @@ export const FeaturedSection: React.FC = () => {
                 <div
                   key={exp.id}
                   onClick={() => {
-                    window.location.hash = "#/esperienze";
+                    history.pushState(null, "", "/esperienze");
+                    window.dispatchEvent(new Event("pushstate"));
                     window.scrollTo(0, 0);
                   }}
                   onMouseEnter={() => setHoveredCard(exp.id)}
@@ -213,8 +214,8 @@ export const FeaturedSection: React.FC = () => {
             <div className="flex justify-center">
               <button
                 onClick={() => {
-                  window.location.hash = "#/esperienze";
-                  window.scrollTo(0, 0);
+                  history.pushState(null, "", "/esperienze");
+                  window.dispatchEvent(new Event("pushstate"));
                 }}
                 className={`group inline-flex items-center gap-4 bg-chiarli-wine-light text-white px-8 py-4 hover:bg-white hover:text-chiarli-text transition-all duration-500 ${
                   isVisible

@@ -7,30 +7,29 @@ export const Navbar: React.FC = () => {
   const [isTenuteOpen, setIsTenuteOpen] = useState(false);
   const [isViniOpen, setIsViniOpen] = useState(false);
 
-  // TEMPORANEO: Semplificato durante sviluppo dark-only
   const navItems = [
     {
       label: "Vini",
-      href: "#/tutti-i-vini",
+      href: "/tutti-i-vini",
       submenu: [
-        { label: "Collezione Classica", href: "#/collezione-classica" },
-        { label: "Collezione Premium", href: "#/collezione-premium" },
+        { label: "Collezione Classica", href: "/collezione-classica" },
+        { label: "Collezione Premium", href: "/collezione-premium" },
       ],
     },
     {
       label: "Tenute",
-      href: "#/tenute",
+      href: "/tenute",
       submenu: [
-        { label: "Tenuta Cialdini", href: "#/tenute/cialdini" },
-        { label: "Tenuta Sozzigalli", href: "#/tenute/sozzigalli" },
-        { label: "Tenuta Belvedere", href: "#/tenute/belvedere" },
+        { label: "Tenuta Cialdini", href: "/tenute/cialdini" },
+        { label: "Tenuta Sozzigalli", href: "/tenute/sozzigalli" },
+        { label: "Tenuta Belvedere", href: "/tenute/belvedere" },
       ],
     },
-    { label: "Esperienze", href: "#/esperienze" },
-    { label: "Storia", href: "#/storia" },
-    { label: "Metodo", href: "#/metodo" },
-    { label: "Sostenibilità", href: "#/sostenibilita" },
-    { label: "Blog", href: "#/blog" },
+    { label: "Esperienze", href: "/esperienze" },
+    { label: "Storia", href: "/storia" },
+    { label: "Metodo", href: "/metodo" },
+    { label: "Sostenibilità", href: "/sostenibilita" },
+    { label: "Blog", href: "/blog" },
   ];
 
   useEffect(() => {
@@ -41,16 +40,21 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navigateTo = (path: string, e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    history.pushState(null, "", path);
+    window.dispatchEvent(new Event("pushstate"));
+  };
+
   const scrollToContatti = () => {
     setIsMenuOpen(false);
-    // If already on home, just scroll to footer
-    if (!window.location.hash || window.location.hash === "#") {
+    if (window.location.pathname === "/") {
       document
         .getElementById("contatti")
         ?.scrollIntoView({ behavior: "smooth" });
     } else {
-      // Navigate to home first, then scroll to footer after render
-      window.location.hash = "";
+      history.pushState(null, "", "/");
+      window.dispatchEvent(new Event("pushstate"));
       setTimeout(() => {
         document
           .getElementById("contatti")
@@ -70,7 +74,7 @@ export const Navbar: React.FC = () => {
       >
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo Area */}
-          <a href="" className="group">
+          <a href="/" onClick={(e) => navigateTo("/", e)} className="group">
             <img
               src="/foto/cletochiarli-2-01.svg"
               alt="Cleto Chiarli"
@@ -103,6 +107,7 @@ export const Navbar: React.FC = () => {
                 >
                   <a
                     href={item.href}
+                    onClick={(e) => navigateTo(item.href, e)}
                     className="font-sans text-xs font-bold uppercase tracking-widest hover:text-chiarli-wine transition-colors"
                   >
                     {item.label}
@@ -116,6 +121,7 @@ export const Navbar: React.FC = () => {
                           <a
                             key={subitem.label}
                             href={subitem.href}
+                            onClick={(e) => navigateTo(subitem.href, e)}
                             className="block px-6 py-3 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-text hover:bg-chiarli-wine hover:text-white transition-colors"
                           >
                             {subitem.label}
@@ -165,7 +171,10 @@ export const Navbar: React.FC = () => {
               >
                 <a
                   href={item.href}
-                  onClick={() => !item.submenu && setIsMenuOpen(false)}
+                  onClick={(e) => {
+                    navigateTo(item.href, e);
+                    if (!item.submenu) setIsMenuOpen(false);
+                  }}
                   className="font-serif text-2xl italic"
                 >
                   {item.label}
@@ -176,7 +185,10 @@ export const Navbar: React.FC = () => {
                       <a
                         key={subitem.label}
                         href={subitem.href}
-                        onClick={() => setIsMenuOpen(false)}
+                        onClick={(e) => {
+                          navigateTo(subitem.href, e);
+                          setIsMenuOpen(false);
+                        }}
                         className="font-sans text-sm uppercase tracking-widest text-chiarli-text/70 hover:text-chiarli-wine"
                       >
                         {subitem.label}
