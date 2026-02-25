@@ -720,6 +720,56 @@
       "heroBackground": "/foto/vini/hero-rose-de-noir.webp",
       "heritageImage": "/foto/vini/heritage-rose-de-noir.webp",
       "experienceBackground": "/foto/vini/experience-rose-de-noir.webp"
+    },
+    {
+      "slug": "moden-blanc",
+      "name": "Modèn Blanc",
+      "subtitle": "Brut",
+      "tagline": "Pignoletto di Modena DOC",
+      "wineStyle": "Brut | Spumante",
+      "denomination": "Pignoletto di Modena DOC",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "description": "Il Modèn Blanc nasce da un'idea di semplicità consapevole: valorizzare l'identità del Pignoletto in un'area, quella di Castelvetro, storicamente vocata alla grande viticoltura. Questo spumante è la sintesi perfetta di equilibrio e precisione, una lettura moderna di un vitigno antico che la famiglia Chiarli protegge con dedizione. È un vino che parla di freschezza e pulizia, capace di essere immediato e conviviale ma con una tensione strutturale che lo rende sorprendentemente versatile a tavola.",
+      "image": "/foto/vini/moden-blanc-brut.webp",
+      "format": "750ml",
+      "tags": ["premium", "bianco", "spumante", "brut", "pignoletto"],
+      "alcohol": "12% Vol.",
+      "servingTemp": "8° - 10° C",
+      "grape": "Pignoletto",
+      "vinification": "Metodo Charmat",
+      "pairingImage": "/foto/vini/pairing-moden-blanc.webp",
+      "pairings": [
+        "Primi piatti di crostacei",
+        "Pesce bianco alla griglia",
+        "Torte salate primaverili",
+        "Cucina Vegetariana",
+        "Carni bianche delicate",
+        "Tempura di Verdura e Gamberi"
+      ],
+      "pairingDescription": "La linearità e la freschezza del Modèn Blanc lo rendono il compagno ideale per la cucina leggera e gli aperitivi raffinati.",
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Colore giallo paglierino brillante, ravvivato da un perlage fine e vivace.",
+        "profumo": "Il naso si apre su note fragranti di mela verde e pera, arricchite da eleganti sfumature di fiori bianchi e delicati accenni agrumati.",
+        "gusto": "Il sorso è fresco, asciutto e dinamico. La vivace acidità guida la beva verso una chiusura pulita e lineare, lasciando una sensazione di grande equilibrio e precisione."
+      },
+      "heritageTitle": "Il Pignoletto ritrovato di Castelvetro",
+      "heritageQuote": "Slancio e carattere in bianco",
+      "heritage": "La presenza del Pignoletto all'interno della Tenuta Cialdini è il risultato di una visione precisa: preservare varietà e cloni storici che rischiavano di scomparire. Coltivare il Pignoletto a Castelvetro significa scommettere su un microclima unico, dove l'escursione termica e la qualità dei suoli permettono di ottenere un'uva dalla freschezza e dallo slancio straordinario. Modèn Blanc non è solo uno spumante, ma il racconto di una terra che sa stupire anche attraverso i suoi vini bianchi, quando trattati con il rigore e il rispetto della tradizione Chiarli.",
+      "technicalSpecs": [
+        { "label": "Denominazione", "value": "Pignoletto di Modena DOC" },
+        { "label": "Vitigno", "value": "Pignoletto" },
+        { "label": "Gradazione", "value": "12% Vol." },
+        { "label": "Tipologia", "value": "Spumante" },
+        { "label": "Dolcezza", "value": "Brut" },
+        { "label": "Temperatura di servizio", "value": "8° - 10° C" }
+      ],
+      "isActive": true,
+      "order": 10,
+      "heroBackground": "/foto/vini/hero-moden-blanc.webp",
+      "heritageImage": "/foto/vini/heritage-moden-blanc.webp",
+      "experienceBackground": "/foto/vini/experience-moden-blanc.webp"
     }
   ],
   "_meta": {
