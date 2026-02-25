@@ -134,7 +134,7 @@ export const CollezionePremiumPage: React.FC<CollezionePremiumPageProps> = ({
             {wines.map((wine) => (
               <div
                 key={wine.slug}
-                className="group cursor-pointer"
+                className="group cursor-pointer flex flex-col h-full"
                 onClick={() => handleWineClick(wine.slug)}
                 onMouseEnter={() => setHoveredWine(wine.slug)}
                 onMouseLeave={() => setHoveredWine(null)}
@@ -164,7 +164,7 @@ export const CollezionePremiumPage: React.FC<CollezionePremiumPageProps> = ({
                 </div>
 
                 {/* Wine Info */}
-                <div>
+                <div className="flex-1 flex flex-col">
                   <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine/60 mb-2 block">
                     Premium
                   </span>
@@ -177,24 +177,26 @@ export const CollezionePremiumPage: React.FC<CollezionePremiumPageProps> = ({
                     {wine.denomination}
                   </p>
 
-                  {/* Separator line */}
-                  <div
-                    className={`h-[1px] bg-chiarli-wine/30 mb-4 transition-all duration-500 ${
-                      hoveredWine === wine.slug ? "w-20" : "w-12"
-                    }`}
-                  />
-
-                  {/* CTA */}
-                  <div className="flex items-center gap-2 text-chiarli-wine">
-                    <span className="font-sans text-xs font-bold uppercase tracking-widest">
-                      Scopri
-                    </span>
-                    <ArrowRight
-                      size={14}
-                      className={`transition-transform duration-300 ${
-                        hoveredWine === wine.slug ? "translate-x-1" : ""
+                  <div className="mt-auto">
+                    {/* Separator line */}
+                    <div
+                      className={`h-[1px] bg-chiarli-wine/30 mb-4 transition-all duration-500 ${
+                        hoveredWine === wine.slug ? "w-20" : "w-12"
                       }`}
                     />
+
+                    {/* CTA */}
+                    <div className="flex items-center gap-2 text-chiarli-wine">
+                      <span className="font-sans text-xs font-bold uppercase tracking-widest">
+                        Scopri
+                      </span>
+                      <ArrowRight
+                        size={14}
+                        className={`transition-transform duration-300 ${
+                          hoveredWine === wine.slug ? "translate-x-1" : ""
+                        }`}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
