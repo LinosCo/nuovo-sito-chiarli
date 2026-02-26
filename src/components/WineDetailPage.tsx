@@ -53,6 +53,7 @@ interface WineData {
   technicalSheetUrl?: string;
   pairingDescription?: string;
   pairingImage?: string;
+  pairingImagePosition?: string;
   experienceBackground?: string;
   heroBackground?: string;
   isActive: boolean;
@@ -999,6 +1000,11 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
               src={wine.pairingImage || "/foto/sito/abbinamento-2.webp"}
               alt="Abbinamento gastronomico"
               className="w-full h-full object-cover absolute inset-0"
+              style={
+                wine.pairingImagePosition
+                  ? { objectPosition: wine.pairingImagePosition }
+                  : undefined
+              }
               loading="lazy"
               decoding="async"
             />

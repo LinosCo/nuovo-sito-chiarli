@@ -877,6 +877,62 @@
       "heritageImage": "/foto/vini/heritage-chiarli-biologico.webp",
       "experienceBackground": "/foto/vini/experience-chiarli-biologico.webp",
       "pairingImage": "/foto/vini/pairing-chiarli-biologico.webp"
+    },
+    {
+      "slug": "villa-cialdini",
+      "name": "Villa Cialdini",
+      "subtitle": "Il rosso dell'anima, l'intensità della nostra tenuta.",
+      "tagline": "",
+      "wineStyle": "Dry Secco | Spumante",
+      "denomination": "Lambrusco Grasparossa di Castelvetro Doc",
+      "family": "Classica",
+      "collection": "Collezione Classica",
+      "description": "Il Villa Cialdini Grasparossa è il racconto liquido delle nostre parcelle vocate. Prodotto dalle uve nere e croccanti di Castelvetro, è un vino che esprime l'energia della tradizione modenese: vibrante, materico e orgogliosamente legato alla terra. In questa etichetta, la potenza del vitigno incontra la finezza della nostra visione, portando nel calice l'intensità cromatica e il carattere deciso delle uve curate con la dedizione che si riserva a un patrimonio di famiglia.",
+      "image": "/foto/vini/villa-cialdini.webp",
+      "format": "750ml",
+      "tags": ["Lambrusco", "Grasparossa", "Castelvetro", "Spumante"],
+      "price": null,
+      "year": "",
+      "alcohol": "11%",
+      "servingTemp": "14° - 16°C",
+      "grape": "Grasparossa",
+      "vinification": "Metodo Charmat",
+      "pairings": [
+        "Taglieri di salumi DOP (Prosciutto e Salame)",
+        "Zampone e Cotechino di Modena",
+        "Tagliatelle al ragù e Lasagne verdi",
+        "Arrosti e carni alla griglia",
+        "Formaggi stagionati (Parmigiano Reggiano)",
+        "Pasta asciute con sughi saporiti"
+      ],
+      "pairingDescription": "Pensato per sostenere i sapori ricchi della nostra cucina e per accendere le lunghe chiacchiere conviviali, Villa Cialdini è il compagno ideale della tavola emiliana.",
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Un colore rosso rubino intenso e profondo, con riflessi violacei che tingono la spuma, vivace e persistente come la terra da cui proviene.",
+        "profumo": "È un'esplosione di piccoli frutti rossi, dove dominano la mora di rovo, l'amarena e il lampone. Un bouquet fragrante e avvolgente che richiama le passeggiate in vigna e i profumi autentici della vendemmia.",
+        "gusto": "Il sorso è pieno, strutturato e sapido. La tipica fibra tannica del Grasparossa è ben bilanciata da una freschezza naturale, che rende la beva dinamica e invita immediatamente a un nuovo incontro con il cibo."
+      },
+      "heritageTitle": "Dalla Vigna alla Tavola",
+      "heritageQuote": "Il carattere di Modena",
+      "heritage": "Villa Cialdini rappresenta la nostra identità agricola: qui il Grasparossa affonda le radici in terreni che gli conferiscono una struttura inconfondibile. Questo Lambrusco è pensato per chi cerca un vino di sostanza, capace di onorare la tavola con la sua presenza scenica e il suo spirito conviviale. È la nostra celebrazione del \"buon vivere\" emiliano: un vino sincero e profondo, dedicato a chi ama ritrovare nel bicchiere la forza delle proprie radici.",
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Lambrusco Grasparossa di Castelvetro Doc"
+        },
+        { "label": "Vitigno", "value": "Grasparossa" },
+        { "label": "Gradazione", "value": "11% Vol." },
+        { "label": "Tipologia", "value": "Spumante" },
+        { "label": "Dolcezza", "value": "Brut" },
+        { "label": "Temperatura di servizio", "value": "14° - 16° C" }
+      ],
+      "isActive": true,
+      "order": 13,
+      "heroBackground": "/foto/vini/hero-villa-cialdini.webp",
+      "heritageImage": "/foto/vini/heritage-villa-cialdini.webp",
+      "experienceBackground": "/foto/vini/experience-villa-cialdini.webp",
+      "pairingImage": "/foto/vini/pairing-villa-cialdini.webp",
+      "pairingImagePosition": "center 30%"
     }
   ],
   "_meta": {
