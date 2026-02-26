@@ -770,6 +770,58 @@
       "heroBackground": "/foto/vini/hero-moden-blanc.webp",
       "heritageImage": "/foto/vini/heritage-moden-blanc.webp",
       "experienceBackground": "/foto/vini/experience-moden-blanc.webp"
+    },
+    {
+      "slug": "blanc-de-blancs",
+      "name": "Blanc de Blancs",
+      "subtitle": "L'Essenza della Leggerezza e della Luce",
+      "tagline": "",
+      "wineStyle": "Dry Secco | Spumante",
+      "denomination": "Spumante Brut",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "description": "\"Luce Liquida\" Il Blanc de Blancs è un'interpretazione cristallina dello spumante, nato per chi cerca un piacere autentico e senza tempo. Un equilibrio costruito sulla purezza dell'espressione, dove ogni scelta produttiva è orientata alla sottrazione per lasciar emergere una luminosità naturale. È un vino che non invade ma avvolge, regalando un sorso di pura energia e raffinatezza.",
+      "image": "/foto/vini/blanc-de-blancs-brut-vs.webp",
+      "format": "750ml",
+      "tags": ["Spumante", "Brut", "Chardonnay", "Pignoletto"],
+      "price": null,
+      "year": "",
+      "alcohol": "12%",
+      "servingTemp": "8° - 10°C",
+      "grape": "Chardonnay e Pignoletto",
+      "vinification": "Metodo Charmat",
+      "pairings": [
+        "Aperitivi raffinati",
+        "Crudité di Pesce",
+        "Risotti delicati di pesce o primizie",
+        "Pesce bianco al cartoccio con verdure",
+        "Carni bianche delicate",
+        "Tempura di Verdura e Gamberi"
+      ],
+      "pairingDescription": "Uno spumante che ama la libertà, perfetto per contesti dove la materia prima è la vera protagonista.",
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Nel calice è chiaro, luminoso, attraversato da riflessi dorati. Il perlage è finissimo e continuo, quasi sospeso, e accompagna il vino con naturalezza.",
+        "profumo": "Al naso è nitido e vibrante: frutta gialla fresca, pesca bianca, mela croccante e leggere note floreali si intrecciano a sfumature più delicate, appena agrumate. È un profilo pulito, essenziale, che parla di trasparenza più che di intensità.",
+        "gusto": "Il sorso è teso e scorrevole, giocato sulla freschezza e sulla precisione. Chardonnay e Grechetto Gentile dialogano con equilibrio: il primo porta eleganza e linearità, il secondo una vivacità mediterranea che dà ritmo. Il finale è asciutto, luminoso, con una persistenza sottile che lascia il palato fresco e pronto al sorso successivo."
+      },
+      "heritageTitle": "Freschezza e Fluidità",
+      "heritageQuote": "L'Essenza della Leggerezza e della Luce",
+      "heritage": "Il Blanc de Blancs nasce da una visione comune di leggerezza ed energia. In questo blend, la complessità non è costruita per aggiunta, ma affidata alla trasparenza: aromi nitidi, freschezza fluida e un perlage che danza nel calice come elemento di movimento. È uno spumante che interpreta la freschezza non come semplicità, ma come estrema chiarezza espressiva, garantendo una bevibilità senza attrito. Se ami la finezza del Pinot Bianco, troverai nel Blanc de Blancs un incontro indimenticabile.",
+      "technicalSpecs": [
+        { "label": "Denominazione", "value": "Spumante Brut" },
+        { "label": "Vitigno", "value": "Chardonnay e Pignoletto" },
+        { "label": "Gradazione", "value": "12% Vol." },
+        { "label": "Tipologia", "value": "Spumante" },
+        { "label": "Dolcezza", "value": "Brut" },
+        { "label": "Temperatura di servizio", "value": "8° - 10° C" }
+      ],
+      "isActive": true,
+      "order": 11,
+      "heroBackground": "/foto/vini/hero-blanc-de-blancs.webp",
+      "heritageImage": "/foto/vini/heritage-blanc-de-blancs.webp",
+      "experienceBackground": "/foto/vini/experience-blanc-de-blancs.webp",
+      "pairingImage": "/foto/vini/pairing-blanc-de-blancs.webp"
     }
   ],
   "_meta": {
