@@ -822,6 +822,61 @@
       "heritageImage": "/foto/vini/heritage-blanc-de-blancs.webp",
       "experienceBackground": "/foto/vini/experience-blanc-de-blancs.webp",
       "pairingImage": "/foto/vini/pairing-blanc-de-blancs.webp"
+    },
+    {
+      "slug": "cleto-chiarli-biologico",
+      "name": "Cleto Chiarli Biologico",
+      "subtitle": "L'equilibrio Naturale nel Segno della Trasparenza",
+      "tagline": "",
+      "wineStyle": "Dry Secco | Spumante",
+      "denomination": "Lambrusco Grasparossa DOC Biologico",
+      "family": "Premium",
+      "collection": "Collezione Premium",
+      "description": "Questo Lambrusco nasce da una visione chiara: lasciare che il vitigno e il territorio si esprimano con naturalezza, senza forzature. La certificazione biologica per noi non è un traguardo, ma un punto di partenza coerente: una scelta che si riflette in un vino diretto, sincero e privo di eccessi. Un Grasparossa pensato per chi cerca autenticità quotidiana e una qualità che rispetta l'ambiente.",
+      "image": "/foto/vini/cleto-chiarli-biologico.webp",
+      "format": "750ml",
+      "tags": ["Lambrusco", "Biologico", "Grasparossa", "Spumante"],
+      "price": null,
+      "year": "",
+      "alcohol": "11%",
+      "servingTemp": "10° - 12°C",
+      "grape": "Grasparossa",
+      "vinification": "Metodo Charmat",
+      "pairings": [
+        "Verdure grigliate con erbe aromatiche",
+        "Polpette di legumi con salsa allo yogurt",
+        "Cucina mediterranea semplice",
+        "Formaggi a media stagionatura",
+        "Pasta asciute con sughi saporiti",
+        "Salsicca alla griglia con pane rustico"
+      ],
+      "pairingDescription": "Un Lambrusco versatile, pensato per una cucina quotidiana di qualità.",
+      "awards": [],
+      "tastingNotes": {
+        "aspetto": "Un rosso rubino intenso e vivace, spuma viola chiara, specchio della vitalità dei suoli da cui proviene.",
+        "profumo": "I naso è nitido e varietale, con profumi di frutti rossi maturi e note leggermente speziate. Un bouquet pulito che accompagna il sorso senza sovrastarlo.",
+        "gusto": "Il sorso è pieno ma incredibilmente scorrevole. Una buona struttura è sostenuta da tannini morbidi e da una freschezza naturale che rende il vino versatile e di facile beva."
+      },
+      "heritageTitle": "Viticoltura di Rispetto",
+      "heritageQuote": "L'esplorazione di nuove vette",
+      "heritage": "La versione biologica del Grasparossa nasce nel 2016 per volontà di Mauro e Anselmo Chiarli. Le uve provengono da una parcella collinare dove le condizioni naturali sono ideali: l'altitudine e le brezze costanti garantiscono una ventilazione perfetta, riducendo l'impatto dell'umidità e permettendo di coltivare con rigore e rispetto. In cantina, l'obiettivo è mantenere intatta l'espressione del frutto, restituendo un vino fedele alla sua origine e capace di una lettura contemporanea del Grasparossa.",
+      "technicalSpecs": [
+        {
+          "label": "Denominazione",
+          "value": "Lambrusco Grasparossa DOC Biologico"
+        },
+        { "label": "Vitigno", "value": "Grasparossa" },
+        { "label": "Gradazione", "value": "11% Vol." },
+        { "label": "Tipologia", "value": "Spumante" },
+        { "label": "Dolcezza", "value": "Brut" },
+        { "label": "Temperatura di servizio", "value": "10° - 12° C" }
+      ],
+      "isActive": true,
+      "order": 12,
+      "heroBackground": "/foto/vini/hero-chiarli-biologico.webp",
+      "heritageImage": "/foto/vini/heritage-chiarli-biologico.webp",
+      "experienceBackground": "/foto/vini/experience-chiarli-biologico.webp",
+      "pairingImage": "/foto/vini/pairing-chiarli-biologico.webp"
     }
   ],
   "_meta": {
