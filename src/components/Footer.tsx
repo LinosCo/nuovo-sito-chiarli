@@ -54,9 +54,23 @@ export const Footer: React.FC = () => {
   return (
     <footer
       id="contatti"
-      className="bg-white text-chiarli-text pt-12 md:pt-24 pb-8 md:pb-12 border-t border-chiarli-text/10"
+      className="bg-white text-chiarli-text pt-0 pb-8 md:pb-12 border-t border-chiarli-text/10"
     >
-      <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+      {/* Google Maps */}
+      <div className="w-full">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2843.0!2d10.9408!3d44.503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fed1e3cd8ee57%3A0x514d58f0f05b2d77!2sVilla%20Cialdini!5e0!3m2!1sit!2sit!4v1700000000000"
+          width="100%"
+          height="300"
+          className="w-full h-[300px] md:h-[400px] border-0 grayscale hover:grayscale-0 transition-all duration-500"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Tenuta Cialdini - Castelvetro di Modena"
+        />
+      </div>
+
+      <div className="max-w-[1800px] mx-auto px-6 md:px-12 pt-12 md:pt-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
           {/* Indirizzo */}
           <div>
