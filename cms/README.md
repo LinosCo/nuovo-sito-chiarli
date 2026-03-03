@@ -57,6 +57,24 @@ FRONTEND_URL=http://localhost:3000
 GIT_AUTO_COMMIT=true
 GIT_AUTHOR_NAME=CMS Bot
 GIT_AUTHOR_EMAIL=cms@chiarli.it
+
+# Business Tuner (M2M)
+BUSINESS_TUNER_URL=https://businesstuner.voler.ai
+BUSINESS_TUNER_API_KEY=bt_live_xxx
+BUSINESS_TUNER_WEBHOOK_URL=https://businesstuner.voler.ai/api/webhooks/cms/conn_xxx
+BUSINESS_TUNER_WEBHOOK_SECRET=whsec_xxx
+BUSINESS_TUNER_CONNECTION_ID=conn_xxx
+
+# URL sito pubblico (usato dai discovery endpoint /pages e /posts)
+SITE_PUBLIC_URL=https://www.chiarli.it
+
+# BT AI Tips Contract (opzionale)
+BT_AI_TIPS_ENABLED=false
+BT_AI_TIPS_AUTH_MODE=bearer
+BT_AI_TIPS_SHARED_SECRET=
+BT_AI_TIPS_RATE_LIMIT_PER_MINUTE=30
+BT_AI_TIPS_MAX_PAYLOAD_KB=128
+BT_AI_TIPS_ALLOWED_SITE_IDS=
 ```
 
 ### 3. Avvio
@@ -110,6 +128,24 @@ npx vite
 |--------|----------|-------------|
 | GET | `/api/history` | Storia modifiche |
 | POST | `/api/history/rollback` | Ripristina versione |
+
+### Business Tuner Compatibility
+
+| Metodo | Endpoint | Descrizione |
+|--------|----------|-------------|
+| GET | `/status` | Health check BT con `X-BT-API-Key` |
+| POST | `/suggestions` | Ingestion suggerimenti BT (alias compatibile) |
+| GET | `/pages` | Discovery pagine |
+| GET | `/posts` | Discovery post/news |
+| GET | `/categories` | Discovery categorie/tag |
+| POST | `/api/integrations/bt/ai-tips` | Crea job AI Tips (`202 + jobId`) |
+| GET | `/api/integrations/bt/ai-tips/:jobId` | Stato/risultato job |
+| POST | `/api/integrations/bt/ai-tips/:jobId/apply` | Applica patch proposta |
+| GET | `/api/integrations/bt/ai-tips/metrics` | Metriche runtime |
+
+Autenticazione BT supportata:
+- Header `X-BT-API-Key: <BUSINESS_TUNER_API_KEY>`
+- In alternativa, `Authorization: Bearer <BUSINESS_TUNER_API_KEY>`
 
 ## Esempio Utilizzo Chat API
 

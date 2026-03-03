@@ -42,7 +42,9 @@ export class IntegrationController {
           'content_management',
           'suggestions',
           'webhooks',
-          'analytics_export'
+          'analytics_export',
+          'site_discovery',
+          'ai_tips_contract'
         ],
         lastSync: new Date().toISOString(),
         cmsUrl: process.env.CMS_URL || 'http://localhost:3001',
@@ -65,14 +67,36 @@ export class IntegrationController {
    */
   async receiveSuggestions(req: Request, res: Response): Promise<void> {
     try {
-      const { suggestionId, id, title, content, targetPage, type, contentType, changes, priority, reasoning } = req.body;
+      const {
+        suggestionId,
+        btSuggestionId,
+        id,
+        title,
+        content,
+        body,
+        targetPage,
+        targetSection,
+        type,
+        contentType,
+        changes,
+        priority,
+        priorityScore,
+        reasoning
+      } = req.body;
 
-      const finalId = suggestionId || id;
+      const finalId = suggestionId || btSuggestionId || id;
+      const priorityFromPayload = typeof priority === 'string' ? priority.toLowerCase() : '';
+      const normalizedPriority: BTSuggestion['priority'] =
+        priorityFromPayload === 'low' || priorityFromPayload === 'medium' || priorityFromPayload === 'high'
+          ? priorityFromPayload
+          : (typeof priorityScore === 'number'
+            ? (priorityScore >= 75 ? 'high' : priorityScore <= 30 ? 'low' : 'medium')
+            : 'medium');
 
       if (!finalId || !type) {
         res.status(400).json({
           error: 'Bad Request',
-          message: 'Missing required fields: suggestionId (or id), type'
+          message: 'Missing required fields: suggestionId (or btSuggestionId or id), type'
         });
         return;
       }
@@ -81,12 +105,12 @@ export class IntegrationController {
       const suggestion: BTSuggestion = {
         id: finalId,
         title: title || `Suggerimento ${type}`,
-        content: content || reasoning || '',
-        targetPage: targetPage || null,
+        content: content || body || reasoning || '',
+        targetPage: targetPage || targetSection || null,
         type,
         contentType: contentType || 'general',
         changes: changes || {},
-        priority: priority || 'medium',
+        priority: normalizedPriority,
         reasoning: reasoning || '',
         status: 'pending',
         receivedAt: new Date(),
@@ -204,7 +228,10 @@ export class IntegrationController {
 
       // Notifica Business Tuner
       try {
-        await btWebhookService.notifySuggestionApplied(suggestion.id, suggestion.changes);
+        await btWebhookService.notifySuggestionApplied(suggestion.id, {
+          ...suggestion.changes,
+          appliedBy: suggestion.appliedBy
+        });
       } catch (webhookError) {
         console.error('Errore notifica BT (non bloccante):', webhookError);
       }
@@ -405,7 +432,10 @@ export class IntegrationController {
 
       // Notifica Business Tuner
       const suggestionId = Array.isArray(id) ? id[0] : id;
-      await btWebhookService.notifySuggestionApplied(suggestionId, changes);
+      await btWebhookService.notifySuggestionApplied(suggestionId, {
+        ...changes,
+        appliedBy: 'bt-integration'
+      });
 
       res.json({
         success: true,

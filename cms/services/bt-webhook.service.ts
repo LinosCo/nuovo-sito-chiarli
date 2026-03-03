@@ -2,8 +2,7 @@ import crypto from 'crypto';
 
 interface WebhookPayload {
   event: string;
-  timestamp: string;
-  data: Record<string, any>;
+  [key: string]: any;
 }
 
 /**
@@ -13,16 +12,31 @@ interface WebhookPayload {
 export class BTWebhookService {
   private webhookUrl: string;
   private webhookSecret: string;
+  private btBaseUrl: string;
+  private connectionId: string;
 
   constructor() {
     this.webhookUrl = process.env.BUSINESS_TUNER_WEBHOOK_URL || '';
     this.webhookSecret = process.env.BUSINESS_TUNER_WEBHOOK_SECRET || '';
+    this.connectionId = process.env.BUSINESS_TUNER_CONNECTION_ID || '';
+
+    const explicitBtUrl = (process.env.BUSINESS_TUNER_URL || '').trim().replace(/\/$/, '');
+    if (explicitBtUrl) {
+      this.btBaseUrl = explicitBtUrl;
+    } else if (this.webhookUrl.includes('/api/webhooks/cms/')) {
+      this.btBaseUrl = this.webhookUrl.split('/api/webhooks/cms/')[0];
+    } else {
+      this.btBaseUrl = '';
+    }
 
     if (!this.webhookUrl) {
       console.warn('BUSINESS_TUNER_WEBHOOK_URL non configurato - i webhook saranno disabilitati');
     }
     if (!this.webhookSecret) {
       console.warn('BUSINESS_TUNER_WEBHOOK_SECRET non configurato - i webhook non avranno firma');
+    }
+    if (!this.connectionId) {
+      console.warn('BUSINESS_TUNER_CONNECTION_ID non configurato - callback suggestion-applied non disponibile');
     }
   }
 
@@ -47,9 +61,12 @@ export class BTWebhookService {
 
     const payload: WebhookPayload = {
       event,
-      timestamp: new Date().toISOString(),
-      data
+      ...data,
     };
+
+    if (!payload.publishedAt) {
+      payload.publishedAt = new Date().toISOString();
+    }
 
     const payloadString = JSON.stringify(payload);
     const signature = this.generateSignature(payloadString);
@@ -59,8 +76,8 @@ export class BTWebhookService {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-BT-Signature': signature,
-          'X-BT-Timestamp': payload.timestamp
+          'x-cms-signature': `sha256=${signature}`,
+          'x-cms-event': event
         },
         body: payloadString
       });
@@ -117,11 +134,46 @@ export class BTWebhookService {
    * Notifica suggerimento applicato
    */
   async notifySuggestionApplied(suggestionId: string, appliedChanges: Record<string, any>): Promise<boolean> {
-    return this.notify('suggestion.applied', {
+    if (!this.btBaseUrl) {
+      console.warn('BUSINESS_TUNER_URL non configurato - callback suggestion-applied non inviabile');
+      return false;
+    }
+    if (!this.connectionId) {
+      console.warn('BUSINESS_TUNER_CONNECTION_ID non configurato - callback suggestion-applied non inviabile');
+      return false;
+    }
+
+    const payload = {
       suggestionId,
-      appliedChanges,
-      appliedAt: new Date().toISOString()
-    });
+      connectionId: this.connectionId,
+      appliedBy: appliedChanges?.appliedBy || 'cms-chatbot',
+      contentId: appliedChanges?.contentId || null,
+      publishedUrl: appliedChanges?.publishedUrl || appliedChanges?.url || null
+    };
+
+    const payloadString = JSON.stringify(payload);
+    const signature = this.generateSignature(payloadString);
+
+    try {
+      const response = await fetch(`${this.btBaseUrl}/api/cms/webhooks/suggestion-applied`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-bt-signature': signature
+        },
+        body: payloadString
+      });
+
+      if (!response.ok) {
+        console.error('Errore callback suggestion-applied:', response.status, await response.text());
+        return false;
+      }
+
+      return true;
+    } catch (error) {
+      console.error('Errore callback suggestion-applied:', error);
+      return false;
+    }
   }
 }
 

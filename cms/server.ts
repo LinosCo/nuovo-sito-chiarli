@@ -13,8 +13,10 @@ import { contentService } from './services/content.service.js';
 import { claudeService } from './services/claude.service.js';
 import { gitService } from './services/git.service.js';
 import { uploadService } from './services/upload.service.js';
-import { btAuth } from './middleware/btAuth.js';
+import { btAuth, getBTApiKeyFromRequest, isValidBTApiKey } from './middleware/btAuth.js';
+import { btAiTipsAuth } from './middleware/btAiTipsAuth.js';
 import { integrationController } from './controllers/integration.controller.js';
+import { btAiTipsController } from './controllers/bt-ai-tips.controller.js';
 import {
   requireAuth,
   optionalAuth,
@@ -41,7 +43,7 @@ app.use(cors({
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-BT-API-Key', 'X-Idempotency-Key', 'X-BT-Signature']
 }));
 
 // Cookie parser per gestione sessioni
@@ -108,7 +110,12 @@ app.post('/api/upload/pdf', express.raw({ type: 'application/pdf', limit: '10mb'
   }
 });
 
-app.use(express.json());
+app.use(express.json({
+  limit: '1mb',
+  verify: (req, _res, buf) => {
+    (req as any).rawBody = buf.toString('utf8');
+  }
+}));
 
 // Multer per upload
 const upload = multer({
@@ -149,7 +156,8 @@ app.get('/', (req, res) => {
       integration: {
         status: 'GET /api/integration/status',
         suggestions: 'POST /api/integration/suggestions',
-        content: 'GET /api/integration/content'
+        content: 'GET /api/integration/content',
+        aiTips: 'POST /api/integrations/bt/ai-tips'
       }
     },
     dashboard: process.env.DASHBOARD_URL || 'http://localhost:3002'
@@ -677,7 +685,7 @@ app.post('/api/history/rollback', requireAuth, async (req, res) => {
  * Usa X-BT-API-Key header per autenticazione
  */
 app.get('/status', (req, res) => {
-  const apiKey = req.headers['x-bt-api-key'];
+  const apiKey = getBTApiKeyFromRequest(req);
   const expectedKey = process.env.BUSINESS_TUNER_API_KEY;
 
   if (!expectedKey) {
@@ -688,7 +696,7 @@ app.get('/status', (req, res) => {
     });
   }
 
-  if (!apiKey || apiKey !== expectedKey) {
+  if (!isValidBTApiKey(apiKey, expectedKey)) {
     return res.status(401).json({
       error: 'Unauthorized',
       message: 'Invalid or missing API key'
@@ -698,9 +706,152 @@ app.get('/status', (req, res) => {
   res.json({
     status: 'ok',
     version: '1.0.0',
-    capabilities: ['suggestions', 'content-sync', 'webhooks'],
+    capabilities: ['suggestions', 'content-sync', 'webhooks', 'site-discovery', 'ai-tips-contract'],
     timestamp: new Date().toISOString()
   });
+});
+
+const normalizeSlug = (value: string): string => value
+  .toLowerCase()
+  .trim()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '');
+
+const buildSiteUrl = (pathValue: string): string => {
+  const base = (process.env.SITE_PUBLIC_URL || '').trim().replace(/\/$/, '');
+  if (!base) return '';
+  const path = pathValue.startsWith('/') ? pathValue : `/${pathValue}`;
+  return `${base}${path}`;
+};
+
+/**
+ * GET /pages
+ * Discovery endpoint per Business Tuner
+ */
+app.get('/pages', btAuth, async (req, res) => {
+  try {
+    const [homePage, storiaPage] = await Promise.all([
+      contentService.read<any>('pages/home').catch(() => null),
+      contentService.read<any>('pages/storia').catch(() => null),
+    ]);
+
+    const pages = [
+      homePage && {
+        id: 'home',
+        title: [homePage?.hero?.titleLine1, homePage?.hero?.titleLine2].filter(Boolean).join(' ').trim() || 'Home',
+        slug: 'home',
+        status: 'published',
+        template: 'default',
+        updatedAt: homePage?._meta?.lastModified || '',
+        url: buildSiteUrl('/'),
+      },
+      storiaPage && {
+        id: 'storia',
+        title: [
+          storiaPage?.storia?.titleLine1,
+          storiaPage?.storia?.titleLine2,
+          storiaPage?.storia?.titleLine3
+        ].filter(Boolean).join(' ').trim() || 'Storia',
+        slug: 'storia',
+        status: 'published',
+        template: 'default',
+        updatedAt: storiaPage?._meta?.lastModified || '',
+        url: buildSiteUrl('/storia'),
+      },
+    ].filter(Boolean);
+
+    const slug = typeof req.query.slug === 'string' ? req.query.slug.trim().toLowerCase() : '';
+    const result = slug ? pages.filter((page: any) => page.slug === slug) : pages;
+
+    res.json(result);
+  } catch (error: any) {
+    console.error('[Discovery/pages] Errore:', error.message);
+    res.status(500).json({ error: 'Errore discovery pages' });
+  }
+});
+
+/**
+ * GET /posts
+ * Discovery endpoint per Business Tuner
+ */
+app.get('/posts', btAuth, async (req, res) => {
+  try {
+    const newsData = await contentService.read<any>('news');
+    const newsItems = Array.isArray(newsData?.news) ? newsData.news : [];
+
+    const posts = newsItems.map((item: any) => {
+      const slug = typeof item.slug === 'string' && item.slug.trim()
+        ? item.slug.trim()
+        : normalizeSlug(String(item.title || `post-${item.id || 'unknown'}`));
+
+      return {
+        id: String(item.id),
+        title: item.title || '',
+        slug,
+        status: item.isPublished === false ? 'draft' : 'published',
+        categories: Array.isArray(item.categories) ? item.categories : [],
+        tags: Array.isArray(item.tags) ? item.tags : [],
+        updatedAt: item.updatedAt || item.publishedAt || newsData?._meta?.lastModified || '',
+        url: buildSiteUrl(`/blog/${slug}`),
+        excerpt: item.excerpt || '',
+      };
+    });
+
+    const slug = typeof req.query.slug === 'string' ? req.query.slug.trim().toLowerCase() : '';
+    const result = slug ? posts.filter((post: any) => post.slug === slug) : posts;
+
+    res.json(result);
+  } catch (error: any) {
+    console.error('[Discovery/posts] Errore:', error.message);
+    res.status(500).json({ error: 'Errore discovery posts' });
+  }
+});
+
+/**
+ * GET /categories
+ * Discovery endpoint per Business Tuner
+ */
+app.get('/categories', btAuth, async (req, res) => {
+  try {
+    const newsData = await contentService.read<any>('news');
+    const newsItems = Array.isArray(newsData?.news) ? newsData.news : [];
+    const categoryMap = new Map<string, { name: string; slug: string; count: number }>();
+
+    for (const item of newsItems) {
+      const sourceCategories = [
+        ...(Array.isArray(item.categories) ? item.categories : []),
+        ...(Array.isArray(item.tags) ? item.tags : []),
+      ];
+
+      for (const categoryNameRaw of sourceCategories) {
+        if (typeof categoryNameRaw !== 'string' || !categoryNameRaw.trim()) continue;
+        const name = categoryNameRaw.trim();
+        const slug = normalizeSlug(name);
+        const key = slug || name.toLowerCase();
+        const entry = categoryMap.get(key) || { name, slug, count: 0 };
+        entry.count += 1;
+        categoryMap.set(key, entry);
+      }
+    }
+
+    const categories = Array.from(categoryMap.values()).map((entry, index) => ({
+      id: String(index + 1),
+      name: entry.name,
+      slug: entry.slug,
+      count: entry.count,
+      parentId: null,
+    }));
+
+    const search = typeof req.query.search === 'string' ? req.query.search.trim().toLowerCase() : '';
+    const result = search
+      ? categories.filter((category) => category.name.toLowerCase().includes(search) || category.slug.includes(search))
+      : categories;
+
+    res.json(result);
+  } catch (error: any) {
+    console.error('[Discovery/categories] Errore:', error.message);
+    res.status(500).json({ error: 'Errore discovery categories' });
+  }
 });
 
 /**
@@ -743,6 +894,14 @@ app.post('/api/integration/suggestions', btAuth, (req, res) => {
 });
 
 /**
+ * POST /suggestions
+ * Alias compatibile con Business Tuner (connection.service/suggestion.service)
+ */
+app.post('/suggestions', btAuth, (req, res) => {
+  integrationController.receiveSuggestions(req, res);
+});
+
+/**
  * GET /api/integration/content
  * Esporta contenuti per Business Tuner
  */
@@ -772,6 +931,42 @@ app.post('/api/integration/suggestions/:id/apply', btAuth, (req, res) => {
  */
 app.post('/api/integration/test-webhook', btAuth, (req, res) => {
   integrationController.testWebhook(req, res);
+});
+
+// ============================================
+// ROUTES - BT AI TIPS CONTRACT
+// ============================================
+
+/**
+ * POST /api/integrations/bt/ai-tips
+ * Crea un job AI Tips (202 + jobId)
+ */
+app.post('/api/integrations/bt/ai-tips', btAiTipsAuth, (req, res) => {
+  btAiTipsController.createJob(req, res);
+});
+
+/**
+ * GET /api/integrations/bt/ai-tips/metrics
+ * Metriche runtime AI Tips
+ */
+app.get('/api/integrations/bt/ai-tips/metrics', btAuth, (req, res) => {
+  btAiTipsController.getMetrics(req, res);
+});
+
+/**
+ * GET /api/integrations/bt/ai-tips/:jobId
+ * Stato e risultato job AI Tips
+ */
+app.get('/api/integrations/bt/ai-tips/:jobId', btAuth, (req, res) => {
+  btAiTipsController.getJob(req, res);
+});
+
+/**
+ * POST /api/integrations/bt/ai-tips/:jobId/apply
+ * Applica patch proposta (solo executionMode=propose_patch)
+ */
+app.post('/api/integrations/bt/ai-tips/:jobId/apply', btAuth, (req, res) => {
+  btAiTipsController.applyJob(req, res);
 });
 
 // ============================================
@@ -866,6 +1061,9 @@ app.listen(PORT, () => {
 ║   - GET  /api/integration/status                      ║
 ║   - POST /api/integration/suggestions                 ║
 ║   - GET  /api/integration/content                     ║
+║   - POST /suggestions (alias BT)                      ║
+║   - GET  /pages | /posts | /categories               ║
+║   - POST /api/integrations/bt/ai-tips                ║
 ║                                                       ║
 ╚═══════════════════════════════════════════════════════╝
   `);
