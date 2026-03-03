@@ -1,7 +1,56 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Phone, MessageCircle, Mail } from "lucide-react";
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Cleto Chiarli - Tenuta Cialdini",
+  image:
+    "https://cletochiarli.cms.voler.ai/foto/sito/hero_nuova_esperienze.webp",
+  "@id": "https://cletochiarli.cms.voler.ai",
+  url: "https://cletochiarli.cms.voler.ai",
+  telephone: "+39059702761",
+  email: "accoglienza.cletochiarli@chiarli.it",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Via Belvedere 8",
+    addressLocality: "Castelvetro di Modena",
+    addressRegion: "MO",
+    postalCode: "41014",
+    addressCountry: "IT",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 44.5058,
+    longitude: 10.9431,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
+  priceRange: "€€",
+  description:
+    "Cantina storica fondata nel 1860 a Castelvetro di Modena. Visite guidate, degustazioni e eventi presso la Tenuta Cialdini.",
+};
+
 export const Footer: React.FC = () => {
+  useEffect(() => {
+    const existingScript = document.getElementById("local-business-jsonld");
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.id = "local-business-jsonld";
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify(localBusinessSchema);
+      document.head.appendChild(script);
+    }
+    return () => {
+      const script = document.getElementById("local-business-jsonld");
+      if (script) script.remove();
+    };
+  }, []);
+
   return (
     <footer
       id="contatti"

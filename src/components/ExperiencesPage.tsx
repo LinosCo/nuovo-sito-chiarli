@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowRight, Users, Grape, Home } from "lucide-react";
+import { ArrowRight, Users, Grape, Home, Clock, MapPin } from "lucide-react";
 
 interface ExperiencesPageProps {
   onBack?: () => void;
@@ -28,17 +28,79 @@ const highlights = [
   {
     icon: Users,
     label: "5 generazioni",
-    description: "",
+    description:
+      "Scoprire Chiarli significa andare oltre la degustazione: è un'immersione nella storia e nell'identità di una famiglia che vive il vino da generazioni.",
   },
   {
     icon: Grape,
     label: "Uve 100% di proprietà",
-    description: "",
+    description:
+      "Tutte le esperienze si svolgono nella storica Tenuta Cialdini, a Castelvetro di Modena, nel cuore dell'Emilia, dove nascono i nostri vini di punta Cleto Chiarli e Quinto Passo, prodotti da uve di proprietà.",
   },
   {
     icon: Home,
     label: "Tenuta Cialdini",
-    description: "",
+    description:
+      "Qui accogliamo ospiti privati, gruppi aziendali e partner internazionali per far vivere da vicino il nostro metodo, i nostri valori e il profondo legame con la terra.",
+  },
+];
+
+const experiences = [
+  {
+    title: "Due Anime dei Vini di Castelvetro",
+    description:
+      "Castelvetro di Modena è la terra del Lambrusco Grasparossa, e dell'altrettanto allegro spumante bianco dall'uva Pignoletto.",
+    duration: "1h",
+    price: "€ 15,00",
+    priceLabel: "a persona",
+  },
+  {
+    title: "La storia dei vini Modenesi",
+    description:
+      "Tour dei vigneti, giardini e cantina | Degustazione di 4 iconici vini modenesi | Selezione di specialità emiliane",
+    duration: "1h 30m",
+    price: "€ 25,00",
+    priceLabel: "a persona",
+  },
+  {
+    title: "Lambrusco Che Passione",
+    description:
+      "Godetevi una intensa presentazione dei differenti Lambrusco di Modena con il primo produttore dell'Emilia Romagna.",
+    duration: "1h 30m",
+    price: "€ 25,00",
+    priceLabel: "a persona",
+  },
+  {
+    title: "Un viaggio tra tempo e vino",
+    description:
+      "Una degustazione accompagnata da uno dei più immersivi e completi tour di Lambrusco e Modena, tra storia, curiosità e cultura dal 1860 ad oggi.",
+    duration: "2h",
+    price: "€ 40,00",
+    priceLabel: "a persona",
+  },
+  {
+    title: "Quintopasso Metodo Classico",
+    description:
+      "Quintopasso Metodo Classico e il potenziale del Lambrusco Sorbara.",
+    duration: "1h 30m",
+    price: "€ 30,00",
+    priceLabel: "a persona",
+  },
+  {
+    title: "Domenica in Cantina",
+    description:
+      "In primavera e autunno si aprono le porte della nostra cantina anche la domenica, i colori e i profumi di queste stagioni vi stupiranno.",
+    duration: "1h 30m",
+    price: "€ 25,00",
+    priceLabel: "a persona",
+  },
+  {
+    title: "Cleto Chiarli su Misura",
+    description:
+      "La cantina Cleto Chiarli a Villa Cialdini, è circondata da magnifici giardini e vigneti ed è la perfetta location per gruppi fino a 50 persone.",
+    duration: null,
+    price: "Su richiesta",
+    priceLabel: null,
   },
 ];
 
@@ -49,9 +111,11 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
   const villaRef = useRef<HTMLDivElement>(null);
   const galleriaRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
 
   const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [isStoryVisible, setIsStoryVisible] = useState(false);
+  const [isPreviewVisible, setIsPreviewVisible] = useState(false);
   const [isVillaVisible, setIsVillaVisible] = useState(false);
   const [isGalleriaVisible, setIsGalleriaVisible] = useState(false);
   const [isCardsVisible, setIsCardsVisible] = useState(false);
@@ -79,6 +143,9 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
           if (entry.target === storyRef.current && entry.isIntersecting) {
             setIsStoryVisible(true);
           }
+          if (entry.target === previewRef.current && entry.isIntersecting) {
+            setIsPreviewVisible(true);
+          }
           if (entry.target === villaRef.current && entry.isIntersecting) {
             setIsVillaVisible(true);
           }
@@ -95,6 +162,7 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
 
     if (heroRef.current) observer.observe(heroRef.current);
     if (storyRef.current) observer.observe(storyRef.current);
+    if (previewRef.current) observer.observe(previewRef.current);
     if (villaRef.current) observer.observe(villaRef.current);
     if (galleriaRef.current) observer.observe(galleriaRef.current);
     if (cardsRef.current) observer.observe(cardsRef.current);
@@ -227,7 +295,17 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
             >
               Scoprire Chiarli significa andare oltre la degustazione: è
               un'immersione nella storia e nell'identità di una famiglia che
-              vive il vino da generazioni.
+              vive il vino da generazioni. Tutte le esperienze si svolgono nella
+              storica <strong>Tenuta Cialdini</strong>, a Castelvetro di Modena,
+              nel cuore dell'Emilia, dove nascono i nostri vini di punta{" "}
+              <em>Cleto Chiarli</em> e <em>Quinto Passo</em>, prodotti da uve di
+              proprietà. Qui accogliamo ospiti privati, gruppi aziendali e
+              partner internazionali per far vivere da vicino il nostro metodo,
+              i nostri valori e il profondo legame con la terra. E talvolta, i
+              momenti più memorabili nascono spontaneamente: nelle trattorie e
+              nei wine bar di Modena, dove i nostri vini Lambrusco e spumanti
+              del territorio sono sempre in tavola, in perfetto abbinamento con
+              la cucina locale.
             </p>
 
             {/* Highlights Grid */}
@@ -255,6 +333,12 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
 
                       {/* Subtle underline that expands on hover */}
                       <div className="mt-4 md:mt-6 h-px w-12 bg-chiarli-text/30 group-hover:w-full group-hover:bg-chiarli-wine transition-all duration-500" />
+
+                      {highlight.description && (
+                        <p className="mt-4 font-sans text-sm text-chiarli-text/60 leading-relaxed">
+                          {highlight.description}
+                        </p>
+                      )}
                     </div>
                   </div>
                 );
@@ -349,6 +433,106 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
                 Lambrusco.
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Le Nostre Esperienze - Native Cards */}
+      <div ref={previewRef} className="relative bg-white py-24 md:py-32">
+        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <span
+              className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-6 block transition-all duration-700 ${
+                isPreviewVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
+              Prenota online
+            </span>
+            <h2
+              className={`font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text leading-tight transition-all duration-700 delay-100 ${
+                isPreviewVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+            >
+              Le Nostre{" "}
+              <span className="italic text-chiarli-wine">Esperienze</span>
+            </h2>
+            <p
+              className={`font-sans text-chiarli-text/60 text-base mt-4 max-w-2xl mx-auto transition-all duration-700 delay-200 ${
+                isPreviewVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              }`}
+            >
+              Scopri le nostre esperienze e prenota direttamente online.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {experiences.map((exp, index) => (
+              <a
+                key={index}
+                href="https://shop.chiarli.it/esperienze/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group block border border-chiarli-text/10 hover:border-chiarli-wine/30 transition-all duration-700 ${
+                  isPreviewVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-12"
+                }`}
+                style={{ transitionDelay: `${300 + index * 80}ms` }}
+              >
+                <div className="p-6 md:p-8 flex flex-col h-full">
+                  <div className="flex-1">
+                    <h3 className="font-serif text-xl md:text-2xl text-chiarli-text mb-3 group-hover:text-chiarli-wine transition-colors duration-300 leading-tight">
+                      {exp.title}
+                    </h3>
+                    <p className="font-sans text-sm text-chiarli-text/60 leading-relaxed mb-6">
+                      {exp.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-4 mb-5 text-chiarli-text/40">
+                      {exp.duration && (
+                        <span className="flex items-center gap-1.5 font-sans text-xs">
+                          <Clock size={13} />
+                          {exp.duration}
+                        </span>
+                      )}
+                      <span className="flex items-center gap-1.5 font-sans text-xs">
+                        <MapPin size={13} />
+                        Tenuta Cialdini
+                      </span>
+                    </div>
+
+                    <div className="flex items-end justify-between border-t border-chiarli-text/10 pt-5">
+                      <div>
+                        <span className="font-serif text-2xl text-chiarli-text">
+                          {exp.price}
+                        </span>
+                        {exp.priceLabel && (
+                          <span className="font-sans text-xs text-chiarli-text/50 ml-2">
+                            {exp.priceLabel}
+                          </span>
+                        )}
+                      </div>
+
+                      <span className="inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-wine group-hover:text-chiarli-wine-light transition-colors duration-300">
+                        Prenota
+                        <ArrowRight
+                          size={14}
+                          className="group-hover:translate-x-1 transition-transform"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </div>
@@ -550,6 +734,20 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Google Maps */}
+      <div className="w-full">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2843.0!2d10.9408!3d44.503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fed1e3cd8ee57%3A0x514d58f0f05b2d77!2sVilla%20Cialdini!5e0!3m2!1sit!2sit!4v1700000000000"
+          width="100%"
+          height="300"
+          className="w-full h-[300px] md:h-[400px] border-0 grayscale hover:grayscale-0 transition-all duration-500"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Tenuta Cialdini - Castelvetro di Modena"
+        />
       </div>
     </section>
   );
