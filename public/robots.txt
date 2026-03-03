@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cletochiarli.cms.voler.ai/sitemap.xml

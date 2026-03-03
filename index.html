@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cleto Chiarli | Modena 1860</title>
-    <meta name="description" content="Dal 1860, la più antica cantina dell'Emilia-Romagna. Scopri i nostri Lambrusco, le tenute storiche e le esperienze." />
+    <meta name="description" content="Dal 1860, la più antica cantina dell'Emilia-Romagna. Scopri i nostri Lambrusco, le tenute storiche e le esperienze enogastronomiche." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cletochiarli.cms.voler.ai/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -143,8 +145,8 @@
             // Raccogli contesto
             const context = getSelectionContext(element);
 
-            // Ottieni la pagina corrente dal hash (React Router)
-            const currentPath = window.location.hash.replace('#', '') || '/';
+            // Ottieni la pagina corrente dal pathname
+            const currentPath = window.location.pathname || '/';
 
             // Send selected text to parent (CMS dashboard) con contesto
             window.parent.postMessage({

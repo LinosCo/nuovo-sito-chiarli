@@ -21,6 +21,7 @@ import { CollezioneClassicaPage } from "./components/CollezioneClassicaPage";
 import { CollezionePremiumPage } from "./components/CollezionePremiumPage";
 import { TuttiIViniPage } from "./components/TuttiIViniPage";
 import { MouseGradient } from "./components/MouseGradient";
+import { PageSEO } from "./components/PageSEO";
 
 function AppContent() {
   // Blog section enabled
@@ -212,6 +213,7 @@ function AppContent() {
   if (currentPage === "experiences") {
     return (
       <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <PageSEO page="experiences" />
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -226,6 +228,7 @@ function AppContent() {
   if (currentPage === "storia") {
     return (
       <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <PageSEO page="storia" />
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -240,6 +243,7 @@ function AppContent() {
   if (currentPage === "tenute") {
     return (
       <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <PageSEO page="tenute" />
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -254,6 +258,7 @@ function AppContent() {
   if (currentPage === "sostenibilita") {
     return (
       <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <PageSEO page="sostenibilita" />
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -268,6 +273,7 @@ function AppContent() {
   if (currentPage === "metodo") {
     return (
       <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <PageSEO page="metodo" />
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -282,6 +288,7 @@ function AppContent() {
   if (currentPage === "blog") {
     return (
       <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <PageSEO page="blog" />
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -296,6 +303,7 @@ function AppContent() {
   if (currentPage === "collezione-classica") {
     return (
       <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <PageSEO page="collezione-classica" />
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -313,6 +321,7 @@ function AppContent() {
   if (currentPage === "collezione-premium") {
     return (
       <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <PageSEO page="collezione-premium" />
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -330,6 +339,7 @@ function AppContent() {
   if (currentPage === "tutti-i-vini") {
     return (
       <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <PageSEO page="tutti-i-vini" />
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -367,6 +377,7 @@ function AppContent() {
 
     return (
       <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+        <PageSEO page={`tenuta-${tenutaSlug}`} />
         <MouseGradient />
         <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
         <div className="relative z-10">
@@ -380,6 +391,7 @@ function AppContent() {
 
   return (
     <div className="min-h-screen font-sans selection:bg-chiarli-wine selection:text-white bg-chiarli-stone text-chiarli-text">
+      <PageSEO page="home" />
       <MouseGradient />
       <div className="bg-grain opacity-50 fixed inset-0 pointer-events-none z-0"></div>
       <div className="relative z-10">

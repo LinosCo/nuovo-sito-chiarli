@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   ArrowLeft,
   Wine,
@@ -8,6 +8,8 @@ import {
   ArrowRight,
   Download,
 } from "lucide-react";
+import { useSEO } from "../hooks/useSEO";
+import { useJsonLd } from "../hooks/useJsonLd";
 
 interface WineDetailPageProps {
   slug?: string;
@@ -202,6 +204,222 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
 
   const wine = wineData || defaultWine;
 
+  // SEO: dynamic meta tags
+  const seoTitle = `${wine.name}${wine.subtitle ? ` - ${wine.subtitle}` : ""} ${wine.denomination}`;
+  const seoDescription = wine.description
+    ? wine.description.substring(0, 160)
+    : `${wine.name} - ${wine.denomination}. ${wine.grape ? `Vitigno: ${wine.grape}.` : ""} Scopri il vino di Cleto Chiarli, la più antica cantina dell'Emilia-Romagna.`;
+
+  useSEO({
+    title: seoTitle,
+    description: seoDescription,
+    path: `/vino/${wine.slug}`,
+    image: wine.image
+      ? `https://cletochiarli.cms.voler.ai${wine.image}`
+      : undefined,
+    type: "product",
+  });
+
+  // SEO: JSON-LD structured data (Wine as Product)
+  const alcoholNumeric =
+    typeof wine.alcohol === "string"
+      ? wine.alcohol.replace(/[^0-9.,]/g, "").replace(",", ".")
+      : wine.alcohol;
+
+  const jsonLdData = useMemo(
+    () => [
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: `${wine.name} - ${wine.denomination}`,
+        description: wine.description,
+        image: wine.image
+          ? `https://cletochiarli.cms.voler.ai${wine.image}`
+          : undefined,
+        url: `https://cletochiarli.cms.voler.ai/vino/${wine.slug}`,
+        brand: {
+          "@type": "Brand",
+          name: "Cleto Chiarli",
+        },
+        manufacturer: {
+          "@type": "Organization",
+          name: "Cleto Chiarli",
+          foundingDate: "1860",
+          url: "https://cletochiarli.cms.voler.ai",
+        },
+        category: "Wine",
+        additionalProperty: [
+          {
+            "@type": "PropertyValue",
+            name: "color",
+            value:
+              wine.denomination?.toLowerCase().includes("rosé") ||
+              wine.denomination?.toLowerCase().includes("rose") ||
+              wine.name?.toLowerCase().includes("rosé")
+                ? "Rosé"
+                : wine.denomination?.toLowerCase().includes("pignoletto") ||
+                    wine.denomination?.toLowerCase().includes("blanc") ||
+                    wine.name?.toLowerCase().includes("blanc")
+                  ? "White"
+                  : "Red",
+          },
+          {
+            "@type": "PropertyValue",
+            name: "wineType",
+            value: wine.wineStyle || "Sparkling / Frizzante",
+          },
+          ...(wine.grape
+            ? [
+                {
+                  "@type": "PropertyValue",
+                  name: "grapeVariant",
+                  value: wine.grape,
+                },
+              ]
+            : []),
+          ...(alcoholNumeric
+            ? [
+                {
+                  "@type": "PropertyValue",
+                  name: "alcoholContent",
+                  value: `${alcoholNumeric}%`,
+                },
+              ]
+            : []),
+          ...(wine.servingTemp
+            ? [
+                {
+                  "@type": "PropertyValue",
+                  name: "servingTemperature",
+                  value: wine.servingTemp,
+                },
+              ]
+            : []),
+          ...(wine.format
+            ? [
+                {
+                  "@type": "PropertyValue",
+                  name: "bottleSize",
+                  value: wine.format,
+                },
+              ]
+            : []),
+        ],
+        ...(wine.awards && wine.awards.length > 0
+          ? {
+              award: wine.awards.map(
+                (a) => `${a.name} ${a.score} (${a.year || a.years})`,
+              ),
+            }
+          : {}),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://cletochiarli.cms.voler.ai/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Tutti i Vini",
+            item: "https://cletochiarli.cms.voler.ai/tutti-i-vini",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: wine.name,
+            item: `https://cletochiarli.cms.voler.ai/vino/${wine.slug}`,
+          },
+        ],
+      },
+    ],
+    [wine],
+  );
+
+  // SEO: FAQ auto-generate dai dati del vino
+  const faqItems = useMemo(() => {
+    const faqs: { question: string; answer: string }[] = [];
+
+    if (wine.servingTemp) {
+      faqs.push({
+        question: `A che temperatura si serve il ${wine.name}?`,
+        answer: `Il ${wine.name} va servito a ${wine.servingTemp} per esaltarne al meglio le caratteristiche organolettiche.`,
+      });
+    }
+
+    if (wine.grape) {
+      faqs.push({
+        question: `Qual è il vitigno del ${wine.name}?`,
+        answer: `Il ${wine.name} è prodotto con uve ${wine.grape}${wine.denomination ? `, nella denominazione ${wine.denomination}` : ""}.`,
+      });
+    }
+
+    if (wine.pairings && wine.pairings.length > 0) {
+      faqs.push({
+        question: `Con cosa abbinare il ${wine.name}?`,
+        answer: `Il ${wine.name} si abbina perfettamente con: ${wine.pairings.slice(0, 4).join(", ")}${wine.pairings.length > 4 ? " e altri piatti" : ""}.`,
+      });
+    }
+
+    if (wine.tastingNotes?.aspetto) {
+      faqs.push({
+        question: `Come si presenta il ${wine.name} alla vista?`,
+        answer: wine.tastingNotes.aspetto,
+      });
+    }
+
+    if (wine.tastingNotes?.profumo) {
+      faqs.push({
+        question: `Quali sono le note olfattive del ${wine.name}?`,
+        answer: wine.tastingNotes.profumo,
+      });
+    }
+
+    if (wine.alcohol) {
+      const alcValue =
+        typeof wine.alcohol === "string"
+          ? wine.alcohol
+          : `${wine.alcohol}% vol.`;
+      faqs.push({
+        question: `Qual è la gradazione alcolica del ${wine.name}?`,
+        answer: `Il ${wine.name} ha una gradazione alcolica di ${alcValue}.`,
+      });
+    }
+
+    if (wine.vinification) {
+      faqs.push({
+        question: `Come viene vinificato il ${wine.name}?`,
+        answer: wine.vinification,
+      });
+    }
+
+    return faqs;
+  }, [wine]);
+
+  // Combina Product + BreadcrumbList + FAQPage nel JSON-LD
+  const faqJsonLd =
+    faqItems.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqItems.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
+        }
+      : null;
+
+  useJsonLd(faqJsonLd ? [...jsonLdData, faqJsonLd] : jsonLdData);
+
   // Usa experienceSections se disponibili (Degusta, Abbina, Scopri), altrimenti fallback a tastingNotes
   const tastingNotes = wine.experienceSections
     ? [
@@ -249,7 +467,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
         <div className="absolute inset-0">
           <img
             src={wine.heroBackground || "/foto/sito/villa-cialdini-ombre.webp"}
-            alt="Villa Cialdini"
+            alt={`Sfondo tenuta Cleto Chiarli per ${wine.name} ${wine.denomination}`}
             className="w-full h-full object-cover opacity-50"
             style={{
               filter: "blur(2px)",
@@ -304,7 +522,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
               <div className="relative">
                 <img
                   src={wine.image}
-                  alt={wine.name}
+                  alt={`Bottiglia di ${wine.name} ${wine.denomination} Cleto Chiarli`}
                   className="relative z-10 h-[28vh] w-auto object-contain"
                   loading="lazy"
                   decoding="async"
@@ -330,9 +548,11 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
               </span>
 
               <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white mb-4 leading-tight">
+                <span className="sr-only">{`${wine.name} - ${wine.denomination}`}</span>
                 {wine.subtitle ? (
                   <>
                     <span
+                      aria-hidden="true"
                       className={`block transition-all duration-700 delay-400 ${
                         isLoaded
                           ? "opacity-100 translate-y-0"
@@ -342,6 +562,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                       {wine.name}
                     </span>
                     <span
+                      aria-hidden="true"
                       className={`block italic text-chiarli-wine-light text-xl md:text-3xl lg:text-4xl transition-all duration-700 delay-500 ${
                         isLoaded
                           ? "opacity-100 translate-y-0"
@@ -585,7 +806,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                 >
                   <img
                     src={wine.image}
-                    alt={wine.name}
+                    alt={`Bottiglia di ${wine.name} ${wine.denomination} Cleto Chiarli`}
                     className="relative z-10 h-[75vh] w-auto object-contain"
                     loading="lazy"
                     decoding="async"
@@ -624,7 +845,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
               wine.experienceBackground ||
               "/foto/sito/villa-cialdini-cielo.webp"
             }
-            alt="Villa Cialdini"
+            alt={`Vigneti e paesaggio per la degustazione di ${wine.name}`}
             className="w-full h-full object-cover"
             loading="lazy"
             decoding="async"
@@ -980,7 +1201,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
           <div className="w-full lg:w-1/2 h-[40vh] md:h-[50vh] lg:h-[80vh] relative order-first lg:order-last">
             <img
               src={wine.heritageImage || "/foto/sito/villa-cialdini-viale.webp"}
-              alt="Villa Cialdini"
+              alt={`Eredità e tradizione di ${wine.name} - Cleto Chiarli dal 1860`}
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
               decoding="async"
@@ -998,7 +1219,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
           <div className="w-full lg:w-1/2 relative">
             <img
               src={wine.pairingImage || "/foto/sito/abbinamento-2.webp"}
-              alt="Abbinamento gastronomico"
+              alt={`Abbinamento gastronomico per ${wine.name} ${wine.denomination}`}
               className="w-full h-full object-cover absolute inset-0"
               style={
                 wine.pairingImagePosition
@@ -1157,7 +1378,7 @@ export const WineDetailPage: React.FC<WineDetailPageProps> = ({
                     {relatedWine.image ? (
                       <img
                         src={relatedWine.image}
-                        alt={relatedWine.name}
+                        alt={`Bottiglia di ${relatedWine.name} ${relatedWine.denomination}`}
                         className="w-full h-80 md:h-96 object-contain p-4 transform group-hover:scale-105 transition-transform duration-700"
                         loading="lazy"
                         decoding="async"
