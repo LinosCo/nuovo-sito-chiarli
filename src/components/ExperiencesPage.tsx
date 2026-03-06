@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowRight, Users, Grape, Home, Clock, MapPin } from "lucide-react";
+import { ArrowRight, Users, Grape, Home } from "lucide-react";
 
 interface ExperiencesPageProps {
   onBack?: () => void;
@@ -42,65 +42,6 @@ const highlights = [
     label: "Tenuta Cialdini",
     description:
       "Qui accogliamo ospiti privati, gruppi aziendali e partner internazionali per far vivere da vicino il nostro metodo, i nostri valori e il profondo legame con la terra.",
-  },
-];
-
-const experiences = [
-  {
-    title: "Due Anime dei Vini di Castelvetro",
-    description:
-      "Castelvetro di Modena è la terra del Lambrusco Grasparossa, e dell'altrettanto allegro spumante bianco dall'uva Pignoletto.",
-    duration: "1h",
-    price: "€ 15,00",
-    priceLabel: "a persona",
-  },
-  {
-    title: "La storia dei vini Modenesi",
-    description:
-      "Tour dei vigneti, giardini e cantina | Degustazione di 4 iconici vini modenesi | Selezione di specialità emiliane",
-    duration: "1h 30m",
-    price: "€ 25,00",
-    priceLabel: "a persona",
-  },
-  {
-    title: "Lambrusco Che Passione",
-    description:
-      "Godetevi una intensa presentazione dei differenti Lambrusco di Modena con il primo produttore dell'Emilia Romagna.",
-    duration: "1h 30m",
-    price: "€ 25,00",
-    priceLabel: "a persona",
-  },
-  {
-    title: "Un viaggio tra tempo e vino",
-    description:
-      "Una degustazione accompagnata da uno dei più immersivi e completi tour di Lambrusco e Modena, tra storia, curiosità e cultura dal 1860 ad oggi.",
-    duration: "2h",
-    price: "€ 40,00",
-    priceLabel: "a persona",
-  },
-  {
-    title: "Quintopasso Metodo Classico",
-    description:
-      "Quintopasso Metodo Classico e il potenziale del Lambrusco Sorbara.",
-    duration: "1h 30m",
-    price: "€ 30,00",
-    priceLabel: "a persona",
-  },
-  {
-    title: "Domenica in Cantina",
-    description:
-      "In primavera e autunno si aprono le porte della nostra cantina anche la domenica, i colori e i profumi di queste stagioni vi stupiranno.",
-    duration: "1h 30m",
-    price: "€ 25,00",
-    priceLabel: "a persona",
-  },
-  {
-    title: "Cleto Chiarli su Misura",
-    description:
-      "La cantina Cleto Chiarli a Villa Cialdini, è circondata da magnifici giardini e vigneti ed è la perfetta location per gruppi fino a 50 persone.",
-    duration: null,
-    price: "Su richiesta",
-    priceLabel: null,
   },
 ];
 
@@ -437,10 +378,14 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
         </div>
       </div>
 
-      {/* Le Nostre Esperienze - Native Cards */}
-      <div ref={previewRef} className="relative bg-white py-24 md:py-32">
+      {/* Le Nostre Esperienze - Editorial */}
+      <div
+        ref={previewRef}
+        className="relative bg-chiarli-stone py-24 md:py-32"
+      >
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
-          <div className="text-center mb-16">
+          {/* Header */}
+          <div className="max-w-3xl mb-20">
             <span
               className={`font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine mb-6 block transition-all duration-700 ${
                 isPreviewVisible
@@ -448,10 +393,10 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
                   : "opacity-0 translate-y-4"
               }`}
             >
-              Prenota online
+              Cosa offriamo
             </span>
             <h2
-              className={`font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text leading-tight transition-all duration-700 delay-100 ${
+              className={`font-serif text-4xl md:text-5xl lg:text-6xl text-chiarli-text leading-tight mb-6 transition-all duration-700 delay-100 ${
                 isPreviewVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
@@ -461,78 +406,115 @@ export const ExperiencesPage: React.FC<ExperiencesPageProps> = ({ onBack }) => {
               <span className="italic text-chiarli-wine">Esperienze</span>
             </h2>
             <p
-              className={`font-sans text-chiarli-text/60 text-base mt-4 max-w-2xl mx-auto transition-all duration-700 delay-200 ${
+              className={`font-sans text-chiarli-text/70 text-lg leading-relaxed transition-all duration-700 delay-200 ${
                 isPreviewVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
               }`}
             >
-              Scopri le nostre esperienze e prenota direttamente online.
+              Dalla passeggiata tra i vigneti alla degustazione in cantina, fino
+              agli eventi su misura per gruppi e aziende: ogni visita a Villa
+              Cialdini è un viaggio nell'identità del Lambrusco.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {experiences.map((exp, index) => (
-              <a
-                key={index}
-                href="https://shop.chiarli.it/esperienze/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group block border border-chiarli-text/10 hover:border-chiarli-wine/30 transition-all duration-700 ${
-                  isPreviewVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-12"
-                }`}
-                style={{ transitionDelay: `${300 + index * 80}ms` }}
-              >
-                <div className="p-6 md:p-8 flex flex-col h-full">
-                  <div className="flex-1">
-                    <h3 className="font-serif text-xl md:text-2xl text-chiarli-text mb-3 group-hover:text-chiarli-wine transition-colors duration-300 leading-tight">
-                      {exp.title}
-                    </h3>
-                    <p className="font-sans text-sm text-chiarli-text/60 leading-relaxed mb-6">
-                      {exp.description}
-                    </p>
-                  </div>
-
-                  <div>
-                    <div className="flex items-center gap-4 mb-5 text-chiarli-text/40">
-                      {exp.duration && (
-                        <span className="flex items-center gap-1.5 font-sans text-xs">
-                          <Clock size={13} />
-                          {exp.duration}
-                        </span>
-                      )}
-                      <span className="flex items-center gap-1.5 font-sans text-xs">
-                        <MapPin size={13} />
-                        Tenuta Cialdini
-                      </span>
-                    </div>
-
-                    <div className="flex items-end justify-between border-t border-chiarli-text/10 pt-5">
-                      <div>
-                        <span className="font-serif text-2xl text-chiarli-text">
-                          {exp.price}
-                        </span>
-                        {exp.priceLabel && (
-                          <span className="font-sans text-xs text-chiarli-text/50 ml-2">
-                            {exp.priceLabel}
-                          </span>
-                        )}
-                      </div>
-
-                      <span className="inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-chiarli-wine group-hover:text-chiarli-wine-light transition-colors duration-300">
-                        Prenota
-                        <ArrowRight
-                          size={14}
-                          className="group-hover:translate-x-1 transition-transform"
-                        />
-                      </span>
-                    </div>
-                  </div>
+          {/* Experience blocks */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-1">
+            {/* Block 1 — Visita & Degustazione */}
+            <div
+              className={`group relative overflow-hidden transition-all duration-700 delay-200 ${
+                isPreviewVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-12"
+              }`}
+            >
+              <div className="relative h-[420px] md:h-[520px] overflow-hidden">
+                <img
+                  src="/foto/sito/esperienze-hero-visita.webp"
+                  alt="Visita e degustazione Tenuta Cialdini"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-3 block">
+                    Tour · Degustazione · Galleria
+                  </span>
+                  <h3 className="font-serif text-3xl md:text-4xl text-white mb-4 leading-tight">
+                    Visita alla culla
+                    <br />
+                    <span className="italic">del Lambrusco</span>
+                  </h3>
+                  <p className="font-sans text-white/70 text-sm leading-relaxed max-w-md">
+                    Tour guidati tra vigneti e cantine storiche, degustazioni
+                    curate con i nostri vini iconici, visite esclusive alla
+                    Galleria Chiarli. Da €&nbsp;15 a persona, da 1h a 2h.
+                  </p>
                 </div>
-              </a>
-            ))}
+              </div>
+            </div>
+
+            {/* Block 2 — Eventi */}
+            <div
+              className={`group relative overflow-hidden transition-all duration-700 delay-300 ${
+                isPreviewVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-12"
+              }`}
+            >
+              <div className="relative h-[420px] md:h-[520px] overflow-hidden">
+                <img
+                  src="/foto/sito/eventi_slider.webp"
+                  alt="Eventi aziendali Tenuta Cialdini"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-chiarli-wine-light mb-3 block">
+                    Team building · Privati · Aziende
+                  </span>
+                  <h3 className="font-serif text-3xl md:text-4xl text-white mb-4 leading-tight">
+                    Eventi su misura
+                    <br />
+                    <span className="italic">per ogni occasione</span>
+                  </h3>
+                  <p className="font-sans text-white/70 text-sm leading-relaxed max-w-md">
+                    Villa Cialdini è la location ideale per eventi aziendali,
+                    lanci prodotto, cene di rappresentanza e team building fino
+                    a 50 persone. Prezzo su richiesta.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div
+            className={`mt-16 text-center transition-all duration-700 delay-500 ${
+              isPreviewVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+            }`}
+          >
+            <p className="font-sans text-chiarli-text/60 text-sm mb-6">
+              Degustazioni, tour e esperienze esclusive — prenota online in
+              pochi clic.
+            </p>
+            <a
+              href="https://shop.chiarli.it/esperienze/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 bg-chiarli-wine hover:bg-chiarli-wine-light text-white font-sans text-sm font-bold uppercase tracking-widest px-10 py-4 transition-all duration-300"
+            >
+              Scopri tutte le esperienze
+              <ArrowRight
+                size={16}
+                className="group-hover:translate-x-1 transition-transform"
+              />
+            </a>
           </div>
         </div>
       </div>
